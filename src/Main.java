@@ -83,31 +83,23 @@ class MyVisitor extends MxBaseVisitor<check>
     public check visitParam(MxParser.ParamContext ctx){}*/
     public check visitBlock(MxParser.BlockContext ctx)
     {
+        Vector<Vector> vv = new Vector<>();
         check chk = new check();
         //System.out.println(ctx.getText());
         for (int i = 0;i < ctx.stmt().size();++i)
         {
             chk.defvars.putAll(visit(ctx.stmt(i)).defvars);
-            chk.vars.addAll(visit(ctx.stmt(i)).vars);
+            vv.addAll(visit(ctx.stmt(i)).vars);
         }
-        return chk;
-    }
-    public check visitStmt(MxParser.StmtContext ctx)
-    {
-        check chk = new check();
-        if (ctx.block() != null) chk.defvars.putAll((visit(ctx.block())).defvars);
-        for (int i = 0;i < ctx.stmt().size();++i)
+        for (int i = 0;i < vv.size();++i)
         {
-            chk.defvars.putAll(visit(ctx.stmt(i)).defvars);
-            chk.vars.addAll(visit(ctx.stmt(i)).vars);
-        }
-        if (ctx.defvars() != null) chk.defvars.putAll(visit(ctx.defvars()).defvars);
-        for (int i = 0;i < ctx.expr().size();++i)
-        {
-            Vector v = visit(ctx.expr(i)).var;
+            System.out.println(ctx.getText());
+            System.out.println(i);
+            System.out.println(vv.get(i).toString());
+            Vector v = vv.get(i);
             Vector u = new Vector();
             int flag = -2;//-1 : undefine ; 0 : pass int ; 1 : pass string; 2 : wrong;
-            int uflag = 0;//-1 : undefine;
+            int uflag = 0;
             for (int j = 0;j < v.size();++j)
             {
                 if (v.get(j)  == "int")
@@ -157,12 +149,37 @@ class MyVisitor extends MxBaseVisitor<check>
                     }
                     continue;
                 }
-                uflag  = -1;
+                uflag = -1;
                 u.add(v.get(j));
             }
-            if (flag == 0) u.add("int"); else u.add("string");
-            if (!u.isEmpty()) chk.vars.addAll(u);
+            if (uflag == -1)
+            {
+                if (flag == 0) u.add("int"); else u.add("string");
+                chk.vars.add(u);
+            }
         }
+        return chk;
+    }
+    public check visitStmt(MxParser.StmtContext ctx)
+    {
+        check chk = new check();
+        if (ctx.block() != null)
+        {
+            chk.defvars.putAll((visit(ctx.block())).defvars);
+            chk.vars.addAll(visit(ctx.block()).vars);
+        }
+        for (int i = 0;i < ctx.stmt().size();++i)
+        {
+            chk.defvars.putAll(visit(ctx.stmt(i)).defvars);
+            chk.vars.addAll(visit(ctx.stmt(i)).vars);
+        }
+        if (ctx.defvars() != null) chk.defvars.putAll(visit(ctx.defvars()).defvars);
+        Vector v = new Vector();
+        for (int i = 0;i < ctx.expr().size();++i)
+        {
+            v.add(visit(ctx.expr(i)).var);
+        }
+        chk.vars.add(v);
         return chk;
     }
    // public check visitExprs(MxParser.ExprsContext ctx){}
@@ -174,7 +191,7 @@ class MyVisitor extends MxBaseVisitor<check>
         if (ctx.STR() != null) chk.var.add("string");
         for (int i = 0;i < ctx.expr().size();++i)
         {
-            chk.var.add(visit(ctx.expr(i)).var);
+            chk.var.addAll(visit(ctx.expr(i)).var);
         }
         return chk;
     }
