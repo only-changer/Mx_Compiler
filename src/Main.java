@@ -28,7 +28,9 @@ class MyVisitor extends MxBaseVisitor<check>
         check nullcheck = new check();
         for (int i = 0;i < ctx.defun().size();++i)
         {
-            chk.defvars.putAll(visit(ctx.defun(i)).defvars);
+            check ck = visit(ctx.defun(i));
+            chk.defvars.putAll(ck.defvars);
+            chk.vars.addAll(ck.vars);
         }
 
        /* for (int i = 0;i < ctx.defclass().size();++i)
@@ -39,8 +41,72 @@ class MyVisitor extends MxBaseVisitor<check>
         {
             chk.defvars.putAll(visit(ctx.defvars(i)).defvars);
         }
-        for (Entry<String,String> entry : chk.defvars.entrySet()) {
-            System.out.println(entry.getKey() + " : " + entry.getValue());
+
+        /*for (Entry<String,String> entry : chk.defvars.entrySet()) {
+         System.out.println(entry.getKey() + " : " + entry.getValue());
+        }*/
+        Vector<Vector> vv = chk.vars;
+        for (int i = 0;i < vv.size();++i)
+        {
+            // System.out.println(ctx.getText());
+            // System.out.println(i);
+            // System.out.println(vv);
+            Vector v = vv.get(i);
+            int flag = -2;//-1 : undefine ; 0 : pass int ; 1 : pass string; 2 : wrong;
+            for (int j = 0; j < v.size(); ++j)
+            {
+                if (v.get(j).equals("int"))
+                {
+                    if (flag == -2) flag = 0;
+                    if (flag == 1)
+                    {
+                        flag = 2;
+                        System.out.println("FBI WARNING! Variables wrong!");
+                        break;
+                    }
+                    continue;
+                }
+                if (v.get(j).equals("string"))
+                {
+                    if (flag == -2) flag = 1;
+                    if (flag == 0)
+                    {
+                        flag = 2;
+                        System.out.println("FBI WARNING! Variables wrong!");
+                        break;
+                    }
+                    continue;
+                }
+                //System.out.println(v.get(j));
+                // System.out.println(chk.defvars.containsKey(v.get(j)));
+                if (chk.defvars.containsKey(v.get(j)))
+                {
+                    String s = chk.defvars.get(v.get(j));
+                    if (s.equals("int"))
+                    {
+                        if (flag == -2) flag = 0;
+                        if (flag == 1)
+                        {
+                            flag = 2;
+                            System.out.println("FBI WARNING! Variables wrong!");
+                            break;
+                        }
+                    }
+                    if (s.equals("string"))
+                    {
+                        if (flag == -2) flag = 1;
+                        if (flag == 0)
+                        {
+                            flag = 2;
+                            System.out.println("FBI WARNING! Variables wrong!");
+                            break;
+                        }
+                    }
+                    continue;
+                }
+                System.out.println("FBI WARNING! Variable \""+v.get(j)+"\" undefined!\n");
+                break;
+            }
         }
         return nullcheck;
     }
@@ -88,62 +154,66 @@ class MyVisitor extends MxBaseVisitor<check>
         //System.out.println(ctx.getText());
         for (int i = 0;i < ctx.stmt().size();++i)
         {
-            chk.defvars.putAll(visit(ctx.stmt(i)).defvars);
-            vv.addAll(visit(ctx.stmt(i)).vars);
+            check ck = visit(ctx.stmt(i));
+            chk.defvars.putAll(ck.defvars);
+            vv.addAll(ck.vars);
         }
+
         for (int i = 0;i < vv.size();++i)
         {
-            System.out.println(ctx.getText());
-            System.out.println(i);
-            System.out.println(vv.get(i).toString());
+           // System.out.println(ctx.getText());
+           // System.out.println(i);
+           // System.out.println(vv);
             Vector v = vv.get(i);
             Vector u = new Vector();
             int flag = -2;//-1 : undefine ; 0 : pass int ; 1 : pass string; 2 : wrong;
             int uflag = 0;
             for (int j = 0;j < v.size();++j)
             {
-                if (v.get(j)  == "int")
+                if (v.get(j).equals("int"))
                 {
                     if (flag == -2) flag = 0;
                     if (flag == 1)
                     {
                         flag = 2;
-                        System.out.println("FBI WARNING!");
+                        System.out.println("FBI WARNING! Variables wrong!");
                         break;
                     }
                     continue;
                 }
-                if (v.get(j) == "string")
+                if (v.get(j).equals("string"))
                 {
                     if (flag == -2) flag = 1;
                     if (flag == 0)
                     {
                         flag = 2;
-                        System.out.println("FBI WARNING!");
+                        System.out.println("FBI WARNING! Variables wrong!");
                         break;
                     }
                     continue;
                 }
+                //System.out.println(v.get(j));
+               // System.out.println(chk.defvars.containsKey(v.get(j)));
                 if (chk.defvars.containsKey(v.get(j)))
                 {
                     String s = chk.defvars.get(v.get(j));
-                    if (s  == "int")
+                    if (s.equals("int"))
                     {
                         if (flag == -2) flag = 0;
                         if (flag == 1)
                         {
                             flag = 2;
-                            System.out.println("FBI WARNING!");
+                            System.out.println("FBI WARNING! Variables wrong!");
                             break;
                         }
                     }
-                    if (s == "string")
+                    if (s.equals("string"))
                     {
                         if (flag == -2) flag = 1;
                         if (flag == 0)
                         {
                             flag = 2;
-                            System.out.println("FBI WARNING!");
+                            System.out.println("FBI WARNING! Variables wrong!");
                             break;
                         }
                     }
@@ -154,7 +224,7 @@ class MyVisitor extends MxBaseVisitor<check>
             }
             if (uflag == -1)
             {
-                if (flag == 0) u.add("int"); else u.add("string");
+                if (flag == 0) u.add("int"); else if (flag == 1) u.add("string");
                 chk.vars.add(u);
             }
         }
@@ -162,22 +232,25 @@ class MyVisitor extends MxBaseVisitor<check>
     }
     public check visitStmt(MxParser.StmtContext ctx)
     {
+        System.out.println(ctx.getText());
         check chk = new check();
         if (ctx.block() != null)
         {
-            chk.defvars.putAll((visit(ctx.block())).defvars);
-            chk.vars.addAll(visit(ctx.block()).vars);
+            check ck = visit(ctx.block());
+            chk.defvars.putAll(ck.defvars);
+            chk.vars.addAll(ck.vars);
         }
         for (int i = 0;i < ctx.stmt().size();++i)
         {
-            chk.defvars.putAll(visit(ctx.stmt(i)).defvars);
-            chk.vars.addAll(visit(ctx.stmt(i)).vars);
+            check ck = visit(ctx.stmt(i));
+            chk.defvars.putAll(ck.defvars);
+            chk.vars.addAll(ck.vars);
         }
         if (ctx.defvars() != null) chk.defvars.putAll(visit(ctx.defvars()).defvars);
         Vector v = new Vector();
         for (int i = 0;i < ctx.expr().size();++i)
         {
-            v.add(visit(ctx.expr(i)).var);
+            v.addAll(visit(ctx.expr(i)).var);
         }
         chk.vars.add(v);
         return chk;
