@@ -6,13 +6,16 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Vector;
+
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
 class check
 {
     check(){}
     Map<String, String> defvars = new HashMap();
-    Map<String, String> vars = new HashMap();
+    Vector<Vector> vars = new Vector<>();
+    Vector var = new Vector();
 }
 
 class MyVisitor extends MxBaseVisitor<check>
@@ -85,7 +88,7 @@ class MyVisitor extends MxBaseVisitor<check>
         for (int i = 0;i < ctx.stmt().size();++i)
         {
             chk.defvars.putAll(visit(ctx.stmt(i)).defvars);
-            chk.vars.putAll(visit(ctx.stmt(i)).vars);
+            chk.vars.addAll(visit(ctx.stmt(i)).vars);
         }
         return chk;
     }
@@ -96,17 +99,86 @@ class MyVisitor extends MxBaseVisitor<check>
         for (int i = 0;i < ctx.stmt().size();++i)
         {
             chk.defvars.putAll(visit(ctx.stmt(i)).defvars);
+            chk.vars.addAll(visit(ctx.stmt(i)).vars);
         }
+        if (ctx.defvars() != null) chk.defvars.putAll(visit(ctx.defvars()).defvars);
         for (int i = 0;i < ctx.expr().size();++i)
         {
-            chk.vars.putAll(visit((ctx.expr(i))).vars);
+            Vector v = visit(ctx.expr(i)).var;
+            Vector u = new Vector();
+            int flag = -2;//-1 : undefine ; 0 : pass int ; 1 : pass string; 2 : wrong;
+            int uflag = 0;//-1 : undefine;
+            for (int j = 0;j < v.size();++j)
+            {
+                if (v.get(j)  == "int")
+                {
+                    if (flag == -2) flag = 0;
+                    if (flag == 1)
+                    {
+                        flag = 2;
+                        System.out.println("FBI WARNING!");
+                        break;
+                    }
+                    continue;
+                }
+                if (v.get(j) == "string")
+                {
+                    if (flag == -2) flag = 1;
+                    if (flag == 0)
+                    {
+                        flag = 2;
+                        System.out.println("FBI WARNING!");
+                        break;
+                    }
+                    continue;
+                }
+                if (chk.defvars.containsKey(v.get(j)))
+                {
+                    String s = chk.defvars.get(v.get(j));
+                    if (s  == "int")
+                    {
+                        if (flag == -2) flag = 0;
+                        if (flag == 1)
+                        {
+                            flag = 2;
+                            System.out.println("FBI WARNING!");
+                            break;
+                        }
+                    }
+                    if (s == "string")
+                    {
+                        if (flag == -2) flag = 1;
+                        if (flag == 0)
+                        {
+                            flag = 2;
+                            System.out.println("FBI WARNING!");
+                            break;
+                        }
+                    }
+                    continue;
+                }
+                uflag  = -1;
+                u.add(v.get(j));
+            }
+            if (flag == 0) u.add("int"); else u.add("string");
+            if (!u.isEmpty()) chk.vars.addAll(u);
         }
-         if (ctx.defvars() != null) chk.defvars.putAll(visit(ctx.defvars()).defvars);
         return chk;
     }
-   /* public check visitExprs(MxParser.ExprsContext ctx){}
-    public check visitExpr(MxParser.ExprContext ctx){}
-    public check visitNews(MxParser.NewsContext ctx){}*/
+   // public check visitExprs(MxParser.ExprsContext ctx){}
+    public check visitExpr(MxParser.ExprContext ctx)
+    {
+        check chk = new check();
+        if (ctx.varname() != null) chk.var.add(ctx.varname().getText());
+        if (ctx.NUM() != null) chk.var.add("int");
+        if (ctx.STR() != null) chk.var.add("string");
+        for (int i = 0;i < ctx.expr().size();++i)
+        {
+            chk.var.add(visit(ctx.expr(i)).var);
+        }
+        return chk;
+    }
+   // public check visitNews(MxParser.NewsContext ctx){}
 }
 
 public class Main
