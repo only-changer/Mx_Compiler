@@ -16,6 +16,12 @@ public interface MxVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAllin(MxParser.AllinContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link MxParser#defs}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDefs(MxParser.DefsContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link MxParser#varname}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

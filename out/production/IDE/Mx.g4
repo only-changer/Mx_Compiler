@@ -2,7 +2,9 @@ grammar Mx;
 
 //parser
 
-allin   :   (defun | defvars | defclass )* EOF ;
+allin   :   (defs )* EOF ;
+
+defs : defun | defvars | defclass;
 
 varname :   ID;
 
