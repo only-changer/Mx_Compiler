@@ -9,6 +9,7 @@ import java.util.Vector;
 
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
+
 class check
 {
     check(){}
@@ -21,7 +22,7 @@ class check
 
 class MyVisitor extends MxBaseVisitor<check>
 {
-
+    Map<String,Vector> defuns = new HashMap<>();
     MyVisitor() { }
     public check visitAllin(MxParser.AllinContext ctx)
     {
@@ -87,29 +88,6 @@ class MyVisitor extends MxBaseVisitor<check>
                     }
                     System.out.println("FBI WARNING! Variable \""+v.get(j)+"\" undefined!\n");
                     break;
-                }
-            }
-            chk.defuns.putAll(ck.defuns);
-            Vector<Map<String,Vector>> vmap = ck.funs;
-            for (int i = 0;i < vmap.size();++i)
-            {
-                String name = new String();
-                Vector vec = new Vector();
-                for (Map.Entry<String, Vector> entry : vmap.get(i).entrySet())
-                {
-                    name = entry.getKey();
-                    vec = entry.getValue();
-                }
-                if (chk.defuns.containsKey(name))
-                {
-                    if (!vec.equals(chk.defuns.get(name)))
-                    {
-                        System.out.println("FBI WARNING!function wrong!");
-                    }
-                }
-                else
-                {
-                    System.out.println("FBI WARNING! function \"" + name + "\" undefined!");
                 }
             }
         }
@@ -179,17 +157,15 @@ class MyVisitor extends MxBaseVisitor<check>
         check ck = visit(ctx.block());
         chk.defvars = ck.defvars;
         chk.funs = ck.funs;
-        System.out.println(ck.funs);
         Vector<Vector> vv  = ck.vars;
         Map<String,String> map = (visit(ctx.params()).defvars);
         chk.defvars.putAll(map);
         Vector fun = new Vector();
-        fun.add(ctx.type().getText());
         for (String value : map.values())
         {
             fun.add(value);
         }
-        chk.defuns.put(ctx.funname().getText(),fun);
+        defuns.put(ctx.funname().getText(),fun);
         for (int i = 0;i < vv.size();++i)
         {
             Vector v = vv.get(i);
@@ -378,8 +354,8 @@ class MyVisitor extends MxBaseVisitor<check>
         {
             check ck = visit(ctx.expr(i));
             v.addAll(ck.var);
+            chk.vars.addAll(ck.vars);
             chk.funs.addAll(ck.funs);
-            //System.out.println(ck.funs);
         }
         chk.vars.add(v);
         return chk;
@@ -390,7 +366,7 @@ class MyVisitor extends MxBaseVisitor<check>
 
         for (int i = 0;i < ctx.expr().size();++i)
         {
-            chk.var.add(visit(ctx.expr(i)).var);
+            chk.var.addAll(visit(ctx.expr(i)).var);
         }
         return chk;
     }
@@ -400,11 +376,30 @@ class MyVisitor extends MxBaseVisitor<check>
         if (ctx.funname() != null)
         {
             Vector v = new Vector();
-            v.add(ctx.funname().getText());
-            v.add(visit(ctx.exprs()).var);
-            Map<String,Vector> map = new HashMap<>();
-            map.put(ctx.funname().getText(),v);
-            chk.funs.add(map);
+            v.addAll(visit(ctx.exprs()).var);
+            String s = ctx.funname().getText();
+            if (defuns.containsKey(s) )
+            {
+                if (v.size() != defuns.get(s).size())
+                {
+                    System.out.println("FBI WARNING! parmars numbers wrong!");
+                }
+                else
+                {
+                    for (int i = 0;i < v.size();++i)
+                    {
+
+                        Vector vec = new Vector();
+                        vec.add(v.get(i));
+                        vec.add(defuns.get(s).get(i));
+                        chk.vars.add(vec);
+                    }
+                }
+            }
+            else
+            {
+                System.out.println("FBL WARNING! function undefined!");
+            }
         }
         if (ctx.varname() != null) chk.var.add(ctx.varname().getText());
         if (ctx.NUM() != null) chk.var.add("int");
