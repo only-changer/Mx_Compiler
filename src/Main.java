@@ -5,7 +5,6 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Vector;
 
 import org.antlr.v4.runtime.*;
@@ -16,6 +15,8 @@ class check
     Map<String, String> defvars = new HashMap();
     Vector<Vector> vars = new Vector<>();
     Vector var = new Vector();
+    Map<String,Vector> defuns = new HashMap<>();
+    Vector<Map<String,Vector>> funs = new Vector<>();
 }
 
 class MyVisitor extends MxBaseVisitor<check>
@@ -88,6 +89,29 @@ class MyVisitor extends MxBaseVisitor<check>
                     break;
                 }
             }
+            chk.defuns.putAll(ck.defuns);
+            Vector<Map<String,Vector>> vmap = ck.funs;
+            for (int i = 0;i < vmap.size();++i)
+            {
+                String name = new String();
+                Vector vec = new Vector();
+                for (Map.Entry<String, Vector> entry : vmap.get(i).entrySet())
+                {
+                    name = entry.getKey();
+                    vec = entry.getValue();
+                }
+                if (chk.defuns.containsKey(name))
+                {
+                    if (!vec.equals(chk.defuns.get(name)))
+                    {
+                        System.out.println("FBI WARNING!function wrong!");
+                    }
+                }
+                else
+                {
+                    System.out.println("FBI WARNING! function \"" + name + "\" undefined!");
+                }
+            }
         }
         return nullcheck;
     }
@@ -95,7 +119,10 @@ class MyVisitor extends MxBaseVisitor<check>
     {
         check nonecheck = new check();
         if (ctx.defclass() != null) return visit(ctx.defvars());
-        if (ctx.defun() != null) return visit(ctx.defun());
+        if (ctx.defun() != null)
+        {
+            return visit(ctx.defun());
+        }
         if (ctx.defvars() != null) return visit(ctx.defvars());
         return nonecheck;
     }
@@ -145,12 +172,106 @@ class MyVisitor extends MxBaseVisitor<check>
         check nullcheck = new check();
         return nullcheck;
     }
+
     public check visitDefun(MxParser.DefunContext ctx)
     {
-       return visit(ctx.block());
+        check chk = new check();
+        check ck = visit(ctx.block());
+        chk.defvars = ck.defvars;
+        chk.funs = ck.funs;
+        System.out.println(ck.funs);
+        Vector<Vector> vv  = ck.vars;
+        Map<String,String> map = (visit(ctx.params()).defvars);
+        chk.defvars.putAll(map);
+        Vector fun = new Vector();
+        fun.add(ctx.type().getText());
+        for (String value : map.values())
+        {
+            fun.add(value);
+        }
+        chk.defuns.put(ctx.funname().getText(),fun);
+        for (int i = 0;i < vv.size();++i)
+        {
+            Vector v = vv.get(i);
+            Vector u = new Vector();
+            int flag = -2;//-1 : undefine ; 0 : pass int ; 1 : pass string; 2 : wrong;
+            int uflag = 0;
+            for (int j = 0;j < v.size();++j)
+            {
+                if (v.get(j).equals("int"))
+                {
+                    if (flag == -2) flag = 0;
+                    if (flag == 1)
+                    {
+                        flag = 2;
+                        System.out.println("FBI WARNING! Variables wrong!");
+                        break;
+                    }
+                    continue;
+                }
+                if (v.get(j).equals("string"))
+                {
+                    if (flag == -2) flag = 1;
+                    if (flag == 0)
+                    {
+                        flag = 2;
+                        System.out.println("FBI WARNING! Variables wrong!");
+                        break;
+                    }
+                    continue;
+                }
+                if (chk.defvars.containsKey(v.get(j)))
+                {
+                    String s = chk.defvars.get(v.get(j));
+                    if (s.equals("int"))
+                    {
+                        if (flag == -2) flag = 0;
+                        if (flag == 1)
+                        {
+                            flag = 2;
+                            System.out.println("FBI WARNING! Variables wrong!");
+                            break;
+                        }
+                    }
+                    if (s.equals("string"))
+                    {
+                        if (flag == -2) flag = 1;
+                        if (flag == 0)
+                        {
+                            flag = 2;
+                            System.out.println("FBI WARNING! Variables wrong!");
+                            break;
+                        }
+                    }
+                    continue;
+                }
+                uflag = -1;
+                u.add(v.get(j));
+            }
+            if (uflag == -1)
+            {
+                if (flag == 0) u.add("int"); else if (flag == 1) u.add("string");
+                chk.vars.add(u);
+            }
+        }
+
+        return chk;
     }
-   /* public check visitParams(MxParser.ParamsContext ctx){}
-    public check visitParam(MxParser.ParamContext ctx){}*/
+    public check visitParams(MxParser.ParamsContext ctx)
+    {
+        check chk = new check();
+        for (int i = 0;i < ctx.param().size();++i)
+        {
+            chk.defvars.putAll(visit(ctx.param(i)).defvars);
+        }
+        return chk;
+    }
+    public check visitParam(MxParser.ParamContext ctx)
+    {
+        check chk = new check();
+        chk.defvars.put(ctx.ID().getText(),ctx.type().getText());
+        return chk;
+    }
     public check visitBlock(MxParser.BlockContext ctx)
     {
 
@@ -159,6 +280,7 @@ class MyVisitor extends MxBaseVisitor<check>
         {
             check ck = visit(ctx.stmt(k));
             chk.defvars.putAll(ck.defvars);
+            chk.funs.addAll(ck.funs);
             Vector<Vector> vv  = ck.vars;
             for (int i = 0;i < vv.size();++i)
             {
@@ -236,12 +358,14 @@ class MyVisitor extends MxBaseVisitor<check>
             check ck = visit(ctx.block());
             chk.defvars.putAll(ck.defvars);
             chk.vars.addAll(ck.vars);
+            chk.funs.addAll(ck.funs);
         }
         for (int i = 0;i < ctx.stmt().size();++i)
         {
             check ck = visit(ctx.stmt(i));
             chk.defvars.putAll(ck.defvars);
             chk.vars.addAll(ck.vars);
+            chk.funs.addAll(ck.funs);
         }
         if (ctx.defvars() != null)
         {
@@ -252,15 +376,36 @@ class MyVisitor extends MxBaseVisitor<check>
         Vector v = new Vector();
         for (int i = 0;i < ctx.expr().size();++i)
         {
-            v.addAll(visit(ctx.expr(i)).var);
+            check ck = visit(ctx.expr(i));
+            v.addAll(ck.var);
+            chk.funs.addAll(ck.funs);
+            //System.out.println(ck.funs);
         }
         chk.vars.add(v);
         return chk;
     }
-   // public check visitExprs(MxParser.ExprsContext ctx){}
+    public check visitExprs(MxParser.ExprsContext ctx)
+    {
+        check chk = new check();
+
+        for (int i = 0;i < ctx.expr().size();++i)
+        {
+            chk.var.add(visit(ctx.expr(i)).var);
+        }
+        return chk;
+    }
     public check visitExpr(MxParser.ExprContext ctx)
     {
         check chk = new check();
+        if (ctx.funname() != null)
+        {
+            Vector v = new Vector();
+            v.add(ctx.funname().getText());
+            v.add(visit(ctx.exprs()).var);
+            Map<String,Vector> map = new HashMap<>();
+            map.put(ctx.funname().getText(),v);
+            chk.funs.add(map);
+        }
         if (ctx.varname() != null) chk.var.add(ctx.varname().getText());
         if (ctx.NUM() != null) chk.var.add("int");
         if (ctx.STR() != null) chk.var.add("string");
@@ -268,6 +413,7 @@ class MyVisitor extends MxBaseVisitor<check>
         {
             chk.var.addAll(visit(ctx.expr(i)).var);
         }
+        //System.out.println(chk.funs);
         return chk;
     }
    // public check visitNews(MxParser.NewsContext ctx){}
