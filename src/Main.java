@@ -16,6 +16,7 @@ class check
     Map<String, String> defvars = new HashMap();
     Vector<Vector> vars = new Vector<>();
     Vector var = new Vector();
+	
 }
 
 class MyVisitor extends MxBaseVisitor<check>
