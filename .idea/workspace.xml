@@ -2,10 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="014ac6d6-8e40-455f-95b1-dff8859644ca" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IDE/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IDE/MyVisitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/MyVisitor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IDE/check.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/check.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -39,16 +35,10 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="398">
-              <caret line="393" column="39" selection-start-line="393" selection-start-column="39" selection-end-line="393" selection-end-column="39" />
+            <state relative-caret-position="124">
+              <caret line="363" column="25" selection-start-line="363" selection-start-column="25" selection-end-line="363" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#visitVarname#0;class#MyVisitor#0" />
-                <element signature="method#visitTypename#0;class#MyVisitor#0" />
-                <element signature="method#visitType#0;class#MyVisitor#0" />
-                <element signature="method#visitBasetype#0;class#MyVisitor#0" />
-                <element signature="method#visitClassname#0;class#MyVisitor#0" />
-                <element signature="method#visitFunname#0;class#MyVisitor#0" />
               </folding>
             </state>
           </provider>
@@ -57,7 +47,7 @@
       <file leaf-file-name="Mx.g4" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Mx.g4">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="874">
+            <state relative-caret-position="347">
               <caret line="46" column="33" selection-start-line="46" selection-start-column="33" selection-end-line="46" selection-end-column="33" />
             </state>
           </provider>
@@ -85,9 +75,10 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>T visi</find>
+      <find />
       <find>Integer</find>
       <find>varbal</find>
+      <find>.defun</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -331,12 +322,6 @@
           <caret line="126" column="5" lean-forward="true" selection-start-line="126" selection-start-column="5" selection-end-line="126" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#visitVarname#0;class#MyVisitor#0" />
-            <element signature="method#visitTypename#0;class#MyVisitor#0" />
-            <element signature="method#visitType#0;class#MyVisitor#0" />
-            <element signature="method#visitBasetype#0;class#MyVisitor#0" />
-            <element signature="method#visitClassname#0;class#MyVisitor#0" />
-            <element signature="method#visitFunname#0;class#MyVisitor#0" />
           </folding>
         </state>
       </provider>
@@ -501,12 +486,6 @@
           <caret line="106" column="45" selection-start-line="106" selection-start-column="45" selection-end-line="106" selection-end-column="45" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#visitVarname#0;class#MyVisitor#0" />
-            <element signature="method#visitTypename#0;class#MyVisitor#0" />
-            <element signature="method#visitType#0;class#MyVisitor#0" />
-            <element signature="method#visitBasetype#0;class#MyVisitor#0" />
-            <element signature="method#visitClassname#0;class#MyVisitor#0" />
-            <element signature="method#visitFunname#0;class#MyVisitor#0" />
           </folding>
         </state>
       </provider>
@@ -660,23 +639,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Mx.g4">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="874">
+        <state relative-caret-position="347">
           <caret line="46" column="33" selection-start-line="46" selection-start-column="33" selection-end-line="46" selection-end-column="33" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="398">
-          <caret line="393" column="39" selection-start-line="393" selection-start-column="39" selection-end-line="393" selection-end-column="39" />
+        <state relative-caret-position="124">
+          <caret line="363" column="25" selection-start-line="363" selection-start-column="25" selection-end-line="363" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#visitVarname#0;class#MyVisitor#0" />
-            <element signature="method#visitTypename#0;class#MyVisitor#0" />
-            <element signature="method#visitType#0;class#MyVisitor#0" />
-            <element signature="method#visitBasetype#0;class#MyVisitor#0" />
-            <element signature="method#visitClassname#0;class#MyVisitor#0" />
-            <element signature="method#visitFunname#0;class#MyVisitor#0" />
           </folding>
         </state>
       </provider>
