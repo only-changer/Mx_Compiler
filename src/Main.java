@@ -16,8 +16,6 @@ class check
     Map<String, String> defvars = new HashMap();
     Vector<Vector> vars = new Vector<>();
     Vector var = new Vector();
-    Map<String,Vector> defuns = new HashMap<>();
-    Vector<Map<String,Vector>> funs = new Vector<>();
 }
 
 class MyVisitor extends MxBaseVisitor<check>
@@ -156,7 +154,6 @@ class MyVisitor extends MxBaseVisitor<check>
         check chk = new check();
         check ck = visit(ctx.block());
         chk.defvars = ck.defvars;
-        chk.funs = ck.funs;
         Vector<Vector> vv  = ck.vars;
         Map<String,String> map = (visit(ctx.params()).defvars);
         chk.defvars.putAll(map);
@@ -256,7 +253,6 @@ class MyVisitor extends MxBaseVisitor<check>
         {
             check ck = visit(ctx.stmt(k));
             chk.defvars.putAll(ck.defvars);
-            chk.funs.addAll(ck.funs);
             Vector<Vector> vv  = ck.vars;
             for (int i = 0;i < vv.size();++i)
             {
@@ -334,14 +330,12 @@ class MyVisitor extends MxBaseVisitor<check>
             check ck = visit(ctx.block());
             chk.defvars.putAll(ck.defvars);
             chk.vars.addAll(ck.vars);
-            chk.funs.addAll(ck.funs);
         }
         for (int i = 0;i < ctx.stmt().size();++i)
         {
             check ck = visit(ctx.stmt(i));
             chk.defvars.putAll(ck.defvars);
             chk.vars.addAll(ck.vars);
-            chk.funs.addAll(ck.funs);
         }
         if (ctx.defvars() != null)
         {
@@ -355,7 +349,6 @@ class MyVisitor extends MxBaseVisitor<check>
             check ck = visit(ctx.expr(i));
             v.addAll(ck.var);
             chk.vars.addAll(ck.vars);
-            chk.funs.addAll(ck.funs);
         }
         chk.vars.add(v);
         return chk;
@@ -398,7 +391,7 @@ class MyVisitor extends MxBaseVisitor<check>
             }
             else
             {
-                System.out.println("FBL WARNING! function undefined!");
+                System.out.println("FBI WARNING! function \""+s+ "\" undefined!");
             }
         }
         if (ctx.varname() != null) chk.var.add(ctx.varname().getText());
