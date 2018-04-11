@@ -442,5 +442,6 @@ public class Main
         input = new FileInputStream(f);
         run(input);
         System.err.println("Hello world");
+        System.exit(-1);
     }
 }
