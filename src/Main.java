@@ -45,7 +45,7 @@ class MyVisitor extends MxBaseVisitor<check>
                         if (flag == 1)
                         {
                             flag = 2;
-                            System.out.println("FBI WARNING! Variables wrong!");
+                          //  System.out.println("FBI WARNING! Variables wrong!");
                             break;
                         }
                         continue;
@@ -56,7 +56,7 @@ class MyVisitor extends MxBaseVisitor<check>
                         if (flag == 0)
                         {
                             flag = 2;
-                            System.out.println("FBI WARNING! Variables wrong!");
+                          //  System.out.println("FBI WARNING! Variables wrong!");
                             break;
                         }
                         continue;
@@ -70,7 +70,7 @@ class MyVisitor extends MxBaseVisitor<check>
                             if (flag == 1)
                             {
                                 flag = 2;
-                                System.out.println("FBI WARNING! Variables wrong!");
+                             //   System.out.println("FBI WARNING! Variables wrong!");
                                 break;
                             }
                         }
@@ -80,7 +80,7 @@ class MyVisitor extends MxBaseVisitor<check>
                             if (flag == 0)
                             {
                                 flag = 2;
-                                System.out.println("FBI WARNING! Variables wrong!");
+                             //   System.out.println("FBI WARNING! Variables wrong!");
                                 break;
                             }
                         }
@@ -181,7 +181,7 @@ class MyVisitor extends MxBaseVisitor<check>
                     if (flag == 1)
                     {
                         flag = 2;
-                        System.out.println("FBI WARNING! Variables wrong!");
+                     //   System.out.println("FBI WARNING! Variables wrong!");
                         break;
                     }
                     continue;
@@ -192,7 +192,7 @@ class MyVisitor extends MxBaseVisitor<check>
                     if (flag == 0)
                     {
                         flag = 2;
-                        System.out.println("FBI WARNING! Variables wrong!");
+                      //  System.out.println("FBI WARNING! Variables wrong!");
                         break;
                     }
                     continue;
@@ -206,7 +206,7 @@ class MyVisitor extends MxBaseVisitor<check>
                         if (flag == 1)
                         {
                             flag = 2;
-                            System.out.println("FBI WARNING! Variables wrong!");
+                          //  System.out.println("FBI WARNING! Variables wrong!");
                             break;
                         }
                     }
@@ -216,7 +216,7 @@ class MyVisitor extends MxBaseVisitor<check>
                         if (flag == 0)
                         {
                             flag = 2;
-                            System.out.println("FBI WARNING! Variables wrong!");
+                          //  System.out.println("FBI WARNING! Variables wrong!");
                             break;
                         }
                     }
@@ -272,7 +272,7 @@ class MyVisitor extends MxBaseVisitor<check>
                         if (flag == 1)
                         {
                             flag = 2;
-                            System.out.println("FBI WARNING! Variables wrong!");
+                          //  System.out.println("FBI WARNING! Variables wrong!");
                             break;
                         }
                         continue;
@@ -283,7 +283,7 @@ class MyVisitor extends MxBaseVisitor<check>
                         if (flag == 0)
                         {
                             flag = 2;
-                            System.out.println("FBI WARNING! Variables wrong!");
+                          //  System.out.println("FBI WARNING! Variables wrong!");
                             break;
                         }
                         continue;
@@ -297,7 +297,7 @@ class MyVisitor extends MxBaseVisitor<check>
                             if (flag == 1)
                             {
                                 flag = 2;
-                                System.out.println("FBI WARNING! Variables wrong!");
+                               // System.out.println("FBI WARNING! Variables wrong!");
                                 break;
                             }
                         }
@@ -307,7 +307,7 @@ class MyVisitor extends MxBaseVisitor<check>
                             if (flag == 0)
                             {
                                 flag = 2;
-                                System.out.println("FBI WARNING! Variables wrong!");
+                               // System.out.println("FBI WARNING! Variables wrong!");
                                 break;
                             }
                         }
@@ -390,7 +390,7 @@ class MyVisitor extends MxBaseVisitor<check>
                 chk.var.add(defuns.get(s).get(0));
                 if (v.size() != defuns.get(s).size() - 1)
                 {
-                    System.out.println("FBI WARNING! parmars numbers wrong!");
+                    //System.out.println("FBI WARNING! parmars numbers wrong!");
                 }
                 else
                 {
@@ -405,7 +405,7 @@ class MyVisitor extends MxBaseVisitor<check>
             }
             else
             {
-                System.out.println("FBI WARNING! function \""+s+ "\" undefined!");
+                //System.out.println("FBI WARNING! function \""+s+ "\" undefined!");
             }
         }
         if (ctx.varname() != null) chk.var.add(ctx.varname().getText());
@@ -442,5 +442,6 @@ public class Main
         input = new FileInputStream(f);
         run(input);
         System.err.println("Hello world");
+        
     }
 }
