@@ -45,6 +45,7 @@ class MyVisitor extends MxBaseVisitor<check>
                         if (flag == 1)
                         {
                             flag = 2;
+							System.exit(-1);
                           //  System.out.println("FBI WARNING! Variables wrong!");
                             break;
                         }
@@ -56,6 +57,7 @@ class MyVisitor extends MxBaseVisitor<check>
                         if (flag == 0)
                         {
                             flag = 2;
+							System.exit(-1);
                           //  System.out.println("FBI WARNING! Variables wrong!");
                             break;
                         }
@@ -70,6 +72,7 @@ class MyVisitor extends MxBaseVisitor<check>
                             if (flag == 1)
                             {
                                 flag = 2;
+								System.exit(-1);
                              //   System.out.println("FBI WARNING! Variables wrong!");
                                 break;
                             }
@@ -80,6 +83,7 @@ class MyVisitor extends MxBaseVisitor<check>
                             if (flag == 0)
                             {
                                 flag = 2;
+								System.exit(-1);
                              //   System.out.println("FBI WARNING! Variables wrong!");
                                 break;
                             }
@@ -181,6 +185,7 @@ class MyVisitor extends MxBaseVisitor<check>
                     if (flag == 1)
                     {
                         flag = 2;
+						System.exit(-1);
                      //   System.out.println("FBI WARNING! Variables wrong!");
                         break;
                     }
@@ -192,6 +197,7 @@ class MyVisitor extends MxBaseVisitor<check>
                     if (flag == 0)
                     {
                         flag = 2;
+						System.exit(-1);
                       //  System.out.println("FBI WARNING! Variables wrong!");
                         break;
                     }
@@ -206,6 +212,7 @@ class MyVisitor extends MxBaseVisitor<check>
                         if (flag == 1)
                         {
                             flag = 2;
+							System.exit(-1);
                           //  System.out.println("FBI WARNING! Variables wrong!");
                             break;
                         }
@@ -216,6 +223,7 @@ class MyVisitor extends MxBaseVisitor<check>
                         if (flag == 0)
                         {
                             flag = 2;
+							System.exit(-1);
                           //  System.out.println("FBI WARNING! Variables wrong!");
                             break;
                         }
@@ -272,6 +280,7 @@ class MyVisitor extends MxBaseVisitor<check>
                         if (flag == 1)
                         {
                             flag = 2;
+							System.exit(-1);
                           //  System.out.println("FBI WARNING! Variables wrong!");
                             break;
                         }
@@ -283,6 +292,7 @@ class MyVisitor extends MxBaseVisitor<check>
                         if (flag == 0)
                         {
                             flag = 2;
+							System.exit(-1);
                           //  System.out.println("FBI WARNING! Variables wrong!");
                             break;
                         }
@@ -297,6 +307,7 @@ class MyVisitor extends MxBaseVisitor<check>
                             if (flag == 1)
                             {
                                 flag = 2;
+								System.exit(-1);
                                // System.out.println("FBI WARNING! Variables wrong!");
                                 break;
                             }
@@ -307,6 +318,7 @@ class MyVisitor extends MxBaseVisitor<check>
                             if (flag == 0)
                             {
                                 flag = 2;
+								System.exit(-1);
                                // System.out.println("FBI WARNING! Variables wrong!");
                                 break;
                             }
@@ -390,6 +402,7 @@ class MyVisitor extends MxBaseVisitor<check>
                 chk.var.add(defuns.get(s).get(0));
                 if (v.size() != defuns.get(s).size() - 1)
                 {
+					System.exit(-1);
                     //System.out.println("FBI WARNING! parmars numbers wrong!");
                 }
                 else
@@ -405,6 +418,7 @@ class MyVisitor extends MxBaseVisitor<check>
             }
             else
             {
+				System.exit(-1);
                 //System.out.println("FBI WARNING! function \""+s+ "\" undefined!");
             }
         }
@@ -415,7 +429,6 @@ class MyVisitor extends MxBaseVisitor<check>
         {
             chk.var.addAll(visit(ctx.expr(i)).var);
         }
-        //System.out.println(chk.funs);
         return chk;
     }
    // public check visitNews(MxParser.NewsContext ctx){}
