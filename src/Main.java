@@ -35,61 +35,43 @@ class MyVisitor extends MxBaseVisitor<check>
             Vector<Vector> vv =ck.vars;
             for (int i = 0;i < vv.size();++i)
             {
-                Vector v = vv.get(i);
+                Vector<String> v = vv.get(i);
                 int flag = -2;//-1 : undefine ; 0 : pass int ; 1 : pass string; 2 : wrong;
+                String sflag = "";
                 for (int j = 0; j < v.size(); ++j)
                 {
-                    if (v.get(j).equals("int"))
+                    if (v.get(j).equals("int") || v.get(j).equals("bool") || v.get(j).equals("string") || v.get(j).contains("[]"))
                     {
-                        if (flag == -2) flag = 0;
-                        if (flag == 1)
+                        if (flag == -2 || sflag == v.get(j))
                         {
+                            sflag = v.get(j);
                             flag = 2;
-							System.exit(-1);
-                          //  System.out.println("FBI WARNING! Variables wrong!");
-                            break;
+                            continue;
                         }
-                        continue;
-                    }
-                    if (v.get(j).equals("string"))
-                    {
-                        if (flag == -2) flag = 1;
-                        if (flag == 0)
+                        else
                         {
-                            flag = 2;
-							System.exit(-1);
-                          //  System.out.println("FBI WARNING! Variables wrong!");
-                            break;
+                            System.out.println(v);
+                            System.out.println("FBI WARNING! Variables wrong!");
+                            System.exit(-1);
                         }
-                        continue;
                     }
                     if (chk.defvars.containsKey(v.get(j)))
                     {
-                        String s = chk.defvars.get(v.get(j));
-                        if (s.equals("int"))
+                        if (flag == -2 || sflag == chk.defvars.get(v.get(j)))
                         {
-                            if (flag == -2) flag = 0;
-                            if (flag == 1)
-                            {
-                                flag = 2;
-								System.exit(-1);
-                             //   System.out.println("FBI WARNING! Variables wrong!");
-                                break;
-                            }
+                            sflag = chk.defvars.get(v.get(j));
+                            flag = 2;
+                            continue;
                         }
-                        if (s.equals("string"))
+                        else
                         {
-                            if (flag == -2) flag = 1;
-                            if (flag == 0)
-                            {
-                                flag = 2;
-								System.exit(-1);
-                             //   System.out.println("FBI WARNING! Variables wrong!");
-                                break;
-                            }
+                            System.out.println(v);
+                            System.out.println("FBI WARNING! Variables wrong!");
+                            System.exit(-1);
                         }
                         continue;
                     }
+                    System.out.println(v);
                     System.out.println("FBI WARNING! Variable \""+v.get(j)+"\" undefined!\n");
                     break;
                 }
@@ -173,60 +155,41 @@ class MyVisitor extends MxBaseVisitor<check>
         defuns.put(ctx.funname().getText(),fun);
         for (int i = 0;i < vv.size();++i)
         {
-            Vector v = vv.get(i);
+            Vector<String> v = vv.get(i);
             Vector u = new Vector();
             int flag = -2;//-1 : undefine ; 0 : pass int ; 1 : pass string; 2 : wrong;
             int uflag = 0;
+            String sflag = "";
             for (int j = 0;j < v.size();++j)
             {
-                if (v.get(j).equals("int"))
+                if (v.get(j).equals("int") || v.get(j).equals("bool") || v.get(j).equals("string") || v.get(j).contains("[]"))
                 {
-                    if (flag == -2) flag = 0;
-                    if (flag == 1)
+                    if (flag == -2 || sflag == v.get(j))
                     {
+                        sflag = v.get(j);
                         flag = 2;
-						System.exit(-1);
-                     //   System.out.println("FBI WARNING! Variables wrong!");
-                        break;
+                        continue;
                     }
-                    continue;
-                }
-                if (v.get(j).equals("string"))
-                {
-                    if (flag == -2) flag = 1;
-                    if (flag == 0)
+                    else
                     {
-                        flag = 2;
-						System.exit(-1);
-                      //  System.out.println("FBI WARNING! Variables wrong!");
-                        break;
+                        System.out.println(v);
+                        System.out.println("FBI WARNING! Variables wrong!");
+                        System.exit(-1);
                     }
-                    continue;
                 }
                 if (chk.defvars.containsKey(v.get(j)))
                 {
-                    String s = chk.defvars.get(v.get(j));
-                    if (s.equals("int"))
+                    if (flag == -2 || sflag == chk.defvars.get(v.get(j)))
                     {
-                        if (flag == -2) flag = 0;
-                        if (flag == 1)
-                        {
-                            flag = 2;
-							System.exit(-1);
-                          //  System.out.println("FBI WARNING! Variables wrong!");
-                            break;
-                        }
+                        sflag = chk.defvars.get(v.get(j));
+                        flag = 2;
+                        continue;
                     }
-                    if (s.equals("string"))
+                    else
                     {
-                        if (flag == -2) flag = 1;
-                        if (flag == 0)
-                        {
-                            flag = 2;
-							System.exit(-1);
-                          //  System.out.println("FBI WARNING! Variables wrong!");
-                            break;
-                        }
+                        System.out.println(v);
+                        System.out.println("FBI WARNING! Variables wrong!");
+                        System.exit(-1);
                     }
                     continue;
                 }
@@ -268,60 +231,41 @@ class MyVisitor extends MxBaseVisitor<check>
             Vector<Vector> vv  = ck.vars;
             for (int i = 0;i < vv.size();++i)
             {
-                Vector v = vv.get(i);
+                Vector<String> v = vv.get(i);
                 Vector u = new Vector();
                 int flag = -2;//-1 : undefine ; 0 : pass int ; 1 : pass string; 2 : wrong;
                 int uflag = 0;
+                String sflag = "";
                 for (int j = 0;j < v.size();++j)
                 {
-                    if (v.get(j).equals("int"))
+                    if (v.get(j).equals("int") || v.get(j).equals("bool") || v.get(j).equals("string") || v.get(j).contains("[]"))
                     {
-                        if (flag == -2) flag = 0;
-                        if (flag == 1)
+                        if (flag == -2 || sflag == v.get(j))
                         {
+                            sflag = v.get(j);
                             flag = 2;
-							System.exit(-1);
-                          //  System.out.println("FBI WARNING! Variables wrong!");
-                            break;
+                            continue;
                         }
-                        continue;
-                    }
-                    if (v.get(j).equals("string"))
-                    {
-                        if (flag == -2) flag = 1;
-                        if (flag == 0)
+                        else
                         {
-                            flag = 2;
-							System.exit(-1);
-                          //  System.out.println("FBI WARNING! Variables wrong!");
-                            break;
+                            System.out.println(v);
+                            System.out.println("FBI WARNING! Variables wrong!");
+                            System.exit(-1);
                         }
-                        continue;
                     }
                     if (chk.defvars.containsKey(v.get(j)))
                     {
-                        String s = chk.defvars.get(v.get(j));
-                        if (s.equals("int"))
+                        if (flag == -2 || sflag == chk.defvars.get(v.get(j)))
                         {
-                            if (flag == -2) flag = 0;
-                            if (flag == 1)
-                            {
-                                flag = 2;
-								System.exit(-1);
-                               // System.out.println("FBI WARNING! Variables wrong!");
-                                break;
-                            }
+                            sflag = chk.defvars.get(v.get(j));
+                            flag = 2;
+                            continue;
                         }
-                        if (s.equals("string"))
+                        else
                         {
-                            if (flag == -2) flag = 1;
-                            if (flag == 0)
-                            {
-                                flag = 2;
-								System.exit(-1);
-                               // System.out.println("FBI WARNING! Variables wrong!");
-                                break;
-                            }
+                            System.out.println(v);
+                            System.out.println("FBI WARNING! Variables wrong!");
+                            System.exit(-1);
                         }
                         continue;
                     }
@@ -395,15 +339,15 @@ class MyVisitor extends MxBaseVisitor<check>
         if (ctx.funname() != null)
         {
             Vector v = new Vector();
-            v.addAll(visit(ctx.exprs()).var);
+            if (ctx.exprs() != null) v.addAll(visit(ctx.exprs()).var);
             String s = ctx.funname().getText();
             if (defuns.containsKey(s) )
             {
                 chk.var.add(defuns.get(s).get(0));
                 if (v.size() != defuns.get(s).size() - 1)
                 {
-					System.exit(-1);
-                    //System.out.println("FBI WARNING! parmars numbers wrong!");
+					System.out.println("FBI WARNING! parmars numbers wrong!");
+                    System.exit(-1);
                 }
                 else
                 {
@@ -418,8 +362,8 @@ class MyVisitor extends MxBaseVisitor<check>
             }
             else
             {
-				System.exit(-1);
-                //System.out.println("FBI WARNING! function \""+s+ "\" undefined!");
+                System.out.println("FBI WARNING! function \""+s+ "\" undefined!");
+                System.exit(-1);
             }
         }
         if (ctx.varname() != null) chk.var.add(ctx.varname().getText());
@@ -450,7 +394,7 @@ public class Main
 
     public static void main(String[] args) throws Exception
     {
-        File f = new File("program.txt");
+        File f = new File("E:/test.txt");
         InputStream input = null;
         input = new FileInputStream(f);
         run(input);

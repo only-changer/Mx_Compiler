@@ -44,7 +44,7 @@ stmt    :   block
         |   expr ';'    ;
 
 exprs   :   expr(',' expr)* ;
-expr    :   funname '(' exprs ')'
+expr    :   funname '(' exprs? ')'
         |   'new' news
         |   expr ('[' expr ']')+
         |   expr '.' expr
