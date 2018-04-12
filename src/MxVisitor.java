@@ -106,6 +106,18 @@ public interface MxVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitExprs(MxParser.ExprsContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link MxParser#numname}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNumname(MxParser.NumnameContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MxParser#combine}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCombine(MxParser.CombineContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link MxParser#expr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

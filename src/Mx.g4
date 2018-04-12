@@ -44,9 +44,14 @@ stmt    :   block
         |   expr ';'    ;
 
 exprs   :   expr(',' expr)* ;
+
+numname : basetype | typename;
+
+combine :   numname ('[' expr ']')+;
+
 expr    :   funname '(' exprs? ')'
         |   'new' news
-        |   expr ('[' expr ']')+
+        |   combine
         |   expr '.' expr
         |   ('++' | '--') expr
         |   ('-' | '!' | '~') expr
