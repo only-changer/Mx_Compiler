@@ -23,7 +23,20 @@ class MyVisitor extends MxBaseVisitor<check>
 {
     Map<String,Vector> defuns = new HashMap<>();
     String defun = new String();
-    MyVisitor() { }
+    MyVisitor()
+    {
+        Vector v1 = new Vector();
+        v1.add("int");
+        defuns.put("getInt" , v1);
+        Vector v2 = new Vector();
+        v2.add("string");
+        v2.add("int");
+        defuns.put("toString",v2);
+        Vector v3 = new Vector();
+        v3.add("void");
+        v3.add("string");
+        defuns.put("println",v3);
+    }
     public check visitAllin(MxParser.AllinContext ctx)
     {
         check chk = new check();
@@ -42,7 +55,7 @@ class MyVisitor extends MxBaseVisitor<check>
                 {
                     if (v.get(j).equals("int") || v.get(j).equals("bool") || v.get(j).equals("string") || v.get(j).contains("[]"))
                     {
-                        if (flag == -2 || sflag == v.get(j))
+                        if (flag == -2 || sflag.equals(v.get(j)))
                         {
                             sflag = v.get(j);
                             flag = 2;
@@ -57,7 +70,7 @@ class MyVisitor extends MxBaseVisitor<check>
                     }
                     if (chk.defvars.containsKey(v.get(j)))
                     {
-                        if (flag == -2 || sflag == chk.defvars.get(v.get(j)))
+                        if (flag == -2 || sflag.equals( chk.defvars.get(v.get(j))))
                         {
                             sflag = chk.defvars.get(v.get(j));
                             flag = 2;
@@ -73,6 +86,7 @@ class MyVisitor extends MxBaseVisitor<check>
                     }
                     System.out.println(v);
                     System.out.println("FBI WARNING! Variable \""+v.get(j)+"\" undefined!\n");
+                    System.exit(-1);
                     break;
                 }
             }
@@ -164,7 +178,7 @@ class MyVisitor extends MxBaseVisitor<check>
             {
                 if (v.get(j).equals("int") || v.get(j).equals("bool") || v.get(j).equals("string") || v.get(j).contains("[]"))
                 {
-                    if (flag == -2 || sflag == v.get(j))
+                    if (flag == -2 || sflag.equals(v.get(j)))
                     {
                         sflag = v.get(j);
                         flag = 2;
@@ -179,7 +193,7 @@ class MyVisitor extends MxBaseVisitor<check>
                 }
                 if (chk.defvars.containsKey(v.get(j)))
                 {
-                    if (flag == -2 || sflag == chk.defvars.get(v.get(j)))
+                    if (flag == -2 || sflag.equals(chk.defvars.get(v.get(j))))
                     {
                         sflag = chk.defvars.get(v.get(j));
                         flag = 2;
@@ -240,7 +254,7 @@ class MyVisitor extends MxBaseVisitor<check>
                 {
                     if (v.get(j).equals("int") || v.get(j).equals("bool") || v.get(j).equals("string") || v.get(j).contains("[]"))
                     {
-                        if (flag == -2 || sflag == v.get(j))
+                        if (flag == -2 || sflag.equals( v.get(j)))
                         {
                             sflag = v.get(j);
                             flag = 2;
@@ -255,7 +269,7 @@ class MyVisitor extends MxBaseVisitor<check>
                     }
                     if (chk.defvars.containsKey(v.get(j)))
                     {
-                        if (flag == -2 || sflag == chk.defvars.get(v.get(j)))
+                        if (flag == -2 || sflag.equals(chk.defvars.get(v.get(j))))
                         {
                             sflag = chk.defvars.get(v.get(j));
                             flag = 2;
@@ -326,7 +340,6 @@ class MyVisitor extends MxBaseVisitor<check>
     public check visitExprs(MxParser.ExprsContext ctx)
     {
         check chk = new check();
-
         for (int i = 0;i < ctx.expr().size();++i)
         {
             chk.var.addAll(visit(ctx.expr(i)).var);
@@ -339,19 +352,26 @@ class MyVisitor extends MxBaseVisitor<check>
         if (ctx.funname() != null)
         {
             Vector v = new Vector();
-            if (ctx.exprs() != null) v.addAll(visit(ctx.exprs()).var);
+            System.out.println(ctx.getText());
+            if (ctx.exprs() != null)
+            {
+                v.addAll(visit(ctx.exprs()).var);
+            }
             String s = ctx.funname().getText();
             if (defuns.containsKey(s) )
             {
-                chk.var.add(defuns.get(s).get(0));
+                if (!defuns.get(s).get(0).equals("void")) chk.var.add(defuns.get(s).get(0));
+                System.out.println(chk.var);
                 if (v.size() != defuns.get(s).size() - 1)
                 {
+                    System.out.println(v);
+                    System.out.println(defuns.get(s));
 					System.out.println("FBI WARNING! parmars numbers wrong!");
                     System.exit(-1);
                 }
                 else
                 {
-                    for (int i = 0;i < v.size();++i)
+                    for (int i = 0; i < v.size(); ++i)
                     {
                         Vector vec = new Vector();
                         vec.add(v.get(i));
@@ -394,6 +414,7 @@ public class Main
 
     public static void main(String[] args) throws Exception
     {
+       // File f = new File("E:/test.txt");
         File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
