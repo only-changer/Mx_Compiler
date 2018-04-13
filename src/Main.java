@@ -71,6 +71,7 @@ class MyVisitor extends MxBaseVisitor<check>
     {
         check chk = new check();
         chk.defvars.put(ctx.varname().getText(),ctx.type().getText());
+        defvars.put(ctx.varname().getText(),ctx.type().getText());
         if (ctx.expr() != null)chk.var = visit(ctx.expr()).var;
         chk.var.add(ctx.type().getText());
         chk.vars.add(chk.var);
@@ -111,9 +112,10 @@ class MyVisitor extends MxBaseVisitor<check>
     public check visitDefun(MxParser.DefunContext ctx)
     {
         check chk = new check();
-        Map<String,String> origin = defvars;
+        Map<String,String> origin = new HashMap<>(defvars);
         defun = ctx.type().getText();
         Map<String,String> map = (visit(ctx.params()).defvars);
+        defvars.putAll(map);
         check ck = visit(ctx.block());
         chk.defvars = ck.defvars;
         Vector<Vector> vv  = ck.vars;
@@ -146,7 +148,7 @@ class MyVisitor extends MxBaseVisitor<check>
     }
     public check visitBlock(MxParser.BlockContext ctx)
     {
-        Map<String,String> origin = defvars;
+        Map<String,String> origin = new HashMap<>(defvars);
         check chk = new check();
         for (int k= 0;k < ctx.stmt().size();++k)
         {
@@ -161,38 +163,47 @@ class MyVisitor extends MxBaseVisitor<check>
                 int flag = -2;//-1 : undefine ; 0 : pass int ; 1 : pass string; 2 : wrong;
                 int uflag = 0;
                 String sflag = "";
+                String shadow = "";
                 for (int j = 0;j < v.size();++j)
                 {
                     if (v.get(j).equals("int") || v.get(j).equals("bool") || v.get(j).equals("string") || v.get(j).contains("[]"))
                     {
-                        if (flag == -2 || v.get(j).equals(sflag))
+                        if (flag == -2 || v.get(j).equals(sflag) || v.get(j).equals(shadow))
                         {
                             sflag =  v.get(j);
+                            if (sflag.equals("int")) shadow = "bool";
+                            if (sflag.equals("bool")) shadow = "int";
                             flag = 2;
                             continue;
                         }
                         else
                         {
+                            System.out.println(ctx.getText());
+                            System.out.println(v.get(j));
                             System.out.println("FBI WARNING! Variables wrong!");
                             System.exit(-1);
                         }
                     }
                     if (defvars.containsKey(v.get(j)))
                     {
-                        if (flag == -2 || sflag.equals(defvars.get(v.get(j))))
+                        if (flag == -2 || sflag.equals(defvars.get(v.get(j))) || shadow.equals(defvars.get(v.get(j))))
                         {
                             sflag = defvars.get(v.get(j));
+                            if (sflag.equals("int")) shadow = "bool";
+                            if (sflag.equals("bool")) shadow = "int";
                             flag = 2;
                             continue;
                         }
                         else
                         {
+                            System.out.println(ctx.getText());
                             System.out.println("FBI WARNING! Variables wrong!");
                             System.exit(-1);
                         }
                         continue;
                     }
                     System.out.println(defvars);
+                    System.out.println("FBI WARNING! Variable \"" + v.get(j) +"\"  undefined!");
                     System.exit(-1);
                 }
                 if (uflag == -1)
@@ -272,8 +283,7 @@ class MyVisitor extends MxBaseVisitor<check>
                 if (!defuns.get(s).get(0).equals("void")) chk.var.add(defuns.get(s).get(0));
                 if (v.size() != defuns.get(s).size() - 1)
                 {
-                    System.out.println(v);
-                    System.out.println(defuns.get(s));
+                    System.out.println(ctx.getText());
 					 System.out.println("FBI WARNING! parmars numbers wrong!");
                     System.exit(-1);
                 }
@@ -293,6 +303,11 @@ class MyVisitor extends MxBaseVisitor<check>
                 System.out.println("FBI WARNING! function \""+s+ "\" undefined!");
                 System.exit(-1);
             }
+        }
+        if (ctx.combine() != null)
+        {
+            String s = ctx.combine().numname().getText();
+            
         }
         if (ctx.varname() != null) chk.var.add(ctx.varname().getText());
         if (ctx.NUM() != null) chk.var.add("int");
@@ -322,8 +337,8 @@ public class Main
 
     public static void main(String[] args) throws Exception
     {
-        //File f = new File("E:/test.txt");
-        File f = new File("program.txt");
+        File f = new File("E:/test.txt");
+       // File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
         run(input);
