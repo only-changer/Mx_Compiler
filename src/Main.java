@@ -10,6 +10,7 @@ import java.util.Vector;
 
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
+import org.omg.Messaging.SYNC_WITH_TRANSPORT;
 
 class check
 {
@@ -139,9 +140,7 @@ class MyVisitor extends MxBaseVisitor<check>
         defun = ctx.type().getText();
         Map<String, String> map = (visit(ctx.params()).defvars);
         defvars.putAll(map);
-        check ck = visit(ctx.block());
-        chk.defvars = ck.defvars;
-        Vector<Vector> vv = ck.vars;
+
         chk.defvars.putAll(map);
         Vector fun = new Vector();
         fun.add(ctx.type().getText());
@@ -151,6 +150,11 @@ class MyVisitor extends MxBaseVisitor<check>
         }
         defuns.put(ctx.funname().getText(), fun);
         defvars.putAll(chk.defvars);
+
+        check ck = visit(ctx.block());
+        chk.defvars = ck.defvars;
+        Vector<Vector> vv = ck.vars;
+
         defvars = origin;
         return chk;
     }
@@ -333,6 +337,8 @@ class MyVisitor extends MxBaseVisitor<check>
             }
             else
             {
+                System.out.println(ctx.getText());
+                System.out.println(defuns);
                 System.out.println("FBI WARNING! function \"" + s + "\" undefined!");
                 System.exit(-1);
             }
