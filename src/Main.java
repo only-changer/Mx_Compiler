@@ -456,7 +456,7 @@ public class Main
         InputStream input = null;
         input = new FileInputStream(f);
         run(input);
-        System.err.println("Hello world");
+        System.err.println("Hello world!");
         System.exit(0);
     }
 }
