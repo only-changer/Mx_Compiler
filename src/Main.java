@@ -141,6 +141,7 @@ class MyVisitor extends MxBaseVisitor<check>
 
     public check visitDefclass(MxParser.DefclassContext ctx)
     {
+        Map<String,String> origin = new HashMap<>();
         check chk = new check();
         String s = ctx.classname().getText();
         Vector vec = new Vector();
@@ -154,11 +155,21 @@ class MyVisitor extends MxBaseVisitor<check>
         {
             check ck = visit(ctx.defvars(i));
             chk.defvars.putAll(ck.defvars);
+            for (String key : ck.defvars.keySet())
+            {
+                if (defvars.containsKey(key))
+                {
+                    System.out.println("Variables redefined!");
+                    System.exit(-1);
+                }
+            }
+            defvars.putAll(ck.defvars);
         }
         for (int i = 0; i < ctx.defun().size(); ++i)
         {
             check ck = visit(ctx.defun(i));
         }
+        defvars = origin;
         return chk;
     }
 
@@ -184,6 +195,7 @@ class MyVisitor extends MxBaseVisitor<check>
             fun.add(value);
         }
         defuns.put(ctx.funname().getText(), fun);
+
         defvars.putAll(chk.defvars);
 
         check ck = visit(ctx.block());
@@ -217,6 +229,8 @@ class MyVisitor extends MxBaseVisitor<check>
         check chk = new check();
         for (int k = 0; k < ctx.stmt().size(); ++k)
         {
+            System.out.println(ctx.getText());
+            System.out.println(ctx.stmt().size());
             check ck = visit(ctx.stmt(k));
             chk.defvars.putAll(ck.defvars);
             defvars.putAll(ck.defvars);
@@ -337,7 +351,8 @@ class MyVisitor extends MxBaseVisitor<check>
             chk.defvars.putAll(ck.defvars);
             chk.vars.addAll(ck.vars);
         }
-        if (ctx.defvars() != null)
+        if (ctx.getText().contains("if") && ctx.block() == null) chk.defvars.clear();
+            if (ctx.defvars() != null)
         {
             check ck = visit(ctx.defvars());
             chk.defvars.putAll(ck.defvars);
@@ -495,7 +510,7 @@ public class Main
 
     public static void main(String[] args) throws Exception
     {
-        //File f = new File("E:/test.txt");
+       // File f = new File("E:/test.txt");
        File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
