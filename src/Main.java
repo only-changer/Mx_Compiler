@@ -59,6 +59,14 @@ class MyVisitor extends MxBaseVisitor<check>
         {
             check ck = visit(ctx.defs(k));
             chk.defvars.putAll(ck.defvars);
+            for (String key : ck.defvars.keySet())
+            {
+                if (defvars.containsKey(key))
+                {
+                    System.out.println("Variables redefined!");
+                    System.exit(-1);
+                }
+            }
             defvars.putAll(ck.defvars);
         }
         return nullcheck;
