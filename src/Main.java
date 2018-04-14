@@ -133,6 +133,11 @@ class MyVisitor extends MxBaseVisitor<check>
         check chk = new check();
         String s = ctx.classname().getText();
         Vector vec = new Vector();
+        if (defclass.containsKey(s))
+        {
+            System.out.println("class redefined!");
+            System.exit(-1);
+        }
         defclass.put(s, vec);
         for (int i = 0; i < ctx.defvars().size(); ++i)
         {
