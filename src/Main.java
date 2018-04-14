@@ -49,6 +49,7 @@ class MyVisitor extends MxBaseVisitor<check>
         v4.add("void");
         v4.add("string");
         defuns.put("print", v4);
+
     }
 
     public check visitAllin(MxParser.AllinContext ctx)
@@ -310,8 +311,14 @@ class MyVisitor extends MxBaseVisitor<check>
 
     public check visitStmt(MxParser.StmtContext ctx)
     {
+        Map<String, String> origin = new HashMap<>(defvars);
         boolean isreturn = false;
         check chk = new check();
+        boolean isfor = false;
+        if (ctx.getText().contains("for") || ctx.getText().contains("while"))
+        {
+            isfor = true;
+        }
         if (ctx.getText().length() >= 6)
             if (ctx.getText().substring(0, 6).equals("return"))
             {
@@ -342,11 +349,17 @@ class MyVisitor extends MxBaseVisitor<check>
             v.addAll(ck.var);
             chk.vars.addAll(ck.vars);
         }
+        if (!isfor && (ctx.getText().contains("break") || ctx.getText().contains("continue")))
+        {
+            System.out.println("FBI WARNING! FOR DOWN!");
+            System.exit(-1);
+        }
         if (isreturn)
         {
             v.add(defun);
         }
         chk.vars.add(v);
+        defvars = origin;
         return chk;
     }
 
@@ -362,6 +375,17 @@ class MyVisitor extends MxBaseVisitor<check>
 
     public check visitExpr(MxParser.ExprContext ctx)
     {
+        int dd = 0;
+        if (ctx.getText().contains("="))
+        for (int i = 0;i < ctx.getText().length() - 1;++i)
+        {
+            if (ctx.getText().charAt(i) == '=' && ctx.getText().charAt(i + 1) != '=') ++dd;
+            if (dd == 2)
+            {
+                System.out.println("FBI WARNING! = number wrong!");
+                System.exit(-1);
+            }
+        }
         check chk = new check();
         if (ctx.funname() != null)
         {
@@ -468,7 +492,7 @@ public class Main
 
     public static void main(String[] args) throws Exception
     {
-        //File f = new File("E:/test.txt");
+       // File f = new File("E:/test.txt");
         File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
