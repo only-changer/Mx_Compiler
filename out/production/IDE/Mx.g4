@@ -49,6 +49,7 @@ numname : basetype | typename;
 
 combine :   numname ('[' expr ']')+;
 
+
 expr    :   funname '(' exprs? ')'
         |   'new' news
         |   combine

@@ -414,6 +414,10 @@ class MyVisitor extends MxBaseVisitor<check>
                 System.exit(-1);
             }
         }
+        if (ctx.getText().contains("+") || ctx.getText().contains("-"))
+        {
+            chk.var.add("int");
+        }
         if (ctx.varname() != null) chk.var.add(ctx.varname().getText());
         if (ctx.NUM() != null) chk.var.add("int");
         if (ctx.STR() != null) chk.var.add("string");
