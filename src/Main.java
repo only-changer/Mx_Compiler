@@ -112,8 +112,16 @@ class MyVisitor extends MxBaseVisitor<check>
         }
         if (ctx.expr() != null) chk.var = visit(ctx.expr()).var;
         chk.var.add(ctx.type().getText());
-        if (!(ctx.type().getText().contains("int")  || ctx.type().getText().contains("bool")  || ctx.type().getText().contains("string") || defclass.containsKey(ctx.type().getText())))
+        String ss = new String();
+        for (int i = 0;i < ctx.type().getText().length();++i)
         {
+            if (ctx.type().getText().charAt(i) == '[') break;
+            ss += ctx.type().getText().charAt(i);
+        }
+        if (!(ss.equals("int")  || ss.equals("bool")  || ss.equals("string") || defclass.containsKey(ss)))
+        {
+            System.out.println(ctx.getText());
+            System.out.println(defclass);
             System.out.println("FBI WARNING! Variables wrong!");
             System.exit(-1);
         }
@@ -197,8 +205,16 @@ class MyVisitor extends MxBaseVisitor<check>
         chk.defvars.putAll(map);
         Vector fun = new Vector();
         fun.add(ctx.type().getText());
-        if (!(ctx.type().getText().contains("int")  || ctx.type().getText().contains("bool")  || ctx.type().getText().contains("string") || defclass.containsKey(ctx.type().getText())))
+        String ss = new String();
+        for (int i = 0;i < ctx.type().getText().length();++i)
         {
+            if (ctx.type().getText().charAt(i) == '[') break;
+            ss += ctx.type().getText().charAt(i);
+        }
+        if (!(ss.equals("int")  || ss.equals("bool")  || ss.equals("string") || defclass.containsKey(ss)))
+        {
+            System.out.println(ctx.getText());
+            System.out.println(defclass);
             System.out.println("FBI WARNING! Variables wrong!");
             System.exit(-1);
         }
@@ -245,8 +261,16 @@ class MyVisitor extends MxBaseVisitor<check>
     {
         check chk = new check();
         chk.defvars.put(ctx.ID().getText(), ctx.type().getText());
-        if (!(ctx.type().getText().contains("int")  || ctx.type().getText().contains("bool")  || ctx.type().getText().contains("string") || defclass.containsKey(ctx.type().getText())))
+        String ss = new String();
+        for (int i = 0;i < ctx.type().getText().length();++i)
         {
+            if (ctx.type().getText().charAt(i) == '[') break;
+            ss += ctx.type().getText().charAt(i);
+        }
+        if (!(ss.equals("int")  || ss.equals("bool")  || ss.equals("string") || defclass.containsKey(ss)))
+        {
+            System.out.println(ctx.getText());
+            System.out.println(defclass);
             System.out.println("FBI WARNING! Variables wrong!");
             System.exit(-1);
         }
@@ -566,7 +590,7 @@ public class Main
 
     public static void main(String[] args) throws Exception
     {
-        //File f = new File("E:/test.txt");
+       // File f = new File("E:/test.txt");
         File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
