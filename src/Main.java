@@ -192,7 +192,7 @@ class MyVisitor extends MxBaseVisitor<check>
         chk.defvars.putAll(map);
         Vector fun = new Vector();
         fun.add(ctx.type().getText());
-        if (!ctx.type().getText().equals("int"))
+        if (ctx.funname().getText().equals("main") && !ctx.type().getText().equals("int"))
         {
             System.out.println("FBI WARNING! main wrong!");
             System.exit(-1);
