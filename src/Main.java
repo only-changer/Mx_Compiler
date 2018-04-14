@@ -228,8 +228,14 @@ class MyVisitor extends MxBaseVisitor<check>
                 int uflag = 0;
                 String sflag = "";
                 String shadow = "";
+                int che = 0;
                 for (int j = 0; j < v.size(); ++j)
                 {
+                    if (v.get(j).equals("001"))
+                    {
+                        che = 1;
+                        continue;
+                    }
                     if (v.get(j).equals("int") || v.get(j).equals("bool") || v.get(j).equals("string") || v.get(j).contains("[]"))
                     {
                         if (flag == -2 || v.get(j).equals(sflag) || v.get(j).equals(shadow))
@@ -278,6 +284,16 @@ class MyVisitor extends MxBaseVisitor<check>
                         System.out.println("FBI WARNING! Variable \"" + v.get(j) + "\"  undefined!");
                         System.exit(-1);
                     }
+                }
+                if (che == 1)
+                {
+                    if (!(sflag.equals("int") || sflag.equals("string") || sflag.equals("bool") || sflag.equals("")))
+                    {
+                        System.out.println(v);
+                        System.out.println("FBI WARNING! Strict op wrong");
+                        System.exit(-1);
+                    }
+
                 }
                 if (uflag == -1)
                 {
@@ -414,9 +430,10 @@ class MyVisitor extends MxBaseVisitor<check>
                 System.exit(-1);
             }
         }
+        int flag = 0;
         if (ctx.getText().contains("+") || ctx.getText().contains("-"))
         {
-            chk.var.add("int");
+            chk.var.add("001");
         }
         if (ctx.varname() != null) chk.var.add(ctx.varname().getText());
         if (ctx.NUM() != null) chk.var.add("int");
