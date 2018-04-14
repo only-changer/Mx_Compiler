@@ -32,6 +32,7 @@ class MyVisitor extends MxBaseVisitor<check>
     Map<String, Integer> defcom = new HashMap<>();
     Map<String, Vector> defclass = new HashMap<>();
     boolean isfor = false;
+
     MyVisitor()
     {
         Vector v1 = new Vector();
@@ -142,7 +143,7 @@ class MyVisitor extends MxBaseVisitor<check>
 
     public check visitDefclass(MxParser.DefclassContext ctx)
     {
-        Map<String,String> origin = new HashMap<>(defvars);
+        Map<String, String> origin = new HashMap<>(defvars);
         check chk = new check();
         String s = ctx.classname().getText();
         Vector vec = new Vector();
@@ -354,20 +355,23 @@ class MyVisitor extends MxBaseVisitor<check>
         {
             chk.defvars.clear();
         }
-            if (ctx.defvars() != null)
+        if (ctx.defvars() != null)
         {
             check ck = visit(ctx.defvars());
             chk.defvars.putAll(ck.defvars);
             chk.vars.add(ck.var);
         }
         Vector v = new Vector();
+
         for (int i = 0; i < ctx.expr().size(); ++i)
         {
             check ck = visit(ctx.expr(i));
             v.addAll(ck.var);
+            if (ctx.getText().contains("for(")) v.add("bool");
             chk.vars.addAll(ck.vars);
         }
-        if (ctx.getText().contains("if") && ctx.expr().size() > 0)
+
+        if (ctx.getText().contains("if") && ctx.expr() != null)
             v.add("bool");
         if (!isfor && (ctx.getText().contains("break") || ctx.getText().contains("continue")))
         {
@@ -399,23 +403,25 @@ class MyVisitor extends MxBaseVisitor<check>
     {
         int dd = 0;
         if (ctx.getText().contains("="))
-        for (int i = 1;i < ctx.getText().length() - 1;++i)
-        {
-            if (ctx.getText().charAt(i) == '=' && ctx.getText().charAt(i + 1) != '=' && ctx.getText().charAt(i-1) != '=')
+            for (int i = 1; i < ctx.getText().length() - 1; ++i)
             {
-                ++dd;
-                if (!(ctx.expr(0).getText().contains(".") || ctx.expr(0).varname() != null || ctx.expr(0).combine() != null))
+                if (ctx.getText().charAt(i) == '=' && ctx.getText().charAt(i + 1) != '=' && ctx.getText().charAt(i + 1) != '<' && ctx.getText().charAt(i + 1) != '>' && ctx.getText().charAt(i + 1) != '!'
+                        && ctx.getText().charAt(i - 1) != '=' && ctx.getText().charAt(i - 1) != '<' && ctx.getText().charAt(i - 1) != '>' && ctx.getText().charAt(i - 1) != '!')
                 {
-                    System.out.println("FBI WARNING! = left wrong!");
+                    ++dd;
+                    if (!(ctx.expr(0).getText().contains(".") || ctx.expr(0).varname() != null || ctx.expr(0).combine() != null))
+                    {
+                        System.out.println(ctx.getText());
+                        System.out.println("FBI WARNING! = left wrong!");
+                        System.exit(-1);
+                    }
+                }
+                if (dd == 2)
+                {
+                    System.out.println("FBI WARNING! = number wrong!");
                     System.exit(-1);
                 }
             }
-            if (dd == 2)
-            {
-                System.out.println("FBI WARNING! = number wrong!");
-                System.exit(-1);
-            }
-        }
         check chk = new check();
         if (ctx.funname() != null)
         {
@@ -490,7 +496,7 @@ class MyVisitor extends MxBaseVisitor<check>
             }
         }
         int flag = 0;
-        if (ctx.getText().contains("+") )
+        if (ctx.getText().contains("+"))
         {
             chk.var.add("001");
         }
@@ -504,7 +510,7 @@ class MyVisitor extends MxBaseVisitor<check>
 
             }
             else
-            chk.var.addAll(visit(ctx.expr(i)).var);
+                chk.var.addAll(visit(ctx.expr(i)).var);
             System.out.println(ctx.expr(i).getText());
             System.out.println(i);
             System.out.println(chk.var);
@@ -530,8 +536,8 @@ public class Main
 
     public static void main(String[] args) throws Exception
     {
-       //File f = new File("E:/test.txt");
-      File f = new File("program.txt");
+        //File f = new File("E:/test.txt");
+        File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
         run(input);

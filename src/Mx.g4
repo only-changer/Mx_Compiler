@@ -43,6 +43,7 @@ stmt    :   block
         |   ';'
         |   expr ';'    ;
 
+
 exprs   :   expr(',' expr)* ;
 
 numname : basetype | typename;
@@ -76,8 +77,8 @@ expr    :   funname '(' exprs? ')'
         |   <assoc=right> expr '=' expr;
 
 news     :   varname '(' exprs ')'
-        |   (classname | 'int' | 'string') ('[' expr ']')+ ('[]')*
-        |   (classname | 'int' | 'string') ('[]')*  ;
+        |   (classname | 'int' | 'string'|'bool') ('[' expr ']')+ ('[]')*
+        |   (classname | 'int' | 'string'|'bool') ('[]')*  ;
 
 //lexxer
 
