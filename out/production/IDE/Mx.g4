@@ -76,7 +76,7 @@ expr    :   funname '(' exprs? ')'
 
 news     :   varname '(' exprs ')'
         |   (classname | 'int' | 'string') ('[' expr ']')+ ('[]')*
-        |   (classname | 'int' | 'string') ('[]')+  ;
+        |   (classname | 'int' | 'string') ('[]')*  ;
 
 //lexxer
 
