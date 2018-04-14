@@ -350,7 +350,10 @@ class MyVisitor extends MxBaseVisitor<check>
             chk.defvars.putAll(ck.defvars);
             chk.vars.addAll(ck.vars);
         }
-        if (ctx.getText().contains("if") && ctx.block() == null) chk.defvars.clear();
+        if (ctx.getText().contains("if") && ctx.block() == null)
+        {
+            chk.defvars.clear();
+        }
             if (ctx.defvars() != null)
         {
             check ck = visit(ctx.defvars());
@@ -364,6 +367,8 @@ class MyVisitor extends MxBaseVisitor<check>
             v.addAll(ck.var);
             chk.vars.addAll(ck.vars);
         }
+        if (ctx.getText().contains("if") && ctx.expr().size() > 0)
+            v.add("bool");
         if (!isfor && (ctx.getText().contains("break") || ctx.getText().contains("continue")))
         {
             System.out.println(ctx.getText());
@@ -509,7 +514,7 @@ public class Main
 
     public static void main(String[] args) throws Exception
     {
-        //File f = new File("E:/test.txt");
+      //  File f = new File("E:/test.txt");
        File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
