@@ -63,6 +63,8 @@ class MyVisitor extends MxBaseVisitor<check>
             {
                 if (defvars.containsKey(key))
                 {
+                    System.out.println(key);
+                    System.out.println(ctx.defs(k).getText());
                     System.out.println("Variables redefined!");
                     System.exit(-1);
                 }
@@ -94,7 +96,7 @@ class MyVisitor extends MxBaseVisitor<check>
     {
         check chk = new check();
         chk.defvars.put(ctx.varname().getText(), ctx.type().getText());
-        defvars.put(ctx.varname().getText(), ctx.type().getText());
+        //defvars.put(ctx.varname().getText(), ctx.type().getText());
         if (ctx.type().getText().contains("[]"))
         {
             int num = 0;
