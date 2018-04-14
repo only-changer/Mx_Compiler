@@ -192,6 +192,11 @@ class MyVisitor extends MxBaseVisitor<check>
         chk.defvars.putAll(map);
         Vector fun = new Vector();
         fun.add(ctx.type().getText());
+        if (!ctx.type().getText().equals("int"))
+        {
+            System.out.println("FBI WARNING! main wrong!");
+            System.exit(-1);
+        }
         for (String value : map.values())
         {
             fun.add(value);
@@ -431,7 +436,7 @@ class MyVisitor extends MxBaseVisitor<check>
                 v.addAll(visit(ctx.exprs()).vars);
             }
             String s = ctx.funname().getText();
-            if (s.equals("main") && v.size() > 0)
+            if (s.equals("main") && (v.size() > 0))
             {
                 System.out.println("FBI WARNING! main wrong!");
                 System.exit(-1);
@@ -503,6 +508,7 @@ class MyVisitor extends MxBaseVisitor<check>
         if (ctx.varname() != null) chk.var.add(ctx.varname().getText());
         if (ctx.NUM() != null) chk.var.add("int");
         if (ctx.STR() != null) chk.var.add("string");
+        if (ctx.getText().contains("null")) chk.var.add("int");
         for (int i = 0; i < ctx.expr().size(); ++i)
         {
             if (ctx.getText().contains(".") && i == 0 && !ctx.expr(0).getText().contains("."))
