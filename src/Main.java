@@ -71,6 +71,7 @@ class MyVisitor extends MxBaseVisitor<check>
                 }
             }
             defvars.putAll(ck.defvars);
+            System.out.println(defvars);
         }
         return nullcheck;
     }
@@ -141,7 +142,7 @@ class MyVisitor extends MxBaseVisitor<check>
 
     public check visitDefclass(MxParser.DefclassContext ctx)
     {
-        Map<String,String> origin = new HashMap<>();
+        Map<String,String> origin = new HashMap<>(defvars);
         check chk = new check();
         String s = ctx.classname().getText();
         Vector vec = new Vector();
@@ -229,8 +230,6 @@ class MyVisitor extends MxBaseVisitor<check>
         check chk = new check();
         for (int k = 0; k < ctx.stmt().size(); ++k)
         {
-            System.out.println(ctx.getText());
-            System.out.println(ctx.stmt().size());
             check ck = visit(ctx.stmt(k));
             chk.defvars.putAll(ck.defvars);
             defvars.putAll(ck.defvars);
@@ -510,7 +509,7 @@ public class Main
 
     public static void main(String[] args) throws Exception
     {
-       // File f = new File("E:/test.txt");
+        //File f = new File("E:/test.txt");
        File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
