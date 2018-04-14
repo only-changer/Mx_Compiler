@@ -112,6 +112,11 @@ class MyVisitor extends MxBaseVisitor<check>
         }
         if (ctx.expr() != null) chk.var = visit(ctx.expr()).var;
         chk.var.add(ctx.type().getText());
+        if (!(ctx.type().getText().contains("int")  || ctx.type().getText().contains("bool")  || ctx.type().getText().contains("string") || defclass.containsKey(ctx.type().getText())))
+        {
+            System.out.println("FBI WARNING! Variables wrong!");
+            System.exit(-1);
+        }
         chk.vars.add(chk.var);
         return chk;
     }
@@ -192,6 +197,11 @@ class MyVisitor extends MxBaseVisitor<check>
         chk.defvars.putAll(map);
         Vector fun = new Vector();
         fun.add(ctx.type().getText());
+        if (!(ctx.type().getText().contains("int")  || ctx.type().getText().contains("bool")  || ctx.type().getText().contains("string") || defclass.containsKey(ctx.type().getText())))
+        {
+            System.out.println("FBI WARNING! Variables wrong!");
+            System.exit(-1);
+        }
         if (ctx.funname().getText().equals("main") && !ctx.type().getText().equals("int"))
         {
             System.out.println("FBI WARNING! main wrong!");
@@ -206,9 +216,17 @@ class MyVisitor extends MxBaseVisitor<check>
         defvars.putAll(chk.defvars);
 
         check ck = visit(ctx.block());
+        for (String key : ck.defvars.keySet())
+        {
+            if (defvars.containsKey(key))
+            {
+                System.out.println("Variables redefined!");
+                System.exit(-1);
+            }
+        }
         chk.defvars = ck.defvars;
         Vector<Vector> vv = ck.vars;
-
+        chk.defvars.clear();
         defvars = origin;
         return chk;
     }
@@ -227,6 +245,11 @@ class MyVisitor extends MxBaseVisitor<check>
     {
         check chk = new check();
         chk.defvars.put(ctx.ID().getText(), ctx.type().getText());
+        if (!(ctx.type().getText().contains("int")  || ctx.type().getText().contains("bool")  || ctx.type().getText().contains("string") || defclass.containsKey(ctx.type().getText())))
+        {
+            System.out.println("FBI WARNING! Variables wrong!");
+            System.exit(-1);
+        }
         return chk;
     }
 
@@ -323,7 +346,7 @@ class MyVisitor extends MxBaseVisitor<check>
                 }
             }
         }
-        chk.defvars.clear();
+       // chk.defvars.clear();
         defvars = origin;
         return chk;
     }
@@ -372,7 +395,7 @@ class MyVisitor extends MxBaseVisitor<check>
         {
             check ck = visit(ctx.expr(i));
             v.addAll(ck.var);
-            if (ctx.getText().contains("for(")) v.add("bool");
+            if (ctx.getText().contains("for(") || ctx.getText().contains("while(")) v.add("bool");
             chk.vars.addAll(ck.vars);
         }
 
@@ -509,6 +532,7 @@ class MyVisitor extends MxBaseVisitor<check>
         if (ctx.NUM() != null) chk.var.add("int");
         if (ctx.STR() != null) chk.var.add("string");
         if (ctx.getText().contains("null")) chk.var.add("int");
+        if (ctx.getText().contains("++")) chk.var.add("int");
         for (int i = 0; i < ctx.expr().size(); ++i)
         {
             if (ctx.getText().contains(".") && i == 0 && !ctx.expr(0).getText().contains("."))
