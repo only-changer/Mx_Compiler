@@ -350,7 +350,7 @@ class MyVisitor extends MxBaseVisitor<check>
             chk.defvars.putAll(ck.defvars);
             chk.vars.addAll(ck.vars);
         }
-        if (ctx.getText().contains("if") && ctx.block() == null)
+        if ((ctx.getText().contains("if") || ctx.getText().contains("while") || ctx.getText().contains("for")) && ctx.block() == null)
         {
             chk.defvars.clear();
         }
@@ -401,7 +401,15 @@ class MyVisitor extends MxBaseVisitor<check>
         if (ctx.getText().contains("="))
         for (int i = 1;i < ctx.getText().length() - 1;++i)
         {
-            if (ctx.getText().charAt(i) == '=' && ctx.getText().charAt(i + 1) != '=' && ctx.getText().charAt(i-1) != '=') ++dd;
+            if (ctx.getText().charAt(i) == '=' && ctx.getText().charAt(i + 1) != '=' && ctx.getText().charAt(i-1) != '=')
+            {
+                ++dd;
+                if (!(ctx.expr(0).getText().contains(".") || ctx.expr(0).varname() != null || ctx.expr(0).combine() != null))
+                {
+                    System.out.println("FBI WARNING! = left wrong!");
+                    System.exit(-1);
+                }
+            }
             if (dd == 2)
             {
                 System.out.println("FBI WARNING! = number wrong!");
@@ -417,6 +425,11 @@ class MyVisitor extends MxBaseVisitor<check>
                 v.addAll(visit(ctx.exprs()).vars);
             }
             String s = ctx.funname().getText();
+            if (s.equals("main") && v.size() > 0)
+            {
+                System.out.println("FBI WARNING! main wrong!");
+                System.exit(-1);
+            }
             if (defuns.containsKey(s))
             {
                 if (!defuns.get(s).get(0).equals("void")) chk.var.add(defuns.get(s).get(0));
@@ -477,7 +490,7 @@ class MyVisitor extends MxBaseVisitor<check>
             }
         }
         int flag = 0;
-        if (ctx.getText().contains("+") || ctx.getText().contains("-"))
+        if (ctx.getText().contains("+") )
         {
             chk.var.add("001");
         }
@@ -486,12 +499,15 @@ class MyVisitor extends MxBaseVisitor<check>
         if (ctx.STR() != null) chk.var.add("string");
         for (int i = 0; i < ctx.expr().size(); ++i)
         {
-            if (ctx.getText().contains(".") && i == 0)
+            if (ctx.getText().contains(".") && i == 0 && !ctx.expr(0).getText().contains("."))
             {
 
             }
             else
             chk.var.addAll(visit(ctx.expr(i)).var);
+            System.out.println(ctx.expr(i).getText());
+            System.out.println(i);
+            System.out.println(chk.var);
         }
         return chk;
     }
@@ -514,8 +530,8 @@ public class Main
 
     public static void main(String[] args) throws Exception
     {
-      //  File f = new File("E:/test.txt");
-       File f = new File("program.txt");
+       //File f = new File("E:/test.txt");
+      File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
         run(input);

@@ -73,7 +73,7 @@ expr    :   funname '(' exprs? ')'
         |   ('NULL' | 'null')
         |   ('TRUE' | 'true' | 'FALSE' | 'false')
         |   '(' expr ')'
-        |   <assoc=right> expr '=' expr     ;
+        |   <assoc=right> expr '=' expr;
 
 news     :   varname '(' exprs ')'
         |   (classname | 'int' | 'string') ('[' expr ']')+ ('[]')*
