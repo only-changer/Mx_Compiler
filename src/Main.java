@@ -31,7 +31,7 @@ class MyVisitor extends MxBaseVisitor<check>
     Map<String, String> defvars = new HashMap<>();
     Map<String, Integer> defcom = new HashMap<>();
     Map<String, Vector> defclass = new HashMap<>();
-
+    boolean isfor = false;
     MyVisitor()
     {
         Vector v1 = new Vector();
@@ -314,9 +314,10 @@ class MyVisitor extends MxBaseVisitor<check>
         Map<String, String> origin = new HashMap<>(defvars);
         boolean isreturn = false;
         check chk = new check();
-        boolean isfor = false;
-        if (ctx.getText().contains("for") || ctx.getText().contains("while"))
+        boolean change = false;
+        if ((ctx.getText().contains("for") || ctx.getText().contains("while")) && isfor == false)
         {
+            change = true;
             isfor = true;
         }
         if (ctx.getText().length() >= 6)
@@ -351,6 +352,7 @@ class MyVisitor extends MxBaseVisitor<check>
         }
         if (!isfor && (ctx.getText().contains("break") || ctx.getText().contains("continue")))
         {
+            System.out.println(ctx.getText());
             System.out.println("FBI WARNING! FOR DOWN!");
             System.exit(-1);
         }
@@ -360,6 +362,7 @@ class MyVisitor extends MxBaseVisitor<check>
         }
         chk.vars.add(v);
         defvars = origin;
+        if (change == true) isfor = false;
         return chk;
     }
 
@@ -377,9 +380,9 @@ class MyVisitor extends MxBaseVisitor<check>
     {
         int dd = 0;
         if (ctx.getText().contains("="))
-        for (int i = 0;i < ctx.getText().length() - 1;++i)
+        for (int i = 1;i < ctx.getText().length() - 1;++i)
         {
-            if (ctx.getText().charAt(i) == '=' && ctx.getText().charAt(i + 1) != '=') ++dd;
+            if (ctx.getText().charAt(i) == '=' && ctx.getText().charAt(i + 1) != '=' && ctx.getText().charAt(i-1) != '=') ++dd;
             if (dd == 2)
             {
                 System.out.println("FBI WARNING! = number wrong!");
@@ -492,8 +495,8 @@ public class Main
 
     public static void main(String[] args) throws Exception
     {
-       // File f = new File("E:/test.txt");
-        File f = new File("program.txt");
+        //File f = new File("E:/test.txt");
+       File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
         run(input);
