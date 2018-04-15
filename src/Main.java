@@ -211,10 +211,10 @@ class MyVisitor extends MxBaseVisitor<check>
             if (ctx.type().getText().charAt(i) == '[') break;
             ss += ctx.type().getText().charAt(i);
         }
-        if (!(ss.equals("int")  || ss.equals("bool")  || ss.equals("string") || defclass.containsKey(ss)))
+        if (!(ss.equals("int")  || ss.equals("bool")  || ss.equals("string") || ss.equals("void") ||defclass.containsKey(ss)))
         {
-            System.out.println(ctx.getText());
-            System.out.println(defclass);
+            System.out.println(ss);
+            System.out.println(map);
             System.out.println("FBI WARNING! Variables wrong!");
             System.exit(-1);
         }
@@ -590,7 +590,7 @@ public class Main
 
     public static void main(String[] args) throws Exception
     {
-       // File f = new File("E:/test.txt");
+        //File f = new File("E:/test.txt");
         File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
