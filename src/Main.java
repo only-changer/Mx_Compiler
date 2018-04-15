@@ -76,7 +76,7 @@ class MyVisitor extends MxBaseVisitor<check>
         check chk = new check();
         check nullcheck = new check();
         for (int k = 0; k < ctx.defs().size(); ++k)
-            if (ctx.defs(k).defun() == null)
+            if (ctx.defs(k).defclass() != null)
             {
                 check ck = visit(ctx.defs(k));
                 chk.defvars.putAll(ck.defvars);
@@ -94,7 +94,7 @@ class MyVisitor extends MxBaseVisitor<check>
                 defvars.putAll(ck.defvars);
             }
         for (int k = 0; k < ctx.defs().size(); ++k)
-            if (ctx.defs(k).defun() != null)
+            if (ctx.defs(k).defclass() == null)
         {
             check ck = visit(ctx.defs(k));
             chk.defvars.putAll(ck.defvars);
