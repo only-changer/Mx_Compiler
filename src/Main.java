@@ -75,6 +75,12 @@ class MyVisitor extends MxBaseVisitor<check>
             defvars.putAll(ck.defvars);
             System.out.println(defvars);
         }
+        System.out.println(defuns);
+        if (!(defuns.containsKey("main")))
+        {
+            System.out.println("FBI WARNING! NO MAIN FUNCTION!");
+            System.exit(-1);
+        }
         return nullcheck;
     }
 
@@ -597,7 +603,7 @@ public class Main
     public static void main(String[] args) throws Exception
     {
        // File f = new File("E:/test.txt");
-        File f = new File("program.txt");
+       File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
         run(input);
