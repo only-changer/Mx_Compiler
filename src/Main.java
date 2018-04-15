@@ -50,7 +50,24 @@ class MyVisitor extends MxBaseVisitor<check>
         v4.add("void");
         v4.add("string");
         defuns.put("print", v4);
-
+        Vector v5 = new Vector();
+        v5.add("int");
+        defuns.put("parseInt",v5);
+        Vector v6 = new Vector();
+        v6.add("int");
+        defuns.put("size",v6);
+        Vector v7 = new Vector();
+        v7.add("int");
+        defuns.put("length",v7);
+        Vector v8 = new Vector();
+        v8.add("string");
+        v8.add("int");
+        v8.add("int");
+        defuns.put("substring",v8);
+        Vector v9 = new Vector();
+        v9.add("int");
+        v9.add("int");
+        defuns.put("ord",v9);
     }
 
     public check visitAllin(MxParser.AllinContext ctx)
@@ -308,11 +325,17 @@ class MyVisitor extends MxBaseVisitor<check>
                 String sflag = "";
                 String shadow = "";
                 int che = 0;
+                int ch2 = 0;
                 for (int j = 0; j < v.size(); ++j)
                 {
                     if (v.get(j).equals("001"))
                     {
                         che = 1;
+                        continue;
+                    }
+                    if (v.get(j).equals("002"))
+                    {
+                        ch2 = 1;
                         continue;
                     }
                     if (v.get(j).equals("int") || v.get(j).equals("bool") || v.get(j).equals("string") || v.get(j).contains("[]"))
@@ -327,7 +350,7 @@ class MyVisitor extends MxBaseVisitor<check>
                         }
                         else
                         {
-                            System.out.println(ctx.getText());
+                            System.out.println(ctx.stmt(k).getText());
                             System.out.println(v);
                             System.out.println("FBI WARNING! Variables wrong!");
                             System.exit(-1);
@@ -361,6 +384,14 @@ class MyVisitor extends MxBaseVisitor<check>
                         System.out.println(defvars);
                         System.out.println(v);
                         System.out.println("FBI WARNING! Variable \"" + v.get(j) + "\"  undefined!");
+                        System.exit(-1);
+                    }
+                }
+                if (ch2 == 1)
+                {
+                    if (sflag.contains("string"))
+                    {
+                        System.out.println("FBI WARNING!STRING can't be null!");
                         System.exit(-1);
                     }
                 }
@@ -552,6 +583,8 @@ class MyVisitor extends MxBaseVisitor<check>
                 }
                 for (int i = 0; i < defcom.get(s) - n; ++i) ss += "[]";
                 chk.var.add(ss);
+                System.out.println(ctx.combine().getText());
+                System.out.println(chk.var);
             }
             else
             {
@@ -567,7 +600,7 @@ class MyVisitor extends MxBaseVisitor<check>
         if (ctx.varname() != null) chk.var.add(ctx.varname().getText());
         if (ctx.NUM() != null) chk.var.add("int");
         if (ctx.STR() != null) chk.var.add("string");
-        if (ctx.getText().contains("null")) chk.var.add("int");
+        if (ctx.getText().contains("null")) chk.var.add("002");
         if (ctx.getText().contains("++")) chk.var.add("int");
         for (int i = 0; i < ctx.expr().size(); ++i)
         {
@@ -602,7 +635,7 @@ public class Main
 
     public static void main(String[] args) throws Exception
     {
-       // File f = new File("E:/test.txt");
+        //File f = new File("E:/test.txt");
        File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
