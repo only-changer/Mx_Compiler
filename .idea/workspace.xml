@@ -2,18 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="014ac6d6-8e40-455f-95b1-dff8859644ca" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IDE/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IDE/Mx.g4" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/Mx.g4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IDE/MxLexer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/MxLexer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IDE/MxParser$ExprContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/MxParser$ExprContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IDE/MxParser$NewsContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/MxParser$NewsContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IDE/MxParser.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/MxParser.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IDE/MyVisitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/MyVisitor.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Mx.g4" beforeDir="false" afterPath="$PROJECT_DIR$/src/Mx.g4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MxLexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MxLexer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MxParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MxParser.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -47,7 +36,7 @@
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="222">
-              <caret line="649" column="10" selection-start-line="649" selection-start-column="10" selection-end-line="649" selection-end-column="10" />
+              <caret line="650" column="10" selection-start-line="650" selection-start-column="10" selection-end-line="650" selection-end-column="10" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -58,8 +47,8 @@
       <file leaf-file-name="Mx.g4" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Mx.g4">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="257">
-              <caret line="61" column="20" selection-start-line="61" selection-start-column="20" selection-end-line="61" selection-end-column="20" />
+            <state relative-caret-position="-798">
+              <caret line="10" column="44" lean-forward="true" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -98,7 +87,7 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find />
+      <find>T visi</find>
       <find>Integer</find>
       <find>varbal</find>
       <find>.defun</find>
@@ -119,7 +108,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="571" />
     <option name="y" value="76" />
     <option name="width" value="1130" />
@@ -666,15 +655,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Mx.g4">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="61" column="20" selection-start-line="61" selection-start-column="20" selection-end-line="61" selection-end-column="20" />
+        <state relative-caret-position="-798">
+          <caret line="10" column="44" lean-forward="true" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="222">
-          <caret line="649" column="10" selection-start-line="649" selection-start-column="10" selection-end-line="649" selection-end-column="10" />
+          <caret line="650" column="10" selection-start-line="650" selection-start-column="10" selection-end-line="650" selection-end-column="10" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

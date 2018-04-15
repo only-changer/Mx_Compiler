@@ -605,8 +605,9 @@ class MyVisitor extends MxBaseVisitor<check>
         }
         int flag = 0;
         if (ctx.op != null)
-        if (ctx.op.getText().equals('+'))
+        if (ctx.op.getText().equals("+"))
         {
+            System.out.println("!!!");
             chk.var.add("001");
         }
         if (ctx.varname() != null) chk.var.add(ctx.varname().getText());
