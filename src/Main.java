@@ -65,6 +65,7 @@ class MyVisitor extends MxBaseVisitor<check>
             {
                 if (defvars.containsKey(key))
                 {
+                    System.out.println(ctx.defs(k).getText());
                     System.out.println(key);
                     System.out.println(ctx.defs(k).getText());
                     System.out.println("Variables redefined!");
@@ -196,12 +197,14 @@ class MyVisitor extends MxBaseVisitor<check>
 
     public check visitDefun(MxParser.DefunContext ctx)
     {
+        Map<String,String> local = new HashMap<>();
         check chk = new check();
         Map<String, String> origin = new HashMap<>(defvars);
         defun = ctx.type().getText();
         Map<String, String> map = (visit(ctx.params()).defvars);
-        defvars.putAll(map);
 
+        local.putAll(map);
+        defvars.putAll(map);
         chk.defvars.putAll(map);
         Vector fun = new Vector();
         fun.add(ctx.type().getText());
@@ -234,8 +237,11 @@ class MyVisitor extends MxBaseVisitor<check>
         check ck = visit(ctx.block());
         for (String key : ck.defvars.keySet())
         {
-            if (defvars.containsKey(key))
+            if (local.containsKey(key))
             {
+                System.out.println(ctx.getText());
+                System.out.println(local);
+                System.out.println(key);
                 System.out.println("Variables redefined!");
                 System.exit(-1);
             }
@@ -590,7 +596,7 @@ public class Main
 
     public static void main(String[] args) throws Exception
     {
-        //File f = new File("E:/test.txt");
+       // File f = new File("E:/test.txt");
         File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
