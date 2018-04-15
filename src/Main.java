@@ -338,8 +338,16 @@ class MyVisitor extends MxBaseVisitor<check>
                         ch2 = 1;
                         continue;
                     }
-                    if (v.get(j).equals("int") || v.get(j).equals("bool") || v.get(j).equals("string") || v.get(j).contains("[]"))
+                    if (v.get(j).equals("int") || v.get(j).equals("bool") || v.get(j).equals("string") || v.get(j).contains("[]") || v.get(j).equals("void"))
                     {
+                        if (v.get(j).equals("void"))
+                        {
+                            if (v.size() > 1)
+                            {
+                                System.out.println("FBI WARNING!return down!");
+                                System.exit(-1);
+                            }
+                        }
                         if (flag == -2 || v.get(j).equals(sflag) || v.get(j).equals(shadow))
                         {
                             sflag = v.get(j);
@@ -477,6 +485,8 @@ class MyVisitor extends MxBaseVisitor<check>
         if (isreturn)
         {
             v.add(defun);
+            System.out.println("???");
+            System.out.println(v);
         }
         chk.vars.add(v);
         defvars = origin;
@@ -511,7 +521,7 @@ class MyVisitor extends MxBaseVisitor<check>
                         System.exit(-1);
                     }
                 }
-                if (dd == 2)
+                if (dd >= 2)
                 {
                     System.out.println("FBI WARNING! = number wrong!");
                     System.exit(-1);
@@ -533,7 +543,8 @@ class MyVisitor extends MxBaseVisitor<check>
             }
             if (defuns.containsKey(s))
             {
-                if (!defuns.get(s).get(0).equals("void")) chk.var.add(defuns.get(s).get(0));
+                //if (!defuns.get(s).get(0).equals("void"))
+                    chk.var.add(defuns.get(s).get(0));
                 if (v.size() != defuns.get(s).size() - 1)
                 {
                     System.out.println(ctx.getText());
@@ -593,7 +604,8 @@ class MyVisitor extends MxBaseVisitor<check>
             }
         }
         int flag = 0;
-        if (ctx.getText().contains("+"))
+        if (ctx.op != null)
+        if (ctx.op.getText().equals('+'))
         {
             chk.var.add("001");
         }

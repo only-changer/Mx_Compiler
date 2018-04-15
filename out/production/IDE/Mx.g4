@@ -59,7 +59,7 @@ expr    :   funname '(' exprs? ')'
         |   ('-' | '!' | '~') expr
         |   expr ('++'  | '--')
         |   expr ('*' | '/' | '%') expr
-        |   expr ('+' |'-' ) expr
+        |   expr op=('+' |'-' ) expr
         |   expr ('>>' | '<<') expr
         |   expr '&' expr
         |   expr '^' expr
@@ -82,7 +82,7 @@ news     :   varname '(' exprs ')'
 
 //lexxer
 
-STR : '"' ('\\"' | ~'"')* '"';
+STR  : '"' ('\\"' | '\\\\'|.)*? '"' ;
 
 ID
     :	[a-zA-Z_] [a-zA-Z_0-9]*

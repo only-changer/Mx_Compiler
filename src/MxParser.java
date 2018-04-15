@@ -1363,6 +1363,7 @@ public class MxParser extends Parser {
 	}
 
 	public static class ExprContext extends ParserRuleContext {
+		public Token op;
 		public FunnameContext funname() {
 			return getRuleContext(FunnameContext.class,0);
 		}
@@ -1598,9 +1599,10 @@ public class MxParser extends Parser {
 						setState(223);
 						if (!(precpred(_ctx, 16))) throw new FailedPredicateException(this, "precpred(_ctx, 16)");
 						setState(224);
+						((ExprContext)_localctx).op = _input.LT(1);
 						_la = _input.LA(1);
 						if ( !(_la==T__26 || _la==T__32) ) {
-						_errHandler.recoverInline(this);
+							((ExprContext)_localctx).op = (Token)_errHandler.recoverInline(this);
 						}
 						else {
 							if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
