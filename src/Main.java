@@ -98,6 +98,7 @@ class MyVisitor extends MxBaseVisitor<check>
         }
         defvars.clear();
         defclass.clear();
+        defvars.put("this", "000");
         getin = true;
         for (int k = 0; k < ctx.defs().size(); ++k)
             {
@@ -712,7 +713,7 @@ public class Main
 
     public static void main(String[] args) throws Exception
     {
-      // File f = new File("E:/test.txt");
+       //File f = new File("E:/test.txt");
          File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
