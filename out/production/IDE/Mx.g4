@@ -28,7 +28,7 @@ defun   :   type funname '(' params ')' block ;
 
 params  :   (param  (',' param)*)? ;
 
-param   :   type ID ;
+param   :   defvars ;
 
 block   :   '{' stmt* '}' ;
 
