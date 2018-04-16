@@ -29,6 +29,11 @@ class all
     Map<String, Vector<String>> defuns = new HashMap<>();
     Map<String, String> defvars = new HashMap<>();
     Map<String, Integer> defcom = new HashMap<>();
+
+    all()
+    {
+        defvars.put("this", "this");
+    }
 }
 
 class MyVisitor extends MxBaseVisitor<check>
@@ -234,6 +239,7 @@ class MyVisitor extends MxBaseVisitor<check>
         check chk = new check();
         String s = ctx.classname().getText();
         classname = s;
+
         Vector vec = new Vector();
         if (defclass.containsKey(s))
         {
@@ -630,6 +636,12 @@ class MyVisitor extends MxBaseVisitor<check>
                 System.exit(-1);
             }
             Map<String, Vector<String>> defun = new HashMap();
+            if (!classname.equals(""))
+            {
+                defun = defclass.get(classname).defuns;
+                System.out.println(classname);
+            }
+            else
             if (!cla.equals(""))
             {
                 defun = defclass.get(cla).defuns;
@@ -795,7 +807,16 @@ class MyVisitor extends MxBaseVisitor<check>
                     ty = defvars.get(sa);
                     System.out.println(ty);
                 }
-                System.out.println(ty);
+                if (ty.equals("000"))
+                {
+                    cla = classname;
+                    ty = "this";
+                    check ck = visit(ctx.expr(1));
+                    System.out.println("???");
+                    chk.var.addAll(ck.var);
+                    chk.vars.addAll(ck.vars);
+                }
+                else
                 if (ty.contains("[]"))
                 {
                     cla = "001";
