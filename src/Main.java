@@ -32,6 +32,7 @@ class MyVisitor extends MxBaseVisitor<check>
     Map<String, Integer> defcom = new HashMap<>();
     Map<String, Vector> defclass = new HashMap<>();
     boolean isfor = false;
+    boolean getin = false;
 
     MyVisitor()
     {
@@ -71,7 +72,7 @@ class MyVisitor extends MxBaseVisitor<check>
         defvars.put("this", "000");
         Vector v10 = new Vector();
         v10.add("string");
-        defuns.put("getString",v10);
+        defuns.put("getString", v10);
     }
 
     public check visitAllin(MxParser.AllinContext ctx)
@@ -79,25 +80,25 @@ class MyVisitor extends MxBaseVisitor<check>
         check chk = new check();
         check nullcheck = new check();
         for (int k = 0; k < ctx.defs().size(); ++k)
-            if (ctx.defs(k).defclass() != null)
+        {
+            check ck = visit(ctx.defs(k));
+            chk.defvars.putAll(ck.defvars);
+            for (String key : ck.defvars.keySet())
             {
-                check ck = visit(ctx.defs(k));
-                chk.defvars.putAll(ck.defvars);
-                for (String key : ck.defvars.keySet())
+                if (defvars.containsKey(key))
                 {
-                    if (defvars.containsKey(key))
-                    {
-                        System.out.println(ctx.defs(k).getText());
-                        System.out.println(key);
-                        System.out.println(ctx.defs(k).getText());
-                        System.out.println("Variables redefined!");
-                        System.exit(-1);
-                    }
+                    System.out.println(ctx.defs(k).getText());
+                    System.out.println(key);
+                    System.out.println(ctx.defs(k).getText());
+                    System.out.println("Variables redefined!");
+                    System.exit(-1);
                 }
-                defvars.putAll(ck.defvars);
             }
+            defvars.putAll(ck.defvars);
+        }
+        getin = true;
         for (int k = 0; k < ctx.defs().size(); ++k)
-            if (ctx.defs(k).defclass() == null)
+            if (ctx.defs(k).defun() != null)
             {
                 check ck = visit(ctx.defs(k));
                 chk.defvars.putAll(ck.defvars);
@@ -252,7 +253,7 @@ class MyVisitor extends MxBaseVisitor<check>
         Vector<String> pvec = c.var;
         local.putAll(map);
         defvars.putAll(map);
-        chk.defvars.putAll(map);
+        if (!getin) chk.defvars.putAll(map);
         Vector fun = new Vector();
         fun.add(ctx.type().getText());
         String ss = new String();
@@ -280,6 +281,12 @@ class MyVisitor extends MxBaseVisitor<check>
         defuns.put(ctx.funname().getText(), fun);
 
         defvars.putAll(chk.defvars);
+
+        if (!getin)
+        {
+            chk.defvars.clear();
+            return chk;
+        }
 
         check ck = visit(ctx.block());
         for (String key : ck.defvars.keySet())
@@ -704,7 +711,7 @@ public class Main
 
     public static void main(String[] args) throws Exception
     {
-        //File f = new File("E:/test.txt");
+       // File f = new File("E:/test.txt");
          File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
