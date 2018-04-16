@@ -64,7 +64,7 @@ expr    :   funname '(' exprs? ')'
         |   expr '&' expr
         |   expr '^' expr
         |   expr '|' expr
-        |   expr  op = ('>' | '<' | '>=' | '<=' | '==' | '!=') expr
+        |   expr  op1 = ('>' | '<' | '>=' | '<=' | '==' | '!=') expr
         |   expr  op = '&&' expr
         |   expr  op ='||' expr
         |   expr '?' expr ':' expr

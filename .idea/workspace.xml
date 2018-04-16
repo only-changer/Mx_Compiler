@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="014ac6d6-8e40-455f-95b1-dff8859644ca" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Mx.g4" beforeDir="false" afterPath="$PROJECT_DIR$/src/Mx.g4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MxParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MxParser.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -35,8 +37,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="251">
-              <caret line="698" column="9" selection-start-line="698" selection-start-column="9" selection-end-line="698" selection-end-column="9" />
+            <state relative-caret-position="444">
+              <caret line="680" column="20" lean-forward="true" selection-start-line="680" selection-start-column="20" selection-end-line="680" selection-end-column="20" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -47,8 +49,8 @@
       <file leaf-file-name="Mx.g4" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Mx.g4">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
+            <state relative-caret-position="437">
+              <caret line="66" column="21" selection-start-line="66" selection-start-column="21" selection-end-line="66" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -240,18 +242,18 @@
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Tool Output" order="7" sideWeight="0.49932975" weight="0.32905984" />
-      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.46983916" weight="0.3266762" />
+      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.46648794" weight="0.3266762" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.1266756" side_tool="true" visible="true" weight="0.17118402" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.1300268" side_tool="true" visible="true" weight="0.17118402" />
       <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.8733244" visible="true" weight="0.17118402" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.8699732" visible="true" weight="0.17118402" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.0844504" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.0844504" />
       <window_info anchor="bottom" id="ANTLR Preview" order="7" weight="0.17546362" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -655,15 +657,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Mx.g4">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
+        <state relative-caret-position="437">
+          <caret line="66" column="21" selection-start-line="66" selection-start-column="21" selection-end-line="66" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="698" column="9" selection-start-line="698" selection-start-column="9" selection-end-line="698" selection-end-column="9" />
+        <state relative-caret-position="444">
+          <caret line="680" column="20" lean-forward="true" selection-start-line="680" selection-start-column="20" selection-end-line="680" selection-end-column="20" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
