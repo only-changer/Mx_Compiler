@@ -244,8 +244,9 @@ class MyVisitor extends MxBaseVisitor<check>
         check chk = new check();
         Map<String, String> origin = new HashMap<>(defvars);
         defun = ctx.type().getText();
-        Map<String, String> map = (visit(ctx.params()).defvars);
-
+        check c = visit(ctx.params());
+        Map<String, String> map = (c.defvars);
+        Vector<String>  pvec = c.var;
         local.putAll(map);
         defvars.putAll(map);
         chk.defvars.putAll(map);
@@ -269,9 +270,9 @@ class MyVisitor extends MxBaseVisitor<check>
             System.out.println("FBI WARNING! main wrong!");
             System.exit(-1);
         }
-        for (String value : map.values())
+        for (int i = 0;i < pvec.size();++i)
         {
-            fun.add(value);
+            fun.add(pvec.get(i));
         }
         defuns.put(ctx.funname().getText(), fun);
 
@@ -301,7 +302,9 @@ class MyVisitor extends MxBaseVisitor<check>
         check chk = new check();
         for (int i = 0; i < ctx.param().size(); ++i)
         {
-            chk.defvars.putAll(visit(ctx.param(i)).defvars);
+            check ck = visit(ctx.param(i));
+            chk.defvars.putAll(ck.defvars);
+            chk.var.addAll(ck.var);
         }
         return chk;
     }
@@ -323,6 +326,7 @@ class MyVisitor extends MxBaseVisitor<check>
             System.out.println("FBI WARNING! Variables wrong!");
             System.exit(-1);
         }
+        chk.var.add(ctx.type().getText());
         return chk;
     }
 
@@ -583,6 +587,8 @@ class MyVisitor extends MxBaseVisitor<check>
                         Vector vec = new Vector();
                         vec.addAll(v.get(i));
                         vec.add(defuns.get(s).get(i + 1));
+                        System.out.println(vec);
+                        System.out.println(defuns.get(s));
                         chk.vars.add(vec);
                     }
                 }
@@ -633,12 +639,22 @@ class MyVisitor extends MxBaseVisitor<check>
                 System.out.println("!!!");
                 chk.var.add("001");
             }
+        Vector<String> vec = new Vector();
         if (ctx.varname() != null) chk.var.add(ctx.varname().getText());
         if (ctx.NUM() != null) chk.var.add("int");
         if (ctx.STR() != null) chk.var.add("string");
         if (ctx.getText().contains("null")) chk.var.add("002");
-        if (ctx.op != null) if (ctx.op.getText() == "++") chk.var.add("int");
-        Vector<String> vec = new Vector();
+        if (ctx.op != null) if (ctx.op.getText().equals("++"))
+        {
+            System.out.println(ctx.op.getText());
+            chk.var.add("int");
+            vec.add("int");
+            System.out.println("LLLL");
+        }
+        if (ctx.op != null) if (ctx.op.getText().equals("&&") || ctx.op.getText().equals("||"))
+        {
+            vec.add("bool");
+        }
         for (int i = 0; i < ctx.expr().size(); ++i)
         {
             check ck = new check();

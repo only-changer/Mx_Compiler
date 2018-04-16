@@ -1462,9 +1462,10 @@ public class MxParser extends Parser {
 			case 4:
 				{
 				setState(202);
+				((ExprContext)_localctx).op = _input.LT(1);
 				_la = _input.LA(1);
 				if ( !(_la==T__24 || _la==T__25) ) {
-				_errHandler.recoverInline(this);
+					((ExprContext)_localctx).op = (Token)_errHandler.recoverInline(this);
 				}
 				else {
 					if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
@@ -1676,9 +1677,10 @@ public class MxParser extends Parser {
 						setState(238);
 						if (!(precpred(_ctx, 11))) throw new FailedPredicateException(this, "precpred(_ctx, 11)");
 						setState(239);
+						((ExprContext)_localctx).op = _input.LT(1);
 						_la = _input.LA(1);
 						if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__38) | (1L << T__39) | (1L << T__40) | (1L << T__41) | (1L << T__42) | (1L << T__43))) != 0)) ) {
-						_errHandler.recoverInline(this);
+							((ExprContext)_localctx).op = (Token)_errHandler.recoverInline(this);
 						}
 						else {
 							if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
@@ -1696,7 +1698,7 @@ public class MxParser extends Parser {
 						setState(241);
 						if (!(precpred(_ctx, 10))) throw new FailedPredicateException(this, "precpred(_ctx, 10)");
 						setState(242);
-						match(T__44);
+						((ExprContext)_localctx).op = match(T__44);
 						setState(243);
 						expr(11);
 						}
@@ -1708,7 +1710,7 @@ public class MxParser extends Parser {
 						setState(244);
 						if (!(precpred(_ctx, 9))) throw new FailedPredicateException(this, "precpred(_ctx, 9)");
 						setState(245);
-						match(T__45);
+						((ExprContext)_localctx).op = match(T__45);
 						setState(246);
 						expr(10);
 						}
@@ -1748,9 +1750,10 @@ public class MxParser extends Parser {
 						setState(256);
 						if (!(precpred(_ctx, 18))) throw new FailedPredicateException(this, "precpred(_ctx, 18)");
 						setState(257);
+						((ExprContext)_localctx).op = _input.LT(1);
 						_la = _input.LA(1);
 						if ( !(_la==T__24 || _la==T__25) ) {
-						_errHandler.recoverInline(this);
+							((ExprContext)_localctx).op = (Token)_errHandler.recoverInline(this);
 						}
 						else {
 							if ( _input.LA(1)==Token.EOF ) matchedEOF = true;

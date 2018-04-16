@@ -55,7 +55,7 @@ expr    :   funname '(' exprs? ')'
         |   'new' news
         |   combine
         |   expr '.' expr
-        |   ('++' | '--') expr
+        |   op = ('++' | '--') expr
         |   ('-' | '!' | '~') expr
         |   expr op =('++'  | '--')
         |   expr ('*' | '/' | '%') expr
@@ -64,9 +64,9 @@ expr    :   funname '(' exprs? ')'
         |   expr '&' expr
         |   expr '^' expr
         |   expr '|' expr
-        |   expr  op2 = ('>' | '<' | '>=' | '<=' | '==' | '!=') expr
-        |   expr '&&' expr
-        |   expr '||' expr
+        |   expr  op = ('>' | '<' | '>=' | '<=' | '==' | '!=') expr
+        |   expr  op = '&&' expr
+        |   expr  op ='||' expr
         |   expr '?' expr ':' expr
         |   varname
         |   NUM
