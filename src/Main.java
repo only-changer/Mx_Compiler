@@ -68,7 +68,7 @@ class MyVisitor extends MxBaseVisitor<check>
         v9.add("int");
         v9.add("int");
         defuns.put("ord", v9);
-        defvars.put("this","000");
+        defvars.put("this", "000");
     }
 
     public check visitAllin(MxParser.AllinContext ctx)
@@ -95,24 +95,24 @@ class MyVisitor extends MxBaseVisitor<check>
             }
         for (int k = 0; k < ctx.defs().size(); ++k)
             if (ctx.defs(k).defclass() == null)
-        {
-            check ck = visit(ctx.defs(k));
-            chk.defvars.putAll(ck.defvars);
-            for (String key : ck.defvars.keySet())
             {
-                if (defvars.containsKey(key))
+                check ck = visit(ctx.defs(k));
+                chk.defvars.putAll(ck.defvars);
+                for (String key : ck.defvars.keySet())
                 {
-                    System.out.println(ctx.defs(k).getText());
-                    System.out.println(key);
-                    System.out.println(ctx.defs(k).getText());
-                    System.out.println("Variables redefined!");
-                    System.exit(-1);
+                    if (defvars.containsKey(key))
+                    {
+                        System.out.println(ctx.defs(k).getText());
+                        System.out.println(key);
+                        System.out.println(ctx.defs(k).getText());
+                        System.out.println("Variables redefined!");
+                        System.exit(-1);
+                    }
                 }
+                defvars.putAll(ck.defvars);
+                // System.out.println(defvars);
             }
-            defvars.putAll(ck.defvars);
-           // System.out.println(defvars);
-        }
-       // System.out.println(defuns);
+        // System.out.println(defuns);
         if (!(defuns.containsKey("main")))
         {
             System.out.println("FBI WARNING! NO MAIN FUNCTION!");
@@ -246,7 +246,7 @@ class MyVisitor extends MxBaseVisitor<check>
         defun = ctx.type().getText();
         check c = visit(ctx.params());
         Map<String, String> map = (c.defvars);
-        Vector<String>  pvec = c.var;
+        Vector<String> pvec = c.var;
         local.putAll(map);
         defvars.putAll(map);
         chk.defvars.putAll(map);
@@ -270,7 +270,7 @@ class MyVisitor extends MxBaseVisitor<check>
             System.out.println("FBI WARNING! main wrong!");
             System.exit(-1);
         }
-        for (int i = 0;i < pvec.size();++i)
+        for (int i = 0; i < pvec.size(); ++i)
         {
             fun.add(pvec.get(i));
         }
@@ -514,7 +514,7 @@ class MyVisitor extends MxBaseVisitor<check>
         if (isreturn)
         {
             v.add(defun);
-            System.out.println("???");
+            System.out.println(ctx.getText());
             System.out.println(v);
             System.out.println(defuns);
         }
@@ -545,12 +545,12 @@ class MyVisitor extends MxBaseVisitor<check>
                 {
                     ++dd;
                     if (ctx.expr(0) != null)
-                    if (!(ctx.expr(0).getText().contains(".") || ctx.expr(0).varname() != null || ctx.expr(0).combine() != null))
-                    {
-                        System.out.println(ctx.getText());
-                        System.out.println("FBI WARNING! = left wrong!");
-                        System.exit(-1);
-                    }
+                        if (!(ctx.expr(0).getText().contains(".") || ctx.expr(0).varname() != null || ctx.expr(0).combine() != null))
+                        {
+                            System.out.println(ctx.getText());
+                            System.out.println("FBI WARNING! = left wrong!");
+                            System.exit(-1);
+                        }
                 }
                 if (dd >= 2)
                 {
@@ -565,7 +565,7 @@ class MyVisitor extends MxBaseVisitor<check>
             if (ctx.exprs() != null)
             {
                 v.addAll(visit(ctx.exprs()).vars);
-               // System.out.println(v);
+                // System.out.println(v);
             }
             String s = ctx.funname().getText();
             if (s.equals("main") && (v.size() > 0))
@@ -592,8 +592,8 @@ class MyVisitor extends MxBaseVisitor<check>
                         Vector vec = new Vector();
                         vec.addAll(v.get(i));
                         vec.add(defuns.get(s).get(i + 1));
-                      //  System.out.println(vec);
-                      //  System.out.println(defuns.get(s));
+                        //  System.out.println(vec);
+                        //  System.out.println(defuns.get(s));
                         chk.vars.add(vec);
                     }
                 }
@@ -665,22 +665,19 @@ class MyVisitor extends MxBaseVisitor<check>
         for (int i = 0; i < ctx.expr().size(); ++i)
         {
             check ck = new check();
-            if (ctx.getText().contains(".") && i == 0 && !ctx.expr(0).getText().contains("."))
+            if (ctx.op != null)
+                if (ctx.op.getText().equals(".") && i == 0)
+                    continue;
+            ck = visit(ctx.expr(i));
+            vec.addAll(ck.var);
+            chk.vars.addAll(ck.vars);
+            if (ctx.op1 != null)
             {
-
+                chk.var.add("bool");
             }
             else
-            {
-                ck = visit(ctx.expr(i));
-                vec.addAll(ck.var);
-                chk.vars.addAll(ck.vars);
-                if (ctx.op1 != null)
-                {
-                    chk.var.add("bool");
-                }
-                else
                 chk.var.addAll(ck.var);
-            }
+
         }
         chk.vars.add(vec);
         return chk;
@@ -705,7 +702,7 @@ public class Main
     public static void main(String[] args) throws Exception
     {
        // File f = new File("E:/test.txt");
-        File f = new File("program.txt");
+         File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
         run(input);

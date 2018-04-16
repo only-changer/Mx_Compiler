@@ -54,7 +54,7 @@ combine :   numname ('[' expr ']')+;
 expr    :   funname '(' exprs? ')'
         |   'new' news
         |   combine
-        |   expr '.' expr
+        |   expr op = '.' expr
         |   op = ('++' | '--') expr
         |   ('-' | '!' | '~') expr
         |   expr op =('++'  | '--')

@@ -1569,7 +1569,7 @@ public class MxParser extends Parser {
 						setState(217);
 						if (!(precpred(_ctx, 21))) throw new FailedPredicateException(this, "precpred(_ctx, 21)");
 						setState(218);
-						match(T__23);
+						((ExprContext)_localctx).op = match(T__23);
 						setState(219);
 						expr(22);
 						}
