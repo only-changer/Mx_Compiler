@@ -110,9 +110,9 @@ class MyVisitor extends MxBaseVisitor<check>
                 }
             }
             defvars.putAll(ck.defvars);
-            System.out.println(defvars);
+           // System.out.println(defvars);
         }
-        System.out.println(defuns);
+       // System.out.println(defuns);
         if (!(defuns.containsKey("main")))
         {
             System.out.println("FBI WARNING! NO MAIN FUNCTION!");
@@ -498,7 +498,8 @@ class MyVisitor extends MxBaseVisitor<check>
             if (ctx.getText().contains("for(") || ctx.getText().contains("while(")) v.add("bool");
             chk.vars.addAll(ck.vars);
         }
-
+        System.out.println("!!!");
+        System.out.println(v);
         if (ctx.getText().contains("if") && ctx.expr() != null)
             v.add("bool");
         if (!isfor && (ctx.getText().contains("break") || ctx.getText().contains("continue")))
@@ -512,6 +513,7 @@ class MyVisitor extends MxBaseVisitor<check>
             v.add(defun);
             System.out.println("???");
             System.out.println(v);
+            System.out.println(defuns);
         }
         chk.vars.add(v);
         defvars = origin;
@@ -560,7 +562,7 @@ class MyVisitor extends MxBaseVisitor<check>
             if (ctx.exprs() != null)
             {
                 v.addAll(visit(ctx.exprs()).vars);
-                System.out.println(v);
+               // System.out.println(v);
             }
             String s = ctx.funname().getText();
             if (s.equals("main") && (v.size() > 0))
@@ -587,8 +589,8 @@ class MyVisitor extends MxBaseVisitor<check>
                         Vector vec = new Vector();
                         vec.addAll(v.get(i));
                         vec.add(defuns.get(s).get(i + 1));
-                        System.out.println(vec);
-                        System.out.println(defuns.get(s));
+                      //  System.out.println(vec);
+                      //  System.out.println(defuns.get(s));
                         chk.vars.add(vec);
                     }
                 }
@@ -600,6 +602,8 @@ class MyVisitor extends MxBaseVisitor<check>
                 System.out.println("FBI WARNING! function \"" + s + "\" undefined!");
                 System.exit(-1);
             }
+            System.out.println(chk.var);
+            return chk;
         }
         if (ctx.combine() != null)
         {
@@ -667,6 +671,7 @@ class MyVisitor extends MxBaseVisitor<check>
                 ck = visit(ctx.expr(i));
                 vec.addAll(ck.var);
                 chk.vars.addAll(ck.vars);
+                chk.var.addAll(ck.var);
             }
         }
         chk.vars.add(vec);
