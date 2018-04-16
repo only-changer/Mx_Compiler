@@ -37,7 +37,7 @@ param   :   defvars ;
 block   :   '{' stmt* '}' ;
 
 stmt    :   block
-        |   'if' '(' expr ')' stmt ('else' stmt)?
+        |   op = 'if' '(' expr ')' stmt ('else' stmt)?
         |   'for' '(' expr? ';' expr? ';' expr? ')' stmt
         |   'while' '(' expr? ')' stmt
         |   'return' expr? ';'

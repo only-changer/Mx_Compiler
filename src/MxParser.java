@@ -955,6 +955,7 @@ public class MxParser extends Parser {
 	}
 
 	public static class StmtContext extends ParserRuleContext {
+		public Token op;
 		public BlockContext block() {
 			return getRuleContext(BlockContext.class,0);
 		}
@@ -1011,7 +1012,7 @@ public class MxParser extends Parser {
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(126);
-				match(T__13);
+				((StmtContext)_localctx).op = match(T__13);
 				setState(127);
 				match(T__9);
 				setState(128);

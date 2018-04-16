@@ -559,6 +559,7 @@ class MyVisitor extends MxBaseVisitor<check>
         {
             check ck = visit(ctx.expr(i));
             v.addAll(ck.var);
+            if (ctx.op != null) if (!ck.var.get(0).equals("bool")) System.exit(-1);
             if (ctx.getText().contains("for(") || ctx.getText().contains("while(")) v.add("bool");
             chk.vars.addAll(ck.vars);
         }
@@ -957,7 +958,7 @@ public class Main
 
     public static void main(String[] args) throws Exception
     {
-       // File f = new File("E:/test.txt");
+        //File f = new File("E:/test.txt");
         File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
