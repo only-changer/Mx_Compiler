@@ -42,6 +42,7 @@ class MyVisitor extends MxBaseVisitor<check>
     boolean getin = false;
     String classname = new String();
     String cla = new String();
+    boolean classfun = false;
 
     MyVisitor()
     {
@@ -197,6 +198,7 @@ class MyVisitor extends MxBaseVisitor<check>
             System.exit(-1);
         }
         chk.vars.add(chk.var);
+        if (classfun) defclass.get(classname).defvars.put(ctx.varname().getText(), ctx.type().getText());
         return chk;
     }
 
@@ -227,6 +229,7 @@ class MyVisitor extends MxBaseVisitor<check>
 
     public check visitDefclass(MxParser.DefclassContext ctx)
     {
+        getin = true;
         Map<String, String> origin = new HashMap<>(defvars);
         check chk = new check();
         String s = ctx.classname().getText();
@@ -253,13 +256,16 @@ class MyVisitor extends MxBaseVisitor<check>
             }
             al.defvars.putAll(ck.defvars);
         }
+        classfun = true;
         for (int i = 0; i < ctx.defun().size(); ++i)
         {
             check ck = visit(ctx.defun(i));
         }
+        classfun = false;
         defvars = origin;
         chk.defvars.clear();
         classname = "";
+        getin = false;
         return chk;
     }
 
@@ -280,6 +286,7 @@ class MyVisitor extends MxBaseVisitor<check>
         Vector<String> pvec = c.var;
         local.putAll(map);
         defvars.putAll(map);
+        if (!classname.equals("")) defclass.get(classname).defvars.putAll(map);
         if (!getin) chk.defvars.putAll(map);
         Vector fun = new Vector();
         fun.add(ctx.type().getText());
@@ -566,6 +573,7 @@ class MyVisitor extends MxBaseVisitor<check>
         chk.vars.add(v);
         defvars = origin;
         if (change == true) isfor = false;
+        cla = "";
         return chk;
     }
 
@@ -643,6 +651,7 @@ class MyVisitor extends MxBaseVisitor<check>
                     System.out.println(ctx.getText());
                     System.out.println(v);
                     System.out.println(defun);
+
                     System.out.println("FBI WARNING! parmars numbers wrong!");
                     System.exit(-1);
                 }
@@ -662,7 +671,8 @@ class MyVisitor extends MxBaseVisitor<check>
             else
             {
                 System.out.println(ctx.getText());
-                System.out.println(defuns);
+                System.out.println(defun);
+                System.out.println(cla);
                 System.out.println("FBI WARNING! function \"" + s + "\" undefined!");
                 System.exit(-1);
             }
@@ -713,6 +723,25 @@ class MyVisitor extends MxBaseVisitor<check>
         Vector<String> vec = new Vector();
         if (ctx.varname() != null)
         {
+            System.out.println("<<<>>>");
+            System.out.println(ctx.varname().getText() + classname);
+            if (!classname.equals(""))
+            {
+                if (defclass.get(classname).defvars.containsKey(ctx.varname().getText()))
+                {
+                    System.out.println(defclass.get(classname).defvars);
+                    System.out.println(">><<<<<");
+                    chk.var.add(defclass.get(classname).defvars.get(ctx.varname().getText()));
+                }
+                 else
+                {
+                    System.out.println(ctx.varname().getText());
+                    System.out.println(defclass.get(classname).defvars);
+                    System.out.println("class v wrong!");
+                    System.exit(-1);
+                }
+            }
+            else
             if (!cla.equals(""))
             {
                 if (defclass.get(cla).defvars.containsKey(ctx.varname().getText()))
@@ -723,10 +752,10 @@ class MyVisitor extends MxBaseVisitor<check>
                 else
                 {
                     System.out.println(ctx.varname().getText());
+                    System.out.println(ctx.getText());
                     System.out.println("class v wrong!");
                     System.exit(-1);
                 }
-
             }
             else
             {
@@ -835,7 +864,7 @@ public class Main
 
     public static void main(String[] args) throws Exception
     {
-       // File f = new File("E:/test.txt");
+        //File f = new File("E:/test.txt");
         File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);

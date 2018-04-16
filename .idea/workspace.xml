@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="014ac6d6-8e40-455f-95b1-dff8859644ca" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -27,7 +26,7 @@
       <file leaf-file-name="MxVisitor.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MxVisitor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
+            <state relative-caret-position="95">
               <caret line="21" column="7" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="7" />
             </state>
           </provider>
@@ -36,8 +35,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="251">
-              <caret line="837" column="9" selection-start-line="837" selection-start-column="9" selection-end-line="837" selection-end-column="9" />
+            <state relative-caret-position="274">
+              <caret line="866" column="10" selection-start-line="866" selection-start-column="10" selection-end-line="866" selection-end-column="10" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -241,13 +240,13 @@
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Tool Output" order="7" sideWeight="0.49932975" weight="0.32905984" />
-      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.41353887" weight="0.13266762" />
+      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.39544237" weight="0.13266762" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.18230563" side_tool="true" visible="true" weight="0.17118402" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.20040214" side_tool="true" visible="true" weight="0.17118402" />
       <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.81769437" visible="true" weight="0.17118402" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.79959786" visible="true" weight="0.17118402" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
@@ -640,13 +639,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MxVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="21" column="7" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../Try/src/Demo.g4">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="304">
@@ -661,10 +653,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/MxVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="21" column="7" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="837" column="9" selection-start-line="837" selection-start-column="9" selection-end-line="837" selection-end-column="9" />
+        <state relative-caret-position="274">
+          <caret line="866" column="10" selection-start-line="866" selection-start-column="10" selection-end-line="866" selection-end-column="10" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
