@@ -69,6 +69,9 @@ class MyVisitor extends MxBaseVisitor<check>
         v9.add("int");
         defuns.put("ord", v9);
         defvars.put("this", "000");
+        Vector v10 = new Vector();
+        v10.add("string");
+        defuns.put("getString",v10);
     }
 
     public check visitAllin(MxParser.AllinContext ctx)
@@ -701,7 +704,7 @@ public class Main
 
     public static void main(String[] args) throws Exception
     {
-       // File f = new File("E:/test.txt");
+        //File f = new File("E:/test.txt");
          File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
