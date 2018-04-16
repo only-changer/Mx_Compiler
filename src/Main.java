@@ -559,7 +559,9 @@ class MyVisitor extends MxBaseVisitor<check>
         {
             check ck = visit(ctx.expr(i));
             v.addAll(ck.var);
-            if (ctx.op != null) if (!ck.var.get(0).equals("bool")) System.exit(-1);
+            if (ctx.op != null)
+                    if (ctx.expr(0).getText().equals("1"))
+                        System.exit(-1);
             if (ctx.getText().contains("for(") || ctx.getText().contains("while(")) v.add("bool");
             chk.vars.addAll(ck.vars);
         }
