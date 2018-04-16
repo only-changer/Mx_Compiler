@@ -20,7 +20,7 @@ class check
 
     Map<String, String> defvars = new HashMap();
     Vector<Vector> vars = new Vector<>();
-    Vector var = new Vector();
+    Vector<String> var = new Vector();
 
 }
 
@@ -612,7 +612,7 @@ class MyVisitor extends MxBaseVisitor<check>
                 System.out.println("FBI WARNING! main wrong!");
                 System.exit(-1);
             }
-            Map<String,Vector<String>> defun = new HashMap();
+            Map<String, Vector<String>> defun = new HashMap();
             if (!cla.equals(""))
             {
                 defun = defclass.get(cla).defuns;
@@ -744,29 +744,30 @@ class MyVisitor extends MxBaseVisitor<check>
                 System.out.println("???????");
 
                 String s = ctx.expr(0).getText();
+
+                check ckk = visit(ctx.expr(0));
+                String sa = ckk.var.get(0);
+                s = sa;
                 System.out.println(s);
                 System.out.println(defclass);
-                if (defvars.containsKey(s))
+                String ty = new String();
+                ty = sa;
+                if (defvars.containsKey(sa))
                 {
-                    String ty = defvars.get(s);
+                    ty = defvars.get(sa);
                     System.out.println(ty);
-                    if (defclass.containsKey(ty))
-                    {
-                        cla = ty;
-                        check ck = visit(ctx.expr(1));
-                        System.out.println("???");
-                        chk.var.addAll(ck.var);
-                        chk.vars.addAll(ck.vars);
-                    }
-                    else
-                    {
-                        System.out.println("FBI WARNING! class undefined!");
-                        System.exit(-1);
-                    }
+                }
+                if (defclass.containsKey(ty))
+                {
+                    cla = ty;
+                    check ck = visit(ctx.expr(1));
+                    System.out.println("???");
+                    chk.var.addAll(ck.var);
+                    chk.vars.addAll(ck.vars);
                 }
                 else
                 {
-                    System.out.println("FBI WARNING!  v wrong!");
+                    System.out.println("FBI WARNING! class undefined!");
                     System.exit(-1);
                 }
                 return chk;
@@ -809,7 +810,7 @@ public class Main
     public static void main(String[] args) throws Exception
     {
         //File f = new File("E:/test.txt");
-         File f = new File("program.txt");
+        File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
         run(input);

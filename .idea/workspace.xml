@@ -37,7 +37,7 @@
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="251">
-              <caret line="810" column="10" selection-start-line="810" selection-start-column="10" selection-end-line="810" selection-end-column="10" />
+              <caret line="811" column="10" selection-start-line="811" selection-start-column="10" selection-end-line="811" selection-end-column="10" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -48,8 +48,8 @@
       <file leaf-file-name="Mx.g4" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Mx.g4">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-741">
-              <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" selection-end-column="6" />
+            <state relative-caret-position="285">
+              <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
             </state>
           </provider>
         </entry>
@@ -241,19 +241,19 @@
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Tool Output" order="7" sideWeight="0.49932975" weight="0.32905984" />
-      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.42292225" weight="0.13266762" />
+      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.4175603" weight="0.13266762" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.17292225" side_tool="true" visible="true" weight="0.17118402" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.17828418" side_tool="true" visible="true" weight="0.17118402" />
       <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.82707775" visible="true" weight="0.17118402" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.82171583" visible="true" weight="0.17118402" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.08646113" />
-      <window_info anchor="bottom" id="ANTLR Preview" order="7" sideWeight="0.9008043" weight="0.29957205" />
+      <window_info anchor="bottom" id="ANTLR Preview" order="7" sideWeight="0.89946383" weight="0.29957205" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
@@ -656,15 +656,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Mx.g4">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-741">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" selection-end-column="6" />
+        <state relative-caret-position="285">
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="251">
-          <caret line="810" column="10" selection-start-line="810" selection-start-column="10" selection-end-line="810" selection-end-column="10" />
+          <caret line="811" column="10" selection-start-line="811" selection-start-column="10" selection-end-line="811" selection-end-column="10" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
