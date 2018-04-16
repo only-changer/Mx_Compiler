@@ -80,7 +80,6 @@ class MyVisitor extends MxBaseVisitor<check>
         check chk = new check();
         check nullcheck = new check();
         for (int k = 0; k < ctx.defs().size(); ++k)
-        if (ctx.defs(k).defvars() == null)
         {
             check ck = visit(ctx.defs(k));
             chk.defvars.putAll(ck.defvars);
@@ -89,7 +88,7 @@ class MyVisitor extends MxBaseVisitor<check>
                 if (defvars.containsKey(key))
                 {
                     System.out.println(ctx.defs(k).getText());
-                    System.out.println(key);
+                    //System.out.println(key);
                     System.out.println(ctx.defs(k).getText());
                     System.out.println("Variables redefined!");
                     System.exit(-1);
@@ -97,6 +96,7 @@ class MyVisitor extends MxBaseVisitor<check>
             }
             defvars.putAll(ck.defvars);
         }
+        defvars.clear();
         getin = true;
         for (int k = 0; k < ctx.defs().size(); ++k)
             if (ctx.defs(k).defclass() == null)
@@ -712,7 +712,7 @@ public class Main
 
     public static void main(String[] args) throws Exception
     {
-        //File f = new File("E:/test.txt");
+       // File f = new File("E:/test.txt");
          File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
