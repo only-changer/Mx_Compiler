@@ -57,14 +57,14 @@ expr    :   funname '(' exprs? ')'
         |   expr '.' expr
         |   ('++' | '--') expr
         |   ('-' | '!' | '~') expr
-        |   expr ('++'  | '--')
+        |   expr op =('++'  | '--')
         |   expr ('*' | '/' | '%') expr
         |   expr op=('+' |'-' ) expr
         |   expr ('>>' | '<<') expr
         |   expr '&' expr
         |   expr '^' expr
         |   expr '|' expr
-        |   expr ('>' | '<' | '>=' | '<=' | '==' | '!=') expr
+        |   expr  op2 = ('>' | '<' | '>=' | '<=' | '==' | '!=') expr
         |   expr '&&' expr
         |   expr '||' expr
         |   expr '?' expr ':' expr

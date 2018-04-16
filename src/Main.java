@@ -556,6 +556,7 @@ class MyVisitor extends MxBaseVisitor<check>
             if (ctx.exprs() != null)
             {
                 v.addAll(visit(ctx.exprs()).vars);
+                System.out.println(v);
             }
             String s = ctx.funname().getText();
             if (s.equals("main") && (v.size() > 0))
@@ -636,19 +637,23 @@ class MyVisitor extends MxBaseVisitor<check>
         if (ctx.NUM() != null) chk.var.add("int");
         if (ctx.STR() != null) chk.var.add("string");
         if (ctx.getText().contains("null")) chk.var.add("002");
-        if (ctx.getText().contains("++")) chk.var.add("int");
+        if (ctx.op != null) if (ctx.op.getText() == "++") chk.var.add("int");
+        Vector<String> vec = new Vector();
         for (int i = 0; i < ctx.expr().size(); ++i)
         {
+            check ck = new check();
             if (ctx.getText().contains(".") && i == 0 && !ctx.expr(0).getText().contains("."))
             {
 
             }
             else
-                chk.var.addAll(visit(ctx.expr(i)).var);
-            System.out.println(ctx.expr(i).getText());
-            System.out.println(i);
-            System.out.println(chk.var);
+            {
+                ck = visit(ctx.expr(i));
+                vec.addAll(ck.var);
+                chk.vars.addAll(ck.vars);
+            }
         }
+        chk.vars.add(vec);
         return chk;
     }
     // public check visitNews(MxParser.NewsContext ctx){}
