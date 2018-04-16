@@ -2,7 +2,32 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="014ac6d6-8e40-455f-95b1-dff8859644ca" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IDE/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IDE/Mx.g4" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/Mx.g4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IDE/Mx.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/Mx.tokens" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IDE/MxLexer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/MxLexer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IDE/MxLexer.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/MxLexer.tokens" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IDE/MxParser$BlockContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/MxParser$BlockContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IDE/MxParser$CombineContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/MxParser$CombineContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IDE/MxParser$DefclassContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/MxParser$DefclassContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IDE/MxParser$DefunContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/MxParser$DefunContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IDE/MxParser$ExprContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/MxParser$ExprContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IDE/MxParser$ExprsContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/MxParser$ExprsContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IDE/MxParser$FunnameContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/MxParser$FunnameContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IDE/MxParser$NewsContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/MxParser$NewsContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IDE/MxParser$NumnameContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/MxParser$NumnameContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IDE/MxParser$ParamContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/MxParser$ParamContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IDE/MxParser$ParamsContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/MxParser$ParamsContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IDE/MxParser$StmtContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/MxParser$StmtContext.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IDE/MxParser.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/MxParser.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IDE/MyVisitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/MyVisitor.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Mx.g4" beforeDir="false" afterPath="$PROJECT_DIR$/src/Mx.g4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Mx.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/src/Mx.tokens" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MxLexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MxLexer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MxLexer.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/src/MxLexer.tokens" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MxParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MxParser.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -35,8 +60,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="251">
-              <caret line="887" column="10" selection-start-line="887" selection-start-column="10" selection-end-line="887" selection-end-column="10" />
+            <state relative-caret-position="126">
+              <caret line="959" column="9" selection-start-line="959" selection-start-column="9" selection-end-line="959" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#723#724#0" expanded="true" />
@@ -49,8 +74,8 @@
       <file leaf-file-name="Mx.g4" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Mx.g4">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+            <state relative-caret-position="247">
+              <caret line="22" column="33" lean-forward="true" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -79,7 +104,7 @@
       <file leaf-file-name="MxParser.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MxParser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2052">
+            <state relative-caret-position="2242">
               <caret line="125" selection-start-line="125" selection-end-line="125" />
             </state>
           </provider>
@@ -94,6 +119,8 @@
       <find>varbal</find>
       <find>.defun</find>
       <find>isreturn</find>
+      <find>att</find>
+      <find>defuns</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -242,13 +269,13 @@
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Tool Output" order="7" sideWeight="0.49932975" weight="0.32905984" />
-      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.38806972" weight="0.13266762" />
+      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.37600535" weight="0.27104136" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.2077748" side_tool="true" visible="true" weight="0.17118402" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.21849866" side_tool="true" visible="true" weight="0.30813125" />
       <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.7922252" visible="true" weight="0.17118402" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.78150135" visible="true" weight="0.30813125" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
@@ -633,7 +660,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MxParser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2052">
+        <state relative-caret-position="2242">
           <caret line="125" selection-start-line="125" selection-end-line="125" />
         </state>
       </provider>
@@ -652,13 +679,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Mx.g4">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/MxVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
@@ -666,10 +686,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Mx.g4">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="22" column="33" lean-forward="true" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="887" column="10" selection-start-line="887" selection-start-column="10" selection-end-line="887" selection-end-column="10" />
+        <state relative-caret-position="126">
+          <caret line="959" column="9" selection-start-line="959" selection-start-column="9" selection-end-line="959" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#723#724#0" expanded="true" />

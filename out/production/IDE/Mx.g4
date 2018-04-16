@@ -20,7 +20,11 @@ classname
         :   ID
         ;
 
-defclass:   'class' classname '{' (defun | defvars)* '}';
+defclass:   'class' classname '{'
+        (    ID '(' ')' block
+            | defun
+            | defvars
+            )* '}';
 
 funname :   ID;
 
