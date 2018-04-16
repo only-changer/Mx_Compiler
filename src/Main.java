@@ -62,24 +62,33 @@ class MyVisitor extends MxBaseVisitor<check>
         v4.add("void");
         v4.add("string");
         defuns.put("print", v4);
-        Vector v5 = new Vector();
-        v5.add("int");
-        defuns.put("parseInt", v5);
+
+
         Vector v6 = new Vector();
         v6.add("int");
-        defuns.put("size", v6);
+        all al1 = new all();
+        al1.defuns.put("size", v6);
+        defclass.put("001", al1);
+
+        all al2 = new all();
+        Vector v5 = new Vector();
+        v5.add("int");
+        al2.defuns.put("parseInt", v5);
+
         Vector v7 = new Vector();
         v7.add("int");
-        defuns.put("length", v7);
+        al2.defuns.put("length", v7);
         Vector v8 = new Vector();
         v8.add("string");
         v8.add("int");
         v8.add("int");
-        defuns.put("substring", v8);
+        al2.defuns.put("substring", v8);
         Vector v9 = new Vector();
         v9.add("int");
         v9.add("int");
-        defuns.put("ord", v9);
+        al2.defuns.put("ord", v9);
+        defclass.put("002", al2);
+
         defvars.put("this", "000");
         Vector v10 = new Vector();
         v10.add("string");
@@ -757,6 +766,23 @@ class MyVisitor extends MxBaseVisitor<check>
                     ty = defvars.get(sa);
                     System.out.println(ty);
                 }
+                System.out.println(ty);
+                if (ty.contains("[]"))
+                {
+                    cla = "001";
+                    check ck = visit(ctx.expr(1));
+                    System.out.println("???");
+                    chk.var.addAll(ck.var);
+                    chk.vars.addAll(ck.vars);
+                }
+                else if (ty.equals("string"))
+                {
+                    cla = "002";
+                    check ck = visit(ctx.expr(1));
+                    System.out.println("???");
+                    chk.var.addAll(ck.var);
+                    chk.vars.addAll(ck.vars);
+                } else
                 if (defclass.containsKey(ty))
                 {
                     cla = ty;
@@ -809,7 +835,7 @@ public class Main
 
     public static void main(String[] args) throws Exception
     {
-        //File f = new File("E:/test.txt");
+       // File f = new File("E:/test.txt");
         File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
