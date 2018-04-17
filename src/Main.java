@@ -729,6 +729,7 @@ class MyVisitor extends MxBaseVisitor<check>
                         if (defclass.get(classname).defvars.get(s).charAt(i) == '[') break;
                         ss += defclass.get(classname).defvars.get(s).charAt(i);
                     }
+                    n -= 1;
                     //System.out.println(s);
                     //System.out.println(defclass.get(classname).defcom);
                     for (int i = 0; i < defclass.get(classname).defcom.get(s) - n; ++i) ss += "[]";
@@ -738,7 +739,7 @@ class MyVisitor extends MxBaseVisitor<check>
                 }
                 else
                 {
-                    System.out.println("????");
+                    System.out.println(ctx.getText());
                     System.out.println("FBI WARNING!numcom \'" + s + "\" undefined!");
                     System.exit(-1);
                 }
@@ -764,6 +765,7 @@ class MyVisitor extends MxBaseVisitor<check>
                     }
                     //System.out.println(s);
                    // System.out.println(defclass.get(cla).defcom);
+                    n -= 1;
                     for (int i = 0; i < defclass.get(cla).defcom.get(s) - n; ++i) ss += "[]";
                     chk.var.add(ss);
                     System.out.println(ctx.getText());
@@ -771,7 +773,7 @@ class MyVisitor extends MxBaseVisitor<check>
                 }
                 else
                 {
-                    System.out.println("????");
+                    System.out.println(ctx.getText());
                     System.out.println("FBI WARNING!numcom \'" + s + "\" undefined!");
                     System.exit(-1);
                 }
@@ -796,16 +798,19 @@ class MyVisitor extends MxBaseVisitor<check>
                     if (defvars.get(s).charAt(i) == '[') break;
                     ss += defvars.get(s).charAt(i);
                 }
+                n -= 1;
                 //System.out.println(s);
                // System.out.println(defcom);
                 for (int i = 0; i < defcom.get(s) - n; ++i) ss += "[]";
                 chk.var.add(ss);
-                System.out.println(ctx.getText());
+                System.out.println(n);
                 System.out.println(chk.var);
                 System.out.println(chk.vars);
             }
             else
             {
+                System.out.println(ctx.getText());
+                System.out.println(s);
                 System.out.println("FBI WARNING!numcom \'" + s + "\" undefined!");
                 System.exit(-1);
             }
@@ -829,7 +834,9 @@ class MyVisitor extends MxBaseVisitor<check>
                 {
                     System.out.println(defclass.get(classname).defvars);
                     System.out.println(">><<<<<");
-                    chk.var.add(defclass.get(classname).defvars.get(ctx.varname().getText()));
+                    if (defclass.get(classname).defcom.containsKey(ctx.varname().getText()))chk.var.add(ctx.varname().getText());
+                     else   chk.var.add(defclass.get(classname).defvars.get(ctx.varname().getText()));
+
                 }
                 else
                 {
@@ -844,7 +851,12 @@ class MyVisitor extends MxBaseVisitor<check>
                 if (defclass.get(cla).defvars.containsKey(ctx.varname().getText()))
                 {
                     chk.var.add(defclass.get(cla).defvars.get(ctx.varname().getText()));
-                    cla = "";
+                    if (defclass.get(cla).defcom.containsKey(ctx.varname().getText()))chk.var.add(ctx.varname().getText());
+                    else
+                    {
+                        chk.var.add(defclass.get(cla).defvars.get(ctx.varname().getText()));
+                        cla = "";
+                    }
                 }
                 else
                 {
@@ -927,6 +939,7 @@ class MyVisitor extends MxBaseVisitor<check>
                 }
                 else
                 {
+                    System.out.println(ty);
                     System.out.println("FBI WARNING! class undefined!");
                     System.exit(-1);
                 }
@@ -969,7 +982,7 @@ public class Main
 
     public static void main(String[] args) throws Exception
     {
-        //File f = new File("E:/test.txt");
+       // File f = new File("E:/test.txt");
         File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);

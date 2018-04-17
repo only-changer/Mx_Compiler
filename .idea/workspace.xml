@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="014ac6d6-8e40-455f-95b1-dff8859644ca" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Mx.g4" beforeDir="false" afterPath="$PROJECT_DIR$/src/Mx.g4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Mx.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/src/Mx.tokens" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MxBaseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MxBaseListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MxBaseVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MxBaseVisitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MxLexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MxLexer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MxLexer.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/src/MxLexer.tokens" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MxListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MxListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MxParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MxParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MxVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MxVisitor.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -45,8 +35,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="305">
-              <caret line="971" column="10" selection-start-line="971" selection-start-column="10" selection-end-line="971" selection-end-column="10" />
+            <state relative-caret-position="250">
+              <caret line="984" column="9" selection-start-line="984" selection-start-column="9" selection-end-line="984" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#723#724#0" expanded="true" />
@@ -119,7 +109,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="570" />
     <option name="y" value="75" />
     <option name="width" value="1130" />
@@ -251,13 +241,13 @@
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Tool Output" order="7" sideWeight="0.49932975" weight="0.32905984" />
-      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.35455763" weight="0.27104136" />
+      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.34517425" weight="0.0114122685" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.24061662" side_tool="true" visible="true" weight="0.17261055" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.24932976" side_tool="true" visible="true" weight="0.17261055" />
       <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.7593834" visible="true" weight="0.17261055" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.75067025" visible="true" weight="0.17261055" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
@@ -674,8 +664,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="971" column="10" selection-start-line="971" selection-start-column="10" selection-end-line="971" selection-end-column="10" />
+        <state relative-caret-position="250">
+          <caret line="984" column="9" selection-start-line="984" selection-start-column="9" selection-end-line="984" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#723#724#0" expanded="true" />
