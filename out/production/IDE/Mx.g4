@@ -50,14 +50,11 @@ stmt    :   block
 
 exprs   :   expr(',' expr)* ;
 
-numname : basetype | typename;
-
-combine :   numname ('[' expr ']')+;
 
 
 expr    :   funname '(' exprs? ')'
         |   'new' news
-        |   combine
+        |   expr (opcom = '[' expr ']')+
         |   expr op = '.' expr
         |   op = ('++' | '--') expr
         |   ('-' | '!' | '~') expr

@@ -167,26 +167,6 @@ public interface MxListener extends ParseTreeListener {
 	 */
 	void exitExprs(MxParser.ExprsContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link MxParser#numname}.
-	 * @param ctx the parse tree
-	 */
-	void enterNumname(MxParser.NumnameContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MxParser#numname}.
-	 * @param ctx the parse tree
-	 */
-	void exitNumname(MxParser.NumnameContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link MxParser#combine}.
-	 * @param ctx the parse tree
-	 */
-	void enterCombine(MxParser.CombineContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link MxParser#combine}.
-	 * @param ctx the parse tree
-	 */
-	void exitCombine(MxParser.CombineContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link MxParser#expr}.
 	 * @param ctx the parse tree
 	 */

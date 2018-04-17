@@ -327,8 +327,8 @@ class MyVisitor extends MxBaseVisitor<check>
         }
         else
         {
-            System.out.println("att");
-            System.out.println(ctx.funname().getText());
+           // System.out.println("att");
+           // System.out.println(ctx.funname().getText());
             defuns.put(ctx.funname().getText(), fun);
         }
 
@@ -384,7 +384,7 @@ class MyVisitor extends MxBaseVisitor<check>
         if (!(ss.equals("int") || ss.equals("bool") || ss.equals("string") || defclass.containsKey(ss)))
         {
             System.out.println(ctx.getText());
-            System.out.println(defclass);
+           // System.out.println(defclass);
             System.out.println("FBI WARNING! Variables wrong!");
             System.exit(-1);
         }
@@ -413,7 +413,7 @@ class MyVisitor extends MxBaseVisitor<check>
                 String shadow = "";
                 int che = 0;
                 int ch2 = 0;
-                System.out.println(v);
+                //System.out.println(v);
                 for (int j = 0; j < v.size(); ++j)
                 {
                     if (v.get(j).equals("001"))
@@ -467,6 +467,7 @@ class MyVisitor extends MxBaseVisitor<check>
                         {
                             System.out.println(ctx.getText());
                             System.out.println(v);
+                            System.out.println(ck.vars);
                             System.out.println("FBI WARNING! Variables wrong!");
                             System.exit(-1);
                         }
@@ -565,8 +566,8 @@ class MyVisitor extends MxBaseVisitor<check>
             if (ctx.getText().contains("for(") || ctx.getText().contains("while(")) v.add("bool");
             chk.vars.addAll(ck.vars);
         }
-        System.out.println("!!!");
-        System.out.println(v);
+       // System.out.println("!!!");
+       // System.out.println(v);
         if (ctx.getText().contains("if") && ctx.expr() != null)
         {
             System.out.println(v);
@@ -589,6 +590,8 @@ class MyVisitor extends MxBaseVisitor<check>
         defvars = origin;
         if (change == true) isfor = false;
         cla = "";
+        System.out.println(chk.vars);
+        System.out.println(ctx.getText());
         return chk;
     }
 
@@ -613,7 +616,7 @@ class MyVisitor extends MxBaseVisitor<check>
                 {
                     ++dd;
                     if (ctx.expr(0) != null)
-                        if (!(ctx.expr(0).getText().contains(".") || ctx.expr(0).varname() != null || ctx.expr(0).combine() != null))
+                        if (!(ctx.expr(0).getText().contains(".") || ctx.expr(0).varname() != null || ctx.expr(0).opcom != null))
                         {
                             System.out.println(ctx.getText());
                             System.out.println("FBI WARNING! = left wrong!");
@@ -663,8 +666,8 @@ class MyVisitor extends MxBaseVisitor<check>
             {
                 defun = defuns;
             }
-            System.out.println("ASADDAD");
-            System.out.println(defun);
+           // System.out.println("ASADDAD");
+          //  System.out.println(defun);
             if (defun.containsKey(s))
             {
                 //if (!defuns.get(s).get(0).equals("void"))
@@ -702,20 +705,22 @@ class MyVisitor extends MxBaseVisitor<check>
 
             return chk;
         }
-        if (ctx.combine() != null)
+        if (ctx.opcom != null)
         {
-            String s = ctx.combine().numname().getText();
+            String s = new String();
+            s = visit(ctx.expr(0)).var.get(0);
+           // System.out.println("LLLLL"+s);
             if (!classname.equals(""))
             {
                 if (defclass.get(classname).defvars.containsKey(s))
                 {
-                    int n = ctx.combine().expr().size();
+                    int n = ctx.expr().size();
                     String ss = new String();
-                    for (int i = 0; i < n; ++i)
+                    for (int i = 1; i < n; ++i)
                     {
-                        check ck = visit(ctx.combine().expr(i));
+                        check ck = visit(ctx.expr(i));
                         Vector<String> vec = new Vector();
-                        vec.addAll(chk.var);
+                        vec.addAll(ck.var);
                         vec.add("int");
                         chk.vars.add(vec);
                     }
@@ -724,12 +729,12 @@ class MyVisitor extends MxBaseVisitor<check>
                         if (defclass.get(classname).defvars.get(s).charAt(i) == '[') break;
                         ss += defclass.get(classname).defvars.get(s).charAt(i);
                     }
-                    System.out.println(s);
-                    System.out.println(defclass.get(classname).defcom);
+                    //System.out.println(s);
+                    //System.out.println(defclass.get(classname).defcom);
                     for (int i = 0; i < defclass.get(classname).defcom.get(s) - n; ++i) ss += "[]";
                     chk.var.add(ss);
-                    System.out.println(ctx.combine().getText());
-                    System.out.println(chk.var);
+                 System.out.println(ctx.getText());
+               //     System.out.println(chk.var);
                 }
                 else
                 {
@@ -742,13 +747,13 @@ class MyVisitor extends MxBaseVisitor<check>
             {
                 if (defclass.get(cla).defvars.containsKey(s))
                 {
-                    int n = ctx.combine().expr().size();
+                    int n = ctx.expr().size();
                     String ss = new String();
-                    for (int i = 0; i < n; ++i)
+                    for (int i = 1; i < n; ++i)
                     {
-                        check ck = visit(ctx.combine().expr(i));
+                        check ck = visit(ctx.expr(i));
                         Vector<String> vec = new Vector();
-                        vec.addAll(chk.var);
+                        vec.addAll(ck.var);
                         vec.add("int");
                         chk.vars.add(vec);
                     }
@@ -757,12 +762,12 @@ class MyVisitor extends MxBaseVisitor<check>
                         if (defclass.get(cla).defvars.get(s).charAt(i) == '[') break;
                         ss += defclass.get(cla).defvars.get(s).charAt(i);
                     }
-                    System.out.println(s);
-                    System.out.println(defclass.get(cla).defcom);
+                    //System.out.println(s);
+                   // System.out.println(defclass.get(cla).defcom);
                     for (int i = 0; i < defclass.get(cla).defcom.get(s) - n; ++i) ss += "[]";
                     chk.var.add(ss);
-                    System.out.println(ctx.combine().getText());
-                    System.out.println(chk.var);
+                    System.out.println(ctx.getText());
+                   // System.out.println(chk.var);
                 }
                 else
                 {
@@ -774,33 +779,37 @@ class MyVisitor extends MxBaseVisitor<check>
             }
             else if (defvars.containsKey(s))
             {
-                int n = ctx.combine().expr().size();
+                int n = ctx.expr().size();
                 String ss = new String();
-                for (int i = 0; i < n; ++i)
+                for (int i = 1; i < n; ++i)
                 {
-                    check ck = visit(ctx.combine().expr(i));
+                    check ck = visit(ctx.expr(i));
                     Vector<String> vec = new Vector();
-                    vec.addAll(chk.var);
+                    vec.addAll(ck.var);
                     vec.add("int");
                     chk.vars.add(vec);
+                    System.out.println("SSS");
+                    System.out.println(vec);
                 }
                 for (int i = 0; i < defvars.get(s).length(); ++i)
                 {
                     if (defvars.get(s).charAt(i) == '[') break;
                     ss += defvars.get(s).charAt(i);
                 }
-                System.out.println(s);
-                System.out.println(defcom);
+                //System.out.println(s);
+               // System.out.println(defcom);
                 for (int i = 0; i < defcom.get(s) - n; ++i) ss += "[]";
                 chk.var.add(ss);
-                System.out.println(ctx.combine().getText());
+                System.out.println(ctx.getText());
                 System.out.println(chk.var);
+                System.out.println(chk.vars);
             }
             else
             {
                 System.out.println("FBI WARNING!numcom \'" + s + "\" undefined!");
                 System.exit(-1);
             }
+            return chk;
         }
         int flag = 0;
         if (ctx.op != null)
@@ -812,8 +821,8 @@ class MyVisitor extends MxBaseVisitor<check>
         Vector<String> vec = new Vector();
         if (ctx.varname() != null)
         {
-            System.out.println("<<<>>>");
-            System.out.println(ctx.varname().getText() + classname);
+           // System.out.println("<<<>>>");
+          //  System.out.println(ctx.varname().getText() + classname);
             if (!classname.equals(""))
             {
                 if (defclass.get(classname).defvars.containsKey(ctx.varname().getText()))
