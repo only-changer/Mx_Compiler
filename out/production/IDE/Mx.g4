@@ -12,7 +12,7 @@ defvars :   type  varname ('='  expr)? ';' ;
 
 typename:   ID;
 
-type    :   (basetype | typename)  ('[]')* ;
+type    :   (basetype | typename)  ('[' ']')* ;
 
 basetype:   ('int' | 'bool' | 'void' | 'string') ;
 
@@ -78,8 +78,8 @@ expr    :   funname '(' exprs? ')'
         |   <assoc=right> expr '=' expr;
 
 news     :   varname '(' exprs ')'
-        |   (classname |name =  'int' |name =  'string'|name = 'bool') ('[' expr ']')+ ('[]')*
-        |   (classname |name =  'int' |name =  'string'|name = 'bool') ('[]')*  ;
+        |   (classname |name =  'int' |name =  'string'|name = 'bool') ('[' expr ']')+ ('[' ']')*('[' expr ']')?
+        |   (classname |name =  'int' |name =  'string'|name = 'bool') ('[' ']')*   ;
 
 //lexxer
 

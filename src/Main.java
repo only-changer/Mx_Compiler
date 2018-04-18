@@ -262,8 +262,13 @@ class MyVisitor extends MxBaseVisitor<check>
             }
             else al.oh = defclass.get(s).oh - 1;
         }
-
-        defclass.put(s, al);
+        if (al.oh == 0) defclass.put(s, al);
+        else
+        {
+            al = defclass.get(s);
+            al.defvars.clear();
+            al.defvars.put("this","000");
+        }
         for (int i = 0; i < ctx.defvars().size(); ++i)
         {
             check ck = visit(ctx.defvars(i));
@@ -298,6 +303,11 @@ class MyVisitor extends MxBaseVisitor<check>
 
     public check visitDefun(MxParser.DefunContext ctx)
     {
+        if (ctx.funname().getText().equals("this"))
+        {
+            System.out.println("FBI WARNING!THIS Wrong!");
+            System.exit(-1);
+        }
         Map<String, String> local = new HashMap<>();
         check chk = new check();
         Map<String, String> origin = new HashMap<>(defvars);
@@ -352,7 +362,7 @@ class MyVisitor extends MxBaseVisitor<check>
             chk.defvars.clear();
             return chk;
         }
-
+        //System.out.println(ctx.getText());
         check ck = visit(ctx.block());
         for (String key : ck.defvars.keySet())
         {
@@ -429,6 +439,7 @@ class MyVisitor extends MxBaseVisitor<check>
                 //System.out.println(v);
                 for (int j = 0; j < v.size(); ++j)
                 {
+                    if (v.get(j).equals("000")) continue;
                     if (v.get(j).equals("001"))
                     {
                         che = 1;
@@ -460,7 +471,7 @@ class MyVisitor extends MxBaseVisitor<check>
                         else
                         {
                             System.out.println(ctx.stmt(k).getText());
-                            //System.out.println(v);
+                            System.out.println(v);
                             System.out.println("FBI WARNING! Variables wrong!");
                             System.exit(-1);
                         }
@@ -577,9 +588,10 @@ class MyVisitor extends MxBaseVisitor<check>
             check ck = visit(ctx.defvars());
             chk.defvars.putAll(ck.defvars);
             chk.vars.add(ck.var);
+            System.out.println("????????");
+            System.out.println(ck.var);
         }
         Vector v = new Vector();
-
         for (int i = 0; i < ctx.expr().size(); ++i)
         {
             check ck = visit(ctx.expr(i));
@@ -672,10 +684,12 @@ class MyVisitor extends MxBaseVisitor<check>
                 System.exit(-1);
             }
             Map<String, Vector<String>> defun = new HashMap();
+            System.out.println(cla);
             if (!cla.equals(""))
             {
                 defun = defclass.get(cla).defuns;
                 System.out.println(cla);
+                System.out.println(defclass.get(cla).defuns);
                 cla = "";
             }
             else
@@ -685,7 +699,7 @@ class MyVisitor extends MxBaseVisitor<check>
                 defun.putAll(defclass.get("001").defuns);
                 defun.putAll(defclass.get("002").defuns);
                 defun.putAll(defclass.get(classname).defuns);
-                System.out.println(classname);
+                //System.out.println(classname);
             }
             else
             {
@@ -722,7 +736,7 @@ class MyVisitor extends MxBaseVisitor<check>
             {
                 System.out.println(ctx.getText());
                 System.out.println(defun);
-                System.out.println(cla);
+                System.out.println(getin);
                 System.out.println("FBI WARNING! function \"" + s + "\" undefined!");
                 System.exit(-1);
             }
@@ -845,6 +859,12 @@ class MyVisitor extends MxBaseVisitor<check>
             vec.add("int");
             System.out.println("LLLL");
         }
+        if (ctx.expr().size() == 1)
+            if (ctx.op  != null)
+                if (ctx.op.getText().equals("++"))
+                    if (ctx.expr(0).op != null)
+                        if (ctx.expr(0).op.getText().equals("++"))
+                            System.exit(-1);
         if (ctx.op != null) if (ctx.op.getText().equals("&&") || ctx.op.getText().equals("||"))
         {
             vec.add("bool");
@@ -964,6 +984,7 @@ class MyVisitor extends MxBaseVisitor<check>
         }
         chk.var.add(s);
         System.out.println(s);
+        System.out.println(ctx.getText());
         return chk;
     }
 }
@@ -984,7 +1005,7 @@ public class Main
 
     public static void main(String[] args) throws Exception
     {
-       // File f = new File("E:/test.txt");
+        //File f = new File("E:/test.txt");
         File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
