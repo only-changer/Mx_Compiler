@@ -476,6 +476,16 @@ class MyVisitor extends MxBaseVisitor<check>
                     }
                     if (defclass.containsKey(v.get(j)))
                     {
+                        if (flag == -2 || sflag.equals(v.get(j)))
+                        {
+                            sflag = v.get(j);
+                            flag  = 2;
+                        }
+                        else
+                        {
+                            System.out.println("FBI WARNING! vs wrong!");
+                            System.exit(-1);
+                        }
 
                     }
                     else
@@ -884,13 +894,16 @@ class MyVisitor extends MxBaseVisitor<check>
             check ck = new check();
             ck = visit(ctx.expr(i));
             vec.addAll(ck.var);
-            chk.vars.addAll(ck.vars);
+
             if (ctx.op1 != null)
             {
                 chk.var.add("bool");
+                vec.add("001");
+                System.out.println("++++");
             }
             else
                 chk.var.addAll(ck.var);
+            chk.vars.addAll(ck.vars);
 
         }
         chk.vars.add(vec);
