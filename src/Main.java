@@ -29,7 +29,7 @@ class all
     Map<String, Vector<String>> defuns = new HashMap<>();
     Map<String, String> defvars = new HashMap<>();
     Map<String, Integer> defcom = new HashMap<>();
-
+    boolean oh = false;
     all()
     {
         defvars.put("this", "this");
@@ -110,6 +110,7 @@ class MyVisitor extends MxBaseVisitor<check>
             if (ctx.defs(k).defclass() != null)
             {
                 all al = new all();
+                al.oh = true;
                 defclass.put(ctx.defs(k).defclass().classname().getText(),al);
             }
         }
@@ -253,8 +254,12 @@ class MyVisitor extends MxBaseVisitor<check>
         Vector vec = new Vector();
         if (defclass.containsKey(s))
         {
-            System.out.println("class redefined!");
-          //  System.exit(-1);
+            if (defclass.get(s).oh == false)
+            {
+                System.out.println("class redefined!");
+                System.exit(-1);
+            }
+            else defclass.get(s).oh = false;
         }
         all al = new all();
         defclass.put(s, al);
