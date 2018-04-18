@@ -372,7 +372,7 @@ class MyVisitor extends MxBaseVisitor<check>
             String s = classname;
             defclass.get(s).defuns.put(ctx.funname().getText(), fun);
             System.out.println(ctx.funname().getText()+"DAFAFAFASFAFFAS"+classname);
-            System.out.println(defclass.get("A").defuns);
+//            System.out.println(defclass.get("A").defuns);
         }
         else
         {
@@ -1036,8 +1036,8 @@ public class Main
 
     public static void main(String[] args) throws Exception
     {
-        //File f = new File("E:/test.txt");
-        File f = new File("program.txt");
+     //   File f = new File("E:/test.txt");
+         File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
         run(input);
