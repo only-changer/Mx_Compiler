@@ -21,7 +21,7 @@ classname
         ;
 
 defclass:   'class' classname '{'
-        (    ID '(' ')' block
+        (    fun = ID  '(' ')' block
             | defun
             | defvars
             )* '}';

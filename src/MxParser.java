@@ -560,12 +560,9 @@ public class MxParser extends Parser {
 	}
 
 	public static class DefclassContext extends ParserRuleContext {
+		public Token fun;
 		public ClassnameContext classname() {
 			return getRuleContext(ClassnameContext.class,0);
-		}
-		public List<TerminalNode> ID() { return getTokens(MxParser.ID); }
-		public TerminalNode ID(int i) {
-			return getToken(MxParser.ID, i);
 		}
 		public List<BlockContext> block() {
 			return getRuleContexts(BlockContext.class);
@@ -584,6 +581,10 @@ public class MxParser extends Parser {
 		}
 		public DefvarsContext defvars(int i) {
 			return getRuleContext(DefvarsContext.class,i);
+		}
+		public List<TerminalNode> ID() { return getTokens(MxParser.ID); }
+		public TerminalNode ID(int i) {
+			return getToken(MxParser.ID, i);
 		}
 		public DefclassContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -628,7 +629,7 @@ public class MxParser extends Parser {
 				case 1:
 					{
 					setState(79);
-					match(ID);
+					((DefclassContext)_localctx).fun = match(ID);
 					setState(80);
 					match(T__10);
 					setState(81);

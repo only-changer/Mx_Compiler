@@ -203,7 +203,7 @@ class MyVisitor extends MxBaseVisitor<check>
         {
             chk.var = visit(ctx.expr()).var;
             if (ctx.expr().opcom != null)
-                if (ctx.expr().expr(0).getText().contains("[]"))
+                if (ctx.expr().expr(0).getText().contains("[]") && !ctx.expr().getText().contains("("))
                 {
                     System.exit(-1);
                 }
@@ -300,6 +300,14 @@ class MyVisitor extends MxBaseVisitor<check>
         for (int i = 0; i < ctx.defun().size(); ++i)
         {
             check ck = visit(ctx.defun(i));
+        }
+        if (ctx.fun != null)
+        {
+            if (ctx.block(0).getText().contains("return"))
+            {
+                System.out.println("FBI WARNING!con fun down!");
+                System.exit(-1);
+            }
         }
         classfun = false;
         defvars = origin;
@@ -1020,7 +1028,7 @@ public class Main
 
     public static void main(String[] args) throws Exception
     {
-       // File f = new File("E:/test.txt");
+        //File f = new File("E:/test.txt");
          File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
