@@ -198,7 +198,14 @@ class MyVisitor extends MxBaseVisitor<check>
             if (!classname.equals("")) defclass.get(classname).defcom.put(ctx.varname().getText(), num);
             else defcom.put(ctx.varname().getText(), num);
         }
-        if (ctx.expr() != null) chk.var = visit(ctx.expr()).var;
+        if (ctx.expr() != null)
+        {
+            chk.var = visit(ctx.expr()).var;
+            if (ctx.expr().opcom != null)
+            {
+                System.exit(-1);
+            }
+        }
         chk.var.add(ctx.type().getText());
         String ss = new String();
         for (int i = 0; i < ctx.type().getText().length(); ++i)
@@ -978,8 +985,12 @@ class MyVisitor extends MxBaseVisitor<check>
             }
         }
         int num = 0;
+        String sa = new String();
+        System.out.println("::::::");
+        System.out.println(ctx.getText());
         for (int i = 0;i < ctx.getText().length();++i)
         {
+            sa += ctx.getText().charAt(i);
             if (ctx.getText().charAt(i) == '[')
             {
                 ++num;
@@ -1009,7 +1020,7 @@ public class Main
 
     public static void main(String[] args) throws Exception
     {
-        //File f = new File("E:/test.txt");
+       // File f = new File("E:/test.txt");
         File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
