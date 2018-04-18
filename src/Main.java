@@ -506,7 +506,7 @@ class MyVisitor extends MxBaseVisitor<check>
                 }
                 if (che == 1)
                 {
-                    if (!(sflag.equals("int") || sflag.equals("string") || sflag.equals("bool") || sflag.equals("")))
+                    if (!(sflag.equals("int") || sflag.equals("string") || sflag.equals("bool") || sflag.equals("") || ( (sflag.contains("[]") || defclass.containsKey(sflag)) && (ch2 == 1))))
                     {
                         System.out.println(v);
                         System.out.println("FBI WARNING! Strict op wrong");

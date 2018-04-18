@@ -35,7 +35,7 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
+            <state relative-caret-position="306">
               <caret line="930" column="9" selection-start-line="930" selection-start-column="9" selection-end-line="930" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -241,13 +241,13 @@
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Tool Output" order="7" sideWeight="0.49932975" weight="0.32905984" />
-      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.33847186" weight="0.0114122685" />
+      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.33579087" weight="0.0114122685" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.25670242" side_tool="true" visible="true" weight="0.17261055" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.25938338" side_tool="true" visible="true" weight="0.17261055" />
       <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.7432976" visible="true" weight="0.17261055" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.7406166" visible="true" weight="0.17261055" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
@@ -664,7 +664,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
+        <state relative-caret-position="306">
           <caret line="930" column="9" selection-start-line="930" selection-start-column="9" selection-end-line="930" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
