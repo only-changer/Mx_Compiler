@@ -303,8 +303,8 @@ class MyVisitor extends MxBaseVisitor<check>
         }
         if (ctx.fun != null)
         {
-            if (ctx.block(0).getText().contains("return"))
-            {
+            if (ctx.block(0).getText().contains("return") && !ctx.block(0).getText().contains("return;")  )
+            {;
                 System.out.println("FBI WARNING!con fun down!");
                 System.exit(-1);
             }
