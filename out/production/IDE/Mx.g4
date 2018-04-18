@@ -78,8 +78,8 @@ expr    :   funname '(' exprs? ')'
         |   <assoc=right> expr '=' expr;
 
 news     :   varname '(' exprs ')'
-        |   (classname | 'int' | 'string'|'bool') ('[' expr ']')+ ('[]')*
-        |   (classname | 'int' | 'string'|'bool') ('[]')*  ;
+        |   (classname |name =  'int' |name =  'string'|name = 'bool') ('[' expr ']')+ ('[]')*
+        |   (classname |name =  'int' |name =  'string'|name = 'bool') ('[]')*  ;
 
 //lexxer
 

@@ -105,6 +105,14 @@ class MyVisitor extends MxBaseVisitor<check>
     {
         check chk = new check();
         check nullcheck = new check();
+        for (int k = 0;k < ctx.defs().size();++k)
+        {
+            if (ctx.defs(k).defclass() != null)
+            {
+                all al = new all();
+                defclass.put(ctx.defs(k).defclass().classname().getText(),al);
+            }
+        }
         for (int k = 0; k < ctx.defs().size(); ++k)
         {
             check ck = visit(ctx.defs(k));
@@ -246,7 +254,7 @@ class MyVisitor extends MxBaseVisitor<check>
         if (defclass.containsKey(s))
         {
             System.out.println("class redefined!");
-            System.exit(-1);
+          //  System.exit(-1);
         }
         all al = new all();
         defclass.put(s, al);
@@ -479,7 +487,7 @@ class MyVisitor extends MxBaseVisitor<check>
                         if (flag == -2 || sflag.equals(v.get(j)))
                         {
                             sflag = v.get(j);
-                            flag  = 2;
+                            flag = 2;
                         }
                         else
                         {
@@ -506,7 +514,7 @@ class MyVisitor extends MxBaseVisitor<check>
                 }
                 if (che == 1)
                 {
-                    if (!(sflag.equals("int") || sflag.equals("string") || sflag.equals("bool") || sflag.equals("") || ( (sflag.contains("[]") || defclass.containsKey(sflag)) && (ch2 == 1))))
+                    if (!(sflag.equals("int") || sflag.equals("string") || sflag.equals("bool") || sflag.equals("") || ((sflag.contains("[]") || defclass.containsKey(sflag)) && (ch2 == 1))))
                     {
                         System.out.println(v);
                         System.out.println("FBI WARNING! Strict op wrong");
@@ -777,11 +785,16 @@ class MyVisitor extends MxBaseVisitor<check>
                 {
                     chk.var.add(defclass.get(classname).defvars.get(ctx.varname().getText()));
 
+                }else
+                if (defvars.containsKey(ctx.varname().getText()))
+                {
+                    chk.var.add(defvars.get(ctx.varname().getText()));
                 }
                 else
                 {
                     System.out.println(ctx.varname().getText());
                     System.out.println(defclass.get(classname).defvars);
+                    System.out.println(ctx.getText());
                     System.out.println("class v wrong!");
                     System.exit(-1);
                 }
@@ -889,12 +902,10 @@ class MyVisitor extends MxBaseVisitor<check>
                 return chk;
             }
         for (int i = 0; i < ctx.expr().size(); ++i)
-
         {
             check ck = new check();
             ck = visit(ctx.expr(i));
             vec.addAll(ck.var);
-
             if (ctx.op1 != null)
             {
                 chk.var.add("bool");
@@ -907,9 +918,46 @@ class MyVisitor extends MxBaseVisitor<check>
 
         }
         chk.vars.add(vec);
+        if (ctx.news() != null)
+        {
+            chk.var.addAll(visit(ctx.news()).var);
+        }
         return chk;
     }
-// public check visitNews(MxParser.NewsContext ctx){}
+
+    public check visitNews(MxParser.NewsContext ctx)
+    {
+        System.out.println("????");
+        check chk = new check();
+        String s = new String();
+        if (ctx.name != null) s = ctx.name.getText();
+        else
+        {
+            s = ctx.classname().getText();
+            if (defclass.containsKey(s))
+            {
+
+            }
+            else
+            {
+                System.out.println(s);
+                System.out.println("FBI WARNING! NEWS WRONG!");
+                System.exit(-1);
+            }
+        }
+        int num = 0;
+        for (int i = 0;i < ctx.getText().length();++i)
+        {
+            if (ctx.getText().charAt(i) == '[')
+            {
+                ++num;
+                s += "[]";
+            }
+        }
+        chk.var.add(s);
+        System.out.println(s);
+        return chk;
+    }
 }
 
 public class Main

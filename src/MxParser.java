@@ -1687,6 +1687,7 @@ public class MxParser extends Parser {
 	}
 
 	public static class NewsContext extends ParserRuleContext {
+		public Token name;
 		public VarnameContext varname() {
 			return getRuleContext(VarnameContext.class,0);
 		}
@@ -1757,19 +1758,19 @@ public class MxParser extends Parser {
 				case T__3:
 					{
 					setState(263);
-					match(T__3);
+					((NewsContext)_localctx).name = match(T__3);
 					}
 					break;
 				case T__6:
 					{
 					setState(264);
-					match(T__6);
+					((NewsContext)_localctx).name = match(T__6);
 					}
 					break;
 				case T__4:
 					{
 					setState(265);
-					match(T__4);
+					((NewsContext)_localctx).name = match(T__4);
 					}
 					break;
 				default:
@@ -1832,19 +1833,19 @@ public class MxParser extends Parser {
 				case T__3:
 					{
 					setState(283);
-					match(T__3);
+					((NewsContext)_localctx).name = match(T__3);
 					}
 					break;
 				case T__6:
 					{
 					setState(284);
-					match(T__6);
+					((NewsContext)_localctx).name = match(T__6);
 					}
 					break;
 				case T__4:
 					{
 					setState(285);
-					match(T__4);
+					((NewsContext)_localctx).name = match(T__4);
 					}
 					break;
 				default:
