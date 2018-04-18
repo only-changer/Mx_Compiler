@@ -303,7 +303,7 @@ class MyVisitor extends MxBaseVisitor<check>
         }
         if (ctx.fun != null)
         {
-            if (ctx.block(0).getText().contains("return") && !ctx.block(0).getText().contains("return;")  )
+            if (!ctx.fun.getText().equals(classname) ||(ctx.block(0).getText().contains("return") && !ctx.block(0).getText().contains("return;") ) )
             {;
                 System.out.println("FBI WARNING!con fun down!");
                 System.exit(-1);
@@ -692,6 +692,8 @@ class MyVisitor extends MxBaseVisitor<check>
             String ss = new String(cla);
             cla = "";
             Vector<Vector> v = new Vector<>();
+            if (!ctx.getText().contains(")"))
+                System.exit(-1);
             if (ctx.exprs() != null)
             {
                 v.addAll(visit(ctx.exprs()).vars);
@@ -1028,7 +1030,7 @@ public class Main
 
     public static void main(String[] args) throws Exception
     {
-        //File f = new File("E:/test.txt");
+       // File f = new File("E:/test.txt");
          File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
