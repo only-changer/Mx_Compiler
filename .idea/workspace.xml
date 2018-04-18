@@ -35,8 +35,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="1032" column="9" selection-start-line="1032" selection-start-column="9" selection-end-line="1032" selection-end-column="9" />
+            <state relative-caret-position="245">
+              <caret line="1038" column="10" selection-start-line="1038" selection-start-column="10" selection-end-line="1038" selection-end-column="10" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#746#747#0" expanded="true" />
@@ -242,13 +242,13 @@
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Tool Output" order="7" sideWeight="0.49865952" weight="0.074179746" />
-      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.27949062" weight="0.0114122685" />
+      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.27412868" weight="0.0114122685" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.31300268" side_tool="true" visible="true" weight="0.17261055" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.31836462" side_tool="true" visible="true" weight="0.13837375" />
       <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.6869973" visible="true" weight="0.17261055" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.6816354" visible="true" weight="0.13837375" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
@@ -669,8 +669,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="1032" column="9" selection-start-line="1032" selection-start-column="9" selection-end-line="1032" selection-end-column="9" />
+        <state relative-caret-position="245">
+          <caret line="1038" column="10" selection-start-line="1038" selection-start-column="10" selection-end-line="1038" selection-end-column="10" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#746#747#0" expanded="true" />

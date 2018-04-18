@@ -275,7 +275,10 @@ class MyVisitor extends MxBaseVisitor<check>
                 defclass.get(s).oh--;
             }
         }
-        if (al.oh == 0) defclass.put(s, al);
+        if (al.oh == 0)
+        {
+
+        }
         else
         {
             al = defclass.get(s);
@@ -368,6 +371,8 @@ class MyVisitor extends MxBaseVisitor<check>
         {
             String s = classname;
             defclass.get(s).defuns.put(ctx.funname().getText(), fun);
+            System.out.println(ctx.funname().getText()+"DAFAFAFASFAFFAS"+classname);
+            System.out.println(defclass.get("A").defuns);
         }
         else
         {
@@ -384,6 +389,7 @@ class MyVisitor extends MxBaseVisitor<check>
             return chk;
         }
         //System.out.println(ctx.getText());
+        System.out.println(classname);
         check ck = visit(ctx.block());
         for (String key : ck.defvars.keySet())
         {
@@ -1030,8 +1036,8 @@ public class Main
 
     public static void main(String[] args) throws Exception
     {
-       // File f = new File("E:/test.txt");
-         File f = new File("program.txt");
+        //File f = new File("E:/test.txt");
+        File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
         run(input);
