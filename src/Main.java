@@ -260,7 +260,11 @@ class MyVisitor extends MxBaseVisitor<check>
                 System.out.println("class redefined!");
                 System.exit(-1);
             }
-            else al.oh = defclass.get(s).oh - 1;
+            else
+            {
+                al.oh = defclass.get(s).oh - 1;
+                defclass.get(s).oh--;
+            }
         }
         if (al.oh == 0) defclass.put(s, al);
         else
