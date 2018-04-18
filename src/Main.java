@@ -30,6 +30,7 @@ class all
     Map<String, String> defvars = new HashMap<>();
     Map<String, Integer> defcom = new HashMap<>();
     int oh = 0;
+
     all()
     {
         defvars.put("this", "this");
@@ -105,13 +106,13 @@ class MyVisitor extends MxBaseVisitor<check>
     {
         check chk = new check();
         check nullcheck = new check();
-        for (int k = 0;k < ctx.defs().size();++k)
+        for (int k = 0; k < ctx.defs().size(); ++k)
         {
             if (ctx.defs(k).defclass() != null)
             {
                 all al = new all();
                 al.oh = 2;
-                defclass.put(ctx.defs(k).defclass().classname().getText(),al);
+                defclass.put(ctx.defs(k).defclass().classname().getText(), al);
             }
         }
         for (int k = 0; k < ctx.defs().size(); ++k)
@@ -202,9 +203,10 @@ class MyVisitor extends MxBaseVisitor<check>
         {
             chk.var = visit(ctx.expr()).var;
             if (ctx.expr().opcom != null)
-            {
-                System.exit(-1);
-            }
+                if (ctx.expr().expr(0).getText().contains("[]"))
+                {
+                    System.exit(-1);
+                }
         }
         chk.var.add(ctx.type().getText());
         String ss = new String();
@@ -278,7 +280,7 @@ class MyVisitor extends MxBaseVisitor<check>
         {
             al = defclass.get(s);
             al.defvars.clear();
-            al.defvars.put("this","000");
+            al.defvars.put("this", "000");
         }
         for (int i = 0; i < ctx.defvars().size(); ++i)
         {
@@ -341,7 +343,7 @@ class MyVisitor extends MxBaseVisitor<check>
         if (!(ss.equals("int") || ss.equals("bool") || ss.equals("string") || ss.equals("void") || defclass.containsKey(ss)))
         {
             System.out.println(ss);
-           // System.out.println(map);
+            // System.out.println(map);
             System.out.println("FBI WARNING! Variables wrong!");
             System.exit(-1);
         }
@@ -418,7 +420,7 @@ class MyVisitor extends MxBaseVisitor<check>
         if (!(ss.equals("int") || ss.equals("bool") || ss.equals("string") || defclass.containsKey(ss)))
         {
             System.out.println(ctx.getText());
-             System.out.println(defclass);
+            System.out.println(defclass);
             System.out.println("FBI WARNING! Variables wrong!");
             System.exit(-1);
         }
@@ -703,8 +705,7 @@ class MyVisitor extends MxBaseVisitor<check>
                 System.out.println(defclass.get(cla).defuns);
                 cla = "";
             }
-            else
-            if (!classname.equals(""))
+            else if (!classname.equals(""))
             {
                 defun = new HashMap<>(defuns);
                 defun.putAll(defclass.get("001").defuns);
@@ -826,15 +827,14 @@ class MyVisitor extends MxBaseVisitor<check>
                     System.exit(-1);
                 }
             }
-            else
-            if (!classname.equals(""))
+            else if (!classname.equals(""))
             {
                 if (defclass.get(classname).defvars.containsKey(ctx.varname().getText()))
                 {
                     chk.var.add(defclass.get(classname).defvars.get(ctx.varname().getText()));
 
-                }else
-                if (defvars.containsKey(ctx.varname().getText()))
+                }
+                else if (defvars.containsKey(ctx.varname().getText()))
                 {
                     chk.var.add(defvars.get(ctx.varname().getText()));
                 }
@@ -871,7 +871,7 @@ class MyVisitor extends MxBaseVisitor<check>
             System.out.println("LLLL");
         }
         if (ctx.expr().size() == 1)
-            if (ctx.op  != null)
+            if (ctx.op != null)
                 if (ctx.op.getText().equals("++"))
                     if (ctx.expr(0).op != null)
                         if (ctx.expr(0).op.getText().equals("++"))
@@ -988,7 +988,7 @@ class MyVisitor extends MxBaseVisitor<check>
         String sa = new String();
         System.out.println("::::::");
         System.out.println(ctx.getText());
-        for (int i = 0;i < ctx.getText().length();++i)
+        for (int i = 0; i < ctx.getText().length(); ++i)
         {
             sa += ctx.getText().charAt(i);
             if (ctx.getText().charAt(i) == '[')
@@ -1021,7 +1021,7 @@ public class Main
     public static void main(String[] args) throws Exception
     {
        // File f = new File("E:/test.txt");
-        File f = new File("program.txt");
+         File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
         run(input);
