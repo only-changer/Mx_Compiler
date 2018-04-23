@@ -8,7 +8,9 @@ defs : defun | defvars | defclass;
 
 varname :   ID;
 
-defvars :   type  varname ('='  expr)? ';' ;
+defvars :   defvar ';' ;
+
+defvar  :   type  varname ('='  expr)? ;
 
 typename:   ID;
 
@@ -32,7 +34,7 @@ defun   :   type funname '(' params ')' block ;
 
 params  :   (param  (',' param)*)? ;
 
-param   :   defvars ;
+param   :   defvar ;
 
 block   :   '{' stmt* '}' ;
 

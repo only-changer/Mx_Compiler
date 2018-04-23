@@ -181,8 +181,11 @@ class MyVisitor extends MxBaseVisitor<check>
         check nullcheck = new check();
         return nullcheck;
     }
-
     public check visitDefvars(MxParser.DefvarsContext ctx)
+    {
+        return visit(ctx.defvar());
+    }
+    public check visitDefvar(MxParser.DefvarContext ctx)
     {
         check chk = new check();
         chk.defvars.put(ctx.varname().getText(), ctx.type().getText());
@@ -424,12 +427,12 @@ class MyVisitor extends MxBaseVisitor<check>
     public check visitParam(MxParser.ParamContext ctx)
     {
         check chk = new check();
-        chk.defvars.put(ctx.defvars().varname().getText(), ctx.defvars().type().getText());
+        chk.defvars.put(ctx.defvar().varname().getText(), ctx.defvar().type().getText());
         String ss = new String();
-        for (int i = 0; i < ctx.defvars().type().getText().length(); ++i)
+        for (int i = 0; i < ctx.defvar().type().getText().length(); ++i)
         {
-            if (ctx.defvars().type().getText().charAt(i) == '[') break;
-            ss += ctx.defvars().type().getText().charAt(i);
+            if (ctx.defvar().type().getText().charAt(i) == '[') break;
+            ss += ctx.defvar().type().getText().charAt(i);
         }
         if (!(ss.equals("int") || ss.equals("bool") || ss.equals("string") || defclass.containsKey(ss)))
         {
@@ -438,8 +441,8 @@ class MyVisitor extends MxBaseVisitor<check>
             System.out.println("FBI WARNING! Variables wrong!");
             System.exit(-1);
         }
-        chk.var.add(ctx.defvars().type().getText());
-        visit(ctx.defvars());
+        chk.var.add(ctx.defvar().type().getText());
+        visit(ctx.defvar());
         return chk;
     }
 
@@ -1032,6 +1035,7 @@ public class Main
         ParseTree tree = parser.allin();
         MyVisitor bill = new MyVisitor();
         bill.visit(tree);
+
     }
 
     public static void main(String[] args) throws Exception

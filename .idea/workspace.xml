@@ -2,7 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="014ac6d6-8e40-455f-95b1-dff8859644ca" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Mx.g4" beforeDir="false" afterPath="$PROJECT_DIR$/src/Mx.g4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Mx.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/src/Mx.tokens" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MxBaseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MxBaseListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MxBaseVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MxBaseVisitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MxLexer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MxLexer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MxLexer.tokens" beforeDir="false" afterPath="$PROJECT_DIR$/src/MxLexer.tokens" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MxListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MxListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MxParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MxParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MxVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MxVisitor.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -35,12 +45,12 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="1038" column="7" selection-start-line="1038" selection-start-column="7" selection-end-line="1038" selection-end-column="7" />
+            <state relative-caret-position="430">
+              <caret line="440" column="48" lean-forward="true" selection-start-line="440" selection-start-column="48" selection-end-line="440" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#746#747#0" expanded="true" />
-                <element signature="e#789#790#0" expanded="true" />
+                <element signature="e#5348#5349#0" expanded="true" />
+                <element signature="e#5392#5393#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -49,8 +59,8 @@
       <file leaf-file-name="Mx.g4" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Mx.g4">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
-              <caret line="4" column="4" selection-start-line="4" selection-end-line="4" selection-end-column="7" />
+            <state relative-caret-position="323">
+              <caret line="36" column="18" lean-forward="true" selection-start-line="36" selection-start-column="18" selection-end-line="36" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -67,8 +77,11 @@
       <file leaf-file-name="AbstractParseTreeVisitor.class" pinned="false" current-in-tab="false">
         <entry file="jar://F:/antlr-4.7-complete.jar!/org/antlr/v4/runtime/tree/AbstractParseTreeVisitor.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
+            <state relative-caret-position="171">
               <caret line="12" selection-start-line="12" selection-end-line="12" />
+              <folding>
+                <element signature="e#347#348#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -76,8 +89,8 @@
       <file leaf-file-name="MxParser.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MxParser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2356">
-              <caret line="124" selection-start-line="124" selection-end-line="124" />
+            <state relative-caret-position="2242">
+              <caret line="125" selection-start-line="125" selection-end-line="125" />
             </state>
           </provider>
         </entry>
@@ -110,7 +123,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="570" />
     <option name="y" value="75" />
     <option name="width" value="1130" />
@@ -137,6 +150,12 @@
               <item name="IDE" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="IDE" type="b2602c69:ProjectViewProjectNode" />
+              <item name="IDE" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Main.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -155,7 +174,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="preferences.externalDependencies" />
+    <property name="settings.editor.selected.configurable" value="preferences.externalResources" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -242,18 +261,17 @@
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Tool Output" order="7" sideWeight="0.49865952" weight="0.074179746" />
-      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.2727882" weight="0.0114122685" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.3197051" side_tool="true" visible="true" weight="0.13837375" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.3197051" side_tool="true" visible="true" weight="0.0114122685" />
       <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.68029493" visible="true" weight="0.13837375" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.68029493" weight="0.13837375" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.087801605" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.08914209" />
       <window_info anchor="bottom" id="ANTLR Preview" order="7" sideWeight="0.89075065" weight="0.29957205" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" visible="true" weight="0.044906165" />
@@ -262,6 +280,7 @@
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39800286" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.2727882" weight="0.0114122685" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -270,18 +289,18 @@
     </layout>
     <layout-to-restore>
       <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info active="true" anchor="bottom" id="Run" order="3" sideWeight="0.8820375" visible="true" weight="0.382311" />
       <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info anchor="bottom" id="Message" order="1" />
+      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Tool Output" order="8" sideWeight="0.49932975" weight="0.32905984" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.121983916" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="7" />
-      <window_info anchor="bottom" id="Version Control" order="11" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -291,7 +310,7 @@
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.117962465" side_tool="true" visible="true" weight="0.382311" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" order="11" />
       <window_info id="Capture Tool" order="5" />
       <window_info anchor="bottom" id="ANTLR Preview" order="12" weight="0.46011397" />
       <window_info anchor="bottom" id="Messages" order="0" sideWeight="0.47855228" weight="0.3266762" />
@@ -341,8 +360,8 @@
           <caret line="126" column="5" lean-forward="true" selection-start-line="126" selection-start-column="5" selection-end-line="126" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#746#747#0" expanded="true" />
-            <element signature="e#789#790#0" expanded="true" />
+            <element signature="e#5348#5349#0" expanded="true" />
+            <element signature="e#5392#5393#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -507,8 +526,8 @@
           <caret line="106" column="45" selection-start-line="106" selection-start-column="45" selection-end-line="106" selection-end-column="45" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#746#747#0" expanded="true" />
-            <element signature="e#789#790#0" expanded="true" />
+            <element signature="e#5348#5349#0" expanded="true" />
+            <element signature="e#5392#5393#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -627,15 +646,18 @@
     </entry>
     <entry file="jar://F:/antlr-4.7-complete.jar!/org/antlr/v4/runtime/tree/AbstractParseTreeVisitor.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
+        <state relative-caret-position="171">
           <caret line="12" selection-start-line="12" selection-end-line="12" />
+          <folding>
+            <element signature="e#347#348#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MxParser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2356">
-          <caret line="124" selection-start-line="124" selection-end-line="124" />
+        <state relative-caret-position="2242">
+          <caret line="125" selection-start-line="125" selection-end-line="125" />
         </state>
       </provider>
     </entry>
@@ -662,19 +684,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Mx.g4">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="4" selection-start-line="4" selection-end-line="4" selection-end-column="7" />
+        <state relative-caret-position="323">
+          <caret line="36" column="18" lean-forward="true" selection-start-line="36" selection-start-column="18" selection-end-line="36" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="1038" column="7" selection-start-line="1038" selection-start-column="7" selection-end-line="1038" selection-end-column="7" />
+        <state relative-caret-position="430">
+          <caret line="440" column="48" lean-forward="true" selection-start-line="440" selection-start-column="48" selection-end-line="440" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#746#747#0" expanded="true" />
-            <element signature="e#789#790#0" expanded="true" />
+            <element signature="e#5348#5349#0" expanded="true" />
+            <element signature="e#5392#5393#0" expanded="true" />
           </folding>
         </state>
       </provider>
