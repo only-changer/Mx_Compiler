@@ -61,7 +61,7 @@ expr    :   funname '(' exprs? ')'
         |   op = ('++' | '--') expr
         |   ('-' | '!' | '~') expr
         |   expr op =('++'  | '--')
-        |   expr ('*' | '/' | '%') expr
+        |   expr op = ('*' | '/' | '%') expr
         |   expr op=('+' |'-' ) expr
         |   expr ('>>' | '<<') expr
         |   expr '&' expr
@@ -76,8 +76,8 @@ expr    :   funname '(' exprs? ')'
         |   STR
         |   ('NULL' | 'null')
         |   ('TRUE' | 'true' | 'FALSE' | 'false')
-        |   '(' expr ')'
-        |   <assoc=right> expr '=' expr;
+        |   opc = '(' expr ')'
+        |   <assoc=right> expr opd = '=' expr;
 
 news     :   varname '(' exprs ')'
         |   (classname |name =  'int' |name =  'string'|name = 'bool') ('[' expr ']')+ ('[' ']')*('[' expr ']')?

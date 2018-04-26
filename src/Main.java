@@ -12,36 +12,138 @@ import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
 import org.omg.Messaging.SYNC_WITH_TRANSPORT;
 
+class varible
+{
+    String name;
+    int com;
+    boolean isconst;
+    Integer addr;
+    varible()
+    {
+        name = new String();
+        addr = new Integer(0);
+    }
+}
+
+class quard
+{
+    String op;
+    varible x;
+    varible y;
+    quard prev;
+    quard next;
+
+    quard()
+    {
+        op = new String();
+        x = new varible();
+        y = new varible();
+    }
+
+
+}
+
+class ir
+{
+    quard head;
+    quard last;
+
+    ir()
+    {
+
+    }
+
+    public void push(quard quad)
+    {
+        if (head == null)
+        {
+            head = quad;
+            last = quad;
+        }
+        else
+        {
+            last.next = quad;
+            quad.prev = last;
+            last = last.next;
+        }
+    }
+
+    public void add(ir irr)
+    {
+        if (head == null)
+        {
+            head = irr.head;
+            last = irr.last;
+        }
+        else
+        {
+            if (irr.head != null)
+            {
+                last.next = irr.head;
+                irr.head.prev = last.next;
+                last = irr.last;
+            }
+        }
+    }
+
+    public void print()
+    {
+        if (head != null)
+        {
+            quard quad = head;
+            while (quad != null)
+            {
+                System.out.println(quad.y.name +' ' + quad.op + ' ' + quad.x.name);
+                if (quad.next == null) break;
+                quad = quad.next;
+            }
+        }
+    }
+}
+
 class check
 {
     check()
     {
     }
 
-    Map<String, String> defvars = new HashMap();
+    ir code = new ir();
+    Map<String, vartype> defvars = new HashMap();
     Vector<Vector> vars = new Vector<>();
     Vector<String> var = new Vector();
 
 }
-
+class vartype
+{
+    String type;
+    Integer addr;
+    vartype()
+    {
+        type = new String();
+        addr = new Integer(0);
+    }
+}
 class all
 {
     Map<String, Vector<String>> defuns = new HashMap<>();
-    Map<String, String> defvars = new HashMap<>();
+    Map<String, vartype> defvars = new HashMap<>();
     Map<String, Integer> defcom = new HashMap<>();
     int oh = 0;
 
     all()
     {
-        defvars.put("this", "this");
+        vartype v = new vartype();
+        v.type = "this";
+        defvars.put("this", v);
     }
 }
 
 class MyVisitor extends MxBaseVisitor<check>
 {
+    Integer addr = 0;
     Map<String, Vector<String>> defuns = new HashMap<>();
     String defun = new String();
-    Map<String, String> defvars = new HashMap<>();
+    Map<String, vartype> defvars = new HashMap<>();
     Map<String, Integer> defcom = new HashMap<>();
     Map<String, all> defclass = new HashMap<>();
     boolean isfor = false;
@@ -49,6 +151,8 @@ class MyVisitor extends MxBaseVisitor<check>
     String classname = new String();
     String cla = new String();
     boolean classfun = false;
+    Integer temp = 0;
+    Integer b = 0;
 
     MyVisitor()
     {
@@ -96,7 +200,6 @@ class MyVisitor extends MxBaseVisitor<check>
         al2.defuns.put("ord", v9);
         defclass.put("002", al2);
 
-        defvars.put("this", "000");
         Vector v10 = new Vector();
         v10.add("string");
         defuns.put("getString", v10);
@@ -134,13 +237,16 @@ class MyVisitor extends MxBaseVisitor<check>
         }
         defvars.clear();
         // defclass.clear();
-        defvars.put("this", "000");
+        vartype v = new vartype();
+        v.type = "000";
+        defvars.put("this", v);
         getin = true;
         for (int k = 0; k < ctx.defs().size(); ++k)
             if (true)
             {
                 check ck = visit(ctx.defs(k));
                 chk.defvars.putAll(ck.defvars);
+                chk.code.add(ck.code);
                 for (String key : ck.defvars.keySet())
                 {
                     if (defvars.containsKey(key))
@@ -153,14 +259,13 @@ class MyVisitor extends MxBaseVisitor<check>
                     }
                 }
                 if (ctx.defs(k).defvars() != null) defvars.putAll(ck.defvars);
-                // System.out.println(defvars);
             }
-        // System.out.println(defuns);
         if (!(defuns.containsKey("main")))
         {
             System.out.println("FBI WARNING! NO MAIN FUNCTION!");
             System.exit(-1);
         }
+        chk.code.print();
         return nullcheck;
     }
 
@@ -181,14 +286,26 @@ class MyVisitor extends MxBaseVisitor<check>
         check nullcheck = new check();
         return nullcheck;
     }
+
     public check visitDefvars(MxParser.DefvarsContext ctx)
     {
         return visit(ctx.defvar());
     }
+
     public check visitDefvar(MxParser.DefvarContext ctx)
     {
         check chk = new check();
-        chk.defvars.put(ctx.varname().getText(), ctx.type().getText());
+        vartype v = new vartype();
+        v.type = ctx.type().getText();
+        if (getin)
+        {
+            if (ctx.type().getText().equals("int"))
+            {
+                v.addr = addr;
+                addr += 4;
+            }
+        }
+        chk.defvars.put(ctx.varname().getText(), v);
         //defvars.put(ctx.varname().getText(), ctx.type().getText());
         if (ctx.type().getText().contains("[]"))
         {
@@ -227,7 +344,12 @@ class MyVisitor extends MxBaseVisitor<check>
             System.exit(-1);
         }
         chk.vars.add(chk.var);
-        if (classfun) defclass.get(classname).defvars.put(ctx.varname().getText(), ctx.type().getText());
+        if (classfun)
+        {
+            vartype va = new vartype();
+            va.type = ctx.type().getText();
+            defclass.get(classname).defvars.put(ctx.varname().getText(), va);
+        }
         return chk;
     }
 
@@ -258,7 +380,7 @@ class MyVisitor extends MxBaseVisitor<check>
 
     public check visitDefclass(MxParser.DefclassContext ctx)
     {
-        Map<String, String> origin = new HashMap<>(defvars);
+        Map<String, vartype> origin = new HashMap<>(defvars);
         check chk = new check();
         String s = ctx.classname().getText();
         classname = s;
@@ -286,7 +408,9 @@ class MyVisitor extends MxBaseVisitor<check>
         {
             al = defclass.get(s);
             al.defvars.clear();
-            al.defvars.put("this", "000");
+            vartype v = new vartype();
+            v.type = "000";
+            al.defvars.put("this", v);
         }
         for (int i = 0; i < ctx.defvars().size(); ++i)
         {
@@ -309,8 +433,9 @@ class MyVisitor extends MxBaseVisitor<check>
         }
         if (ctx.fun != null)
         {
-            if (!ctx.fun.getText().equals(classname) ||(ctx.block(0).getText().contains("return") && !ctx.block(0).getText().contains("return;") ) )
-            {;
+            if (!ctx.fun.getText().equals(classname) || (ctx.block(0).getText().contains("return") && !ctx.block(0).getText().contains("return;")))
+            {
+                ;
                 System.out.println("FBI WARNING!con fun down!");
                 System.exit(-1);
             }
@@ -335,12 +460,12 @@ class MyVisitor extends MxBaseVisitor<check>
             System.out.println("FBI WARNING!THIS Wrong!");
             System.exit(-1);
         }
-        Map<String, String> local = new HashMap<>();
+        Map<String, vartype> local = new HashMap<>();
         check chk = new check();
-        Map<String, String> origin = new HashMap<>(defvars);
+        Map<String, vartype> origin = new HashMap<>(defvars);
         defun = ctx.type().getText();
         check c = visit(ctx.params());
-        Map<String, String> map = (c.defvars);
+        Map<String, vartype> map = (c.defvars);
         Vector<String> pvec = c.var;
         local.putAll(map);
         defvars.putAll(map);
@@ -374,7 +499,7 @@ class MyVisitor extends MxBaseVisitor<check>
         {
             String s = classname;
             defclass.get(s).defuns.put(ctx.funname().getText(), fun);
-            System.out.println(ctx.funname().getText()+"DAFAFAFASFAFFAS"+classname);
+            //           System.out.println(ctx.funname().getText() + "DAFAFAFASFAFFAS" + classname);
 //            System.out.println(defclass.get("A").defuns);
         }
         else
@@ -392,8 +517,13 @@ class MyVisitor extends MxBaseVisitor<check>
             return chk;
         }
         //System.out.println(ctx.getText());
-        System.out.println(classname);
+        //System.out.println(classname);
+        quard quad = new quard();
+        quad.y.name = ctx.funname().getText();
+        quad.op = "label!!!!!!!!!";
+        chk.code.push(quad);
         check ck = visit(ctx.block());
+        chk.code.add(ck.code);
         for (String key : ck.defvars.keySet())
         {
             if (local.containsKey(key))
@@ -427,7 +557,9 @@ class MyVisitor extends MxBaseVisitor<check>
     public check visitParam(MxParser.ParamContext ctx)
     {
         check chk = new check();
-        chk.defvars.put(ctx.defvar().varname().getText(), ctx.defvar().type().getText());
+        vartype v = new vartype();
+        v.type = ctx.defvar().type().getText();
+        chk.defvars.put(ctx.defvar().varname().getText(), v);
         String ss = new String();
         for (int i = 0; i < ctx.defvar().type().getText().length(); ++i)
         {
@@ -448,11 +580,12 @@ class MyVisitor extends MxBaseVisitor<check>
 
     public check visitBlock(MxParser.BlockContext ctx)
     {
-        Map<String, String> origin = new HashMap<>(defvars);
+        Map<String,vartype> origin = new HashMap<>(defvars);
         check chk = new check();
         for (int k = 0; k < ctx.stmt().size(); ++k)
         {
             check ck = visit(ctx.stmt(k));
+            chk.code.add(ck.code);
             chk.defvars.putAll(ck.defvars);
             defvars.putAll(ck.defvars);
             Vector<Vector> vv = ck.vars;
@@ -512,7 +645,7 @@ class MyVisitor extends MxBaseVisitor<check>
                         if (defvars.get(v.get(j)).equals("000")) continue;
                         if (flag == -2 || sflag.equals(defvars.get(v.get(j))) || shadow.equals(defvars.get(v.get(j))))
                         {
-                            sflag = defvars.get(v.get(j));
+                            sflag = defvars.get(v.get(j)).type;
                             if (sflag.equals("int")) shadow = "bool";
                             if (sflag.equals("bool")) shadow = "int";
                             flag = 2;
@@ -583,7 +716,7 @@ class MyVisitor extends MxBaseVisitor<check>
 
     public check visitStmt(MxParser.StmtContext ctx)
     {
-        Map<String, String> origin = new HashMap<>(defvars);
+        Map<String, vartype> origin = new HashMap<>(defvars);
         boolean isreturn = false;
         check chk = new check();
         boolean change = false;
@@ -602,12 +735,30 @@ class MyVisitor extends MxBaseVisitor<check>
             check ck = visit(ctx.block());
             chk.defvars.putAll(ck.defvars);
             chk.vars.addAll(ck.vars);
+            chk.code.add(ck.code);
         }
+        ir irr = new ir();
         for (int i = 0; i < ctx.stmt().size(); ++i)
         {
             check ck = visit(ctx.stmt(i));
             chk.defvars.putAll(ck.defvars);
             chk.vars.addAll(ck.vars);
+            if (ctx.op != null)
+                if (ctx.op.getText().equals("if"))
+                {
+                    quard quad = new quard();
+                    quad.y.name = b.toString() + "if";
+                    ++b;
+                    quad.op = "label!!!!!!!!!";
+                    irr.push(quad);
+                    irr.add(ck.code);
+                    quad = new quard();
+                    quad.y.name = b.toString() + "ifback";
+                    ++b;
+                    quad.op = "label!!!!!!!!!";
+                    irr.push(quad);
+                    //chk.code.add(irr);
+                }
         }
         if ((ctx.getText().contains("if") || ctx.getText().contains("while") || ctx.getText().contains("for")) && ctx.block() == null)
         {
@@ -618,17 +769,27 @@ class MyVisitor extends MxBaseVisitor<check>
             check ck = visit(ctx.defvars());
             chk.defvars.putAll(ck.defvars);
             chk.vars.add(ck.var);
-            System.out.println("????????");
-            System.out.println(ck.var);
         }
         Vector v = new Vector();
         for (int i = 0; i < ctx.expr().size(); ++i)
         {
             check ck = visit(ctx.expr(i));
+            chk.code.add(ck.code);
             v.addAll(ck.var);
             if (ctx.op != null)
                 if (ctx.expr(0).getText().equals("1"))
                     System.exit(-1);
+            if (ctx.op != null)
+                if (ctx.op.getText().equals("if"))
+                {
+                    quard quad = new quard();
+                    quad.y.name = b - 1 + "ifback";
+                    ck.code.print();
+                    quad.x.name = ck.code.last.y.name;
+                    quad.op = "=";
+                    chk.code.push(quad);
+                    chk.code.add(irr);
+                }
             if (ctx.getText().contains("for(") || ctx.getText().contains("while(")) v.add("bool");
             chk.vars.addAll(ck.vars);
         }
@@ -636,7 +797,7 @@ class MyVisitor extends MxBaseVisitor<check>
         // System.out.println(v);
         if (ctx.getText().contains("if") && ctx.expr() != null)
         {
-            System.out.println(v);
+            // System.out.println(v);
             v.add("bool");
         }
         if (!isfor && (ctx.getText().contains("break") || ctx.getText().contains("continue")))
@@ -648,16 +809,13 @@ class MyVisitor extends MxBaseVisitor<check>
         if (isreturn)
         {
             v.add(defun);
-            System.out.println(ctx.getText());
-            System.out.println(v);
-            System.out.println(defuns);
         }
         chk.vars.add(v);
         defvars = origin;
         if (change == true) isfor = false;
         cla = "";
-        System.out.println(chk.vars);
-        System.out.println(ctx.getText());
+        // System.out.println(chk.vars);
+        // System.out.println(ctx.getText());
         return chk;
     }
 
@@ -681,6 +839,7 @@ class MyVisitor extends MxBaseVisitor<check>
                         && ctx.getText().charAt(i - 1) != '=' && ctx.getText().charAt(i - 1) != '<' && ctx.getText().charAt(i - 1) != '>' && ctx.getText().charAt(i - 1) != '!')
                 {
                     ++dd;
+
                     if (ctx.expr(0) != null)
                         if (!(ctx.expr(0).getText().contains(".") || ctx.expr(0).varname() != null || ctx.expr(0).opcom != null))
                         {
@@ -716,12 +875,12 @@ class MyVisitor extends MxBaseVisitor<check>
                 System.exit(-1);
             }
             Map<String, Vector<String>> defun = new HashMap();
-            System.out.println(cla);
+            //System.out.println(cla);
             if (!cla.equals(""))
             {
                 defun = defclass.get(cla).defuns;
-                System.out.println(cla);
-                System.out.println(defclass.get(cla).defuns);
+                // System.out.println(cla);
+                //  System.out.println(defclass.get(cla).defuns);
                 cla = "";
             }
             else if (!classname.equals(""))
@@ -771,7 +930,7 @@ class MyVisitor extends MxBaseVisitor<check>
                 System.out.println("FBI WARNING! function \"" + s + "\" undefined!");
                 System.exit(-1);
             }
-            System.out.println(chk.var);
+            // System.out.println(chk.var);
 
             return chk;
         }
@@ -791,8 +950,8 @@ class MyVisitor extends MxBaseVisitor<check>
                     vec.addAll(ck.var);
                     vec.add("int");
                     chk.vars.add(vec);
-                    System.out.println("SSS");
-                    System.out.println(vec);
+                    //  System.out.println("SSS");
+                    //  System.out.println(vec);
                 }
                 for (int i = 0; i < s.length(); ++i)
                 {
@@ -805,9 +964,9 @@ class MyVisitor extends MxBaseVisitor<check>
                 // System.out.println(defcom);
                 for (int i = 0; i < l - n; ++i) ss += "[]";
                 chk.var.add(ss);
-                System.out.println(n);
-                System.out.println(chk.var);
-                System.out.println(chk.vars);
+                //System.out.println(n);
+                // System.out.println(chk.var);
+                // System.out.println(chk.vars);
             }
             else
             {
@@ -822,7 +981,7 @@ class MyVisitor extends MxBaseVisitor<check>
         if (ctx.op != null)
             if (ctx.op.getText().equals("+"))
             {
-                System.out.println("!!!");
+                // System.out.println("!!!");
                 chk.var.add("001");
             }
         Vector<String> vec = new Vector();
@@ -834,7 +993,7 @@ class MyVisitor extends MxBaseVisitor<check>
             {
                 if (defclass.get(cla).defvars.containsKey(ctx.varname().getText()))
                 {
-                    chk.var.add(defclass.get(cla).defvars.get(ctx.varname().getText()));
+                    chk.var.add(defclass.get(cla).defvars.get(ctx.varname().getText()).type);
                     cla = "";
                 }
                 else
@@ -850,12 +1009,12 @@ class MyVisitor extends MxBaseVisitor<check>
             {
                 if (defclass.get(classname).defvars.containsKey(ctx.varname().getText()))
                 {
-                    chk.var.add(defclass.get(classname).defvars.get(ctx.varname().getText()));
+                    chk.var.add(defclass.get(classname).defvars.get(ctx.varname().getText()).type);
 
                 }
                 else if (defvars.containsKey(ctx.varname().getText()))
                 {
-                    chk.var.add(defvars.get(ctx.varname().getText()));
+                    chk.var.add(defvars.get(ctx.varname().getText()).type);
                 }
                 else
                 {
@@ -870,7 +1029,7 @@ class MyVisitor extends MxBaseVisitor<check>
             {
                 if (defvars.containsKey(ctx.varname().getText()))
                 {
-                    chk.var.add(defvars.get(ctx.varname().getText()));
+                    chk.var.add(defvars.get(ctx.varname().getText()).type);
                 }
                 else
                 {
@@ -878,16 +1037,34 @@ class MyVisitor extends MxBaseVisitor<check>
                     System.exit(-1);
                 }
             }
+            quard quad = new quard();
+            quad.op = chk.var.get(0);
+            String s = temp.toString() + "temp";
+            ++temp;
+            quad.x.name = ctx.varname().getText();
+            quad.x.addr = defvars.get(ctx.varname().getText()).addr;
+            quad.y.name = s;
+            chk.code.push(quad);
         }
-        if (ctx.NUM() != null) chk.var.add("int");
+        if (ctx.NUM() != null)
+        {
+            chk.var.add("int");
+            quard quad = new quard();
+            String s = temp.toString() + "temp";
+            ++temp;
+            quad.x.name = ctx.NUM().getText();
+            quad.y.name = s;
+            quad.op = "int";
+            chk.code.push(quad);
+        }
         if (ctx.STR() != null) chk.var.add("string");
         if (ctx.getText().contains("null")) chk.var.add("002");
         if (ctx.op != null) if (ctx.op.getText().equals("++"))
         {
-            System.out.println(ctx.op.getText());
+            // System.out.println(ctx.op.getText());
             chk.var.add("int");
             vec.add("int");
-            System.out.println("LLLL");
+            //  System.out.println("LLLL");
         }
         if (ctx.expr().size() == 1)
             if (ctx.op != null)
@@ -902,20 +1079,20 @@ class MyVisitor extends MxBaseVisitor<check>
         if (ctx.op != null)
             if (ctx.op.getText().equals("."))
             {
-                System.out.println("???????");
-                System.out.println(ctx.getText());
+                // System.out.println("???????");
+                // System.out.println(ctx.getText());
                 String s = ctx.expr(0).getText();
 
                 check ckk = visit(ctx.expr(0));
                 String sa = ckk.var.get(0);
                 s = sa;
-                System.out.println(s);
-                System.out.println(defclass);
+                // System.out.println(s);
+                // System.out.println(defclass);
                 String ty = new String();
                 ty = sa;
                 if (defvars.containsKey(sa))
                 {
-                    ty = defvars.get(sa);
+                    ty = defvars.get(sa).type;
                     System.out.println(ty);
                 }
                 if (ty.equals("000"))
@@ -923,7 +1100,7 @@ class MyVisitor extends MxBaseVisitor<check>
                     cla = classname;
                     ty = "this";
                     check ck = visit(ctx.expr(1));
-                    System.out.println("???");
+                    //System.out.println("???");
                     chk.var.addAll(ck.var);
                     chk.vars.addAll(ck.vars);
                 }
@@ -931,7 +1108,7 @@ class MyVisitor extends MxBaseVisitor<check>
                 {
                     cla = "001";
                     check ck = visit(ctx.expr(1));
-                    System.out.println("???");
+                    //  System.out.println("???");
                     chk.var.addAll(ck.var);
                     chk.vars.addAll(ck.vars);
                 }
@@ -939,7 +1116,7 @@ class MyVisitor extends MxBaseVisitor<check>
                 {
                     cla = "002";
                     check ck = visit(ctx.expr(1));
-                    System.out.println("???");
+                    //   System.out.println("???");
                     chk.var.addAll(ck.var);
                     chk.vars.addAll(ck.vars);
                 }
@@ -947,7 +1124,7 @@ class MyVisitor extends MxBaseVisitor<check>
                 {
                     cla = ty;
                     check ck = visit(ctx.expr(1));
-                    System.out.println("???");
+                    //  System.out.println("???");
                     chk.var.addAll(ck.var);
                     chk.vars.addAll(ck.vars);
                 }
@@ -959,21 +1136,63 @@ class MyVisitor extends MxBaseVisitor<check>
                 }
                 return chk;
             }
+        ir ir1 = new ir();
+        ir ir2 = new ir();
         for (int i = 0; i < ctx.expr().size(); ++i)
         {
             check ck = new check();
             ck = visit(ctx.expr(i));
+            if (i == 0) ir1 = ck.code;
+            if (i == 1) ir2 = ck.code;
             vec.addAll(ck.var);
             if (ctx.op1 != null)
             {
                 chk.var.add("bool");
                 vec.add("001");
-                System.out.println("++++");
+                //  System.out.println("++++");
             }
             else
                 chk.var.addAll(ck.var);
             chk.vars.addAll(ck.vars);
 
+        }
+        if (ctx.opc != null)
+        {
+            chk.code = ir1;
+        }
+        if (ctx.op != null)
+            if (!ctx.op.getText().equals("."))
+                if (!ctx.op.getText().equals("="))
+                {
+                    quard quad = new quard();
+                    quad.y.name = ir1.last.y.name;;
+                    //  System.out.println(ctx.getText());
+                    quad.x.name = ir2.last.y.name;
+                    quad.op = ctx.op.getText();
+                    chk.code.add(ir1);
+                    chk.code.add(ir2);
+                    chk.code.push(quad);
+                }
+        if (ctx.op1 != null)
+        {
+            quard quad = new quard();
+            quad.y.name = ir1.last.y.name;
+            //  System.out.println(ctx.getText());
+            quad.x.name = ir2.last.y.name;
+            quad.op = ctx.op1.getText();
+            chk.code.add(ir1);
+            chk.code.add(ir2);
+            chk.code.push(quad);
+        }
+        if (ctx.opd != null)
+        {
+            quard quad = new quard();
+            quad.y.name = ir1.last.y.name;
+            quad.x.name = ir2.last.y.name;
+            quad.op = ctx.opd.getText();
+            chk.code.add(ir1);
+            chk.code.add(ir2);
+            chk.code.push(quad);
         }
         chk.vars.add(vec);
         if (ctx.news() != null)
@@ -985,7 +1204,7 @@ class MyVisitor extends MxBaseVisitor<check>
 
     public check visitNews(MxParser.NewsContext ctx)
     {
-        System.out.println("????");
+        //System.out.println("????");
         check chk = new check();
         String s = new String();
         if (ctx.name != null) s = ctx.name.getText();
@@ -1005,8 +1224,8 @@ class MyVisitor extends MxBaseVisitor<check>
         }
         int num = 0;
         String sa = new String();
-        System.out.println("::::::");
-        System.out.println(ctx.getText());
+        // System.out.println("::::::");
+        // System.out.println(ctx.getText());
         for (int i = 0; i < ctx.getText().length(); ++i)
         {
             sa += ctx.getText().charAt(i);
@@ -1017,8 +1236,8 @@ class MyVisitor extends MxBaseVisitor<check>
             }
         }
         chk.var.add(s);
-        System.out.println(s);
-        System.out.println(ctx.getText());
+        // System.out.println(s);
+        //  System.out.println(ctx.getText());
         return chk;
     }
 }
@@ -1040,8 +1259,8 @@ public class Main
 
     public static void main(String[] args) throws Exception
     {
-     //   File f = new File("E:/test.txt");
-         File f = new File("program.txt");
+        File f = new File("E:/test.txt");
+        // File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
         run(input);

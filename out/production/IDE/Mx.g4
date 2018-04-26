@@ -8,7 +8,9 @@ defs : defun | defvars | defclass;
 
 varname :   ID;
 
-defvars :   type  varname ('='  expr)? ';' ;
+defvars :   defvar ';' ;
+
+defvar  :   type  varname ('='  expr)? ;
 
 typename:   ID;
 
@@ -32,7 +34,7 @@ defun   :   type funname '(' params ')' block ;
 
 params  :   (param  (',' param)*)? ;
 
-param   :   defvars ;
+param   :   defvar ;
 
 block   :   '{' stmt* '}' ;
 
@@ -59,7 +61,7 @@ expr    :   funname '(' exprs? ')'
         |   op = ('++' | '--') expr
         |   ('-' | '!' | '~') expr
         |   expr op =('++'  | '--')
-        |   expr ('*' | '/' | '%') expr
+        |   expr op = ('*' | '/' | '%') expr
         |   expr op=('+' |'-' ) expr
         |   expr ('>>' | '<<') expr
         |   expr '&' expr
@@ -74,8 +76,8 @@ expr    :   funname '(' exprs? ')'
         |   STR
         |   ('NULL' | 'null')
         |   ('TRUE' | 'true' | 'FALSE' | 'false')
-        |   '(' expr ')'
-        |   <assoc=right> expr '=' expr;
+        |   opc = '(' expr ')'
+        |   <assoc=right> expr opd = '=' expr;
 
 news     :   varname '(' exprs ')'
         |   (classname |name =  'int' |name =  'string'|name = 'bool') ('[' expr ']')+ ('[' ']')*('[' expr ']')?
