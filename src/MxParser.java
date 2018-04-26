@@ -1291,6 +1291,7 @@ public class MxParser extends Parser {
 
 	public static class ExprContext extends ParserRuleContext {
 		public Token op;
+		public Token opf;
 		public Token opc;
 		public Token op1;
 		public Token opd;
@@ -1401,9 +1402,10 @@ public class MxParser extends Parser {
 			case 4:
 				{
 				setState(193);
+				((ExprContext)_localctx).opf = _input.LT(1);
 				_la = _input.LA(1);
 				if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__25) | (1L << T__26) | (1L << T__27))) != 0)) ) {
-				_errHandler.recoverInline(this);
+					((ExprContext)_localctx).opf = (Token)_errHandler.recoverInline(this);
 				}
 				else {
 					if ( _input.LA(1)==Token.EOF ) matchedEOF = true;

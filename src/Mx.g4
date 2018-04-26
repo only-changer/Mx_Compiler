@@ -39,7 +39,7 @@ param   :   defvar ;
 block   :   '{' stmt* '}' ;
 
 stmt    :   block
-        |   op = 'if' '(' expr ')' stmt ('else' stmt)?
+        |   op = 'if' '(' expr ')' stmt ( 'else' stmt)?
         |   'for' '(' expr? ';' expr? ';' expr? ')' stmt
         |   'while' '(' expr? ')' stmt
         |   'return' expr? ';'
@@ -59,7 +59,7 @@ expr    :   funname '(' exprs? ')'
         |   expr (opcom = '[' expr ']')+
         |   expr op = '.' expr
         |   op = ('++' | '--') expr
-        |   ('-' | '!' | '~') expr
+        |   opf = ('-' | '!' | '~') expr
         |   expr op =('++'  | '--')
         |   expr op = ('*' | '/' | '%') expr
         |   expr op=('+' |'-' ) expr

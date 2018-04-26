@@ -18,6 +18,7 @@ class varible
     int com;
     boolean isconst;
     Integer addr;
+
     varible()
     {
         name = new String();
@@ -45,12 +46,18 @@ class quard
 
 class ir
 {
-    quard head;
-    quard last;
+    public quard head;
+    public quard last;
 
     ir()
     {
+        head = null;
+        last = null;
+    }
 
+    public quard getlast()
+    {
+        return last;
     }
 
     public void push(quard quad)
@@ -90,10 +97,11 @@ class ir
     {
         if (head != null)
         {
-            quard quad = head;
+            quard quad = new quard();
+            quad = head;
             while (quad != null)
             {
-                System.out.println(quad.y.name +' ' + quad.op + ' ' + quad.x.name);
+                System.out.println(quad.y.name + ' ' + quad.op + ' ' + quad.x.name + ' ' + quad.x.addr);
                 if (quad.next == null) break;
                 quad = quad.next;
             }
@@ -103,26 +111,31 @@ class ir
 
 class check
 {
-    check()
-    {
-    }
 
-    ir code = new ir();
+    public ir code;
     Map<String, vartype> defvars = new HashMap();
     Vector<Vector> vars = new Vector<>();
     Vector<String> var = new Vector();
 
+    check()
+    {
+        code = new ir();
+    }
+
 }
+
 class vartype
 {
     String type;
     Integer addr;
+
     vartype()
     {
         type = new String();
         addr = new Integer(0);
     }
 }
+
 class all
 {
     Map<String, Vector<String>> defuns = new HashMap<>();
@@ -580,7 +593,7 @@ class MyVisitor extends MxBaseVisitor<check>
 
     public check visitBlock(MxParser.BlockContext ctx)
     {
-        Map<String,vartype> origin = new HashMap<>(defvars);
+        Map<String, vartype> origin = new HashMap<>(defvars);
         check chk = new check();
         for (int k = 0; k < ctx.stmt().size(); ++k)
         {
@@ -745,21 +758,38 @@ class MyVisitor extends MxBaseVisitor<check>
             chk.vars.addAll(ck.vars);
             if (ctx.op != null)
                 if (ctx.op.getText().equals("if"))
-                {
-                    quard quad = new quard();
-                    quad.y.name = b.toString() + "if";
-                    ++b;
-                    quad.op = "label!!!!!!!!!";
-                    irr.push(quad);
-                    irr.add(ck.code);
-                    quad = new quard();
-                    quad.y.name = b.toString() + "ifback";
-                    ++b;
-                    quad.op = "label!!!!!!!!!";
-                    irr.push(quad);
-                    //chk.code.add(irr);
-                }
+                    if (i == 0)
+                    {
+                        quard quad = new quard();
+                        quad.y.name = b.toString() + "if";
+                        ++b;
+                        quad.op = "label!!!!!!!!!";
+                        irr.push(quad);
+                        irr.add(ck.code);
+                        quad = new quard();
+                        quad.op = "goto";
+                        quad.y.name = b.toString() + "ifback";
+                        quad.x.name = "";
+                        irr.push(quad);
+                        quad = new quard();
+                        quad.y.name = b.toString() + "else";
+                        quad.op = "label!!!!!!!!!";
+                        irr.push(quad);
+                    }
+                    else
+                    {
+                        irr.add(ck.code);
+                    }
         }
+        if (ctx.op != null)
+            if (ctx.op.getText().equals("if"))
+            {
+                quard quad = new quard();
+                quad.y.name = b.toString() + "ifback";
+                ++b;
+                quad.op = "label!!!!!!!!!";
+                irr.push(quad);
+            }
         if ((ctx.getText().contains("if") || ctx.getText().contains("while") || ctx.getText().contains("for")) && ctx.block() == null)
         {
             chk.defvars.clear();
@@ -783,8 +813,7 @@ class MyVisitor extends MxBaseVisitor<check>
                 if (ctx.op.getText().equals("if"))
                 {
                     quard quad = new quard();
-                    quad.y.name = b - 1 + "ifback";
-                    ck.code.print();
+                    quad.y.name = b - 1 + "else";
                     quad.x.name = ck.code.last.y.name;
                     quad.op = "=";
                     chk.code.push(quad);
@@ -1044,6 +1073,7 @@ class MyVisitor extends MxBaseVisitor<check>
             quad.x.name = ctx.varname().getText();
             quad.x.addr = defvars.get(ctx.varname().getText()).addr;
             quad.y.name = s;
+            quad.y.addr = quad.x.addr;
             chk.code.push(quad);
         }
         if (ctx.NUM() != null)
@@ -1160,12 +1190,24 @@ class MyVisitor extends MxBaseVisitor<check>
         {
             chk.code = ir1;
         }
+        if (ctx.opf != null)
+        {
+            quard quad = new quard();
+            quad.x.name = ir1.last.y.name;
+            String s = temp.toString() + "temp";
+            ++temp;
+            quad.y.name = s;
+            quad.op = ctx.opf.getText();
+            chk.code.add(ir1);
+            chk.code.push(quad);
+        }
         if (ctx.op != null)
             if (!ctx.op.getText().equals("."))
                 if (!ctx.op.getText().equals("="))
                 {
                     quard quad = new quard();
-                    quad.y.name = ir1.last.y.name;;
+                    quad.y.name = ir1.last.y.name;
+                    ;
                     //  System.out.println(ctx.getText());
                     quad.x.name = ir2.last.y.name;
                     quad.op = ctx.op.getText();
