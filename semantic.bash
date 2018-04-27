@@ -5,6 +5,6 @@
 
 set -e
 cd "$(dirname "$0")"
-export CCHK="java -classpath ./lib/antlr-4.7-complete.jar:./bin irtox86"
+export CCHK="java -classpath ./lib/antlr-4.7-complete.jar:./bin Irtox86"
 cat > program.txt   # save everything in stdin to program.txt
 $CCHK
