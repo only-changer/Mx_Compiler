@@ -5,19 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="014ac6d6-8e40-455f-95b1-dff8859644ca" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Irtox86.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IDE/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IDE/Mx.g4" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/Mx.g4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IDE/MxParser$ExprContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IDE/MxParser$ExprsContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IDE/MxParser$NewsContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IDE/MxParser$StmtContext.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IDE/MxParser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IDE/MyVisitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/MyVisitor.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Mx.g4" beforeDir="false" afterPath="$PROJECT_DIR$/src/Mx.g4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MxParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MxParser.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -41,8 +30,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="324" column="9" lean-forward="true" selection-start-line="324" selection-start-column="9" selection-end-line="324" selection-end-column="9" />
+            <state relative-caret-position="188">
+              <caret line="1317" column="10" selection-start-line="1317" selection-start-column="10" selection-end-line="1317" selection-end-column="10" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -331,7 +320,7 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find />
+      <find>T visi</find>
       <find>Integer</find>
       <find>varbal</find>
       <find>.defun</find>
@@ -359,7 +348,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="570" />
     <option name="y" value="75" />
     <option name="width" value="1130" />
@@ -1125,8 +1114,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="324" column="9" lean-forward="true" selection-start-line="324" selection-start-column="9" selection-end-line="324" selection-end-column="9" />
+        <state relative-caret-position="188">
+          <caret line="1317" column="10" selection-start-line="1317" selection-start-column="10" selection-end-line="1317" selection-end-column="10" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
