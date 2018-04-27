@@ -101,7 +101,7 @@ class ir
             quad = head;
             while (quad != null)
             {
-                System.out.println(quad.y.name + ' ' + quad.op + ' ' + quad.x.name + ' ' + quad.x.addr);
+                System.err.println(quad.y.name + ' ' + quad.op + ' ' + quad.x.name + ' ' + quad.x.addr);
                 if (quad.next == null) break;
                 quad = quad.next;
             }
@@ -278,8 +278,8 @@ class MyVisitor extends MxBaseVisitor<check>
             System.out.println("FBI WARNING! NO MAIN FUNCTION!");
             System.exit(-1);
         }
-        chk.code.print();
-        return nullcheck;
+        //chk.code.print();
+        return chk;
     }
 
     public check visitDefs(MxParser.DefsContext ctx)
@@ -319,6 +319,10 @@ class MyVisitor extends MxBaseVisitor<check>
             }
         }
         chk.defvars.put(ctx.varname().getText(), v);
+        if (ctx.varname().getText().equals(""))
+        {
+            System.exit(-1);
+        }
         //defvars.put(ctx.varname().getText(), ctx.type().getText());
         if (ctx.type().getText().contains("[]"))
         {
@@ -809,6 +813,14 @@ class MyVisitor extends MxBaseVisitor<check>
             if (ctx.op != null)
                 if (ctx.expr(0).getText().equals("1"))
                     System.exit(-1);
+            if (ctx.opr != null)
+            {
+                quard quad = new quard();
+                quad.x.name = ck.code.last.y.name;
+                quad.op = "return";
+                chk.code.add(ck.code);
+                chk.code.push(quad);
+            }
             if (ctx.op != null)
                 if (ctx.op.getText().equals("if"))
                 {
@@ -1286,20 +1298,22 @@ class MyVisitor extends MxBaseVisitor<check>
 
 public class Main
 {
+    static check chk = new check();
 
     public static void run(InputStream input) throws Exception
     {
+
         ANTLRInputStream in = new ANTLRInputStream(input);
         MxLexer lexer = new MxLexer(in);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         MxParser parser = new MxParser(tokens);
         ParseTree tree = parser.allin();
         MyVisitor bill = new MyVisitor();
-        bill.visit(tree);
+        chk = bill.visit(tree);
 
     }
 
-    public static void main(String[] args) throws Exception
+    public static check main() throws Exception
     {
         File f = new File("E:/test.txt");
         // File f = new File("program.txt");
@@ -1307,6 +1321,6 @@ public class Main
         input = new FileInputStream(f);
         run(input);
         System.err.println("Hello world!");
-        System.exit(0);
+        return chk;
     }
 }

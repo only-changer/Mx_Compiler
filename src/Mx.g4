@@ -42,7 +42,7 @@ stmt    :   block
         |   op = 'if' '(' expr ')' stmt ( 'else' stmt)?
         |   'for' '(' expr? ';' expr? ';' expr? ')' stmt
         |   'while' '(' expr? ')' stmt
-        |   'return' expr? ';'
+        |   opr = 'return' expr? ';'
         |   'break' ';'
         |   'continue' ';'
         |   defvars
