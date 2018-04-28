@@ -761,7 +761,7 @@ class MyVisitor extends MxBaseVisitor<check>
             check ck = visit(ctx.stmt(i));
             chk.defvars.putAll(ck.defvars);
             chk.vars.addAll(ck.vars);
-            if (ctx.op != null)
+          /*  if (ctx.op != null)
                 if (ctx.op.getText().equals("if"))
                     if (i == 0)
                     {
@@ -784,7 +784,7 @@ class MyVisitor extends MxBaseVisitor<check>
                     else
                     {
                         irr.add(ck.code);
-                    }
+                    }*/
         }
         if (ctx.op != null)
             if (ctx.op.getText().equals("if"))
@@ -814,7 +814,7 @@ class MyVisitor extends MxBaseVisitor<check>
             if (ctx.op != null)
                 if (ctx.expr(0).getText().equals("1"))
                     System.exit(-1);
-            if (ctx.opr != null)
+          /*  if (ctx.opr != null)
             {
                 quard quad = new quard();
                 quad.x.name = ck.code.last.y.name;
@@ -831,7 +831,7 @@ class MyVisitor extends MxBaseVisitor<check>
                     quad.op = "=";
                     chk.code.push(quad);
                     chk.code.add(irr);
-                }
+                }*/
             if (ctx.getText().contains("for(") || ctx.getText().contains("while(")) v.add("bool");
             chk.vars.addAll(ck.vars);
         }
@@ -1332,8 +1332,8 @@ public class Main
 
     public static check main() throws Exception
     {
-       // File f = new File("E:/test.txt");
-         File f = new File("program.txt");
+      // File f = new File("E:/test.txt");
+        File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
         run(input);
