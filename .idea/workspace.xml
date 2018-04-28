@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="014ac6d6-8e40-455f-95b1-dff8859644ca" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Irtox86.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Irtox86.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -30,8 +31,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="188">
-              <caret line="1317" column="10" selection-start-line="1317" selection-start-column="10" selection-end-line="1317" selection-end-column="10" />
+            <state relative-caret-position="159">
+              <caret line="1334" column="9" selection-start-line="1334" selection-start-column="9" selection-end-line="1334" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -42,8 +43,8 @@
       <file leaf-file-name="Irtox86.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Irtox86.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+            <state relative-caret-position="133">
+              <caret line="7" column="41" lean-forward="true" selection-start-line="7" selection-start-column="41" selection-end-line="7" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -65,8 +66,8 @@
       <file leaf-file-name="Mx.g4" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Mx.g4">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
-              <caret line="4" column="3" selection-start-line="4" selection-end-line="4" selection-end-column="6" />
+            <state relative-caret-position="361">
+              <caret line="70" column="32" lean-forward="true" selection-start-line="70" selection-start-column="32" selection-end-line="70" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -331,6 +332,7 @@
       <find>Mism</find>
       <find>th</find>
       <find>throw</find>
+      <find>NUM</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -342,8 +344,8 @@
         <option value="$PROJECT_DIR$/src/MxVisitor.java" />
         <option value="$PROJECT_DIR$/../Try/src/Demo.g4" />
         <option value="$PROJECT_DIR$/src/Mx.g4" />
-        <option value="$PROJECT_DIR$/src/Irtox86.java" />
         <option value="$PROJECT_DIR$/src/MxParser.java" />
+        <option value="$PROJECT_DIR$/src/Irtox86.java" />
         <option value="$PROJECT_DIR$/src/Main.java" />
       </list>
     </option>
@@ -496,13 +498,13 @@
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Tool Output" order="7" sideWeight="0.49865952" weight="0.074179746" />
-      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.20442359" weight="0.0114122685" />
+      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.19705094" weight="0.0114122685" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.38538873" side_tool="true" visible="true" weight="0.26105565" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.39276138" side_tool="true" visible="true" weight="0.26105565" />
       <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.61461127" visible="true" weight="0.26105565" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.6072386" visible="true" weight="0.26105565" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
@@ -1095,27 +1097,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Mx.g4">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="3" selection-start-line="4" selection-end-line="4" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/MxLexer.tokens">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Mx.g4">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="70" column="32" lean-forward="true" selection-start-line="70" selection-start-column="32" selection-end-line="70" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Irtox86.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+        <state relative-caret-position="133">
+          <caret line="7" column="41" lean-forward="true" selection-start-line="7" selection-start-column="41" selection-end-line="7" selection-end-column="41" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="1317" column="10" selection-start-line="1317" selection-start-column="10" selection-end-line="1317" selection-end-column="10" />
+        <state relative-caret-position="159">
+          <caret line="1334" column="9" selection-start-line="1334" selection-start-column="9" selection-end-line="1334" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

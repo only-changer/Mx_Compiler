@@ -22,7 +22,7 @@ class varible
     varible()
     {
         name = new String();
-        addr = new Integer(0);
+        addr = new Integer(-1);
     }
 }
 
@@ -153,6 +153,7 @@ class all
 
 class MyVisitor extends MxBaseVisitor<check>
 {
+    Integer templist[] = new Integer[30];
     Integer addr = 0;
     Map<String, Vector<String>> defuns = new HashMap<>();
     String defun = new String();
@@ -1080,8 +1081,24 @@ class MyVisitor extends MxBaseVisitor<check>
             }
             quard quad = new quard();
             quad.op = chk.var.get(0);
-            String s = temp.toString() + "temp";
-            ++temp;
+            Integer c = -1;
+            for (int i = 0; i < templist.length; ++i)
+                if (templist[i] == defvars.get(ctx.varname().getText()).addr && templist[i] != -1)
+                {
+                    c = i;
+                    break;
+                }
+            String s = new String();
+            if (c == -1)
+            {
+                s = temp.toString() + "temp";
+                templist[temp] = defvars.get(ctx.varname().getText()).addr;
+                ++temp;
+            }
+            else
+            {
+                s = c.toString() + "temp";
+            }
             quad.x.name = ctx.varname().getText();
             quad.x.addr = defvars.get(ctx.varname().getText()).addr;
             quad.y.name = s;
@@ -1092,10 +1109,7 @@ class MyVisitor extends MxBaseVisitor<check>
         {
             chk.var.add("int");
             quard quad = new quard();
-            String s = temp.toString() + "temp";
-            ++temp;
-            quad.x.name = ctx.NUM().getText();
-            quad.y.name = s;
+            quad.y.name = ctx.NUM().getText();
             quad.op = "int";
             chk.code.push(quad);
         }
@@ -1198,7 +1212,7 @@ class MyVisitor extends MxBaseVisitor<check>
             chk.vars.addAll(ck.vars);
 
         }
-        if (ctx.opc != null)
+/*        if (ctx.opc != null)
         {
             chk.code = ir1;
         }
@@ -1233,6 +1247,9 @@ class MyVisitor extends MxBaseVisitor<check>
             quad.y.name = ir1.last.y.name;
             //  System.out.println(ctx.getText());
             quad.x.name = ir2.last.y.name;
+            quad.y.addr = -1;
+            Integer ii = quad.y.name.charAt(0) - '0';
+            templist[ii] = -1;
             quad.op = ctx.op1.getText();
             chk.code.add(ir1);
             chk.code.add(ir2);
@@ -1247,7 +1264,7 @@ class MyVisitor extends MxBaseVisitor<check>
             chk.code.add(ir1);
             chk.code.add(ir2);
             chk.code.push(quad);
-        }
+        }*/
         chk.vars.add(vec);
         if (ctx.news() != null)
         {
@@ -1315,7 +1332,7 @@ public class Main
 
     public static check main() throws Exception
     {
-        //File f = new File("E:/test.txt");
+       // File f = new File("E:/test.txt");
          File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
