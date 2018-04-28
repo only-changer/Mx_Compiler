@@ -1082,7 +1082,7 @@ class MyVisitor extends MxBaseVisitor<check>
             quard quad = new quard();
             quad.op = chk.var.get(0);
             Integer c = -1;
-            for (int i = 0; i < templist.length; ++i)
+         /*   for (int i = 0; i < templist.length; ++i)
                 if (templist[i] == defvars.get(ctx.varname().getText()).addr && templist[i] != -1)
                 {
                     c = i;
@@ -1103,7 +1103,7 @@ class MyVisitor extends MxBaseVisitor<check>
             quad.x.addr = defvars.get(ctx.varname().getText()).addr;
             quad.y.name = s;
             quad.y.addr = quad.x.addr;
-            chk.code.push(quad);
+            chk.code.push(quad);*/
         }
         if (ctx.NUM() != null)
         {
@@ -1332,7 +1332,7 @@ public class Main
 
     public static check main() throws Exception
     {
-      // File f = new File("E:/test.txt");
+     // File f = new File("E:/test.txt");
         File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
