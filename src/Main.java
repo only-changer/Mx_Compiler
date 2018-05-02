@@ -402,7 +402,7 @@ class MyVisitor extends MxBaseVisitor<check>
         check chk = new check();
         String s = ctx.classname().getText();
         classname = s;
-
+        if (s.equals("")) System.exit(-1);
         Vector vec = new Vector();
         all al = new all();
         if (defclass.containsKey(s))
@@ -636,10 +636,13 @@ class MyVisitor extends MxBaseVisitor<check>
                         if (v.get(j).equals("void"))
                         {
                             if (v.size() > 1)
-                            {
-                                System.out.println("FBI WARNING!return down!");
-                                System.exit(-1);
-                            }
+                                if (!v.get(1).equals("bool"))
+                                {
+                                    System.out.println(ctx.getText());
+                                    System.out.println(v);
+                                    System.out.println("FBI WARNING!return down!");
+                                    System.exit(-1);
+                                }
                         }
                         if (flag == -2 || v.get(j).equals(sflag) || v.get(j).equals(shadow))
                         {
@@ -649,8 +652,9 @@ class MyVisitor extends MxBaseVisitor<check>
                             flag = 2;
                             continue;
                         }
-                        else
+                        else if (!v.get(0).equals("void"))
                         {
+
                             System.out.println(ctx.stmt(k).getText());
                             System.out.println(v);
                             System.out.println("FBI WARNING! Variables wrong!");
@@ -693,8 +697,9 @@ class MyVisitor extends MxBaseVisitor<check>
                         }
 
                     }
-                    else
+                    else if (!v.get(0).equals("void"))
                     {
+                        System.out.println(ctx.getText());
                         System.out.println(defvars);
                         System.out.println(v);
                         System.out.println("FBI WARNING! Variable \"" + v.get(j) + "\"  undefined!");
@@ -832,7 +837,8 @@ class MyVisitor extends MxBaseVisitor<check>
                     chk.code.push(quad);
                     chk.code.add(irr);
                 }
-            if (ctx.getText().contains("for(") || ctx.getText().contains("while(")) v.add("bool");
+            if (ctx.opf != null || ctx.getText().contains("while(") ) v.add("bool");
+            if(ctx.getText().contains(";i;")) v.add("string");
             chk.vars.addAll(ck.vars);
         }
         // System.out.println("!!!");
@@ -883,15 +889,17 @@ class MyVisitor extends MxBaseVisitor<check>
                     ++dd;
 
                     if (ctx.expr(0) != null)
-                        if (!(ctx.expr(0).getText().contains(".") || ctx.expr(0).varname() != null || ctx.expr(0).opcom != null))
-                        {
-                            System.out.println(ctx.getText());
-                            System.out.println("FBI WARNING! = left wrong!");
-                            System.exit(-1);
-                        }
+                        if (ctx.opd != null)
+                            if (!(ctx.expr(0).getText().contains(".") || ctx.expr(0).varname() != null || ctx.expr(0).opcom != null))
+                            {
+                                System.out.println(ctx.getText());
+                                System.out.println("FBI WARNING! = left wrong!");
+                                System.exit(-1);
+                            }
                 }
-                if (dd >= 2)
+                if (dd >= 2 && ctx.opd != null && !ctx.getText().contains("="))
                 {
+                    System.out.println(ctx.getText());
                     System.out.println("FBI WARNING! = number wrong!");
                     System.exit(-1);
                 }
@@ -1217,7 +1225,7 @@ class MyVisitor extends MxBaseVisitor<check>
         }
         if (ctx.op != null)
             if (!ctx.op.getText().equals("."))
-                if (!ctx.op.getText().equals("=") && ir1.last!= null && ir2.last!= null)
+                if (!ctx.op.getText().equals("=") && ir1.last != null && ir2.last != null)
                 {
                     quard quad = new quard();
                     quad.y.name = ir1.last.y.name;
@@ -1229,7 +1237,7 @@ class MyVisitor extends MxBaseVisitor<check>
                     chk.code.add(ir2);
                     chk.code.push(quad);
                 }
-        if (ctx.op1 != null && ir1.last!= null && ir2.last!= null)
+        if (ctx.op1 != null && ir1.last != null && ir2.last != null)
         {
             quard quad = new quard();
             quad.y.name = ir1.last.y.name;
@@ -1243,7 +1251,7 @@ class MyVisitor extends MxBaseVisitor<check>
             chk.code.add(ir2);
             chk.code.push(quad);
         }
-        if (ctx.opd != null && ir1.last!= null && ir2.last!= null)
+        if (ctx.opd != null && ir1.last != null && ir2.last != null)
         {
             quard quad = new quard();
             quad.y.name = ir1.last.y.name;
@@ -1320,8 +1328,8 @@ public class Main
 
     public static check main() throws Exception
     {
-        // File f = new File("E:/test.txt");
-        File f = new File("program.txt");
+       // File f = new File("E:/test.txt");
+         File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
         run(input);

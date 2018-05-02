@@ -40,7 +40,7 @@ block   :   '{' stmt* '}' ;
 
 stmt    :   block
         |   op = 'if' '(' expr ')' stmt ( 'else' stmt)?
-        |   'for' '(' expr? ';' expr? ';' expr? ')' stmt
+        |   opf = 'for' '(' expr? ';' expr? ';' expr? ')' stmt
         |   'while' '(' expr? ')' stmt
         |   opr = 'return' expr? ';'
         |   'break' ';'
