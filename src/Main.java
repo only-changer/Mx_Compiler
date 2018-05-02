@@ -657,6 +657,7 @@ class MyVisitor extends MxBaseVisitor<check>
 
                             System.out.println(ctx.stmt(k).getText());
                             System.out.println(v);
+                            System.out.println(defvars.get("b").type);
                             System.out.println("FBI WARNING! Variables wrong!");
                             System.exit(-1);
                         }
@@ -676,7 +677,7 @@ class MyVisitor extends MxBaseVisitor<check>
                         else
                         {
                             System.out.println(ctx.getText());
-                            System.out.println(v);
+                            //System.out.println(v);
                             System.out.println(ck.vars);
                             System.out.println("FBI WARNING! Variables wrong!");
                             System.exit(-1);
@@ -804,6 +805,7 @@ class MyVisitor extends MxBaseVisitor<check>
         {
             chk.defvars.clear();
         }
+        if (ctx.block() != null) chk.defvars.clear();
         if (ctx.defvars() != null)
         {
             check ck = visit(ctx.defvars());
@@ -1328,8 +1330,8 @@ public class Main
 
     public static check main() throws Exception
     {
-       // File f = new File("E:/test.txt");
-         File f = new File("program.txt");
+        //File f = new File("E:/test.txt");
+        File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
         run(input);
