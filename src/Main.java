@@ -1078,18 +1078,20 @@ class MyVisitor extends MxBaseVisitor<check>
                     System.out.println("FBI WARNING! varible wrong!");
                     System.exit(-1);
                 }
+                quard quad = new quard();
+                quad.op = chk.var.get(0);
+                Integer c = -1;
+                String s = new String();
+                s = temp.toString() + "temp";
+                ++temp;
+                quad.x.name = ctx.varname().getText();
+                System.out.println(ctx.varname().getText());
+                quad.x.addr = defvars.get(ctx.varname().getText()).addr;
+                quad.y.name = s;
+                quad.y.addr = quad.x.addr;
+                chk.code.push(quad);
             }
-            quard quad = new quard();
-            quad.op = chk.var.get(0);
-            Integer c = -1;
-            String s = new String();
-            s = temp.toString() + "temp";
-            ++temp;
-            quad.x.name = ctx.varname().getText();
-            quad.x.addr = defvars.get(ctx.varname().getText()).addr;
-            quad.y.name = s;
-            quad.y.addr = quad.x.addr;
-            chk.code.push(quad);
+
         }
         if (ctx.NUM() != null)
         {
