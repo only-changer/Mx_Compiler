@@ -11,8 +11,8 @@ public class Irtox86
     {
         Integer ws = 0;
         Integer f = 0;
-        System.out.println("global    _start");
-        System.err.println("global    _start");
+        System.out.println("global    main");
+        System.err.println("global    main");
         System.out.println("section   .text");
         System.err.println("section   .text");
         quard head = irr.head;
@@ -34,8 +34,8 @@ public class Irtox86
 
             if (q.op.equals("label!!!!!!!!!"))
             {
-                System.out.println('_'+q.y.name + ":");
-                System.err.println('_'+q.y.name + ":");
+                System.out.println(q.y.name + ":");
+                System.err.println(q.y.name + ":");
             }
             if (q.op.equals("int"))
             {
@@ -73,8 +73,8 @@ public class Irtox86
                 System.err.println("cmp" + '\t' + regs[temp] + ",0");
                 System.out.print("      ");
                 System.err.print("      ");
-                System.out.println("je" + '\t' + '_'+q.y.name);
-                System.err.println("je" + '\t' + '_'+q.y.name);
+                System.out.println("je" + '\t'+q.y.name);
+                System.err.println("je" + '\t'+q.y.name);
             }
             if (q.op.equals("return"))
             {

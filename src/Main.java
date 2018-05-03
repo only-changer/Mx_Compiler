@@ -565,7 +565,7 @@ class MyVisitor extends MxBaseVisitor<check>
         quad.y.name = ctx.funname().getText();
         if (quad.y.name.equals("main"))
         {
-            quad.y.name = "start";
+            quad.y.name = "main";
         }
         quad.op = "label!!!!!!!!!";
         chk.code.push(quad);
