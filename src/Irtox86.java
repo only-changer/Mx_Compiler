@@ -29,7 +29,7 @@ public class Irtox86
             }
             if (!temps.equals(""))
                 temp = Integer.parseInt(temps);
-            if (temp >= 8) return;
+
             if (q.op.equals("label!!!!!!!!!"))
             {
                 System.out.println('_'+q.y.name + ":");
@@ -37,6 +37,7 @@ public class Irtox86
             if (q.op.equals("int"))
             {
                 System.out.print("      ");
+                if (temp >= 8) return;
                 System.out.println("mov" + '\t' + regs[temp] + ",[str+" + q.y.addr.toString() + ']');
             }
             if (q.op.equals("="))
@@ -47,12 +48,14 @@ public class Irtox86
             if (q.op.equals("=="))
             {
                 System.out.print("      ");
+                if (temp >= 8) return;
                 System.out.println("xor" + '\t' + regs[temp] + "," + q.x.name);
                 System.out.print("      ");
                 System.out.println("not" + '\t' + regs[temp]);
             }
             if (q.op.equals("if"))
             {
+                if (temp >= 8) return;
                 System.out.print("      ");
                 System.out.println("cmp" + '\t' + regs[temp] + ",0");
                 System.out.print("      ");
@@ -60,6 +63,7 @@ public class Irtox86
             }
             if (q.op.equals("return"))
             {
+                if (temp >= 8) return;
                 System.out.print("      ");
                 System.out.println("mov" + '\t' + "rdi," + regs[temp]);
                 System.out.print("      ");

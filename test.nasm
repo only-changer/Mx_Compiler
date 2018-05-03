@@ -1,18 +1,19 @@
 global    _start
 section   .text
-_get:
-      mov	rax,[str+0]
-      xor	rax,0
-      not	rax
+_start:
+      mov	rdx,[str+0]
+      xor	rdx,10
+      not	rdx
       cmp	rcx,0
       je	_1else
 _0if:
-      mov	rdi,rax
-      mov	rax,60
-      syscall
+      mov	rax,[str+0]
+      mov	dword [str+0],20
 _1else:
+      mov	rcx,[str+0]
+      mov	dword [str+0],30
 _1ifback:
-_start:
+      mov	rax,[str+0]
       mov	rdi,rax
       mov	rax,60
       syscall
