@@ -337,7 +337,7 @@ class MyVisitor extends MxBaseVisitor<check>
             if (!classname.equals("")) defclass.get(classname).defcom.put(ctx.varname().getText(), num);
             else defcom.put(ctx.varname().getText(), num);
         }
-        if (ctx.expr() != null && getin )
+        if (ctx.expr() != null && getin)
         {
             check ck = visit(ctx.expr());
             chk.var = ck.var;
@@ -347,7 +347,7 @@ class MyVisitor extends MxBaseVisitor<check>
                     System.exit(-1);
                 }
             chk.code.add(ck.code);
-            if (!ctx.getText().contains("[") && !ctx.getText().contains(".") && !ctx.getText().contains("string")&& !ctx.getText().contains("bool") && ctx.getText().contains("int") &&ctx.expr().expr().size()==1)
+            if (!ctx.getText().contains("[") && !ctx.getText().contains(".") && !ctx.getText().contains("string") && !ctx.getText().contains("bool") && ctx.getText().contains("int") && ctx.expr().expr().size() == 1)
             {
                 quard quad = new quard();
                 System.out.println(ctx.getText());
@@ -803,7 +803,7 @@ class MyVisitor extends MxBaseVisitor<check>
                     if (i == 0)
                     {
                         quard quad = new quard();
-                        quad.y.name = b.toString() + "if";
+                        quad.y.name = "_" + b.toString() + "if";
                         ++b;
                         quad.op = "label!!!!!!!!!";
                         irr.push(quad);
@@ -814,7 +814,7 @@ class MyVisitor extends MxBaseVisitor<check>
                         quad.x.name = "";
                         irr.push(quad);
                         quad = new quard();
-                        quad.y.name = b.toString() + "else";
+                        quad.y.name = "_" + b.toString() + "else";
                         quad.op = "label!!!!!!!!!";
                         irr.push(quad);
                     }
@@ -827,7 +827,7 @@ class MyVisitor extends MxBaseVisitor<check>
             if (ctx.op.getText().equals("if"))
             {
                 quard quad = new quard();
-                quad.y.name = b.toString() + "ifback";
+                quad.y.name = "_" + b.toString() + "ifback";
                 ++b;
                 quad.op = "label!!!!!!!!!";
                 irr.push(quad);
@@ -1363,7 +1363,7 @@ public class Main
 
     public static check main() throws Exception
     {
-       // File f = new File("E:/test.txt");
+        //File f = new File("E:/test.txt");
         File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);

@@ -79,7 +79,7 @@ expr    :   funname '(' exprs? ')'
         |   opc = '(' expr ')'
         |   <assoc=right> expr opd = '=' expr;
 
-news     :   classname '(' exprs ')'
+news     :   classname '(' exprs? ')'
         |   (classname |name =  'int' |name =  'string'|name = 'bool') ('[' expr ']')+ ('[' ']')*('[' expr ']')?
         |   (classname |name =  'int' |name =  'string'|name = 'bool') ('[' ']')*   ;
 

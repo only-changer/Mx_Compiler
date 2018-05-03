@@ -1,6 +1,6 @@
-global    _start
+global    main
 section   .text
-_start:
+main:
       mov	rdx,[str+0]
       xor	rdx,10
       not	rdx
@@ -19,4 +19,3 @@ _1ifback:
       syscall
 section   .bss
 str:      resb      64  
-
