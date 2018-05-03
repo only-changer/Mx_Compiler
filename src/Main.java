@@ -866,8 +866,8 @@ class MyVisitor extends MxBaseVisitor<check>
                 if (ctx.op.getText().equals("if"))
                 {
                     quard quad = new quard();
-                    quad.y.name = b - 1 + "else";
-                    quad.x.name = ck.code.last.y.name;
+                    quad.x.name = b - 1 + "else";
+                    quad.y.name = ck.code.last.y.name;
                     quad.op = "if";
                     chk.code.push(quad);
                     chk.code.add(irr);
