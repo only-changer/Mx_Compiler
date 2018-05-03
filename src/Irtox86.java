@@ -73,8 +73,8 @@ public class Irtox86
                 System.err.println("cmp" + '\t' + regs[temp] + ",0");
                 System.out.print("      ");
                 System.err.print("      ");
-                System.out.println("je" + '\t'+q.y.name);
-                System.err.println("je" + '\t'+q.y.name);
+                System.out.println("je" + '\t'+'_'+q.y.name);
+                System.err.println("je" + '\t'+'_'+q.y.name);
             }
             if (q.op.equals("return"))
             {
