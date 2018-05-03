@@ -74,12 +74,12 @@ expr    :   funname '(' exprs? ')'
         |   varname
         |   NUM
         |   STR
-        |   ('NULL' | 'null')
+        |   ( 'null')
         |   ('TRUE' | 'true' | 'FALSE' | 'false')
         |   opc = '(' expr ')'
         |   <assoc=right> expr opd = '=' expr;
 
-news     :   varname '(' exprs ')'
+news     :   classname '(' exprs ')'
         |   (classname |name =  'int' |name =  'string'|name = 'bool') ('[' expr ']')+ ('[' ']')*('[' expr ']')?
         |   (classname |name =  'int' |name =  'string'|name = 'bool') ('[' ']')*   ;
 
