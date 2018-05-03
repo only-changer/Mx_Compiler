@@ -12,7 +12,9 @@ public class Irtox86
         Integer ws = 0;
         Integer f = 0;
         System.out.println("global    _start");
+        System.err.println("global    _start");
         System.out.println("section   .text");
+        System.err.println("section   .text");
         quard head = irr.head;
         int k = 0;
         while (head != null)
@@ -33,49 +35,70 @@ public class Irtox86
             if (q.op.equals("label!!!!!!!!!"))
             {
                 System.out.println('_'+q.y.name + ":");
+                System.err.println('_'+q.y.name + ":");
             }
             if (q.op.equals("int"))
             {
                 System.out.print("      ");
+                System.err.print("      ");
                 if (temp >= 8) return;
                 System.out.println("mov" + '\t' + regs[temp] + ",[str+" + q.y.addr.toString() + ']');
+                System.err.println("mov" + '\t' + regs[temp] + ",[str+" + q.y.addr.toString() + ']');
             }
             if (q.op.equals("="))
             {
                 System.out.print("      ");
+                System.err.print("      ");
                 System.out.println("mov" + '\t' + "dword [str+" + q.y.addr.toString() + "]," + q.x.name);
+                System.err.println("mov" + '\t' + "dword [str+" + q.y.addr.toString() + "]," + q.x.name);
             }
             if (q.op.equals("=="))
             {
                 System.out.print("      ");
+                System.err.print("      ");
                 if (temp >= 8) return;
                 System.out.println("xor" + '\t' + regs[temp] + "," + q.x.name);
+                System.err.println("xor" + '\t' + regs[temp] + "," + q.x.name);
                 System.out.print("      ");
+                System.err.print("      ");
                 System.out.println("not" + '\t' + regs[temp]);
+                System.err.println("not" + '\t' + regs[temp]);
             }
             if (q.op.equals("if"))
             {
                 if (temp >= 8) return;
                 System.out.print("      ");
+                System.err.print("      ");
                 System.out.println("cmp" + '\t' + regs[temp] + ",0");
+                System.err.println("cmp" + '\t' + regs[temp] + ",0");
                 System.out.print("      ");
+                System.err.print("      ");
                 System.out.println("je" + '\t' + '_'+q.y.name);
+                System.err.println("je" + '\t' + '_'+q.y.name);
             }
             if (q.op.equals("return"))
             {
                 if (temp >= 8) return;
                 System.out.print("      ");
+                System.err.print("      ");
                 System.out.println("mov" + '\t' + "rdi," + regs[temp]);
+                System.err.println("mov" + '\t' + "rdi," + regs[temp]);
                 System.out.print("      ");
+                System.err.print("      ");
                 System.out.println("mov" + '\t' + "rax,60");
+                System.err.println("mov" + '\t' + "rax,60");
                 System.out.print("      ");
+                System.err.print("      ");
                 System.out.println("syscall");
+                System.err.println("syscall");
             }
             if (head.next == null) break;
             head = head.next;
         }
         System.out.println("section   .bss");
+        System.err.println("section   .bss");
         System.out.println("str:      resb      64  ");
+        System.err.println("str:      resb      64  ");
     }
 
     public static void main(String[] args) throws Exception

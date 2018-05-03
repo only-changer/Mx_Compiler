@@ -19,3 +19,4 @@ _1ifback:
       syscall
 section   .bss
 str:      resb      64  
+
