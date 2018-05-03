@@ -31,6 +31,7 @@ public class Irtox86
             }
             if (!temps.equals(""))
                 temp = Integer.parseInt(temps);
+            if (temp >= 8) return;
             if (q.op.equals("label!!!!!!!!!"))
             {
                 System.out.println('_'+q.y.name + ":");
