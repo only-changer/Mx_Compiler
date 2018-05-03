@@ -73,8 +73,8 @@ public class Irtox86
                 System.err.println("cmp" + '\t' + regs[temp] + ",0");
                 System.out.print("      ");
                 System.err.print("      ");
-                System.out.println("je" + '\t'+'_'+q.y.name);
-                System.err.println("je" + '\t'+'_'+q.y.name);
+                System.out.println("je" + '\t' + '_' + q.y.name);
+                System.err.println("je" + '\t' + '_' + q.y.name);
             }
             if (q.op.equals("return"))
             {
@@ -92,6 +92,13 @@ public class Irtox86
                 System.out.println("syscall");
                 System.err.println("syscall");
             }
+            if (q.op.equals("goto"))
+            {
+                System.out.print("      ");
+                System.err.print("      ");
+                System.out.println("jmp" + '\t' + '_' + q.y.name);
+                System.err.println("jmp" + '\t' + '_' + q.y.name);
+            }
             if (head.next == null) break;
             head = head.next;
         }
@@ -105,7 +112,7 @@ public class Irtox86
     {
         Main m = new Main();
         check chk = m.main();
-       //chk.code.print();
+        //chk.code.print();
         translate(chk.code);
     }
 }
