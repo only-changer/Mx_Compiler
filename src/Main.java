@@ -350,7 +350,6 @@ class MyVisitor extends MxBaseVisitor<check>
             if (!ctx.getText().contains("[") && !ctx.getText().contains(".") && !ctx.getText().contains("string") && !ctx.getText().contains("bool") && ctx.expr().funname()==null)
             if (ctx.getText().contains("int") && ctx.expr().expr().size() <= 1)
             {
-                System.out.println(ctx.getText());
                 quard quad = new quard();
                 quad.op = chk.var.get(0);
                 Integer c = -1;
