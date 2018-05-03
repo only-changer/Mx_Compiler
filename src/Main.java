@@ -337,7 +337,7 @@ class MyVisitor extends MxBaseVisitor<check>
             if (!classname.equals("")) defclass.get(classname).defcom.put(ctx.varname().getText(), num);
             else defcom.put(ctx.varname().getText(), num);
         }
-        if (ctx.expr() != null && getin)
+        if (ctx.expr() != null && getin )
         {
             check ck = visit(ctx.expr());
             chk.var = ck.var;
@@ -347,24 +347,28 @@ class MyVisitor extends MxBaseVisitor<check>
                     System.exit(-1);
                 }
             chk.code.add(ck.code);
-            quard quad = new quard();
-            quad.op = chk.var.get(0);
-            Integer c = -1;
-            String s = new String();
-            s = temp.toString() + "temp";
-            ++temp;
-            quad.x.name = ctx.varname().getText();
-            // System.out.println(ctx.varname().getText());
-            quad.x.addr = chk.defvars.get(ctx.varname().getText()).addr;
-            quad.y.name = s;
-            quad.y.addr = quad.x.addr;
-            chk.code.push(quad);
-            quad = new quard();
-            quad.y.name = s;
-            quad.x.name = chk.code.last.prev.y.name;
-            quad.op = "=";
-            quad.y.addr = chk.defvars.get(ctx.varname().getText()).addr;
-            chk.code.push(quad);
+            if (!ctx.getText().contains("[") && !ctx.getText().contains(".") && !ctx.getText().contains("string")&& !ctx.getText().contains("bool") && ctx.getText().contains("int"))
+            {
+                quard quad = new quard();
+                System.out.println(ctx.getText());
+                quad.op = chk.var.get(0);
+                Integer c = -1;
+                String s = new String();
+                s = temp.toString() + "temp";
+                ++temp;
+                quad.x.name = ctx.varname().getText();
+                // System.out.println(ctx.varname().getText());
+                quad.x.addr = chk.defvars.get(ctx.varname().getText()).addr;
+                quad.y.name = s;
+                quad.y.addr = quad.x.addr;
+                chk.code.push(quad);
+                quad = new quard();
+                quad.y.name = s;
+                quad.x.name = chk.code.last.prev.y.name;
+                quad.op = "=";
+                quad.y.addr = chk.defvars.get(ctx.varname().getText()).addr;
+                chk.code.push(quad);
+            }
             // chk.code.print();
         }
         chk.var.add(ctx.type().getText());
@@ -1359,7 +1363,7 @@ public class Main
 
     public static check main() throws Exception
     {
-        // File f = new File("E:/test.txt");
+         //File f = new File("E:/test.txt");
         File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
