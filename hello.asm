@@ -1,8 +1,6 @@
 global    _start
 section   .text
 _start:
-      mov	rax,[str+0]
-      mov	dword [str+0],10
       mov	rdx,[str+0]
       xor	rdx,10
       not	rdx
