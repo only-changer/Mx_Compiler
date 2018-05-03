@@ -347,10 +347,10 @@ class MyVisitor extends MxBaseVisitor<check>
                     System.exit(-1);
                 }
             chk.code.add(ck.code);
-            if (!ctx.getText().contains("[") && !ctx.getText().contains(".") && !ctx.getText().contains("string") && !ctx.getText().contains("bool") && ctx.getText().contains("int") && ctx.expr().expr().size() == 1)
+            if (!ctx.getText().contains("[") && !ctx.getText().contains(".") && !ctx.getText().contains("string") && !ctx.getText().contains("bool") )
+            if (ctx.getText().contains("int") && ctx.expr().expr().size() <= 1)
             {
                 quard quad = new quard();
-                System.out.println(ctx.getText());
                 quad.op = chk.var.get(0);
                 Integer c = -1;
                 String s = new String();
