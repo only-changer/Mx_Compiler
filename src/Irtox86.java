@@ -11,8 +11,6 @@ public class Irtox86
     {
         Integer ws = 0;
         Integer f = 0;
-        PrintStream ps = new PrintStream("test.nasm");
-        System.setOut(ps);
         System.out.println("global    _start");
         System.out.println("section   .text");
         quard head = irr.head;

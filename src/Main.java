@@ -347,7 +347,7 @@ class MyVisitor extends MxBaseVisitor<check>
                     System.exit(-1);
                 }
             chk.code.add(ck.code);
-            if (!ctx.getText().contains("[") && !ctx.getText().contains(".") && !ctx.getText().contains("string")&& !ctx.getText().contains("bool") && ctx.getText().contains("int"))
+            if (!ctx.getText().contains("[") && !ctx.getText().contains(".") && !ctx.getText().contains("string")&& !ctx.getText().contains("bool") && ctx.getText().contains("int") &&ctx.expr().expr().size()==1)
             {
                 quard quad = new quard();
                 System.out.println(ctx.getText());
@@ -1363,7 +1363,7 @@ public class Main
 
     public static check main() throws Exception
     {
-        // File f = new File("E:/test.txt");
+         //File f = new File("E:/test.txt");
         File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);

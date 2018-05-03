@@ -1,22 +1,20 @@
 global    _start
 section   .text
-_origin:
-      mov	rax,[str+44]
-      mov	dword [str+44],0
-      mov	rcx,[str+44]
-      mov	rdx,[str+0]
-_check:
+_get:
       mov	rax,[str+0]
-      mov	rcx,[str+0]
-      mov	rdx,[str+0]
+      xor	rax,0
+      not	rax
+      cmp	rcx,0
+      je	_1else
+_0if:
       mov	rdi,rax
       mov	rax,60
       syscall
-_addList:
+_1else:
+_1ifback:
 _start:
-      mov	rax,[str+16]
-      mov	rcx,[str+0]
-      mov	dword [str+16],1temp
-      mov	rax,[str+20]
-      mov	rcx,[str+0]
-      mov	dword [str+20],1temp
+      mov	rdi,rax
+      mov	rax,60
+      syscall
+section   .bss
+str:      resb      64  
