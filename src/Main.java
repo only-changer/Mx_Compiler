@@ -347,28 +347,28 @@ class MyVisitor extends MxBaseVisitor<check>
                     System.exit(-1);
                 }
             chk.code.add(ck.code);
-            if (!ctx.getText().contains("[") && !ctx.getText().contains(".") && !ctx.getText().contains("string") && !ctx.getText().contains("bool") && ctx.expr().funname()==null)
-            if (ctx.getText().contains("int") && ctx.expr().expr().size() <= 1)
-            {
-                quard quad = new quard();
-                quad.op = chk.var.get(0);
-                Integer c = -1;
-                String s = new String();
-                s = temp.toString() + "temp";
-                ++temp;
-                quad.x.name = ctx.varname().getText();
-                // System.out.println(ctx.varname().getText());
-                quad.x.addr = chk.defvars.get(ctx.varname().getText()).addr;
-                quad.y.name = s;
-                quad.y.addr = quad.x.addr;
-                chk.code.push(quad);
-                quad = new quard();
-                quad.y.name = s;
-                quad.x.name = chk.code.last.prev.y.name;
-                quad.op = "=";
-                quad.y.addr = chk.defvars.get(ctx.varname().getText()).addr;
-                chk.code.push(quad);
-            }
+            if (!ctx.getText().contains("[") && !ctx.getText().contains(".") && !ctx.getText().contains("string") && !ctx.getText().contains("bool") && ctx.expr().funname() == null)
+                if (ctx.getText().contains("int") && ctx.expr().expr().size() <= 1)
+                {
+                    quard quad = new quard();
+                    quad.op = chk.var.get(0);
+                    Integer c = -1;
+                    String s = new String();
+                    s = temp.toString() + "temp";
+                    ++temp;
+                    quad.x.name = ctx.varname().getText();
+                    // System.out.println(ctx.varname().getText());
+                    quad.x.addr = chk.defvars.get(ctx.varname().getText()).addr;
+                    quad.y.name = s;
+                    quad.y.addr = quad.x.addr;
+                    chk.code.push(quad);
+                    quad = new quard();
+                    quad.y.name = s;
+                    quad.x.name = chk.code.last.prev.y.name;
+                    quad.op = "=";
+                    quad.y.addr = chk.defvars.get(ctx.varname().getText()).addr;
+                    chk.code.push(quad);
+                }
             // chk.code.print();
         }
         chk.var.add(ctx.type().getText());
@@ -926,12 +926,21 @@ class MyVisitor extends MxBaseVisitor<check>
 
                     if (ctx.expr(0) != null)
                         if (ctx.opd != null)
-                            if ((!(ctx.expr(0).getText().contains(".") || ctx.expr(0).varname() != null || ctx.expr(0).opcom != null)) || ctx.expr(0).varname().getText().equals("this"))
+                            if ((!(ctx.expr(0).getText().contains(".") || ctx.expr(0).varname() != null || ctx.expr(0).opcom != null)))
                             {
                                 System.out.println(ctx.getText());
                                 System.out.println("FBI WARNING! = left wrong!");
                                 System.exit(-1);
                             }
+                    if (ctx.expr(0) != null)
+                        if (ctx.opd != null)
+                            if (ctx.expr(0).varname() != null)
+                                if (ctx.expr(0).varname().getText().equals("this"))
+                                {
+                                    System.out.println(ctx.getText());
+                                    System.out.println("FBI WARNING! = left wrong!");
+                                    System.exit(-1);
+                                }
                 }
                 if (dd >= 2 && ctx.opd != null && !ctx.getText().contains("="))
                 {
@@ -1177,8 +1186,8 @@ class MyVisitor extends MxBaseVisitor<check>
                     if (ckk.var.get(1).equals("string"))
                         sa = "string";
                 s = sa;
-               //  System.out.println(s);
-                 //System.out.println(ckk.var);
+                //  System.out.println(s);
+                //System.out.println(ckk.var);
                 String ty = new String();
                 ty = sa;
                 if (defvars.containsKey(sa))
@@ -1207,7 +1216,7 @@ class MyVisitor extends MxBaseVisitor<check>
                 {
                     cla = "002";
                     check ck = visit(ctx.expr(1));
-                       System.out.println("???");
+                    System.out.println("???");
                     chk.var.addAll(ck.var);
                     chk.vars.addAll(ck.vars);
                 }
@@ -1367,7 +1376,7 @@ public class Main
 
     public static check main() throws Exception
     {
-        //File f = new File("E:/test.txt");
+       // File f = new File("E:/test.txt");
         File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
