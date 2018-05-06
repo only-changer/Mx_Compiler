@@ -427,7 +427,7 @@ class MyVisitor extends MxBaseVisitor<check>
         check chk = new check();
         String s = ctx.classname().getText();
         classname = s;
-        if (s.equals("")) System.exit(-1);
+        if (s.equals("") || s.equals("main")) System.exit(-1);
         Vector vec = new Vector();
         all al = new all();
         if (defclass.containsKey(s))
@@ -512,6 +512,7 @@ class MyVisitor extends MxBaseVisitor<check>
         Vector<String> pvec = c.var;
         local.putAll(map);
         defvars.putAll(map);
+        if (ctx.funname().getText().contains("__")) System.exit(-1);
         if (!classname.equals("")) defclass.get(classname).defvars.putAll(map);
         if (!getin) chk.defvars.putAll(map);
         Vector fun = new Vector();
@@ -925,7 +926,7 @@ class MyVisitor extends MxBaseVisitor<check>
 
                     if (ctx.expr(0) != null)
                         if (ctx.opd != null)
-                            if (!(ctx.expr(0).getText().contains(".") || ctx.expr(0).varname() != null || ctx.expr(0).opcom != null))
+                            if ((!(ctx.expr(0).getText().contains(".") || ctx.expr(0).varname() != null || ctx.expr(0).opcom != null)) || ctx.expr(0).varname().getText().equals("this"))
                             {
                                 System.out.println(ctx.getText());
                                 System.out.println("FBI WARNING! = left wrong!");
@@ -1011,7 +1012,7 @@ class MyVisitor extends MxBaseVisitor<check>
             {
                 System.out.println(ctx.getText());
                 System.out.println(defun);
-                System.out.println(getin);
+                System.out.println(ss);
                 System.out.println("FBI WARNING! function \"" + s + "\" undefined!");
                 System.exit(-1);
             }
@@ -1172,9 +1173,12 @@ class MyVisitor extends MxBaseVisitor<check>
 
                 check ckk = visit(ctx.expr(0));
                 String sa = ckk.var.get(0);
+                if (sa.equals("001") && ckk.var.size() > 1)
+                    if (ckk.var.get(1).equals("string"))
+                        sa = "string";
                 s = sa;
-                // System.out.println(s);
-                // System.out.println(defclass);
+               //  System.out.println(s);
+                 //System.out.println(ckk.var);
                 String ty = new String();
                 ty = sa;
                 if (defvars.containsKey(sa))
@@ -1203,7 +1207,7 @@ class MyVisitor extends MxBaseVisitor<check>
                 {
                     cla = "002";
                     check ck = visit(ctx.expr(1));
-                    //   System.out.println("???");
+                       System.out.println("???");
                     chk.var.addAll(ck.var);
                     chk.vars.addAll(ck.vars);
                 }
