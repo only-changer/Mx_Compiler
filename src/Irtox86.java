@@ -31,6 +31,15 @@ public class Irtox86
             }
             if (!temps.equals(""))
                 temp = Integer.parseInt(temps);
+            Integer temp2 = 0;
+            String temps2 = new String();
+            for (int i = 0; i < q.x.name.length(); ++i)
+            {
+                if (!(q.x.name.charAt(i) >= '0' && q.x.name.charAt(i) <= '9')) break;
+                temps2 += q.x.name.charAt(i);
+            }
+            if (!temps2.equals(""))
+                temp2 = Integer.parseInt(temps2);
 
             if (q.op.equals("label!!!!!!!!!"))
             {
@@ -78,11 +87,11 @@ public class Irtox86
             }
             if (q.op.equals("return"))
             {
-                if (temp >= 8) return;
+                if (temp2 >= 8) return;
                 System.out.print("      ");
                 System.err.print("      ");
-                System.out.println("mov" + '\t' + "rdi," + regs[temp]);
-                System.err.println("mov" + '\t' + "rdi," + regs[temp]);
+                System.out.println("mov" + '\t' + "rdi," + regs[temp2]);
+                System.err.println("mov" + '\t' + "rdi," + regs[temp2]);
                 System.out.print("      ");
                 System.err.print("      ");
                 System.out.println("mov" + '\t' + "rax,60");
@@ -112,7 +121,7 @@ public class Irtox86
     {
         Main m = new Main();
         check chk = m.main();
-       // chk.code.print();
+        chk.code.print();
         translate(chk.code);
     }
 }
