@@ -22,7 +22,7 @@ public class Irtox86
             ++k;
             quard q = new quard();
             q = head;
-            Integer temp = 0;
+            Integer temp = -1;
             String temps = new String();
             for (int i = 0; i < q.y.name.length(); ++i)
             {
@@ -31,7 +31,7 @@ public class Irtox86
             }
             if (!temps.equals(""))
                 temp = Integer.parseInt(temps);
-            Integer temp2 = 0;
+            Integer temp2 = -1;
             String temps2 = new String();
             for (int i = 0; i < q.x.name.length(); ++i)
             {
@@ -46,7 +46,7 @@ public class Irtox86
                 System.out.println(q.y.name + ":");
                 System.err.println(q.y.name + ":");
             }
-            if (q.op.equals("int"))
+            if (q.op.equals("int") || q.op.equals("bool"))
             {
                 System.out.print("      ");
                 System.err.print("      ");
@@ -56,10 +56,18 @@ public class Irtox86
             }
             if (q.op.equals("="))
             {
+                String s = new String();
+                if (!q.x.name.contains("temp"))
+                    s = q.x.name;
+                else
+                {
+                    if (temp2 >= 8 ) return;
+                    s = regs[temp2];
+                }
                 System.out.print("      ");
                 System.err.print("      ");
-                System.out.println("mov" + '\t' + "dword [str+" + q.y.addr.toString() + "]," + q.x.name);
-                System.err.println("mov" + '\t' + "dword [str+" + q.y.addr.toString() + "]," + q.x.name);
+                System.out.println("mov" + '\t' + "dword [str+" + q.y.addr.toString() + "]," + s);
+                System.err.println("mov" + '\t' + "dword [str+" + q.y.addr.toString() + "]," + s);
             }
             if (q.op.equals("=="))
             {
@@ -107,6 +115,14 @@ public class Irtox86
                 System.err.print("      ");
                 System.out.println("jmp" + '\t' + '_' + q.y.name);
                 System.err.println("jmp" + '\t' + '_' + q.y.name);
+            }
+            if (q.op.equals("+"))
+            {
+                if (temp >= 8 || temp2 >= 8) return;
+                System.out.print("      ");
+                System.err.print("      ");
+                System.out.println("add" + '\t' + regs[temp] + ',' + regs[temp2]);
+                System.err.println("add" + '\t' + regs[temp] + ',' + regs[temp2]);
             }
             if (head.next == null) break;
             head = head.next;

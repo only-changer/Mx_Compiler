@@ -313,7 +313,7 @@ class MyVisitor extends MxBaseVisitor<check>
         v.type = ctx.type().getText();
         if (getin)
         {
-            if (ctx.type().getText().equals("int"))
+            if (ctx.type().getText().equals("int") || ctx.type().getText().equals("bool"))
             {
                 v.addr = addr;
                 addr += 4;
@@ -348,7 +348,7 @@ class MyVisitor extends MxBaseVisitor<check>
                 }
             chk.code.add(ck.code);
             if (!ctx.getText().contains("[") && !ctx.getText().contains(".") && !ctx.getText().contains("string") && !ctx.getText().contains("bool") && ctx.expr().funname() == null)
-                if (ctx.getText().contains("int") && ctx.expr().expr().size() <= 1)
+                if ((ctx.getText().contains("int") || ctx.getText().contains("bool")))
                 {
                     quard quad = new quard();
                     quad.op = chk.var.get(0);
@@ -362,12 +362,18 @@ class MyVisitor extends MxBaseVisitor<check>
                     quad.y.name = s;
                     quad.y.addr = quad.x.addr;
                     chk.code.push(quad);
-                    quad = new quard();
-                    quad.y.name = s;
-                    quad.x.name = chk.code.last.prev.y.name;
-                    quad.op = "=";
-                    quad.y.addr = chk.defvars.get(ctx.varname().getText()).addr;
-                    chk.code.push(quad);
+                    if (ck.code != null)
+                        if (ck.code.last != null)
+                        {
+                            chk.code.add(ck.code);
+                            quard q = new quard();
+                            q.y.name = ctx.varname().getText();
+                            q.y.addr = chk.defvars.get(ctx.varname().getText()).addr;
+                            q.op = "=";
+                            q.x.name = ck.code.last.y.name;
+                            q.x.addr = ck.code.last.y.addr;
+                            chk.code.push(q);
+                        }
                 }
             // chk.code.print();
         }
@@ -1376,7 +1382,7 @@ public class Main
 
     public static check main() throws Exception
     {
-       // File f = new File("E:/test.txt");
+        //File f = new File("E:/test.txt");
         File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
