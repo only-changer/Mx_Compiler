@@ -57,8 +57,12 @@ public class Irtox86
             if (q.op.equals("="))
             {
                 String s = new String();
+                String ss = new String();
                 if (!q.x.name.contains("temp"))
+                {
                     s = q.x.name;
+                    ss = "dword";
+                }
                 else
                 {
                     if (temp2 >= 8 ) return;
@@ -66,8 +70,8 @@ public class Irtox86
                 }
                 System.out.print("      ");
                 System.err.print("      ");
-                System.out.println("mov" + '\t' + "dword [str+" + q.y.addr.toString() + "]," + s);
-                System.err.println("mov" + '\t' + "dword [str+" + q.y.addr.toString() + "]," + s);
+                System.out.println("mov" + '\t' + ss +  "[str+" + q.y.addr.toString() + "]," + s);
+                System.err.println("mov" + '\t' + ss +  "[str+" + q.y.addr.toString() + "]," + s);
             }
             if (q.op.equals("=="))
             {

@@ -1,19 +1,15 @@
 global    main
 section   .text
 main:
-      mov	rdx,[str+0]
-      xor	rdx,10
-      not	rdx
-      cmp	rcx,0
-      je	_1else
-_0if:
       mov	rax,[str+0]
-      mov	dword [str+0],20
-_1else:
-      mov	rcx,[str+0]
-      mov	dword [str+0],30
-_1ifback:
+      mov	dword [str+0],10
+      mov	rax,[str+4]
+      mov	dword [str+4],20
       mov	rax,[str+0]
+      mov	rcx,[str+4]
+      add	rax,rcx
+      mov	[str+8],rax
+      mov	rax,[str+8]
       mov	rdi,rax
       mov	rax,60
       syscall
