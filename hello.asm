@@ -9,6 +9,11 @@ _0for:
       mov	rsi,[str+8]
       add	rsi,1
       mov	[str+8],rsi
+      mov	rax,[str+4]
+      mov	rcx,[str+4]
+      mov	rdx,[str+8]
+      add	rcx,rdx
+      mov	[str+4],rcx
       mov	rsp,[str+8]
       mov	rbp,[str+0]
       cmp	rsp,rbp
@@ -27,6 +32,12 @@ _1for:
       mov	rsi,[str+12]
       add	rsi,1
       mov	[str+12],rsi
+      mov	rax,[str+4]
+      mov	rcx,[str+4]
+      add	rcx,10
+      mov	rdx,[str+12]
+      add	rcx,rdx
+      mov	[str+4],rcx
       mov	rsp,[str+12]
       mov	rbp,[str+0]
       cmp	rsp,rbp

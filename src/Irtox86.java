@@ -141,7 +141,7 @@ public class Irtox86
             }
             if (q.op.equals("+"))
             {
-                if (temp >= 8 || temp2 >= 8) return;
+
                 String s = new String();
                 String ss = new String();
                 if (!q.x.name.contains("temp"))
@@ -151,7 +151,7 @@ public class Irtox86
                 }
                 else
                 {
-                    if (temp2 >= 8 ) return;
+                    if (temp >= 8 || temp2 >= 8) return;
                     s = regs[temp2];
                 }
                 System.out.print("      ");
@@ -196,6 +196,6 @@ public class Irtox86
         Main m = new Main();
         check chk = m.main();
         chk.code.print();
-        translate(chk.code);
+       // translate(chk.code);
     }
 }
