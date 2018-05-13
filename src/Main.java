@@ -826,7 +826,7 @@ class MyVisitor extends MxBaseVisitor<check>
                         quad.x.name = "";
                         irr.push(quad);
                         quad = new quard();
-                        quad.y.name = "_" + b.toString() + "else";
+                        quad.y.name = "_" + b_i.toString() + "else";
                         quad.op = "label!!!!!!!!!";
                         irr.push(quad);
                     }
