@@ -1,15 +1,45 @@
 global    main
 section   .text
 main:
-      mov	rax,[str+0]
-      mov	dword [str+0],10
+      mov	dword[str+0],10
+      mov	dword[str+4],0
+_0for:
+      mov	rbx,[str+8]
+      mov	dword[str+8],1
+      mov	rsi,[str+8]
+      add	rsi,1
+      mov	[str+8],rsi
+      mov	rsp,[str+8]
+      mov	rbp,[str+0]
+      cmp	rsp,rbp
+      jle	_0cmp
+      mov	rsp,0
+      jmp	_0cmpback
+_0cmp:
+      mov	rsp,1
+_0cmpback:
+      cmp	rsp,1
+      je	_0for
+_0forback:
+_1for:
+      mov	rbx,[str+12]
+      mov	dword[str+12],1
+      mov	rsi,[str+12]
+      add	rsi,1
+      mov	[str+12],rsi
+      mov	rsp,[str+12]
+      mov	rbp,[str+0]
+      cmp	rsp,rbp
+      jle	_1cmp
+      mov	rsp,0
+      jmp	_1cmpback
+_1cmp:
+      mov	rsp,1
+_1cmpback:
+      cmp	rsp,1
+      je	_1for
+_1forback:
       mov	rax,[str+4]
-      mov	dword [str+4],20
-      mov	rax,[str+0]
-      mov	rcx,[str+4]
-      add	rax,rcx
-      mov	[str+8],rax
-      mov	rax,[str+8]
       mov	rdi,rax
       mov	rax,60
       syscall

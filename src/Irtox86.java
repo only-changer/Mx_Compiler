@@ -58,6 +58,7 @@ public class Irtox86
             {
                 String s = new String();
                 String ss = new String();
+                String sy = new String();
                 if (!q.x.name.contains("temp"))
                 {
                     s = q.x.name;
@@ -68,10 +69,16 @@ public class Irtox86
                     if (temp2 >= 8 ) return;
                     s = regs[temp2];
                 }
+                if (q.y.addr == -1 && temp <= 8)
+                {
+                    sy = regs[temp];
+                    ss ="";
+                }
+                else sy = "[str+" + q.y.addr.toString() + "]" ;
                 System.out.print("      ");
                 System.err.print("      ");
-                System.out.println("mov" + '\t' + ss +  "[str+" + q.y.addr.toString() + "]," + s);
-                System.err.println("mov" + '\t' + ss +  "[str+" + q.y.addr.toString() + "]," + s);
+                System.out.println("mov" + '\t' + ss +   sy  + ','+ s);
+                System.err.println("mov" + '\t' + ss +   sy + ','+s);
             }
             if (q.op.equals("=="))
             {
@@ -96,6 +103,18 @@ public class Irtox86
                 System.err.print("      ");
                 System.out.println("je" + '\t' + '_' + q.x.name);
                 System.err.println("je" + '\t' + '_' + q.x.name);
+            }
+            if (q.op.equals("for"))
+            {
+                if (temp2 >= 8) return;
+                System.out.print("      ");
+                System.err.print("      ");
+                System.out.println("cmp" + '\t' + regs[temp2] + ",1");
+                System.err.println("cmp" + '\t' + regs[temp2] + ",1");
+                System.out.print("      ");
+                System.err.print("      ");
+                System.out.println("je" + '\t'  + q.y.name);
+                System.err.println("je" + '\t' + q.y.name);
             }
             if (q.op.equals("return"))
             {
@@ -123,10 +142,45 @@ public class Irtox86
             if (q.op.equals("+"))
             {
                 if (temp >= 8 || temp2 >= 8) return;
+                String s = new String();
+                String ss = new String();
+                if (!q.x.name.contains("temp"))
+                {
+                    s = q.x.name;
+                    ss = "dword";
+                }
+                else
+                {
+                    if (temp2 >= 8 ) return;
+                    s = regs[temp2];
+                }
                 System.out.print("      ");
                 System.err.print("      ");
-                System.out.println("add" + '\t' + regs[temp] + ',' + regs[temp2]);
-                System.err.println("add" + '\t' + regs[temp] + ',' + regs[temp2]);
+                System.out.println("add" + '\t' + regs[temp] + ',' + s);
+                System.err.println("add" + '\t' + regs[temp] + ',' + s);
+            }
+            if (q.op.equals("<="))
+            {
+                if (temp >= 8 || temp2 >= 8) return;
+                System.out.print("      ");
+                System.out.println("cmp" + '\t' + regs[temp] + ',' + regs[temp2]);
+                System.out.print("      ");
+                System.out.println("jle" + '\t' + q.next.y.name);
+                System.err.print("      ");
+                System.err.println("cmp" + '\t' + regs[temp] + ',' + regs[temp2]);
+                System.err.print("      ");
+                System.err.println("jle" + '\t' + q.next.y.name);
+                String s = new String();
+                s = q.next.y.name;
+                s += "back";
+                System.out.print("      ");
+                System.out.println("mov" + '\t' + regs[temp]+",0");
+                System.out.print("      ");
+                System.out.println("jmp" + '\t' + s);
+                System.err.print("      ");
+                System.err.println("mov" + '\t' + regs[temp]+",0");
+                System.err.print("      ");
+                System.err.println("jmp" + '\t' + s);
             }
             if (head.next == null) break;
             head = head.next;
@@ -141,7 +195,7 @@ public class Irtox86
     {
         Main m = new Main();
         check chk = m.main();
-        //chk.code.print();
+        chk.code.print();
         translate(chk.code);
     }
 }

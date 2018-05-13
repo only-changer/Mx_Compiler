@@ -167,6 +167,7 @@ class MyVisitor extends MxBaseVisitor<check>
     boolean classfun = false;
     Integer temp = 0;
     Integer b = 0;
+    Integer b_f = 0;
 
     MyVisitor()
     {
@@ -805,6 +806,10 @@ class MyVisitor extends MxBaseVisitor<check>
             check ck = visit(ctx.stmt(i));
             chk.defvars.putAll(ck.defvars);
             chk.vars.addAll(ck.vars);
+            if (ctx.opf != null)
+            {
+                irr.add(ck.code);
+            }
             if (ctx.op != null)
                 if (ctx.op.getText().equals("if"))
                     if (i == 0)
@@ -855,7 +860,6 @@ class MyVisitor extends MxBaseVisitor<check>
         for (int i = 0; i < ctx.expr().size(); ++i)
         {
             check ck = visit(ctx.expr(i));
-            chk.code.add(ck.code);
             v.addAll(ck.var);
             if (ctx.op != null)
                 if (ctx.expr(0).getText().equals("1"))
@@ -879,6 +883,40 @@ class MyVisitor extends MxBaseVisitor<check>
                     chk.code.push(quad);
                     chk.code.add(irr);
                 }
+            if (ctx.opf != null && ctx.expr().size() == 3)
+            {
+                if (i == 0)
+                {
+                    quard quads = new quard();
+                    quads.y.name = "_" + b_f.toString() + "for";
+                    quads.op = "label!!!!!!!!!";
+                    chk.code.push(quads);
+                    chk.code.add(ck.code);
+                }
+                if (i == 1)
+                {
+                    irr.add(ck.code);
+                    quard quad = new quard();
+                    quad.op = "for";
+                    quad.y.name =  "_" + b_f.toString() + "for";
+                    if (ck.code.last != null && ck.code.last.prev != null && ck.code.last.prev.y.name != null)
+                    {
+                        quad.x.name = ck.code.last.prev.y.name;
+                        quad.x.addr = ck.code.last.prev.y.addr;
+                        irr.push(quad);
+                    }
+                    quad = new quard();
+                    quad.y.name = "_" + b_f.toString() + "forback";
+                    ++b_f;
+                    quad.op = "label!!!!!!!!!";
+                    irr.push(quad);
+                }
+                if (i == 2)
+                {
+                    chk.code.add(ck.code);
+                    chk.code.add(irr);
+                }
+            }
             if (ctx.opf != null || ctx.getText().contains("while(")) v.add("bool");
             if (ctx.getText().contains(";i;")) v.add("string");
             chk.vars.addAll(ck.vars);
@@ -1262,6 +1300,26 @@ class MyVisitor extends MxBaseVisitor<check>
             chk.vars.addAll(ck.vars);
 
         }
+        if (ctx.op != null)
+            if (ctx.op.getText().equals("++"))
+            {
+                if (ir1.last != null)
+                {
+                    quard quad = new quard();
+                    quad.y.name = ir1.last.y.name;
+                    quad.y.addr = ir1.last.y.addr;
+                    quad.x.name = "1";
+                    quad.x.addr = -1;
+                    quad.op = "+";
+                    chk.code.add(ir1);
+                    chk.code.push(quad);
+                    quad = new quard();
+                    quad.op = "=";
+                    quad.y.addr = ir1.last.y.addr;
+                    quad.x.name = ir1.last.y.name;
+                    chk.code.push(quad);
+                }
+            }
         if (ctx.opc != null)
         {
             chk.code = ir1;
@@ -1283,7 +1341,6 @@ class MyVisitor extends MxBaseVisitor<check>
                 {
                     quard quad = new quard();
                     quad.y.name = ir1.last.y.name;
-                    ;
                     //  System.out.println(ctx.getText());
                     quad.x.name = ir2.last.y.name;
                     quad.op = ctx.op.getText();
@@ -1302,6 +1359,21 @@ class MyVisitor extends MxBaseVisitor<check>
             quad.op = ctx.op1.getText();
             chk.code.add(ir1);
             chk.code.add(ir2);
+            chk.code.push(quad);
+            quad = new quard();
+            quad.op = "label!!!!!!!!!";
+            quad.y.name = '_'+b.toString() + "cmp";
+            chk.code.push(quad);
+            quad = new quard();
+            quad.op = "=";
+            quad.y.name = ir1.last.y.name;
+            quad.y.addr = -1;
+            quad.x.name = "1";
+            chk.code.push(quad);
+            quad = new quard();
+            quad.op = "label!!!!!!!!!";
+            quad.y.name =  '_'+b.toString() + "cmpback";
+            ++b;
             chk.code.push(quad);
         }
         if (ctx.opd != null && ir1.last != null && ir2.last != null)
@@ -1382,7 +1454,7 @@ public class Main
 
     public static check main() throws Exception
     {
-        //File f = new File("E:/test.txt");
+       //File f = new File("E:/test.txt");
         File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
