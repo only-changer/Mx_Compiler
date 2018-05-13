@@ -64,7 +64,7 @@ public class Irtox86
                     if (temp2 >= 8 ) return;
                     s = regs[temp2];
                 }
-                if (q.y.addr == -1 && temp <= 8)
+                if (q.y.name.contains("temp") && temp < 8)
                 {
                     sy = regs[temp];
                     ss ="";
@@ -156,7 +156,7 @@ public class Irtox86
     {
         Main m = new Main();
         check chk = m.main();
-        //chk.code.print();
+       // chk.code.print();
         translate(chk.code);
     }
 }

@@ -169,7 +169,7 @@ class MyVisitor extends MxBaseVisitor<check>
     Integer b = 0;
     Integer b_f = 0;
     Integer b_i = 0;
-
+    Map<String,Integer> regs = new HashMap<>();
     MyVisitor()
     {
         cla = "";
@@ -352,18 +352,6 @@ class MyVisitor extends MxBaseVisitor<check>
             if (!ctx.getText().contains("[") && !ctx.getText().contains(".") && !ctx.getText().contains("string") && !ctx.getText().contains("bool") && ctx.expr().funname() == null)
                 if ((ctx.getText().contains("int") || ctx.getText().contains("bool")))
                 {
-                    quard quad = new quard();
-                    quad.op = chk.var.get(0);
-                    Integer c = -1;
-                    String s = new String();
-                    s = temp.toString() + "temp";
-                    ++temp;
-                    quad.x.name = ctx.varname().getText();
-                    // System.out.println(ctx.varname().getText());
-                    quad.x.addr = chk.defvars.get(ctx.varname().getText()).addr;
-                    quad.y.name = s;
-                    quad.y.addr = quad.x.addr;
-                    chk.code.push(quad);
                     if (ck.code != null)
                         if (ck.code.last != null)
                         {
@@ -640,9 +628,7 @@ class MyVisitor extends MxBaseVisitor<check>
         check chk = new check();
         for (int k = 0; k < ctx.stmt().size(); ++k)
         {
-            Integer origins = temp;
             check ck = visit(ctx.stmt(k));
-            temp = origins;
             chk.code.add(ck.code);
             chk.defvars.putAll(ck.defvars);
             defvars.putAll(ck.defvars);
@@ -1184,8 +1170,13 @@ class MyVisitor extends MxBaseVisitor<check>
                 quad.op = chk.var.get(0);
                 Integer c = -1;
                 String s = new String();
-                s = temp.toString() + "temp";
-                ++temp;
+                if (regs.containsKey(ctx.varname().getText())) s = regs.get(ctx.varname().getText()).toString() + "temp";
+                else
+                {
+                    s = temp.toString() + "temp";
+                    ++temp;
+                    regs.put(ctx.varname().getText(),temp);
+                }
                 quad.x.name = ctx.varname().getText();
                 // System.out.println(ctx.varname().getText());
                 quad.x.addr = defvars.get(ctx.varname().getText()).addr;
@@ -1462,7 +1453,7 @@ public class Main
 
     public static check main() throws Exception
     {
-       //File f = new File("E:/test.txt");
+      // File f = new File("E:/test.txt");
         File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
