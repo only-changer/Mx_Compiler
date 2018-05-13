@@ -855,6 +855,8 @@ class MyVisitor extends MxBaseVisitor<check>
             chk.code.add(ck.code);
         }
         Vector v = new Vector();
+        ir code_temp = new ir();
+        if (ctx.expr().size() == 3) code_temp = visit(ctx.expr(2)).code;
         for (int i = 0; i < ctx.expr().size(); ++i)
         {
             check ck = visit(ctx.expr(i));
@@ -897,6 +899,8 @@ class MyVisitor extends MxBaseVisitor<check>
                 }
                 if (i == 1)
                 {
+                    chk.code.add(code_for);
+                    chk.code.add(code_temp);
                     chk.code.add(ck.code);
                     quard quad = new quard();
                     quad.op = "for";
@@ -915,11 +919,8 @@ class MyVisitor extends MxBaseVisitor<check>
                 }
                 if (i == 2)
                 {
-                    chk.code.add(code_for);
-                    chk.code.add(ck.code);
 
                     chk.code.add(irr);
-
                 }
                 continue;
             }
