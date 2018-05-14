@@ -1119,8 +1119,8 @@ class MyVisitor extends MxBaseVisitor<check>
                     if (ctx.expr(0).getText().charAt(i) == '[') break;
                     sname += ctx.expr(0).getText().charAt(i);
                 }
-                System.out.println(defcom);
-                System.out.println(sname);
+               // System.out.println(defcom);
+               // System.out.println(sname);
                 Integer k = new Integer(0);
                 if (defcom.containsKey(sname))
                 {
@@ -1504,7 +1504,7 @@ public class Main
 
     public static check main() throws Exception
     {
-        //File f = new File("E:/test.txt");
+       // File f = new File("E:/test.txt");
          File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
