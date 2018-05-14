@@ -1400,7 +1400,6 @@ class MyVisitor extends MxBaseVisitor<check>
             //  System.out.println(ctx.getText());
             quad.x.name = ir2.last.y.name;
             quad.y.addr = -1;
-            Integer ii = quad.y.name.charAt(0) - '0';
             quad.op = ctx.op1.getText();
             if (ctx.op1.getText().equals("<=")) quad.z.name = temp.toString() + "temp";
             chk.code.add(ir1);
