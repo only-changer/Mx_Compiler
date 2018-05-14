@@ -1121,7 +1121,11 @@ class MyVisitor extends MxBaseVisitor<check>
                 }
                 System.out.println(defcom);
                 System.out.println(sname);
-                Integer k = new Integer(defcom.get(sname));
+                Integer k = new Integer(0);
+                if (defcom.containsKey(sname))
+                {
+                    k = defcom.get(sname);
+                }
                 int n = ctx.expr().size();
 
                 for (int i = 1; i < n; ++i)
