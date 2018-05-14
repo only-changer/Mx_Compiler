@@ -134,6 +134,37 @@ public class Irtox86
                 System.out.println("jmp" + '\t' + '_' + q.y.name);
             }
             if (q.op.equals("+"))
+        {
+
+            String s = new String();
+            String ss = new String();
+            String sy = new String();
+            if (q.x.name.equals("arr"))
+            {
+                s = "[str+" + q.x.addr.toString() + "]";
+            }
+            else if (!q.x.name.contains("temp"))
+            {
+                s = q.x.name;
+                ss = "dword";
+            }
+            else
+            {
+                if (temp >= 8 || temp2 >= 8) return;
+                s = regs[temp2];
+            }
+            if (q.y.name.equals("arr"))
+            {
+                sy = "dword[str+" + q.y.addr.toString() + "]";
+            }
+            else
+            {
+                sy = regs[temp];
+            }
+            System.out.print("      ");
+            System.out.println("add" + '\t' +  sy + ',' + s);
+        }
+            if (q.op.equals("*"))
             {
 
                 String s = new String();
@@ -162,7 +193,7 @@ public class Irtox86
                     sy = regs[temp];
                 }
                 System.out.print("      ");
-                System.out.println("add" + '\t' +  sy + ',' + s);
+                System.out.println("mul" + '\t' +  sy + ',' + s);
             }
             if (q.op.equals("<="))
             {
