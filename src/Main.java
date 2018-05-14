@@ -878,10 +878,23 @@ class MyVisitor extends MxBaseVisitor<check>
                 if (ctx.op.getText().equals("if"))
                 {
                     quard quad = new quard();
-                    quad.x.name = b_i - 1 + "else";
-                    quad.y.name = ck.code.last.y.name;
-                    quad.op = "if";
                     chk.code.add(ck.code);
+                    String s = new String(ck.code.last.y.name);
+                    if (ctx.expr().size() >= 1 && ctx.expr(0).getText().length() >= 20 )
+                    {
+                        quad = new quard();
+                        quad.op = "=";
+                        quad.x.name = ck.code.last.y.name;
+                        quad.y.name = temp.toString() + "temp";
+                        s = quad.y.name;
+                        ++temp;
+                        chk.code.push(quad);
+                    }
+                    quad = new quard();
+                    quad.x.name = b_i - 1 + "else";
+                    quad.y.name = s;
+                    quad.op = "if";
+
                     chk.code.push(quad);
                     chk.code.add(irr);
                     continue;
@@ -1466,7 +1479,7 @@ public class Main
 
     public static check main() throws Exception
     {
-        //File f = new File("E:/test.txt");
+       // File f = new File("E:/test.txt");
         File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
