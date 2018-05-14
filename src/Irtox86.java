@@ -193,7 +193,7 @@ public class Irtox86
                     sy = regs[temp];
                 }
                 System.out.print("      ");
-                System.out.println("mul" + '\t' +  sy + ',' + s);
+                System.out.println("imul" + '\t' +  sy + ',' + s);
             }
             if (q.op.equals("<="))
             {
