@@ -17,7 +17,8 @@ _0ifback:
       not	rax
       xor	rax,5
       not	rax
-      cmp	rbx,0
+      mov	rsp,rbp
+      cmp	rsp,0
       je	_1else
 _1if:
       mov	rdx,30
@@ -29,7 +30,3 @@ _1ifback:
       syscall
 section   .bss
 str:      resb      64  
-
-
-
-

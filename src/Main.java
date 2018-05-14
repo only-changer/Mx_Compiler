@@ -884,7 +884,7 @@ class MyVisitor extends MxBaseVisitor<check>
                     {
                         quad = new quard();
                         quad.op = "=";
-                        quad.x.name = ck.code.last.y.name;
+                        quad.x.name = "5temp";
                         quad.y.name = temp.toString() + "temp";
                         s = quad.y.name;
                         ++temp;
@@ -1480,7 +1480,7 @@ public class Main
     public static check main() throws Exception
     {
        // File f = new File("E:/test.txt");
-        File f = new File("program.txt");
+       File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
         run(input);
