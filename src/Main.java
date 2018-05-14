@@ -1131,7 +1131,10 @@ class MyVisitor extends MxBaseVisitor<check>
                     vec.addAll(ck.var);
                     vec.add("int");
                     chk.vars.add(vec);
-                    k += 4 * Integer.parseInt(ctx.expr(i).getText());
+                    if (ctx.expr(i).NUM() != null)
+                    {
+                        k += 4 * Integer.parseInt(ctx.expr(i).getText());
+                    }
                 }
 
                 int l = (s.length() - ss.length()) / 2;
