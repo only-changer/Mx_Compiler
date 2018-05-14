@@ -15,7 +15,7 @@ import org.omg.Messaging.SYNC_WITH_TRANSPORT;
 class varible
 {
     String name;
-    int com;
+    Integer arr;
     boolean isconst;
     Integer addr;
 
@@ -34,6 +34,7 @@ class quard
     quard prev;
     quard next;
     varible z;
+
     quard()
     {
         op = new String();
@@ -170,7 +171,8 @@ class MyVisitor extends MxBaseVisitor<check>
     Integer b = 0;
     Integer b_f = 0;
     Integer b_i = 0;
-    Map<String,Integer> regs = new HashMap<>();
+    Map<String, Integer> regs = new HashMap<>();
+
     MyVisitor()
     {
         cla = "";
@@ -336,11 +338,15 @@ class MyVisitor extends MxBaseVisitor<check>
             {
                 if (ctx.type().getText().charAt(i) == '[') ++num;
             }
-
-            if (!classname.equals("")) defclass.get(classname).defcom.put(ctx.varname().getText(), num);
-            else defcom.put(ctx.varname().getText(), num);
+            v.addr = addr;
+            addr += 400;
+            if (!classname.equals("")) defclass.get(classname).defcom.put(ctx.varname().getText(), v.addr);
+            else
+            {
+                defcom.put(ctx.varname().getText(), v.addr);
+            }
         }
-        if (getin)
+        if (getin && (ctx.type().getText().equals("int") || ctx.type().getText().equals("bool")))
         {
             Integer t = new Integer(temp);
             regs.put(ctx.varname().getText(), t);
@@ -368,7 +374,8 @@ class MyVisitor extends MxBaseVisitor<check>
                         {
                             chk.code.add(ck.code);
                             quard q = new quard();
-                            if (regs.containsKey(ctx.varname().getText())) q.y.name = regs.get(ctx.varname().getText()).toString() + "temp";
+                            if (regs.containsKey(ctx.varname().getText()))
+                                q.y.name = regs.get(ctx.varname().getText()).toString() + "temp";
                             q.y.addr = chk.defvars.get(ctx.varname().getText()).addr;
                             q.op = "=";
                             q.x.name = ck.code.last.y.name;
@@ -880,7 +887,7 @@ class MyVisitor extends MxBaseVisitor<check>
                     quard quad = new quard();
                     chk.code.add(ck.code);
                     String s = new String(ck.code.last.y.name);
-                    if (ctx.expr().size() >= 1 && ctx.expr(0).getText().length() >= 20 )
+                    if (ctx.expr().size() >= 1 && ctx.expr(0).getText().length() >= 20)
                     {
                         quad = new quard();
                         quad.op = "=";
@@ -917,7 +924,7 @@ class MyVisitor extends MxBaseVisitor<check>
                     chk.code.add(ck.code);
                     quard quad = new quard();
                     quad.op = "for";
-                    quad.y.name =  "_" + b_f.toString() + "for";
+                    quad.y.name = "_" + b_f.toString() + "for";
                     if (ck.code.last != null && ck.code.last.prev != null && ck.code.last.prev.y.name != null)
                     {
                         quad.x.name = ck.code.last.prev.y.name;
@@ -1098,11 +1105,25 @@ class MyVisitor extends MxBaseVisitor<check>
         {
             String s = new String();
             s = visit(ctx.expr(0)).var.get(0);
-            // System.out.println("LLLLL"+s);
             if (s.contains("[]"))
             {
-                int n = ctx.expr().size();
                 String ss = new String();
+                String sname = new String();
+                for (int i = 0; i < s.length(); ++i)
+                {
+                    if (s.charAt(i) == '[') break;
+                    ss += s.charAt(i);
+                }
+                for (int i = 0;i < ctx.expr(0).getText().length();++i)
+                {
+                    if (ctx.expr(0).getText().charAt(i) == '[') break;
+                    sname += ctx.expr(0).getText().charAt(i);
+                }
+                System.out.println(defcom);
+                System.out.println(sname);
+                Integer k = new Integer(defcom.get(sname));
+                int n = ctx.expr().size();
+
                 for (int i = 1; i < n; ++i)
                 {
                     check ck = visit(ctx.expr(i));
@@ -1110,23 +1131,18 @@ class MyVisitor extends MxBaseVisitor<check>
                     vec.addAll(ck.var);
                     vec.add("int");
                     chk.vars.add(vec);
-                    //  System.out.println("SSS");
-                    //  System.out.println(vec);
+                    k += 4 * Integer.parseInt(ctx.expr(i).getText());
                 }
-                for (int i = 0; i < s.length(); ++i)
-                {
-                    if (s.charAt(i) == '[') break;
-                    ss += s.charAt(i);
-                }
+
                 int l = (s.length() - ss.length()) / 2;
                 n -= 1;
-                //System.out.println(s);
-                // System.out.println(defcom);
                 for (int i = 0; i < l - n; ++i) ss += "[]";
                 chk.var.add(ss);
-                //System.out.println(n);
-                // System.out.println(chk.var);
-                // System.out.println(chk.vars);
+                quard quad = new quard();
+                quad.y.name = "arr";
+                quad.y.addr =   k;
+                quad.op = "arr";
+                chk.code.push(quad);
             }
             else
             {
@@ -1200,7 +1216,8 @@ class MyVisitor extends MxBaseVisitor<check>
                 quad.op = chk.var.get(0);
                 Integer c = -1;
                 String s = new String();
-                if (regs.containsKey(ctx.varname().getText())) s = regs.get(ctx.varname().getText()).toString() + "temp";
+                if (regs.containsKey(ctx.varname().getText()))
+                    s = regs.get(ctx.varname().getText()).toString() + "temp";
                 else
                 {
                 }
@@ -1360,8 +1377,10 @@ class MyVisitor extends MxBaseVisitor<check>
                 {
                     quard quad = new quard();
                     quad.y.name = ir1.last.y.name;
+                    quad.y.addr = ir1.last.y.addr;
                     //  System.out.println(ctx.getText());
                     quad.x.name = ir2.last.y.name;
+                    quad.x.addr = ir2.last.y.addr;
                     quad.op = ctx.op.getText();
                     chk.code.add(ir1);
                     chk.code.add(ir2);
@@ -1479,8 +1498,8 @@ public class Main
 
     public static check main() throws Exception
     {
-       // File f = new File("E:/test.txt");
-       File f = new File("program.txt");
+        //File f = new File("E:/test.txt");
+         File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
         run(input);

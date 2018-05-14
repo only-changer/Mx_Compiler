@@ -54,9 +54,9 @@ public class Irtox86
             }
             if (q.op.equals("int") || q.op.equals("bool"))
             {
-               // System.out.print("      ");
-               // if (temp >= 8) return;
-               // System.out.println("mov" + '\t' + regs[temp] + ",[str+" + q.y.addr.toString() + ']');
+                // System.out.print("      ");
+                // if (temp >= 8) return;
+                // System.out.println("mov" + '\t' + regs[temp] + ",[str+" + q.y.addr.toString() + ']');
             }
             if (q.op.equals("="))
             {
@@ -70,15 +70,15 @@ public class Irtox86
                 }
                 else
                 {
-                    if (temp2 >= 8 ) return;
+                    if (temp2 >= 8) return;
                     s = regs[temp2];
                 }
                 if (q.y.name.contains("temp") && temp < 8)
                 {
                     sy = regs[temp];
-                    ss ="";
+                    ss = "";
                 }
-                else sy = "[str+" + q.y.addr.toString() + "]" ;
+                else sy = "[str+" + q.y.addr.toString() + "]";
                 if (!q.y.name.equals(q.x.name))
                 {
                     System.out.print("      ");
@@ -107,13 +107,22 @@ public class Irtox86
                 System.out.print("      ");
                 System.out.println("cmp" + '\t' + regs[temp2] + ",1");
                 System.out.print("      ");
-                System.out.println("je" + '\t'  + q.y.name);
+                System.out.println("je" + '\t' + q.y.name);
             }
             if (q.op.equals("return"))
             {
+                String s = new String();
                 if (temp2 >= 8) return;
+                if (q.x.name.equals("arr"))
+                {
+                    s = "[str+" + q.x.addr.toString() + "]";
+                }
+                else
+                {
+                    s = regs[temp2];
+                }
                 System.out.print("      ");
-                System.out.println("mov" + '\t' + "rdi," + regs[temp2]);
+                System.out.println("mov" + '\t' + "rdi," +  s);
                 System.out.print("      ");
                 System.out.println("mov" + '\t' + "rax,60");
                 System.out.print("      ");
@@ -129,7 +138,12 @@ public class Irtox86
 
                 String s = new String();
                 String ss = new String();
-                if (!q.x.name.contains("temp"))
+                String sy = new String();
+                if (q.x.name.equals("arr"))
+                {
+                    s = "[str+" + q.x.addr.toString() + "]";
+                }
+                else if (!q.x.name.contains("temp"))
                 {
                     s = q.x.name;
                     ss = "dword";
@@ -139,12 +153,20 @@ public class Irtox86
                     if (temp >= 8 || temp2 >= 8) return;
                     s = regs[temp2];
                 }
+                if (q.y.name.equals("arr"))
+                {
+                    sy = "dword[str+" + q.y.addr.toString() + "]";
+                }
+                else
+                {
+                    sy = regs[temp];
+                }
                 System.out.print("      ");
-                System.out.println("add" + '\t' + regs[temp] + ',' + s);
+                System.out.println("add" + '\t' +  sy + ',' + s);
             }
             if (q.op.equals("<="))
             {
-                if (temp >= 8 || temp2 >= 8 ||temp3 >= 8) return;
+                if (temp >= 8 || temp2 >= 8 || temp3 >= 8) return;
                 System.out.print("      ");
                 System.out.println("cmp" + '\t' + regs[temp] + ',' + regs[temp2]);
                 System.out.print("      ");
@@ -153,8 +175,8 @@ public class Irtox86
                 s = q.next.y.name;
                 s += "back";
                 System.out.print("      ");
-              //  System.out.println(q.z.name);
-                System.out.println("mov" + '\t' + regs[temp3]+",0");
+                //  System.out.println(q.z.name);
+                System.out.println("mov" + '\t' + regs[temp3] + ",0");
                 System.out.print("      ");
                 System.out.println("jmp" + '\t' + s);
             }
@@ -169,7 +191,7 @@ public class Irtox86
     {
         Main m = new Main();
         check chk = m.main();
-       // chk.code.print();
+        chk.code.print();
         translate(chk.code);
     }
 }
