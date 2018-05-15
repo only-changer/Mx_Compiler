@@ -813,7 +813,7 @@ class MyVisitor extends MxBaseVisitor<check>
             check ck = visit(ctx.stmt(i));
             chk.defvars.putAll(ck.defvars);
             chk.vars.addAll(ck.vars);
-            if (ctx.opf != null)
+            if (ctx.opf != null || ctx.opw != null)
             {
                 code_for = ck.code;
             }
@@ -940,9 +940,33 @@ class MyVisitor extends MxBaseVisitor<check>
                 }
                 if (i == 2)
                 {
-
                     chk.code.add(irr);
                 }
+                continue;
+            }
+            if (ctx.opw != null)
+            {
+                quard quads = new quard();
+                quads.y.name = "_" + b_f.toString() + "for";
+                quads.op = "label!!!!!!!!!";
+                chk.code.push(quads);
+                chk.code.add(code_for);
+                chk.code.add(ck.code);
+                quard quad = new quard();
+                quad.op = "for";
+                quad.y.name = "_" + b_f.toString() + "for";
+                if (ck.code.last != null && ck.code.last.prev != null && ck.code.last.prev.y.name != null)
+                {
+                    quad.x.name = ck.code.last.prev.y.name;
+                    quad.x.addr = ck.code.last.prev.y.addr;
+                    irr.push(quad);
+                }
+                quad = new quard();
+                quad.y.name = "_" + b_f.toString() + "forback";
+                ++b_f;
+                quad.op = "label!!!!!!!!!";
+                chk.code.add(irr);
+                chk.code.push(quad);
                 continue;
             }
             chk.code.add(ck.code);
@@ -1358,15 +1382,37 @@ class MyVisitor extends MxBaseVisitor<check>
             {
                 if (ir1.last != null)
                 {
-                    quard quad = new quard();
-                    quad.y.name = ir1.last.y.name;
-                    quad.y.addr = ir1.last.y.addr;
-                    quad.x.name = "1";
-                    quad.x.addr = "-1";
-                    quad.op = "+";
-                    chk.code.add(ir1);
-                    chk.code.push(quad);
-
+                    if (ctx.getText().charAt(0) == '+')
+                    {
+                        quard quad = new quard();
+                        quad.y.name = ir1.last.y.name;
+                        quad.y.addr = ir1.last.y.addr;
+                        quad.x.name = "1";
+                        quad.x.addr = "-1";
+                        quad.op = "+";
+                        chk.code.add(ir1);
+                        chk.code.push(quad);
+                    }else
+                    {
+                        ir irr = new ir();
+                        quard quad = new quard();
+                        quad.y.name = temp.toString() + "temp";
+                        quad.x.name = ir1.last.y.name;
+                        quad.x.addr = ir1.last.y.addr;
+                        quad.op = "=";
+                        chk.code.push(quad);
+                        quad = new quard();
+                        quad.y.name = ir1.last.y.name;
+                        quad.y.addr = ir1.last.y.addr;
+                        quad.x.name = "1";
+                        quad.x.addr = "-1";
+                        quad.op = "+";
+                        irr.push(quad);
+                        chk.code.push(quad);
+                        chk.code.add(ir1);
+                        ir1.last.y.name = temp.toString() + "temp";
+                        ++temp;
+                    }
                 }
             }
         if (ctx.opc != null)
