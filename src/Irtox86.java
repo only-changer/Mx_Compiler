@@ -117,10 +117,13 @@ public class Irtox86
                 {
                     s = "[str+" + q.x.addr.toString() + "]";
                 }
-                else
+                else if (q.x.name.contains("temp"))
                 {
+
                     s = regs[temp2];
                 }
+                else
+                    s = q.x.name;
                 System.out.print("      ");
                 System.out.println("mov" + '\t' + "rdi," +  s);
                 System.out.print("      ");
@@ -202,6 +205,22 @@ public class Irtox86
                 System.out.println("cmp" + '\t' + regs[temp] + ',' + regs[temp2]);
                 System.out.print("      ");
                 System.out.println("jle" + '\t' + q.next.y.name);
+                String s = new String();
+                s = q.next.y.name;
+                s += "back";
+                System.out.print("      ");
+                //  System.out.println(q.z.name);
+                System.out.println("mov" + '\t' + regs[temp3] + ",0");
+                System.out.print("      ");
+                System.out.println("jmp" + '\t' + s);
+            }
+            if (q.op.equals("<"))
+            {
+                if (temp >= 8 || temp2 >= 8 || temp3 >= 8) return;
+                System.out.print("      ");
+                System.out.println("cmp" + '\t' + regs[temp] + ',' + regs[temp2]);
+                System.out.print("      ");
+                System.out.println("jl" + '\t' + q.next.y.name);
                 String s = new String();
                 s = q.next.y.name;
                 s += "back";

@@ -1401,11 +1401,31 @@ class MyVisitor extends MxBaseVisitor<check>
             quad.x.name = ir2.last.y.name;
             quad.y.addr = -1;
             quad.op = ctx.op1.getText();
-            if (ctx.op1.getText().equals("<=")) quad.z.name = temp.toString() + "temp";
+            quad.z.name = temp.toString() + "temp";
             chk.code.add(ir1);
             chk.code.add(ir2);
             chk.code.push(quad);
             if (ctx.op1.getText().equals("<="))
+            {
+                quad = new quard();
+                quad.op = "label!!!!!!!!!";
+                quad.y.name = '_' + b.toString() + "cmp";
+                chk.code.push(quad);
+                quad = new quard();
+                quad.op = "=";
+                quad.y.name = temp.toString() + "temp";
+                ++temp;
+
+                quad.y.addr = -1;
+                quad.x.name = "1";
+                chk.code.push(quad);
+                quad = new quard();
+                quad.op = "label!!!!!!!!!";
+                quad.y.name = '_' + b.toString() + "cmpback";
+                ++b;
+                chk.code.push(quad);
+            }
+            if (ctx.op1.getText().equals("<"))
             {
                 quad = new quard();
                 quad.op = "label!!!!!!!!!";
