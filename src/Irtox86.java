@@ -78,7 +78,7 @@ public class Irtox86
                     sy = regs[temp];
                     ss = "";
                 }
-                else sy = "[str+" + q.y.addr.toString() + "]";
+                else sy = "[str+" + q.y.addr + "]";
                 if (!q.y.name.equals(q.x.name))
                 {
                     System.out.print("      ");
@@ -115,7 +115,7 @@ public class Irtox86
                 if (temp2 >= 8) return;
                 if (q.x.name.equals("arr"))
                 {
-                    s = "[str+" + q.x.addr.toString() + "]";
+                    s = "[str+" + q.x.addr + "]";
                 }
                 else if (q.x.name.contains("temp"))
                 {
@@ -144,7 +144,7 @@ public class Irtox86
             String sy = new String();
             if (q.x.name.equals("arr"))
             {
-                s = "[str+" + q.x.addr.toString() + "]";
+                s = "[str+" + q.x.addr+ "]";
             }
             else if (!q.x.name.contains("temp"))
             {
@@ -158,7 +158,7 @@ public class Irtox86
             }
             if (q.y.name.equals("arr"))
             {
-                sy = "dword[str+" + q.y.addr.toString() + "]";
+                sy = "dword[str+" + q.y.addr+ "]";
             }
             else
             {
@@ -175,7 +175,7 @@ public class Irtox86
                 String sy = new String();
                 if (q.x.name.equals("arr"))
                 {
-                    s = "[str+" + q.x.addr.toString() + "]";
+                    s = "[str+" + q.x.addr + "]";
                 }
                 else if (!q.x.name.contains("temp"))
                 {
@@ -189,7 +189,7 @@ public class Irtox86
                 }
                 if (q.y.name.equals("arr"))
                 {
-                    sy = "dword[str+" + q.y.addr.toString() + "]";
+                    sy = "dword[str+" + q.y.addr + "]";
                 }
                 else
                 {
@@ -241,7 +241,7 @@ public class Irtox86
     {
         Main m = new Main();
         check chk = m.main();
-        chk.code.print();
+       // chk.code.print();
         translate(chk.code);
     }
 }
