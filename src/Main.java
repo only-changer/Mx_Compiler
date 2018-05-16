@@ -368,7 +368,7 @@ class MyVisitor extends MxBaseVisitor<check>
             if (ctx.type().getText().equals("int") || ctx.type().getText().equals("bool"))
             {
                 v.addr = addr;
-                addr += 4;
+                addr += 8;
             }
         }
 
@@ -386,7 +386,7 @@ class MyVisitor extends MxBaseVisitor<check>
                 if (ctx.type().getText().charAt(i) == '[') ++num;
             }
             v.addr = new Integer(addr);
-            addr += 400;
+            addr += 800;
             if (!classname.equals("")) defclass.get(classname).defcom.put(ctx.varname().getText(), v.addr);
             else
             {
@@ -1247,7 +1247,7 @@ class MyVisitor extends MxBaseVisitor<check>
                                 q = new quard();
                                 q.y.name = temp.toString() + "temp";
                                 q.op = "*";
-                                q.x.name = "4";
+                                q.x.name = "8";
                                 chk.code.push(q);
                                 q = new quard();
                                 q.y.name = temp.toString() + "temp";
@@ -1259,8 +1259,8 @@ class MyVisitor extends MxBaseVisitor<check>
                             }
                             else
                             {
-                                if (i == n-1 && ctx.expr(i).NUM() != null)  quad.x.name = addr + "+ 4 * " + s0; else
-                                quad.x.addr = addr + "+ 4 * " + s0;
+                                if (i == n-1 && ctx.expr(i).NUM() != null)  quad.x.name = addr + "+ 8 * " + s0; else
+                                quad.x.addr = addr + "+ 8 * " + s0;
                             }
                         }
                         else if (i == n - 1)
@@ -1273,12 +1273,12 @@ class MyVisitor extends MxBaseVisitor<check>
                             q = new quard();
                             q.y.name = temp.toString() + "temp";
                             q.op = "*";
-                            q.x.name = "4";
+                            q.x.name = "8";
                             chk.code.push(q);
                             quad.x.name = temp.toString() + "temp";
                         }
                         else
-                            quad.x.addr = " 4 * " + s0;
+                            quad.x.addr = " 8 * " + s0;
 
                         temp0 = move(curtemp);
                         if (temp0 < 8) addr = regsname[temp0];
@@ -1689,7 +1689,7 @@ class MyVisitor extends MxBaseVisitor<check>
         {
             check ck = visit(ctx.expr(i));
 
-            addr += 100 * 4;
+            addr += 100 * 8;
         }
         return chk;
     }

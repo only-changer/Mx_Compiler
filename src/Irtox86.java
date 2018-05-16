@@ -66,7 +66,7 @@ public class Irtox86
                 String sy = new String();
                 if (q.x.name.equals("addr"))
                 {
-                    ss = "dword";
+                    ss = "qword";
                     s = q.x.addr;
                 }
                 else if (q.x.name.equals("arr"))
@@ -76,7 +76,7 @@ public class Irtox86
                 if (!q.x.name.contains("temp"))
                 {
                     s = q.x.name;
-                    ss = "dword";
+                    ss = "qword";
                 }
                 else
                 {
@@ -162,7 +162,7 @@ public class Irtox86
                 else if (!q.x.name.contains("temp"))
                 {
                     s = q.x.name;
-                    ss = "dword";
+                    ss = "qword";
                 }
                 else
                 {
@@ -171,7 +171,7 @@ public class Irtox86
                 }
                 if (q.y.name.equals("arr"))
                 {
-                    sy = "dword[str+" + q.y.addr + "]";
+                    sy = "qword[str+" + q.y.addr + "]";
                 }
                 else
                 {
@@ -197,7 +197,7 @@ public class Irtox86
                 else if (!q.x.name.contains("temp"))
                 {
                     s = q.x.name;
-                    ss = "dword";
+                    ss = "qword";
                 }
                 else
                 {
@@ -206,7 +206,7 @@ public class Irtox86
                 }
                 if (q.y.name.equals("arr"))
                 {
-                    sy = "dword[str+" + q.y.addr + "]";
+                    sy = "qword[str+" + q.y.addr + "]";
                 }
                 else
                 {
