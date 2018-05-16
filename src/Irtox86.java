@@ -210,7 +210,7 @@ public class Irtox86
                 }
                 else
                 {
-                    if (temp > 0 )
+                    if (temp >= 0 )
                     sy = regs[temp]; else sy = q.y.name;
                 }
                 System.out.print("      ");
@@ -245,6 +245,10 @@ public class Irtox86
                     st = "[str + " + addr.toString() + "]";
                     addr += 4;
                 }
+                if (!q.x.name.contains("temp"))
+                {
+                    st2 = q.x.name;
+                } else
                 if (temp2 < 16)
                 {
                     st2 = regs[temp2];

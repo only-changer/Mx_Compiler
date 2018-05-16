@@ -30,7 +30,7 @@ _0cmpback:
       je	_0for
 _0forback:
       add	rbx,1
-      cmp	rbx,rdx
+      cmp	rbx,2
       jl	_1cmp
       mov	rbp,0
       jmp	_1cmpback
