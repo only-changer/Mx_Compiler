@@ -1207,7 +1207,11 @@ class MyVisitor extends MxBaseVisitor<check>
                     k = defcom.get(sname).start.toString();
                 }
                 int n = ctx.expr().size();
-                String addr = defcom.get(sname).start.toString();
+                String addr = new String();
+                if(defcom.containsKey(sname))
+                {
+                    addr = defcom.get(sname).start.toString();
+                }
                 Integer temp1 = new Integer(0);
                 Integer temp0 = new Integer(0);
                 for (int i = 1; i < n; ++i)
@@ -1217,7 +1221,7 @@ class MyVisitor extends MxBaseVisitor<check>
                     vec.addAll(ck.var);
                     vec.add("int");
                     chk.vars.add(vec);
-                    if ((ctx.expr(i).NUM() != null || ctx.expr(i).varname() != null))
+                    if ((ctx.expr(i).NUM() != null || ctx.expr(i).varname() != null) && ck.code != null && ck.code.last != null)
                     {
                         quard quad = new quard();
                         quad.y.name = curtemp;
@@ -1700,7 +1704,7 @@ public class Main
 
     public static check main() throws Exception
     {
-      //  File f = new File("E:/test.txt");
+       // File f = new File("E:/test.txt");
            File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
