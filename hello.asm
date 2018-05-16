@@ -2,44 +2,101 @@ global    main
 section   .text
 main:
       mov	rax,5
-      mov	rcx,0
+      mov	rcx,10
+      mov	rdx,1208+ 4 * 0
+      mov	dword[str+rdx],8
+      mov	rdx,1208+ 4 * 1
+      mov	dword[str+rdx],408
       mov	rdx,0
-_0for:
-      imul	rdx,4
-      add	rdx,4
-      mov	rbx,rdx
-      add	rcx,1
-      mov	[str+rbx],rcx
-      add	rdx,1
-      cmp	rdx,rax
-      jl	_0cmp
       mov	rbx,0
+_1for:
+      mov	rsp,0
+_0for:
+      mov	rbp,[str+1208+ 4 * rbx]
+      mov	rsi,rsp
+      imul	rsi,4
+      add	rbp,rsi
+      add	rdx,1
+      mov	[str+rbp],rdx
+      add	rsp,1
+      cmp	rsp,rax
+      jl	_0cmp
+      mov	rbp,0
       jmp	_0cmpback
 _0cmp:
-      mov	rbx,1
+      mov	rbp,1
 _0cmpback:
-      cmp	rbx,1
+      cmp	rbp,1
       je	_0for
 _0forback:
-      mov	rbx,0
-      mov	rdx,0
-_1for:
-      imul	rdx,4
-      add	rdx,4
-      mov	rsp,rdx
-      add	rbx,[str+rsp]
-      add	rdx,1
-      cmp	rdx,rax
+      add	rbx,1
+      cmp	rbx,rdx
       jl	_1cmp
-      mov	rsp,0
+      mov	rbp,0
       jmp	_1cmpback
 _1cmp:
-      mov	rsp,1
+      mov	rbp,1
 _1cmpback:
-      cmp	rsp,1
+      cmp	rbp,1
       je	_1for
 _1forback:
+      mov	rsp,rax
+_2for:
+      mov	rbp,[str+1208+ 4 * 1]
+      mov	rsi,rsp
+      imul	rsi,4
+      add	rbp,rsi
+      add	rdx,1
+      mov	[str+rbp],rdx
+      add	rsp,1
+      cmp	rsp,rcx
+      jl	_2cmp
+      mov	rbp,0
+      jmp	_2cmpback
+_2cmp:
+      mov	rbp,1
+_2cmpback:
+      cmp	rbp,1
+      je	_2for
+_2forback:
+      mov	rbp,0
+      mov	rbx,0
+_3for:
       mov	rdi,rbx
+      imul	rdi,4
+      add	rdi,8
+      mov	rsi,rdi
+      add	rbp,[str+rsi]
+      add	rbx,1
+      cmp	rbx,rax
+      jl	_3cmp
+      mov	rsi,0
+      jmp	_3cmpback
+_3cmp:
+      mov	rsi,1
+_3cmpback:
+      cmp	rsi,1
+      je	_3for
+_3forback:
+      mov	rbx,0
+_4for:
+      mov	rdi,rbx
+      imul	rdi,4
+      add	rdi,408
+      mov	rsi,rdi
+      add	rbp,[str+rsi]
+      add	rbx,1
+      cmp	rbx,rcx
+      jl	_4cmp
+      mov	rsi,0
+      jmp	_4cmpback
+_4cmp:
+      mov	rsi,1
+_4cmpback:
+      cmp	rsi,1
+      je	_4for
+_4forback:
+      mov	rdi,rbp
       mov	rax,60
       syscall
 section   .bss

@@ -1240,16 +1240,22 @@ class MyVisitor extends MxBaseVisitor<check>
                             if (i == n - 1 && ctx.expr(i).NUM() == null)
                             {
                                 quard q = new quard();
-                                q.y.name = s0;
+                                q.y.name = temp.toString() + "temp";
+                                q.op = "=";
+                                q.x.name = s0;
+                                chk.code.push(q);
+                                q = new quard();
+                                q.y.name = temp.toString() + "temp";
                                 q.op = "*";
                                 q.x.name = "4";
                                 chk.code.push(q);
                                 q = new quard();
-                                q.y.name = s0;
+                                q.y.name = temp.toString() + "temp";
                                 q.op = "+";
                                 q.x.name = addr;
                                 chk.code.push(q);
-                                quad.x.name =  s0;
+                                quad.x.name =  temp.toString() + "temp";
+                                ++temp;
                             }
                             else
                             {
@@ -1260,12 +1266,16 @@ class MyVisitor extends MxBaseVisitor<check>
                         else if (i == n - 1)
                         {
                             quard q = new quard();
-                            q.y.name = s0;
+                            q.y.name = temp.toString() + "temp";
+                            q.op = "=";
+                            q.x.name = s0;
+                            chk.code.push(q);
+                            q = new quard();
+                            q.y.name = temp.toString() + "temp";
                             q.op = "*";
                             q.x.name = "4";
                             chk.code.push(q);
-
-                            quad.x.name = s0;
+                            quad.x.name = temp.toString() + "temp";
                         }
                         else
                             quad.x.addr = " 4 * " + s0;
