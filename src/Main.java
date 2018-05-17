@@ -1580,8 +1580,20 @@ class MyVisitor extends MxBaseVisitor<check>
                 if (!ctx.op.getText().equals("=") && ir1.last != null && ir2.last != null)
                 {
                     quard quad = new quard();
-                    quad.y.name = ir1.last.y.name;
-                    quad.y.addr = ir1.last.y.addr;
+                    if (ir1.last.y.addr.equals(""))
+                    {
+                        quad.op = "=";
+                        quad.y.name = temp.toString() + "temp";
+                        quad.x.name = ir1.last.y.name;
+                        chk.code.push(quad);
+                        quad = new quard();
+                        quad.y.name = temp.toString() + "temp";
+                    }
+                    else
+                    {
+                        quad.y.name = ir1.last.y.name;
+                        quad.y.addr = ir1.last.y.addr;
+                    }
                     //  System.out.println(ctx.getText());
                     quad.x.name = ir2.last.y.name;
                     quad.x.addr = ir2.last.y.addr;

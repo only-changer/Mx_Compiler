@@ -335,7 +335,7 @@ public class Irtox86
     {
         Main m = new Main();
         check chk = m.main();
-        //chk.code.print();
+       // chk.code.print();
         addr = chk.addr;
         translate(chk.code);
     }
