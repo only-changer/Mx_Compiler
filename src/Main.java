@@ -400,13 +400,13 @@ class MyVisitor extends MxBaseVisitor<check>
                 defcom.get(curarr).add(v.addr, 100);
             }
         }
-        if (getin && defclass.containsKey(ctx.type().getText()))
+       /* if (getin && defclass.containsKey(ctx.type().getText()))
         {
             v.addr = addr;
             addr += defclass.get(ctx.type().getText()).size;
-        }
+        }*/
         chk.defvars.put(ctx.varname().getText(), v);
-        if (getin)
+        if (getin && !ctx.type().getText().contains("["))
         {
             Integer t = new Integer(temp);
             regs.put(ctx.varname().getText(), t);
@@ -1345,7 +1345,6 @@ class MyVisitor extends MxBaseVisitor<check>
                     {
                     }
                     quad.x.name = ctx.varname().getText();
-                    // System.out.println(ctx.varname().getText());
                     quad.x.addr = defclass.get(cla).addr.get(ctx.varname().getText()).toString();
                     quad.y.name = s;
                     quad.y.addr = quad.x.addr;
