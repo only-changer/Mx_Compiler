@@ -206,6 +206,7 @@ class MyVisitor extends MxBaseVisitor<check>
     Map<String, Integer> regs = new HashMap<>();
     String curarr = new String();
     String curtemp = new String();
+    String arrname = new String();
 
     MyVisitor()
     {
@@ -1129,6 +1130,16 @@ class MyVisitor extends MxBaseVisitor<check>
                 System.out.println("FBI WARNING! main wrong!");
                 System.exit(-1);
             }
+
+            if (s.equals("size") && cla.equals("001"))
+                if (defcom.containsKey(arrname))
+                {
+                    quard quad = new quard();
+                    quad.op = "imm";
+                    quad.y.name = defcom.get(arrname).length.toString();
+                    quad.y.addr = "-1";
+                    chk.code.push(quad);
+                }
             Map<String, Vector<String>> defun = new HashMap();
             //System.out.println(cla);
             if (!cla.equals(""))
@@ -1449,7 +1460,6 @@ class MyVisitor extends MxBaseVisitor<check>
                 if (sa.equals("001") && ckk.var.size() > 1)
                     if (ckk.var.get(1).equals("string"))
                         sa = "string";
-                s = sa;
                 //  System.out.println(s);
                 //System.out.println(ckk.var);
                 String ty = new String();
@@ -1471,8 +1481,15 @@ class MyVisitor extends MxBaseVisitor<check>
                 else if (ty.contains("[]"))
                 {
                     cla = "001";
+                    arrname = "";
+                    for (int ii = 0; ii < s.length(); ++ii)
+                    {
+                        if (s.charAt(ii) == '[') break;
+                        arrname += s.charAt(ii);
+                    }
                     check ck = visit(ctx.expr(1));
                     //  System.out.println("???");
+                    chk.code.add(ck.code);
                     chk.var.addAll(ck.var);
                     chk.vars.addAll(ck.vars);
                 }
@@ -1715,7 +1732,14 @@ class MyVisitor extends MxBaseVisitor<check>
         for (int i = 0; i < ctx.expr().size(); ++i)
         {
             check ck = visit(ctx.expr(i));
-
+            if (ctx.expr(i).NUM() != null)
+            {
+                Integer n = Integer.parseInt(ctx.expr(i).NUM().getText());
+                if (defcom.containsKey(curarr))
+                {
+                    defcom.get(curarr).length = n;
+                }
+            }
             addr += 100 * 8;
         }
         return chk;
@@ -1742,7 +1766,7 @@ public class Main
     public static check main() throws Exception
     {
        // File f = new File("E:/test.txt");
-         File f = new File("program.txt");
+           File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
         run(input);

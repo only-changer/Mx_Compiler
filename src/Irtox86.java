@@ -125,14 +125,14 @@ public class Irtox86
             if (q.op.equals("return"))
             {
                 String s = new String();
-                if (temp2 >= 16) return;
+                if (temp2 >= 16 && !q.x.addr.equals("-1")) return;
                 if (q.x.name.equals("arr") || q.x.name.equals("addr"))
                 {
                     s = "[str+" + q.x.addr + "]";
                 }
                 else if (q.x.name.contains("temp"))
                 {
-
+                    if (temp2 >= 16) return;
                     s = regs[temp2];
                 }
                 else
