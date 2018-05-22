@@ -659,6 +659,7 @@ class MyVisitor extends MxBaseVisitor<check>
                 quard q = new quard();
                 q.op = "=";
                 q.y.name = regs.get(params.get(i)).toString() + "temp";
+                if (i < 6)
                 q.x.name = callregs[i].toString() + "temp";
                 chk.code.push(q);
             }
@@ -1388,7 +1389,7 @@ class MyVisitor extends MxBaseVisitor<check>
                             quad.x.addr = " 8 * " + s0;
 
                         temp0 = move(curtemp);
-                        if (temp0 < 8 && temp0 >= 0) addr = regsname[temp0];
+                        if (temp0 < 7 && temp0 >= 0) addr = regsname[temp0];
                         chk.code.push(quad);
                     }
                 }
