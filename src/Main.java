@@ -1233,6 +1233,7 @@ class MyVisitor extends MxBaseVisitor<check>
                             Integer addri = regs.get(sv) * 8 + originaddr;
                             quad.x.addr = addri.toString();
                             quad.x.name = "arr";
+                            if (i < 6)
                             quad.y.name = callregs[i].toString() + "temp";
                             chk.code.push(quad);
                         }
@@ -1242,6 +1243,7 @@ class MyVisitor extends MxBaseVisitor<check>
                             quad.op = "=";
                             quad.x.addr = "-1";
                             quad.x.name = ctx.exprs().expr(i).NUM().getText();
+                            if (i < 6)
                             quad.y.name = callregs[i].toString() + "temp";
                             chk.code.push(quad);
                         }
@@ -1386,7 +1388,7 @@ class MyVisitor extends MxBaseVisitor<check>
                             quad.x.addr = " 8 * " + s0;
 
                         temp0 = move(curtemp);
-                        if (temp0 < 8) addr = regsname[temp0];
+                        if (temp0 < 8 && temp0 >= 0) addr = regsname[temp0];
                         chk.code.push(quad);
                     }
                 }
