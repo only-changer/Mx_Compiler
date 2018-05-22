@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 public class Irtox86
 {
     static Integer addr = 0;
-    static String[] regs = {"rax", "rcx", "rdx", "rbx", "rsp", "rbp", "rsi", "rdi","r16","r9","r10","r11","r12","r13","r14","r15"};
+    static String[] regs = {"rax", "rcx", "rdx", "rbx", "rbp", "rsi", "rdi","r8","r9","r10","r11","r12","r13","r14","r15"};
 
     public static void translate(ir irr) throws Exception
     {
@@ -56,8 +56,24 @@ public class Irtox86
             if (q.op.equals("int") || q.op.equals("bool"))
             {
                 // System.out.print("      ");
-                // if (temp >= 16) return;
+                // if (temp >= 15) return;
                 // System.out.println("mov" + '\t' + regs[temp] + ",[str+" + q.y.addr.toString() + ']');
+            }
+            if (q.op.equals("push"))
+            {
+                if (temp2 < 15)
+                {
+                    System.out.print("      ");
+                    System.out.println("push" + '\t' + regs[temp2]);
+                }
+            }
+            if (q.op.equals("pop"))
+            {
+                if (temp2 < 15)
+                {
+                    System.out.print("      ");
+                    System.out.println("pop" + '\t' + regs[temp2]);
+                }
             }
             if (q.op.equals("="))
             {
@@ -80,10 +96,10 @@ public class Irtox86
                 }
                 else
                 {
-                    if (temp2 >= 16) return;
+                    if (temp2 >= 15) return;
                     s = regs[temp2];
                 }
-                if (q.y.name.contains("temp") && temp < 16)
+                if (q.y.name.contains("temp") && temp < 15)
                 {
                     sy = regs[temp];
                     ss = "";
@@ -101,14 +117,14 @@ public class Irtox86
             if (q.op.equals("=="))
             {
                 System.out.print("      ");
-                if (temp >= 16) return;
+                if (temp >= 15) return;
                 System.out.println("xor" + '\t' + regs[temp] + "," + q.x.name);
                 System.out.print("      ");
                 System.out.println("not" + '\t' + regs[temp]);
             }
             if (q.op.equals("if"))
             {
-                if (temp >= 16) return;
+                if (temp >= 15) return;
                 System.out.print("      ");
                 System.out.println("cmp" + '\t' + regs[temp] + ",0");
                 System.out.print("      ");
@@ -116,7 +132,7 @@ public class Irtox86
             }
             if (q.op.equals("for"))
             {
-                if (temp2 >= 16) return;
+                if (temp2 >= 15) return;
                 System.out.print("      ");
                 System.out.println("cmp" + '\t' + regs[temp2] + ",1");
                 System.out.print("      ");
@@ -125,14 +141,14 @@ public class Irtox86
             if (q.op.equals("return"))
             {
                 String s = new String();
-                if (temp2 >= 16 && !q.x.addr.equals("-1")) return;
+                if (temp2 >= 15 && !q.x.addr.equals("-1")) return;
                 if (q.x.name.equals("arr") || q.x.name.equals("addr"))
                 {
                     s = "[str+" + q.x.addr + "]";
                 }
                 else if (q.x.name.contains("temp"))
                 {
-                    if (temp2 >= 16) return;
+                    if (temp2 >= 15) return;
                     s = regs[temp2];
                 }
                 else
@@ -144,10 +160,35 @@ public class Irtox86
                 System.out.print("      ");
                 System.out.println("syscall");
             }
+            if (q.op.equals("ret"))
+            {
+                String s = new String();
+                if (temp2 >= 15 && !q.x.addr.equals("-1")) return;
+                if (q.x.name.equals("arr") || q.x.name.equals("addr"))
+                {
+                    s = "[str+" + q.x.addr + "]";
+                }
+                else if (q.x.name.contains("temp"))
+                {
+                    if (temp2 >= 15) return;
+                    s = regs[temp2];
+                }
+                else
+                    s = q.x.name;
+                System.out.print("      ");
+                System.out.println("mov" + '\t' + "rax," + s);
+                System.out.print("      ");
+                System.out.println("ret");
+            }
             if (q.op.equals("goto"))
             {
                 System.out.print("      ");
                 System.out.println("jmp" + '\t' + '_' + q.y.name);
+            }
+            if (q.op.equals("call"))
+            {
+                System.out.print("      ");
+                System.out.println("call" + '\t' + q.y.name);
             }
             if (q.op.equals("+"))
             {
@@ -166,7 +207,7 @@ public class Irtox86
                 }
                 else
                 {
-                    if (temp >= 16 || temp2 >= 16) return;
+                    if (temp >= 15 || temp2 >= 15) return;
                     s = regs[temp2];
                 }
                 if (q.y.name.equals("arr"))
@@ -177,7 +218,7 @@ public class Irtox86
                 {
                     //System.out.println(temp);
                     if (temp < 0) sy = q.y.name; else
-                    if (temp < 16)
+                    if (temp < 15)
                         sy = regs[temp];
                     else sy = "[" + q.y.addr + "]";
                 }
@@ -201,7 +242,7 @@ public class Irtox86
                 }
                 else
                 {
-                    if (temp >= 16 || temp2 >= 16) return;
+                    if (temp >= 15 || temp2 >= 15) return;
                     s = regs[temp2];
                 }
                 if (q.y.name.equals("arr") || q.y.name.equals("addr"))
@@ -218,7 +259,7 @@ public class Irtox86
             }
             if (q.op.equals("<="))
             {
-                if (temp >= 16 || temp2 >= 16 || temp3 >= 16) return;
+                if (temp >= 15 || temp2 >= 15 || temp3 >= 15) return;
                 System.out.print("      ");
                 System.out.println("cmp" + '\t' + regs[temp] + ',' + regs[temp2]);
                 System.out.print("      ");
@@ -237,7 +278,7 @@ public class Irtox86
                 String st = new String();
                 String st2 = new String();
                 String st3 = new String();
-                if (temp < 16)
+                if (temp < 15)
                 {
                     st = regs[temp];
                 }else
@@ -249,7 +290,7 @@ public class Irtox86
                 {
                     st2 = q.x.name;
                 } else
-                if (temp2 < 16)
+                if (temp2 < 15)
                 {
                     st2 = regs[temp2];
                 }else
@@ -257,7 +298,7 @@ public class Irtox86
                     st2 = "[str + " + addr.toString() + "]";
                     addr += 4;
                 }
-                if (temp3 < 16)
+                if (temp3 < 15)
                 {
                     st3 = regs[temp3];
                 }else
@@ -283,7 +324,7 @@ public class Irtox86
                 String st = new String();
                 String st2 = new String();
                 String st3 = new String();
-                if (temp < 16)
+                if (temp < 15)
                 {
                     st = regs[temp];
                 }else
@@ -295,7 +336,7 @@ public class Irtox86
                 {
                     st2 = q.x.name;
                 } else
-                if (temp2 < 16)
+                if (temp2 < 15)
                 {
                     st2 = regs[temp2];
                 }else
@@ -303,7 +344,7 @@ public class Irtox86
                     st2 = "[str + " + addr.toString() + "]";
                     addr += 4;
                 }
-                if (temp3 < 16)
+                if (temp3 < 15)
                 {
                     st3 = regs[temp3];
                 }else
@@ -335,7 +376,7 @@ public class Irtox86
     {
         Main m = new Main();
         check chk = m.main();
-       // chk.code.print();
+        //chk.code.print();
         addr = chk.addr;
         translate(chk.code);
     }
