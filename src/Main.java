@@ -1339,7 +1339,7 @@ class MyVisitor extends MxBaseVisitor<check>
                         else
                         {
                             temp1 = move(ck.code.last.y.name);
-                            if (temp1 < 8) s0 = regsname[temp1];
+                            if (temp1 < 7) s0 = regsname[temp1];
                         }
                         if (i == 1)
                         {
@@ -1400,7 +1400,7 @@ class MyVisitor extends MxBaseVisitor<check>
                 chk.var.add(ss);
                 quard quad = new quard();
                 quad.y.name = "arr";
-                if (temp0 < 8)
+                if (temp0 < 7)
                     quad.y.addr = regsname[temp0];
                 quad.op = ss;
                 chk.code.push(quad);
