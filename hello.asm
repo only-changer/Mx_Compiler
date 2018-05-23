@@ -1,8 +1,12 @@
 global    main
 section   .text
 tak:
-      mov	rax,rdi
-      mov	rcx,rsi
+      mov	[str+240],rdi
+      mov	[str+248],rsi
+      mov	[str+256],rdx
+      mov	rax,[str+240]
+      mov	rcx,[str+248]
+      mov	rdx,[str+256]
       cmp	rcx,rax
       jl	_0cmp
       mov	rbx,0
@@ -13,7 +17,6 @@ _0cmpback:
       cmp	rbx,0
       je	_0else
 _0if:
-      mov	r11,1
       mov	rbx,rax
       sub	rbx,1
       push	rax
@@ -121,6 +124,7 @@ _0if:
       pop	rdx
       pop	rcx
       pop	rax
+      mov	r11,1
       add	r11,r10
       mov	rax,r11
       ret
@@ -138,4 +142,4 @@ main:
       mov	rax,60
       syscall
 section   .bss
-str:      resb      6400  
+str:      resb      64  

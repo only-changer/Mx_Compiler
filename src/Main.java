@@ -654,17 +654,29 @@ class MyVisitor extends MxBaseVisitor<check>
         quad.op = "label!!!!!!!!!";
         chk.code.push(quad);
         check ck = visit(ctx.block());
+        Integer paddr = new Integer(addr);
         for (int i = 0; i < params.size(); ++i)
         {
+            quard q = new quard();
+            q.op = "=";
+            q.y.name = "addr";
+            q.y.addr = addr.toString();
+            addr += 8;
+            if (i < 6)
+                q.x.name = callregs[i].toString() + "temp";
+            chk.code.push(q);
+        }
+        for (int i = 0; i < params.size(); ++i)
+        {
+            quard q = new quard();
+            q.op = "=";
             if (regs.containsKey(params.get(i)))
-            {
-                quard q = new quard();
-                q.op = "=";
-                q.y.name = regs.get(params.get(i)).toString() + "temp";
-                if (i < 6)
-                    q.x.name = callregs[i].toString() + "temp";
-                chk.code.push(q);
-            }
+            q.y.name = regs.get(params.get(i)).toString() + "temp";
+            addr += 8;
+            q.x.name = "arr";
+            q.x.addr = paddr.toString();
+            paddr += 8;
+            chk.code.push(q);
         }
         chk.code.add(ck.code);
         for (String key : ck.defvars.keySet())
@@ -1702,12 +1714,11 @@ class MyVisitor extends MxBaseVisitor<check>
             if (!ctx.op.getText().equals("."))
                 if (!ctx.op.getText().equals("=") && ir1.last != null && ir2.last != null)
                 {
+                    quard quad0 = new quard();
+                    quad0.op = "=";
+                    quad0.y.name = temp.toString() + "temp";
+                    quad0.x.name = ir1.last.y.name;
                     quard quad = new quard();
-                    quad.op = "=";
-                    quad.y.name = temp.toString() + "temp";
-                    quad.x.name = ir1.last.y.name;
-                    chk.code.push(quad);
-                    quad = new quard();
                     quad.y.name = temp.toString() + "temp";
                     quad.y.addr = ir1.last.y.addr;
                     //  System.out.println(ctx.getText());
@@ -1716,6 +1727,7 @@ class MyVisitor extends MxBaseVisitor<check>
                     quad.op = ctx.op.getText();
                     chk.code.add(ir1);
                     chk.code.add(ir2);
+                    chk.code.push(quad0);
                     chk.code.push(quad);
                     ++temp;
                 }
@@ -1865,7 +1877,7 @@ public class Main
 
     public static check main() throws Exception
     {
-       // File f = new File("E:/test.txt");
+        //File f = new File("E:/test.txt");
          File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
