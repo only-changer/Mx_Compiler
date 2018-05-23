@@ -225,6 +225,41 @@ public class Irtox86
                 System.out.print("      ");
                 System.out.println("add" + '\t' + sy + ',' + s);
             }
+            if (q.op.equals("-"))
+            {
+
+                String s = new String();
+                String ss = new String();
+                String sy = new String();
+                if (q.x.name.equals("arr"))
+                {
+                    s = "[str+" + q.x.addr + "]";
+                }
+                else if (!q.x.name.contains("temp"))
+                {
+                    s = q.x.name;
+                    ss = "qword";
+                }
+                else
+                {
+                    if (temp >= 15 || temp2 >= 15) return;
+                    s = regs[temp2];
+                }
+                if (q.y.name.equals("arr"))
+                {
+                    sy = "qword[str+" + q.y.addr + "]";
+                }
+                else
+                {
+                    //System.out.println(temp);
+                    if (temp < 0) sy = q.y.name; else
+                    if (temp < 15)
+                        sy = regs[temp];
+                    else sy = "[" + q.y.addr + "]";
+                }
+                System.out.print("      ");
+                System.out.println("sub" + '\t' + sy + ',' + s);
+            }
             if (q.op.equals("*"))
             {
 
