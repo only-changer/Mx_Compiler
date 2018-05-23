@@ -1,4 +1,3 @@
-global    main
 section   .text
 tak:
       mov	[str+240],rdi
@@ -17,7 +16,8 @@ _0cmpback:
       cmp	rbx,0
       je	_0else
 _0if:
-      sub	rax,1
+      mov	rbx,rax
+      sub	rbx,1
       push	rax
       mov	[str+24],rax
       push	rcx
@@ -26,7 +26,7 @@ _0if:
       mov	[str+40],rdx
       push	rbx
       mov	[str+48],rbx
-      mov	rdi,[str+24]
+      mov	rdi,[str+48]
       mov	rsi,[str+32]
       mov	rdx,[str+40]
       call	tak
@@ -35,7 +35,8 @@ _0if:
       pop	rdx
       pop	rcx
       pop	rax
-      sub	rcx,1
+      mov	rsi,rcx
+      sub	rsi,1
       push	rax
       mov	[str+56],rax
       push	rcx
@@ -48,7 +49,7 @@ _0if:
       mov	[str+88],rbp
       push	rsi
       mov	[str+96],rsi
-      mov	rdi,[str+64]
+      mov	rdi,[str+96]
       mov	rsi,[str+72]
       mov	rdx,[str+56]
       call	tak
@@ -59,7 +60,8 @@ _0if:
       pop	rdx
       pop	rcx
       pop	rax
-      sub	rdx,1
+      mov	r8,rdx
+      sub	r8,1
       push	rax
       mov	[str+104],rax
       push	rcx
@@ -76,7 +78,7 @@ _0if:
       mov	[str+152],rdi
       push	r8
       mov	[str+160],r8
-      mov	rdi,[str+120]
+      mov	rdi,[str+160]
       mov	rsi,[str+104]
       mov	rdx,[str+112]
       call	tak

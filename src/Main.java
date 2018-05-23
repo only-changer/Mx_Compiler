@@ -1717,7 +1717,7 @@ class MyVisitor extends MxBaseVisitor<check>
                 {
                     quard quad = new quard();
                     quard quad0 = new quard();
-                    if (ir1.last.y.addr.equals(""))
+                    if (ir1.last.y.addr.equals("") || ir1.last.y.name.contains("temp"))
                     {
                         quad0.op = "=";
                         quad0.y.name = temp.toString() + "temp";
@@ -1887,7 +1887,7 @@ public class Main
 
     public static check main() throws Exception
     {
-       // File f = new File("E:/test.txt");
+        //File f = new File("E:/test.txt");
          File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
