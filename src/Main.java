@@ -119,6 +119,7 @@ class check
     Vector<Vector> vars = new Vector<>();
     Vector<String> var = new Vector();
     Vector<String> params = new Vector<>();
+
     check()
     {
         code = new ir();
@@ -671,7 +672,7 @@ class MyVisitor extends MxBaseVisitor<check>
             quard q = new quard();
             q.op = "=";
             if (regs.containsKey(params.get(i)))
-            q.y.name = regs.get(params.get(i)).toString() + "temp";
+                q.y.name = regs.get(params.get(i)).toString() + "temp";
             addr += 8;
             q.x.name = "arr";
             q.x.addr = paddr.toString();
@@ -1714,13 +1715,22 @@ class MyVisitor extends MxBaseVisitor<check>
             if (!ctx.op.getText().equals("."))
                 if (!ctx.op.getText().equals("=") && ir1.last != null && ir2.last != null)
                 {
-                    quard quad0 = new quard();
-                    quad0.op = "=";
-                    quad0.y.name = temp.toString() + "temp";
-                    quad0.x.name = ir1.last.y.name;
                     quard quad = new quard();
-                    quad.y.name = temp.toString() + "temp";
-                    quad.y.addr = ir1.last.y.addr;
+                    quard quad0 = new quard();
+                    if (ir1.last.y.addr.equals(""))
+                    {
+                        quad0.op = "=";
+                        quad0.y.name = temp.toString() + "temp";
+                        quad0.x.name = ir1.last.y.name;
+
+                        quad = new quard();
+                        quad.y.name = temp.toString() + "temp";
+                    }
+                    else
+                    {
+                        quad.y.name = ir1.last.y.name;
+                        quad.y.addr = ir1.last.y.addr;
+                    }
                     //  System.out.println(ctx.getText());
                     quad.x.name = ir2.last.y.name;
                     quad.x.addr = ir2.last.y.addr;
@@ -1877,7 +1887,7 @@ public class Main
 
     public static check main() throws Exception
     {
-        //File f = new File("E:/test.txt");
+       // File f = new File("E:/test.txt");
          File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
