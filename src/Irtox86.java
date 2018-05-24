@@ -6,9 +6,23 @@ public class Irtox86
 {
     static Integer addr = 0;
     static String[] regs = {"rax", "rcx", "rdx", "rbx", "rbp", "rsi", "rdi","r8","r9","r10","r11","r12","r13","r14","r15"};
-
+    static String[] regsb = {"al", "cl", "dl", "bl", "bpl", "sil", "dil","r8b","r9b","r10b","r11b","r12b","r13b","r14b","r15b"};
+    public static Integer move(String curtemp)
+    {
+        Integer temp0 = -1;
+        String temps = new String();
+        for (int j = 0; j < curtemp.length(); ++j)
+        {
+            if (!(curtemp.charAt(j) >= '0' && curtemp.charAt(j) <= '9')) break;
+            temps += curtemp.charAt(j);
+        }
+        if (!temps.equals(""))
+            temp0 = Integer.parseInt(temps);
+        return temp0;
+    }
     public static void translate(ir irr) throws Exception
     {
+        Integer strfor = new Integer(0);
         Integer ws = 0;
         Integer f = 0;
         System.out.println("global    main");
@@ -53,6 +67,20 @@ public class Irtox86
             {
                 System.out.println(q.y.name + ":");
             }
+            if (q.op.equals("str="))
+            {
+                String s = q.x.name;
+                System.out.print("      ");
+                Integer addr = Integer.parseInt(q.y.addr);
+                System.out.println("mov"+'\t'+"qword[str+"+addr.toString() + "],"+s.length());
+                addr += 8;
+                for (int i = 0;i < s.length();++i)
+                {
+                    System.out.print("      ");
+                    System.out.println("mov"+'\t'+"byte[str+"+addr.toString() + "],'"+s.charAt(i)+"'");
+                    ++addr;
+                }
+            }
             if (q.op.equals("int") || q.op.equals("bool"))
             {
                 // System.out.print("      ");
@@ -73,6 +101,49 @@ public class Irtox86
                 {
                     System.out.print("      ");
                     System.out.println("pop" + '\t' + regs[temp2]);
+                }
+            }
+            if (q.op.equals("b="))
+            {
+                String s = new String();
+                String ss = new String();
+                String sy = new String();
+                String sall  = new String();
+                if (q.x.name.equals("addr"))
+                {
+                    ss = "qword";
+                    s = q.x.addr;
+                }
+                else if (q.x.name.equals("arr"))
+                {
+                    s = "[str+"+q.x.addr+"]";
+                } else
+                if (!q.x.name.contains("temp"))
+                {
+                    s = q.x.name;
+                    ss = "qword";
+                }
+                else
+                {
+                    if (temp2 >= 15) return;
+                    s = regs[temp2];
+                }
+                if (q.y.name.contains("temp") && temp < 15)
+                {
+                    sy = regsb[temp];
+                    sall = regs[temp];
+                    ss = "";
+                }
+                else
+                {
+                    sy = "[str+" + q.y.addr + "]";
+                }
+                if (!q.y.name.equals(q.x.name))
+                {
+                    System.out.print("      ");
+                    System.out.println("mov" + '\t' + ss + sy + ',' + s);
+                    System.out.print("      ");
+                    System.out.println("movzx" + '\t' + sall + "," + sy);
                 }
             }
             if (q.op.equals("="))
@@ -189,6 +260,50 @@ public class Irtox86
             {
                 System.out.print("      ");
                 System.out.println("call" + '\t' + q.y.name);
+            }
+            if (q.op.equals("str+"))
+            {
+
+                String s1 = q.x.name;
+                String s2 = q.x.addr;
+                Integer addr  = Integer.parseInt(q.y.addr);
+                System.out.print("      ");
+                System.out.println("mov" + '\t' + "r13,[str+" +s1+"]");
+
+                System.out.print("      ");
+                System.out.println("mov" + '\t' + "r15,0");
+                addr += 8;
+                System.out.println("_" + strfor.toString() + "str:");
+                System.out.print("      ");
+                System.out.println("mov" + '\t' + "r14b,[str+8+" + s1 + "+r15]");
+                System.out.print("      ");
+                System.out.println("mov" + '\t' + "[str+" + addr.toString() + "+r15],r14b");
+                System.out.print("      ");
+                System.out.println("add" + '\t' + "r15,1");
+                System.out.print("      ");
+                System.out.println("cmp" + '\t' + "r15,qword[str+" + s1 + "]");
+                System.out.print("      ");
+                System.out.println("jl" + '\t' + "_" + strfor.toString() + "str" );
+                ++strfor;
+                System.out.print("      ");
+                System.out.println("mov" + '\t' + "r15,0");
+                System.out.println("_" + strfor.toString() + "str:");
+                System.out.print("      ");
+                System.out.println("mov" + '\t' + "r14b,[str+8+" + s2 + "+r15]");
+                System.out.print("      ");
+                System.out.println("mov" + '\t' + "[str+r13+" + addr.toString() + "+r15],r14b");
+                System.out.print("      ");
+                System.out.println("add" + '\t' + "r15,1");
+                System.out.print("      ");
+                System.out.println("cmp" + '\t' + "r15,qword[str+" + s2 + "]");
+                System.out.print("      ");
+                System.out.println("jl" + '\t' + "_" + strfor.toString() + "str" );
+                ++strfor;
+                addr -= 8;
+                System.out.print("      ");
+                System.out.println("add" + '\t' + "r13,[str+" + s2 + "]");
+                System.out.print("      ");
+                System.out.println("mov" + '\t' + "[str+" + addr.toString() + "],r13");
             }
             if (q.op.equals("+"))
             {
@@ -411,7 +526,7 @@ public class Irtox86
     {
         Main m = new Main();
         check chk = m.main();
-        //chk.code.print();
+        chk.code.print();
         addr = chk.addr;
         translate(chk.code);
     }
