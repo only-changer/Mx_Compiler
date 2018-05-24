@@ -1245,7 +1245,7 @@ class MyVisitor extends MxBaseVisitor<check>
                 quad.op = "b=";
                 quad.x.name = "arr";
                 if (temp < 15 && defvars.containsKey(strname))
-                quad.x.addr = defvars.get(strname).addr.toString() + "+" + regsname[temp];
+                quad.x.addr = defvars.get(strname).addr.toString() + "+8+" + regsname[temp];
                 ++temp;
                 quad.y.name = temp.toString() + "temp";
                 ++temp;
