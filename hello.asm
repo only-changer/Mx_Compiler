@@ -1923,36 +1923,40 @@ section   .text
 main:
       push	rbp
       mov	rbp,rsp
-      mov	rax,2400+ 8 * 2
-      mov	r12,rbp
-      sub	r12,rax
-      mov	qword[r12],2
-      mov	rax,2400+ 8 * 2
-      mov	r12,rbp
-      sub	r12,rax
-      mov	rcx,[r12]
-      push	rax
-      mov	[rbp -4000],rax
-      push	rcx
-      mov	[rbp -4008],rcx
-      mov	rdi,[rbp -4008]
-      call	toString
-      mov	rdx,rax
-      pop	rcx
-      pop	rax
-      push	rax
-      mov	[rbp -4016],rax
-      push	rcx
-      mov	[rbp -4024],rcx
-      push	rdx
-      mov	[rbp -4032],rdx
-      mov	rdi,[rbp -4032]
-      call	println
-      mov	rbx,rax
-      pop	rdx
-      pop	rcx
-      pop	rax
-      mov	rdi,0
+      mov	qword[rbp-0],3
+      mov	byte[rbp-8],'a'
+      mov	byte[rbp-9],'a'
+      mov	byte[rbp-10],'a'
+      mov	qword[rbp-800],5
+      mov	byte[rbp-808],'b'
+      mov	byte[rbp-809],'b'
+      mov	byte[rbp-810],'b'
+      mov	byte[rbp-811],'b'
+      mov	byte[rbp-812],'b'
+      mov	r13,[rbp-0]
+      mov	r15,0
+_0str:
+      mov	r14b,[rbp-8+0+r15]
+      mov	[rbp-2408+r15],r14b
+      add	r15,1
+      cmp	r15,qword[rbp-0]
+      jl	_0str
+      mov	r15,0
+_1str:
+      mov	r14b,[rbp-8+800+r15]
+      mov	[rbp-r13+2408+r15],r14b
+      add	r15,1
+      cmp	r15,qword[rbp-800]
+      jl	_1str
+      add	r13,[rbp-800]
+      mov	[rbp-2400],r13
+      mov	rsi,[rbp -2400]
+      mov	rdi,5
+      mov	dil,[rbp-2400+8+rsi]
+      movzx	r8,dil
+      mov	r9,rsi
+      add	r9,r8
+      mov	rdi,r9
       mov	rax,60
       syscall
 format:

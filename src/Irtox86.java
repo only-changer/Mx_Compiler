@@ -1238,7 +1238,16 @@ public class Irtox86
                 if (temp2 >= 15 && !q.x.addr.equals("-1")) return;
                 if (q.x.name.equals("arr") || q.x.name.equals("addr"))
                 {
-                    s = "[rbp-" + q.x.addr + "]";
+                    if (q.x.addr.contains("r"))
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov\tr12,rbp");
+                        System.out.print("      ");
+                        System.out.println("sub\tr12," + q.x.addr);
+                        s = "[r12]";
+                    }
+                    else
+                        s = "[rbp -" + q.x.addr + "]";
                 }
                 else if (q.x.name.contains("temp"))
                 {
@@ -1352,7 +1361,16 @@ public class Irtox86
                 }
                 if (q.y.name.equals("arr"))
                 {
-                    sy = "qword[rbp-" + q.y.addr + "]";
+                    if (q.y.addr.contains("r"))
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov\tr12,rbp");
+                        System.out.print("      ");
+                        System.out.println("sub\tr12," + q.y.addr);
+                        sy = "[r12]";
+                    }
+                    else
+                        sy = "[rbp -" + q.y.addr + "]";
                 }
                 else
                 {

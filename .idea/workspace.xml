@@ -2,19 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="014ac6d6-8e40-455f-95b1-dff8859644ca" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/a.out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hello.asm" beforeDir="false" afterPath="$PROJECT_DIR$/hello.asm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hello.o" beforeDir="false" afterPath="$PROJECT_DIR$/hello.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IDE/Irtox86.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/Irtox86.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IDE/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IDE/MyVisitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/MyVisitor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IDE/all.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/all.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IDE/arrtype.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/arrtype.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IDE/check.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/check.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IDE/ir.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/ir.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IDE/quard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/quard.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IDE/vartype.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/vartype.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Irtox86.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Irtox86.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
@@ -41,7 +29,7 @@
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="173">
-              <caret line="2040" column="9" selection-start-line="2040" selection-start-column="9" selection-end-line="2040" selection-end-column="9" />
+              <caret line="2040" column="10" selection-start-line="2040" selection-start-column="10" selection-end-line="2040" selection-end-column="10" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -52,8 +40,8 @@
       <file leaf-file-name="Irtox86.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Irtox86.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="268">
-              <caret line="1198" column="66" selection-start-line="1198" selection-start-column="66" selection-end-line="1198" selection-end-column="66" />
+            <state relative-caret-position="184">
+              <caret line="1326" column="43" lean-forward="true" selection-start-line="1326" selection-start-column="43" selection-end-line="1326" selection-end-column="43" />
             </state>
           </provider>
         </entry>
@@ -123,7 +111,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>curtemp</find>
       <find>start</find>
       <find>add</find>
       <find>dword</find>
@@ -149,10 +136,11 @@
       <find>&lt; 15</find>
       <find>[str+</find>
       <find>return</find>
-      <find>str+</find>
       <find>str</find>
-      <find>funname</find>
       <find>fun</find>
+      <find>&quot;ret</find>
+      <find>funname</find>
+      <find>str+</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -317,10 +305,10 @@
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.79624665" side_tool="true" visible="true" weight="0.26105565" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.7969169" side_tool="true" visible="true" weight="0.26105565" />
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.20375335" visible="true" weight="0.26105565" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.20308311" visible="true" weight="0.26105565" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49932975" weight="0.32952926" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
@@ -740,15 +728,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Irtox86.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="1198" column="66" selection-start-line="1198" selection-start-column="66" selection-end-line="1198" selection-end-column="66" />
+        <state relative-caret-position="184">
+          <caret line="1326" column="43" lean-forward="true" selection-start-line="1326" selection-start-column="43" selection-end-line="1326" selection-end-column="43" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="173">
-          <caret line="2040" column="9" selection-start-line="2040" selection-start-column="9" selection-end-line="2040" selection-end-column="9" />
+          <caret line="2040" column="10" selection-start-line="2040" selection-start-column="10" selection-end-line="2040" selection-end-column="10" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
