@@ -721,34 +721,95 @@ Llege_021:  mov     eax, 1
 Llege_022:  pop     rbp
 	ret
 section   .text
+tak:
+      push	rbp
+      mov	rbp,rsp
+      sub	rsp,96
+      mov	[rbp - 8],rdi
+      mov	[rbp - 16],rsi
+      mov	[rbp - 24],rdx
+      mov	r10,[rbp - 16]
+      cmp	r10,[rbp - 8]
+      setl r10b
+      movzx r10,r10b
+      mov	[rbp - 32],r10
+      mov	 r10,[rbp-32]
+      cmp	 r10,0
+      je	_0else
+_0if:
+      mov	r10,[rbp - 8]
+      sub	r10,1
+      mov	[rbp - 32],r10
+      mov	rdi,[rbp-32]
+      mov	rsi,[rbp-16]
+      mov	rdx,[rbp-24]
+      push	r10
+      push	r11
+      call	tak
+      pop	r11
+      pop	r10
+      mov	[rbp -  40],rax
+      mov	r10,[rbp - 16]
+      sub	r10,1
+      mov	[rbp - 48],r10
+      mov	rdi,[rbp-48]
+      mov	rsi,[rbp-24]
+      mov	rdx,[rbp-8]
+      push	r10
+      push	r11
+      call	tak
+      pop	r11
+      pop	r10
+      mov	[rbp -  56],rax
+      mov	r10,[rbp - 24]
+      sub	r10,1
+      mov	[rbp - 64],r10
+      mov	rdi,[rbp-64]
+      mov	rsi,[rbp-8]
+      mov	rdx,[rbp-16]
+      push	r10
+      push	r11
+      call	tak
+      pop	r11
+      pop	r10
+      mov	[rbp -  72],rax
+      mov	rdi,[rbp-40]
+      mov	rsi,[rbp-56]
+      mov	rdx,[rbp-72]
+      push	r10
+      push	r11
+      call	tak
+      pop	r11
+      pop	r10
+      mov	[rbp -  80],rax
+      mov	r10,1
+      add	r10,[rbp - 80]
+      mov	[rbp - 88],r10
+      mov	rax,[rbp -  88]
+      mov	rsp,rbp
+      pop rbp
+      ret
+      jmp	_0ifback
+_0else:
+      mov	rax,[rbp -  24]
+      mov	rsp,rbp
+      pop rbp
+      ret
+_0ifback:
 main:
       push	rbp
       mov	rbp,rsp
-      sub	rsp,32
-      mov	r10,20
-      add	r10,1
-      mov	[rbp - 16],r10
-      mov	r10,[rbp - 16]
-      imul	r10,8
-      mov	[rbp - 16],r10
-      mov	rdi,[rbp-16]
+      sub	rsp,96
+      mov	rdi,18
+      mov	rsi,12
+      mov	rdx,6
       push	r10
       push	r11
-      call	malloc
-      pop	r10
+      call	tak
       pop	r11
-      mov	[rbp -  24],rax
-      mov	r11,[rbp - 24]
-      add	r11,0
-      mov	qword[r11],20
-      mov	r10,[rbp - 24]
-      mov	[rbp - 8],r10
-      mov	r10,[rbp - 8]
-      add	r10,0
-      mov	r10,[r10]
-      add	r10,0
-      mov	[rbp - 32],r10
-      mov	rdi,[rbp -  32]
+      pop	r10
+      mov	[rbp -  8],rax
+      mov	rdi,[rbp -  8]
       mov	rax,60
       syscall
 section .data
