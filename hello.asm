@@ -724,48 +724,68 @@ section   .text
 main:
       push	rbp
       mov	rbp,rsp
-      sub	rsp,40
+      sub	rsp,136
       mov	qword[rbp - 8],5
       mov	qword[rbp - 16],0
-      mov	qword[rbp - 24],1
-_1for:
-      mov	qword[rbp - 32],1
-_0for:
       mov	r10,[rbp - 16]
-      add	r10,[rbp - 24]
+      cmp	r10,0
+      setne r10b
+      movzx r10,r10b
       mov	[rbp - 40],r10
+      mov	r10,[rbp - 48]
+      cmp	r10,1
+      setne r10b
+      movzx r10,r10b
+      mov	[rbp - 56],r10
       mov	r10,[rbp - 40]
-      mov	[rbp - 16],r10
-      mov	r10,[rbp - 32]
-      add	r10,1
+      and	r10,[rbp - 56]
+      mov	[rbp - 64],r10
+      mov	r10,[rbp - 64]
       mov	[rbp - 32],r10
-      mov	r10,[rbp - 32]
-      cmp	r10,[rbp - 8]
-      setle r10b
-      movzx r10,r10b
-      mov	[rbp - 40],r10
-      mov	r10,[rbp -  40]
-      cmp	r10,1
-      je	_0for
-_0forback:
-      mov	r10,[rbp - 16]
-      add	r10,1
-      mov	[rbp - 40],r10
-      mov	r10,[rbp - 40]
-      mov	[rbp - 16],r10
+      mov	 r10,[rbp-32]
+      cmp	 r10,0
+      je	_0else
+_0if:
+      mov	qword[rbp - 24],10
+      jmp	_0ifback
+_0else:
+      mov	qword[rbp - 24],20
+_0ifback:
       mov	r10,[rbp - 24]
-      add	r10,1
-      mov	[rbp - 24],r10
-      mov	r10,[rbp - 24]
-      cmp	r10,[rbp - 8]
-      setle r10b
+      cmp	r10,10
+      sete r10b
       movzx r10,r10b
-      mov	[rbp - 40],r10
-      mov	r10,[rbp -  40]
-      cmp	r10,1
-      je	_1for
-_1forback:
-      mov	rdi,[rbp -  16]
+      mov	[rbp - 80],r10
+      mov	r10,[rbp - 88]
+      cmp	r10,0
+      sete r10b
+      movzx r10,r10b
+      mov	[rbp - 96],r10
+      mov	r10,[rbp - 80]
+      and	r10,[rbp - 96]
+      mov	[rbp - 104],r10
+      mov	r10,[rbp - 8]
+      cmp	r10,5
+      sete r10b
+      movzx r10,r10b
+      mov	[rbp - 112],r10
+      mov	r10,[rbp - 104]
+      and	r10,[rbp - 112]
+      mov	[rbp - 120],r10
+      mov	r10,[rbp -  120]
+      xor	r10,1
+      mov	[rbp-128],r10
+      mov	r10,[rbp - 128]
+      mov	[rbp - 72],r10
+      mov	 r10,[rbp-72]
+      cmp	 r10,0
+      je	_1else
+_1if:
+      mov	qword[rbp - 24],30
+      jmp	_1ifback
+_1else:
+_1ifback:
+      mov	rdi,[rbp -  24]
       mov	rax,60
       syscall
 section .data
@@ -779,5 +799,4 @@ format2:
 section .bss
 stringbuffer:
 	resb 256
-
 

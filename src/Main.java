@@ -214,7 +214,7 @@ class MyVisitor extends MxBaseVisitor<check>
     boolean ismain;
     String strname = new String();
     boolean left;
-
+    Integer maxtemp = new Integer(0);
     MyVisitor()
     {
         cla = "";
@@ -440,6 +440,7 @@ class MyVisitor extends MxBaseVisitor<check>
             quad.z.name = curtemp.toString() + "temp";
             quad.y.name = ck.code.last.z.name;
             quad.op = "=";
+            chk.code.add(ck.code);
             chk.code.push(quad);
         }
         chk.var.add(ctx.type().getText());
@@ -647,7 +648,7 @@ class MyVisitor extends MxBaseVisitor<check>
         chk.code.push(quad);
         quad = new quard();
         quad.y.name = origintemp.toString();
-        quad.x.name = temp.toString();
+        quad.x.name = maxtemp.toString();
         quad.op = "funcinit";
         chk.code.push(quad);
         Integer paddr = new Integer(addr);
@@ -913,17 +914,16 @@ class MyVisitor extends MxBaseVisitor<check>
                     if (i == 0)
                     {
                         quard quad = new quard();
-                        quad.y.name = "_" + b_i.toString() + "if";
+                        quad.z.name = "_" + b_i.toString() + "if";
                         quad.op = "label!!!!!!!!!";
                         irr.push(quad);
                         irr.add(ck.code);
                         quad = new quard();
                         quad.op = "goto";
-                        quad.y.name = b_i.toString() + "ifback";
-                        quad.x.name = "";
+                        quad.z.name = b_i.toString() + "ifback";
                         irr.push(quad);
                         quad = new quard();
-                        quad.y.name = "_" + b_i.toString() + "else";
+                        quad.z.name = "_" + b_i.toString() + "else";
                         quad.op = "label!!!!!!!!!";
                         irr.push(quad);
                     }
@@ -936,7 +936,7 @@ class MyVisitor extends MxBaseVisitor<check>
             if (ctx.op.getText().equals("if"))
             {
                 quard quad = new quard();
-                quad.y.name = "_" + b_i.toString() + "ifback";
+                quad.z.name = "_" + b_i.toString() + "ifback";
                 ++b_i;
                 quad.op = "label!!!!!!!!!";
                 irr.push(quad);
@@ -979,24 +979,14 @@ class MyVisitor extends MxBaseVisitor<check>
                 {
                     quard quad = new quard();
                     chk.code.add(ck.code);
-                    String s = new String(ck.code.last.y.name);
+                    String s = new String(ck.code.last.z.name);
                     if (ck.code.last.op.equals("label!!!!!!!!!") && ck.code.last.prev != null)
                     {
-                        s = ck.code.last.prev.y.name;
-                    }
-                    if (ctx.expr().size() >= 1 && ctx.expr(0).getText().length() >= 20)
-                    {
-                        quad = new quard();
-                        quad.op = "=";
-                        quad.x.name = "5temp";
-                        quad.y.name = temp.toString() + "temp";
-                        s = quad.y.name;
-                        ++temp;
-                        chk.code.push(quad);
+                        s = ck.code.last.prev.z.name;
                     }
                     quad = new quard();
-                    quad.x.name = b_i - 1 + "else";
-                    quad.z.name = s;
+                    quad.z.name = b_i - 1 + "else";
+                    quad.y.name = s;
                     quad.op = "if";
 
                     chk.code.push(quad);
@@ -1108,6 +1098,7 @@ class MyVisitor extends MxBaseVisitor<check>
                 quad.x.name = "arr";
                 quad.x.addr = ck.code.last.y.addr;
                 ++temp;
+                if (temp > maxtemp) maxtemp = temp;
                 ck.code.push(quad);
             }
             chk.code.add(ck.code);
@@ -1192,6 +1183,7 @@ class MyVisitor extends MxBaseVisitor<check>
                 quad.op = "=";
                 quad.y.name = temp.toString() + "temp";
                 ++temp;
+                if (temp > maxtemp) maxtemp = temp;
                 quad.x.name = "arr";
                 if (defvars.containsKey(strname))
                     quad.x.addr = defvars.get(strname).addr.toString();
@@ -1212,8 +1204,10 @@ class MyVisitor extends MxBaseVisitor<check>
                 if (temp < 15 && defvars.containsKey(strname))
                     quad.x.addr = defvars.get(strname).addr.toString() + "+8+" + regsname[temp];
                 ++temp;
+                if (temp > maxtemp) maxtemp = temp;
                 quad.y.name = temp.toString() + "temp";
                 ++temp;
+                if (temp > maxtemp) maxtemp = temp;
                 chk.code.push(quad);
                 constfunc = true;
             }
@@ -1337,6 +1331,7 @@ class MyVisitor extends MxBaseVisitor<check>
                         q.x.name = temp.toString() + "temp";
                         chk.code.push(q);
                         ++temp;
+                        if (temp > maxtemp) maxtemp = temp;
                     }
                 }
             }
@@ -1359,6 +1354,7 @@ class MyVisitor extends MxBaseVisitor<check>
             s = ck0.var.get(0);
             curtemp = temp.toString() + "temp";
             ++temp;
+            if (temp > maxtemp) maxtemp = temp;
             if (s.contains("[]"))
             {
                 String ss = new String();
@@ -1430,6 +1426,7 @@ class MyVisitor extends MxBaseVisitor<check>
                                 chk.code.push(q);
                                 quad.x.name = temp.toString() + "temp";
                                 ++temp;
+                                if (temp > maxtemp) maxtemp = temp;
                             }
                             else
                             {
@@ -1741,6 +1738,7 @@ class MyVisitor extends MxBaseVisitor<check>
                         chk.code.add(ir1);
                         ir1.last.z.name = temp.toString() + "temp";
                         ++temp;
+                        if (temp > maxtemp) maxtemp = temp;
                     }
                 }
             }
@@ -1751,10 +1749,11 @@ class MyVisitor extends MxBaseVisitor<check>
         if (ctx.opf != null && ir1.last != null)
         {
             quard quad = new quard();
-            quad.x.name = ir1.last.y.name;
+            quad.y.name = ir1.last.z.name;
             String s = temp.toString() + "temp";
             ++temp;
-            quad.y.name = s;
+            if (temp > maxtemp) maxtemp = temp;
+            quad.z.name = s;
             quad.op = ctx.opf.getText();
             chk.code.add(ir1);
             chk.code.push(quad);
@@ -1766,6 +1765,7 @@ class MyVisitor extends MxBaseVisitor<check>
                     quard quad = new quard();
                     quad.z.name = temp.toString() + "temp";
                     ++temp;
+                    if (temp > maxtemp) maxtemp = temp;
                     quad.y.name = ir1.last.z.name;
                     quad.x.name = ir2.last.z.name;
                     quad.op = ctx.op.getText();
@@ -1778,6 +1778,7 @@ class MyVisitor extends MxBaseVisitor<check>
             quard quad = new quard();
             quad.z.name = temp.toString() + "temp";
             ++temp;
+            if (temp > maxtemp) maxtemp = temp;
             quad.y.name = ir1.last.z.name;
             quad.x.name = ir2.last.z.name;
             quad.op = ctx.op1.getText();
