@@ -1187,9 +1187,11 @@ class MyVisitor extends MxBaseVisitor<check>
                 if (defcom.containsKey(arrname))
                 {
                     quard quad = new quard();
-                    quad.op = "imm";
-                    quad.y.name = defcom.get(arrname).length.toString();
-                    quad.y.addr = "-1";
+                    quad.z.name = temp.toString() + "temp";
+                    quad.op = "+";
+                    quad.y.name = regs.get(arrname).toString() + "temp";
+                    quad.y.add("0");
+                    quad.x.name = "0";
                     chk.code.push(quad);
                     constfunc = true;
                 }
@@ -1821,7 +1823,10 @@ class MyVisitor extends MxBaseVisitor<check>
             chk.code.push(quad);
             quad = new quard();
             quad.z.name = temp.toString() + "temp";
+            quad.z.add("0");
             ++temp;
+            quad.op = "=";
+            quad.y = new varible(ck.code.last.z);
             if (temp > maxtemp) maxtemp = temp;
             chk.code.push(quad);
         }

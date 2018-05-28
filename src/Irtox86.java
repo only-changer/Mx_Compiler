@@ -924,10 +924,18 @@ public class Irtox86
                 }
                 else
                 {
-                    Integer addr2 = new Integer(temp3 - start);
-                    addr2 = (addr2 + 1) * 8;
-                    System.out.print("      ");
-                    System.out.println("mov\tqword[rbp - " + addr2.toString() + "]," + q.y.name);
+                    if (q.z.params == null)
+                    {
+                        Integer addr2 = new Integer(temp3 - start);
+                        addr2 = (addr2 + 1) * 8;
+                        System.out.print("      ");
+                        System.out.println("mov\tqword[rbp - " + addr2.toString() + "]," + q.y.name);
+                    } else
+                    {
+                        getaddr(q.z.name,q.z.params,"r11");
+                        System.out.print("      ");
+                        System.out.println("mov\tqword[r11]," + q.y.name );
+                    }
                 }
             }
             if (q.op.equals("if"))
