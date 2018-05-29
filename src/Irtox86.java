@@ -1079,6 +1079,11 @@ public class Irtox86
                 System.out.println("push\tr10");
                 System.out.print("      ");
                 System.out.println("push\tr11");
+                if (q.z.name.contains("print"))
+                {
+                    System.out.print("      ");
+                    System.out.println("mov\trax,0");
+                }
                 System.out.print("      ");
                 System.out.println("call\t" + q.z.name);
                 System.out.print("      ");
