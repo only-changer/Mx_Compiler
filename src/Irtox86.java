@@ -77,9 +77,7 @@ public class Irtox86
 
     public static void translate(ir irr) throws Exception
     {
-        Integer strfor = new Integer(0);
-        Integer ws = 0;
-        Integer f = 0;
+        Integer b = new Integer(0);
         System.out.print("global main\n\n");
         System.out.print("extern puts\n");
         System.out.print("extern getchar\n");
@@ -1205,6 +1203,7 @@ public class Irtox86
             }
             if (q.op.equals("/"))
             {
+
                 if (q.y.name.contains("temp"))
                 {
                     Integer addr1 = new Integer(temp - start);
@@ -1223,9 +1222,17 @@ public class Irtox86
                     addr2 = (addr2 + 1) * 8;
                     System.out.print("      ");
                     System.out.println("mov\tr10d,[rbp - " + addr2.toString() + "]");
+                    System.out.print("      ");
+                    System.out.println("cmp\tr10d ,0");
+                    System.out.print("      ");
+                    System.out.println("je\t_" + b.toString() + "div");
                 }
                 else
                 {
+                    System.out.print("      ");
+                    System.out.println("cmp\t" + q.x.name + ",0");
+                    System.out.print("      ");
+                    System.out.println("je\t_" + b.toString() + "div");
                     System.out.print("      ");
                     System.out.println("mov\tr10d," + q.x.name);
                 }
@@ -1239,6 +1246,8 @@ public class Irtox86
                 System.out.println("movsx\trax,eax");
                 System.out.print("      ");
                 System.out.println("mov\t[rbp - " + addr3.toString() + "],rax");
+                System.out.println("_"+b.toString() + "div:");
+                ++b;
             }
             if (q.op.equals("%"))
             {
