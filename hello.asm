@@ -766,63 +766,114 @@ Llege_021:  mov     eax, 1
 Llege_022:  pop     rbp
 	ret
 section   .text
+qpow:
+      push	rbp
+      mov	rbp,rsp
+      sub	rsp,64
+      mov	[rbp - 8],rdi
+      mov	[rbp - 16],rsi
+      mov	[rbp - 24],rdx
+      mov	qword[rbp - 32],1
+      mov	r10,[rbp - 8]
+      mov	[rbp - 40],r10
+_0for:
+      mov	r10,[rbp - 16]
+      and	r10,1
+      mov	[rbp - 48],r10
+      mov	r10,[rbp - 48]
+      cmp	r10,1
+      sete r10b
+      movzx r10,r10b
+      mov	[rbp - 56],r10
+      mov	 r10,[rbp-56]
+      cmp	 r10,0
+      je	_0else
+_0if:
+      mov	r10,[rbp - 32]
+      imul	r10,[rbp - 40]
+      mov	[rbp - 48],r10
+      mov	eax,[rbp - 48]
+      mov	r10d,[rbp - 24]
+      cdq
+      idiv r10d
+      movsx	rdx,edx
+      mov	[rbp - 56],rdx
+      mov	r10,[rbp - 56]
+      mov	[rbp - 32],r10
+      jmp	_0ifback
+_0else:
+_0ifback:
+      mov	r10,[rbp - 40]
+      imul	r10,[rbp - 40]
+      mov	[rbp - 48],r10
+      mov	eax,[rbp - 48]
+      mov	r10d,[rbp - 24]
+      cdq
+      idiv r10d
+      movsx	rdx,edx
+      mov	[rbp - 56],rdx
+      mov	r10,[rbp - 56]
+      mov	[rbp - 40],r10
+      mov	eax,[rbp - 16]
+      mov	r10,2
+      cmp	r10,0
+      je	_0div
+      mov	r10d,2
+      cdq
+      idiv r10d
+      movsx	rax,eax
+      mov	[rbp - 48],rax
+_0div:
+      mov	r10,[rbp - 48]
+      mov	[rbp - 16],r10
+      mov	r10,[rbp - 16]
+      cmp	r10,0
+      setg r10b
+      movzx r10,r10b
+      mov	[rbp - 48],r10
+      mov	r10,[rbp -  48]
+      cmp	r10,1
+      je	_0for
+_0forback:
+      mov	rax,[rbp -  32]
+      mov	rsp,rbp
+      pop rbp
+      ret
+      mov	rsp,rbp
+      pop rbp
+      ret
 main:
       push	rbp
       mov	rbp,rsp
       sub	rsp,64
-      push r10
-      push r11
-      mov	rdi,256
-      call	malloc
-      pop r10
-      pop r11
-      mov	byte[rax + 0],'a'
-      mov	byte[rax + 1],'a'
-      mov	byte[rax + 2],'a'
-      mov	byte[rax + 3],0
-      mov	[rbp - 8],rax
-      push r10
-      push r11
-      mov	rdi,256
-      call	malloc
-      pop r10
-      pop r11
-      mov	byte[rax + 0],'b'
-      mov	byte[rax + 1],'b'
-      mov	byte[rax + 2],'b'
-      mov	byte[rax + 3],'b'
-      mov	byte[rax + 4],'b'
-      mov	byte[rax + 5],0
-      mov	[rbp - 16],rax
+      mov	rdi,2
+      mov	rsi,10
+      mov	rdx,10000
+      push	r10
+      push	r11
+      call	qpow
+      pop	r11
+      pop	r10
+      mov	[rbp -  8],rax
       mov	rdi,[rbp-8]
-      mov	rsi,[rbp-16]
       push	r10
       push	r11
-      call	string.add
+      call	toString
       pop	r11
       pop	r10
-      mov	[rbp -  32],rax
-      mov	r10,[rbp - 32]
-      mov	[rbp - 24],r10
-      mov	rdi,[rbp-24]
+      mov	[rbp -  16],rax
+      mov	rdi,[rbp-16]
       push	r10
       push	r11
-      call	string.length
+      mov	rax,0
+      call	println
       pop	r11
       pop	r10
-      mov	[rbp -  40],rax
-      mov	rdi,[rbp-24]
-      mov	rsi,5
-      push	r10
-      push	r11
-      call	string.ord
-      pop	r11
-      pop	r10
-      mov	[rbp -  48],rax
-      mov	r10,[rbp - 40]
-      add	r10,[rbp - 48]
-      mov	[rbp - 56],r10
-      mov	rax,[rbp -  56]
+      mov	[rbp -  24],rax
+      mov	rax,0
+      mov	rsp,rbp
+      pop rbp
+      ret
       mov	rsp,rbp
       pop rbp
       ret

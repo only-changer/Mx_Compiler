@@ -1562,7 +1562,7 @@ public class MxParser extends Parser {
 						setState(218);
 						if (!(precpred(_ctx, 14))) throw new FailedPredicateException(this, "precpred(_ctx, 14)");
 						setState(219);
-						match(T__34);
+						((ExprContext)_localctx).op = match(T__34);
 						setState(220);
 						expr(15);
 						}
@@ -1574,7 +1574,7 @@ public class MxParser extends Parser {
 						setState(221);
 						if (!(precpred(_ctx, 13))) throw new FailedPredicateException(this, "precpred(_ctx, 13)");
 						setState(222);
-						match(T__35);
+						((ExprContext)_localctx).op = match(T__35);
 						setState(223);
 						expr(14);
 						}
@@ -1586,7 +1586,7 @@ public class MxParser extends Parser {
 						setState(224);
 						if (!(precpred(_ctx, 12))) throw new FailedPredicateException(this, "precpred(_ctx, 12)");
 						setState(225);
-						match(T__36);
+						((ExprContext)_localctx).op = match(T__36);
 						setState(226);
 						expr(13);
 						}

@@ -1053,25 +1053,6 @@ public class Irtox86
                 System.out.print("      ");
                 System.out.println("je" + '\t' + q.z.name);
             }
-            if (q.op.equals("return"))
-            {
-                if (q.y.name.contains("temp"))
-                {
-                    Integer addr1 = new Integer(temp - start);
-                    addr1 = (addr1 + 1) * 8;
-                    System.out.print("      ");
-                    System.out.println("mov\trdi,[rbp -  " + addr1.toString() + "]");
-                }
-                else
-                {
-                    System.out.print("      ");
-                    System.out.println("mov\trdi," + q.y.name);
-                }
-                System.out.print("      ");
-                System.out.println("mov\trax,60");
-                System.out.print("      ");
-                System.out.println("syscall");
-            }
             if (q.op.equals("ret"))
             {
                 if (q.y.name.contains("temp"))
@@ -1081,7 +1062,7 @@ public class Irtox86
                     System.out.print("      ");
                     System.out.println("mov\trax,[rbp -  " + addr1.toString() + "]");
                 }
-                else
+                else if (!q.y.name.equals("null"))
                 {
                     System.out.print("      ");
                     System.out.println("mov\trax," + q.y.name);
@@ -1294,7 +1275,9 @@ public class Irtox86
                 else
                 {
                     System.out.print("      ");
-                    System.out.println("cmp\t" + q.x.name + ",0");
+                    System.out.println("mov\tr10," + q.x.name);
+                    System.out.print("      ");
+                    System.out.println("cmp\tr10,0");
                     System.out.print("      ");
                     System.out.println("je\t_" + b.toString() + "div");
                     System.out.print("      ");

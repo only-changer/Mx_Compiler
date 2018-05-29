@@ -692,6 +692,10 @@ class MyVisitor extends MxBaseVisitor<check>
         chk.defvars.clear();
         defvars = origin;
         temp = origintemp;
+        quard q = new quard();
+        q.y.name = "null";
+        q.op = "ret";
+        chk.code.push(q);
         return chk;
     }
 
@@ -957,6 +961,13 @@ class MyVisitor extends MxBaseVisitor<check>
         Vector v = new Vector();
         ir code_temp = new ir();
         if (ctx.expr().size() == 3) code_temp = visit(ctx.expr(2)).code;
+        if (ctx.opr != null && ctx.expr().size() == 0)
+        {
+            quard quad = new quard();
+            quad.y.name = "null";
+            quad.op = "ret";
+            chk.code.push(quad);
+        }
         for (int i = 0; i < ctx.expr().size(); ++i)
         {
             check ck = visit(ctx.expr(i));
@@ -1792,7 +1803,7 @@ public class Main
 
     public static check main() throws Exception
     {
-       // File f = new File("E:/test.txt");
+      // File f = new File("E:/test.txt");
         File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
