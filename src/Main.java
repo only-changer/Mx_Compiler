@@ -16,7 +16,7 @@ class varible
 {
     String name;
     Integer arr;
-    boolean isconst;
+    boolean isfunc;
     String addr;
     Vector<String> params;
 
@@ -1259,6 +1259,7 @@ class MyVisitor extends MxBaseVisitor<check>
                     }
                     if (!constfunc)
                     {
+                        q.z.isfunc = true;
                         q.op = "call";
                         q.z.name = ctx.funname().getText();
                         q.y.name = temp.toString() + "temp";
@@ -1771,7 +1772,7 @@ public class Main
 
     public static check main() throws Exception
     {
-        //File f = new File("E:/test.txt");
+       // File f = new File("E:/test.txt");
          File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);

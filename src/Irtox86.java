@@ -1074,25 +1074,26 @@ public class Irtox86
                                 System.out.println("mov\t" + callregs[i] + "," + q.y.params.get(i));
                             }
                         }
-                        System.out.print("      ");
-                        System.out.println("push\tr10");
-                        System.out.print("      ");
-                        System.out.println("push\tr11");
-                        System.out.print("      ");
-                        System.out.println("call\t" + q.z.name);
-                        System.out.print("      ");
-                        System.out.println("pop\tr11");
-                        System.out.print("      ");
-                        System.out.println("pop\tr10");
-                        if (q.y.name.contains("temp"))
-                        {
-                            Integer addr1 = new Integer(temp - start);
-                            addr1 = (addr1 + 1) * 8;
-                            System.out.print("      ");
-                            System.out.println("mov\t[rbp -  " + addr1.toString() + "],rax");
-                        }
                     }
+                System.out.print("      ");
+                System.out.println("push\tr10");
+                System.out.print("      ");
+                System.out.println("push\tr11");
+                System.out.print("      ");
+                System.out.println("call\t" + q.z.name);
+                System.out.print("      ");
+                System.out.println("pop\tr11");
+                System.out.print("      ");
+                System.out.println("pop\tr10");
+                if (q.y.name.contains("temp"))
+                {
+                    Integer addr1 = new Integer(temp - start);
+                    addr1 = (addr1 + 1) * 8;
+                    System.out.print("      ");
+                    System.out.println("mov\t[rbp -  " + addr1.toString() + "],rax");
+                }
             }
+
             if (q.op.equals("str+"))
             {
             }
@@ -1246,7 +1247,7 @@ public class Irtox86
                 System.out.println("movsx\trax,eax");
                 System.out.print("      ");
                 System.out.println("mov\t[rbp - " + addr3.toString() + "],rax");
-                System.out.println("_"+b.toString() + "div:");
+                System.out.println("_" + b.toString() + "div:");
                 ++b;
             }
             if (q.op.equals("%"))
