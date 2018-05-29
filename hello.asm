@@ -32,25 +32,70 @@ array.size:
 	ret
 
 string.add:
-	push rbp
-	mov rbp,rsp
-	push rsi
-	mov rsi,rdi
-	mov rdi,stringbuffer
-	mov rdx,[rsi-8]
-	push rdx
-	call memcpy
-	pop rdi
-	pop rsi
-	add rdi,stringbuffer
-	mov rdx,[rsi-8]
-	add rdx,1
-	call memcpy
-	mov rdi,stringbuffer
-	call transtring
-	mov rsp,rbp
-	pop rbp
-	ret
+push    rbp
+mov     rbp, rsp
+sub     rsp, 32
+ mov     qword [rbp-18H], rdi
+mov     qword [rbp-20H], rsi
+mov     edi, 256
+call    malloc
+ mov     qword [rbp-8H], rax
+ mov     dword [rbp-10H], 0
+mov     dword [rbp-0CH], 0
+jmp     Lc_002
+Lc_001: 
+mov     eax, dword [rbp-10H]
+movsxd  rdx, eax
+mov     rax, qword [rbp-8H]
+add     rdx, rax
+mov     eax, dword [rbp-10H]
+movsxd  rcx, eax
+ mov     rax, qword [rbp-18H]
+add     rax, rcx
+movzx   eax, byte [rax]
+mov     byte [rdx], al
+add     dword [rbp-10H], 1
+Lc_002: 
+mov     eax, dword [rbp-10H]
+movsxd  rdx, eax
+mov     rax, qword [rbp-18H]
+ add     rax, rdx
+movzx   eax, byte [rax]
+test    al, al
+jnz     Lc_001
+jmp     Lc_004
+Lc_003:  
+mov     edx, dword [rbp-0CH]
+mov     eax, dword [rbp-10H]
+add     eax, edx
+movsxd  rdx, eax
+mov     rax, qword [rbp-8H]
+add     rdx, rax
+mov     eax, dword [rbp-0CH]
+movsxd  rcx, eax
+mov     rax, qword [rbp-20H]
+add     rax, rcx
+ movzx   eax, byte [rax]
+mov     byte [rdx], al
+add     dword [rbp-0CH], 1
+Lc_004: 
+mov     eax, dword [rbp-0CH]
+movsxd  rdx, eax
+mov     rax, qword [rbp-20H]
+add     rax, rdx
+movzx   eax, byte [rax]
+test    al, al
+jnz     Lc_003
+mov     edx, dword [rbp-10H]
+ mov     eax, dword [rbp-0CH]
+add     eax, edx
+movsxd  rdx, eax
+ mov     rax, qword [rbp-8H]
+add     rax, rdx
+mov     byte [rax], 0
+mov     rax, qword [rbp-8H]
+leave
+        ret
 getInt:
 	push rbp
 	mov rbp,rsp
@@ -721,136 +766,66 @@ Llege_021:  mov     eax, 1
 Llege_022:  pop     rbp
 	ret
 section   .text
-tak:
-      push	rbp
-      mov	rbp,rsp
-      sub	rsp,96
-      mov	[rbp - 8],rdi
-      mov	[rbp - 16],rsi
-      mov	[rbp - 24],rdx
-      mov	r10,[rbp - 16]
-      cmp	r10,[rbp - 8]
-      setl r10b
-      movzx r10,r10b
-      mov	[rbp - 32],r10
-      mov	 r10,[rbp-32]
-      cmp	 r10,0
-      je	_0else
-_0if:
-      mov	r10,[rbp - 8]
-      sub	r10,1
-      mov	[rbp - 32],r10
-      mov	rdi,[rbp-32]
-      mov	rsi,[rbp-16]
-      mov	rdx,[rbp-24]
-      push	r10
-      push	r11
-      call	tak
-      pop	r11
-      pop	r10
-      mov	[rbp -  40],rax
-      mov	r10,[rbp - 16]
-      sub	r10,1
-      mov	[rbp - 48],r10
-      mov	rdi,[rbp-48]
-      mov	rsi,[rbp-24]
-      mov	rdx,[rbp-8]
-      push	r10
-      push	r11
-      call	tak
-      pop	r11
-      pop	r10
-      mov	[rbp -  56],rax
-      mov	r10,[rbp - 24]
-      sub	r10,1
-      mov	[rbp - 64],r10
-      mov	rdi,[rbp-64]
-      mov	rsi,[rbp-8]
-      mov	rdx,[rbp-16]
-      push	r10
-      push	r11
-      call	tak
-      pop	r11
-      pop	r10
-      mov	[rbp -  72],rax
-      mov	rdi,[rbp-40]
-      mov	rsi,[rbp-56]
-      mov	rdx,[rbp-72]
-      push	r10
-      push	r11
-      call	tak
-      pop	r11
-      pop	r10
-      mov	[rbp -  80],rax
-      mov	r10,1
-      add	r10,[rbp - 80]
-      mov	[rbp - 88],r10
-      mov	rax,[rbp -  88]
-      mov	rsp,rbp
-      pop rbp
-      ret
-      jmp	_0ifback
-_0else:
-      mov	rax,[rbp -  24]
-      mov	rsp,rbp
-      pop rbp
-      ret
-_0ifback:
 main:
       push	rbp
       mov	rbp,rsp
-      sub	rsp,96
+      sub	rsp,64
+      push r10
+      push r11
+      mov	rdi,256
+      call	malloc
+      pop r10
+      pop r11
+      mov	byte[rax + 0],'a'
+      mov	byte[rax + 1],'a'
+      mov	byte[rax + 2],'a'
+      mov	byte[rax + 3],0
+      mov	[rbp - 8],rax
+      push r10
+      push r11
+      mov	rdi,256
+      call	malloc
+      pop r10
+      pop r11
+      mov	byte[rax + 0],'b'
+      mov	byte[rax + 1],'b'
+      mov	byte[rax + 2],'b'
+      mov	byte[rax + 3],'b'
+      mov	byte[rax + 4],'b'
+      mov	byte[rax + 5],0
+      mov	[rbp - 16],rax
+      mov	rdi,[rbp-8]
+      mov	rsi,[rbp-16]
       push	r10
       push	r11
-      call	getInt
-      pop	r11
-      pop	r10
-      mov	[rbp -  32],rax
-      mov	r10,[rbp - 32]
-      mov	[rbp - 8],r10
-      push	r10
-      push	r11
-      call	getInt
-      pop	r11
-      pop	r10
-      mov	[rbp -  32],rax
-      mov	r10,[rbp - 32]
-      mov	[rbp - 16],r10
-      push	r10
-      push	r11
-      call	getInt
+      call	string.add
       pop	r11
       pop	r10
       mov	[rbp -  32],rax
       mov	r10,[rbp - 32]
       mov	[rbp - 24],r10
-      mov	rdi,[rbp-8]
-      mov	rsi,[rbp-16]
-      mov	rdx,[rbp-24]
+      mov	rdi,[rbp-24]
       push	r10
       push	r11
-      call	tak
-      pop	r11
-      pop	r10
-      mov	[rbp -  32],rax
-      mov	rdi,[rbp-32]
-      push	r10
-      push	r11
-      call	toString
+      call	string.length
       pop	r11
       pop	r10
       mov	[rbp -  40],rax
-      mov	rdi,[rbp-40]
+      mov	rdi,[rbp-24]
+      mov	rsi,5
       push	r10
       push	r11
-      mov	rax,0
-      call	println
+      call	string.ord
       pop	r11
       pop	r10
       mov	[rbp -  48],rax
-      mov	rdi,0
-      mov	rax,60
-      syscall
+      mov	r10,[rbp - 40]
+      add	r10,[rbp - 48]
+      mov	[rbp - 56],r10
+      mov	rax,[rbp -  56]
+      mov	rsp,rbp
+      pop rbp
+      ret
 section .data
 intbuffer:
 	dq 0

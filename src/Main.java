@@ -455,7 +455,9 @@ class MyVisitor extends MxBaseVisitor<check>
                 }
             quad.z.name = curtemp.toString() + "temp";
             quad.y.name = ck.code.last.z.name;
-            quad.op = "=";
+            if (ck.code.last.op.equals("str")) quad.op = "str=";
+            else
+                quad.op = "=";
             chk.code.add(ck.code);
             chk.code.push(quad);
         }
@@ -966,8 +968,7 @@ class MyVisitor extends MxBaseVisitor<check>
             {
                 quard quad = new quard();
                 quad.y.name = ck.code.last.z.name;
-                if (ismain) quad.op = "ret";
-                else quad.op = "ret";
+                quad.op = "ret";
                 chk.code.add(ck.code);
                 chk.code.push(quad);
                 continue;
@@ -1166,32 +1167,31 @@ class MyVisitor extends MxBaseVisitor<check>
             if (s.equals("length") && cla.equals("002"))
             {
                 quard quad = new quard();
-                quad.op = "=";
+                quad.op = "call";
+                quad.z.name = "string.length";
+                if (regs.containsKey(strname))
+                    quad.y.add(regs.get(strname).toString() + "temp");
                 quad.y.name = temp.toString() + "temp";
+                chk.code.push(quad);
+                quad = new quard();
+                quad.z.name = temp.toString() + "temp";
                 ++temp;
                 if (temp > maxtemp) maxtemp = temp;
-                quad.x.name = "arr";
-                if (defvars.containsKey(strname))
-                    quad.x.addr = defvars.get(strname).addr.toString();
                 chk.code.push(quad);
                 constfunc = true;
             }
             if (s.equals("ord") && cla.equals("002"))
             {
                 quard quad = new quard();
-                quad.op = "=";
+                quad.op = "call";
+                quad.z.name = "string.ord";
+                if (regs.containsKey(strname))
+                    quad.y.add(regs.get(strname).toString() + "temp");
+                quad.y.add(chk.params.get(0));
                 quad.y.name = temp.toString() + "temp";
-
-                quad.x.name = chk.params.get(0);
                 chk.code.push(quad);
                 quad = new quard();
-                quad.op = "b=";
-                quad.x.name = "arr";
-                if (temp < 15 && defvars.containsKey(strname))
-                    quad.x.addr = defvars.get(strname).addr.toString() + "+8+" + regsname[temp];
-                ++temp;
-                if (temp > maxtemp) maxtemp = temp;
-                quad.y.name = temp.toString() + "temp";
+                quad.z.name = temp.toString() + "temp";
                 ++temp;
                 if (temp > maxtemp) maxtemp = temp;
                 chk.code.push(quad);
@@ -1452,10 +1452,10 @@ class MyVisitor extends MxBaseVisitor<check>
             chk.var.add("string");
             quard quad = new quard();
             String s = ctx.STR().getText();
-            quad.y.name = new String();
+            quad.z.name = new String();
             for (int i = 1; i < s.length() - 1; ++i)
             {
-                quad.y.name += ctx.STR().getText().charAt(i);
+                quad.z.name += ctx.STR().getText().charAt(i);
             }
             //System.out.println(quad.y.name);
             quad.op = "str";
@@ -1553,12 +1553,14 @@ class MyVisitor extends MxBaseVisitor<check>
             }
         ir ir1 = new ir();
         ir ir2 = new ir();
+        boolean isstr = false;
         for (int i = 0; i < ctx.expr().size(); ++i)
         {
             check ck = new check();
             if (i == 0 && ctx.opd != null) left = true;
             ck = visit(ctx.expr(i));
             left = false;
+            if (ck.var.get(0).equals("string")) isstr = true;
             if (i == 0) ir1 = ck.code;
             if (i == 1) ir2 = ck.code;
             vec.addAll(ck.var);
@@ -1630,18 +1632,36 @@ class MyVisitor extends MxBaseVisitor<check>
         if (ctx.op != null)
             if (!ctx.op.getText().equals("."))
                 if (!ctx.op.getText().equals("=") && ir1.last != null && ir2.last != null)
-                {
-                    quard quad = new quard();
-                    quad.z.name = temp.toString() + "temp";
-                    ++temp;
-                    if (temp > maxtemp) maxtemp = temp;
-                    quad.y = new varible(ir1.last.z);
-                    quad.x = new varible(ir2.last.z);
-                    quad.op = ctx.op.getText();
-                    chk.code.add(ir1);
-                    chk.code.add(ir2);
-                    chk.code.push(quad);
-                }
+                    if (ctx.op.getText().equals("+") && isstr)
+                    {
+                        quard quad = new quard();
+                        quad.z.name = "string.add";
+                        quad.op = "call";
+                        quad.y.add(ir1.last.z.name);
+                        quad.y.add(ir2.last.z.name);
+                        quad.y.name = temp.toString() + "temp";
+                        chk.code.add(ir1);
+                        chk.code.add(ir2);
+                        chk.code.push(quad);
+                        quad = new quard();
+                        quad.z.name = temp.toString() + "temp";
+                        chk.code.push(quad);
+                        ++temp;
+                        if (temp > maxtemp) maxtemp = temp;
+                    }
+                    else
+                    {
+                        quard quad = new quard();
+                        quad.z.name = temp.toString() + "temp";
+                        ++temp;
+                        if (temp > maxtemp) maxtemp = temp;
+                        quad.y = new varible(ir1.last.z);
+                        quad.x = new varible(ir2.last.z);
+                        quad.op = ctx.op.getText();
+                        chk.code.add(ir1);
+                        chk.code.add(ir2);
+                        chk.code.push(quad);
+                    }
         if (ctx.op1 != null && ir1.last != null && ir2.last != null)
         {
             quard quad = new quard();
@@ -1773,7 +1793,7 @@ public class Main
     public static check main() throws Exception
     {
        // File f = new File("E:/test.txt");
-         File f = new File("program.txt");
+        File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
         run(input);

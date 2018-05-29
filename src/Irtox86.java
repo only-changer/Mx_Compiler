@@ -116,26 +116,73 @@ public class Irtox86
         System.out.print("\tret\n\n");
 
         //string.add
-        System.out.print("string.add:\n");
-        System.out.print("\tpush rbp\n");
-        System.out.print("\tmov rbp,rsp\n");
-        System.out.print("\tpush rsi\n");
-        System.out.print("\tmov rsi,rdi\n");
-        System.out.print("\tmov rdi,stringbuffer\n");
-        System.out.print("\tmov rdx,[rsi-8]\n");
-        System.out.print("\tpush rdx\n");
-        System.out.print("\tcall memcpy\n");
-        System.out.print("\tpop rdi\n");
-        System.out.print("\tpop rsi\n");
-        System.out.print("\tadd rdi,stringbuffer\n");
-        System.out.print("\tmov rdx,[rsi-8]\n");
-        System.out.print("\tadd rdx,1\n");
-        System.out.print("\tcall memcpy\n");
-        System.out.print("\tmov rdi,stringbuffer\n");
-        System.out.print("\tcall transtring\n");
-        System.out.print("\tmov rsp,rbp\n");
-        System.out.print("\tpop rbp\n");
-        System.out.print("\tret\n");
+        System.out.println("string.add:");
+        System.out.println("push    rbp");
+        System.out.println("mov     rbp, rsp");
+        System.out.println("sub     rsp, 32");
+        System.out.println(" mov     qword [rbp-18H], rdi");
+        System.out.println("mov     qword [rbp-20H], rsi");
+        System.out.println("mov     edi, 256");
+        System.out.println("call    malloc");
+        System.out.println(" mov     qword [rbp-8H], rax");
+        System.out.println(" mov     dword [rbp-10H], 0");
+        System.out.println("mov     dword [rbp-0CH], 0");
+        System.out.println("jmp     Lc_002");
+
+        System.out.println("Lc_001: ");
+        System.out.println("mov     eax, dword [rbp-10H]");
+        System.out.println("movsxd  rdx, eax");
+        System.out.println("mov     rax, qword [rbp-8H]");
+        System.out.println("add     rdx, rax");
+        System.out.println("mov     eax, dword [rbp-10H]");
+        System.out.println("movsxd  rcx, eax");
+        System.out.println(" mov     rax, qword [rbp-18H]");
+        System.out.println("add     rax, rcx");
+        System.out.println("movzx   eax, byte [rax]");
+        System.out.println("mov     byte [rdx], al");
+        System.out.println("add     dword [rbp-10H], 1");
+        System.out.println("Lc_002: " );
+        System.out.println("mov     eax, dword [rbp-10H]");
+        System.out.println("movsxd  rdx, eax");
+        System.out.println("mov     rax, qword [rbp-18H]");
+        System.out.println(" add     rax, rdx");
+        System.out.println("movzx   eax, byte [rax]");
+        System.out.println("test    al, al");
+        System.out.println("jnz     Lc_001");
+        System.out.println("jmp     Lc_004");
+
+        System.out.println("Lc_003:  " );
+        System.out.println("mov     edx, dword [rbp-0CH]");
+        System.out.println("mov     eax, dword [rbp-10H]");
+        System.out.println("add     eax, edx");
+        System.out.println("movsxd  rdx, eax");
+        System.out.println("mov     rax, qword [rbp-8H]");
+        System.out.println("add     rdx, rax");
+        System.out.println("mov     eax, dword [rbp-0CH]");
+        System.out.println("movsxd  rcx, eax");
+        System.out.println("mov     rax, qword [rbp-20H]");
+        System.out.println("add     rax, rcx");
+        System.out.println(" movzx   eax, byte [rax]");
+        System.out.println("mov     byte [rdx], al");
+        System.out.println("add     dword [rbp-0CH], 1");
+        System.out.println("Lc_004: ");
+        System.out.println("mov     eax, dword [rbp-0CH]");
+        System.out.println("movsxd  rdx, eax");
+        System.out.println("mov     rax, qword [rbp-20H]");
+        System.out.println("add     rax, rdx");
+        System.out.println("movzx   eax, byte [rax]");
+        System.out.println("test    al, al");
+        System.out.println("jnz     Lc_003");
+        System.out.println("mov     edx, dword [rbp-10H]");
+        System.out.println(" mov     eax, dword [rbp-0CH]");
+        System.out.println("add     eax, edx");
+        System.out.println("movsxd  rdx, eax");
+        System.out.println(" mov     rax, qword [rbp-8H]");
+        System.out.println("add     rax, rdx");
+        System.out.println("mov     byte [rax], 0");
+        System.out.println("mov     rax, qword [rbp-8H]");
+        System.out.println("leave");
+        System.out.println("        ret");
 
 
         //getInt
@@ -907,18 +954,29 @@ public class Irtox86
             }
             if (q.op.equals("str="))
             {
-            }
-            if (q.op.equals("int") || q.op.equals("bool"))
-            {
-            }
-            if (q.op.equals("push"))
-            {
-            }
-            if (q.op.equals("pop"))
-            {
-            }
-            if (q.op.equals("b="))
-            {
+                System.out.print("      ");
+                System.out.println("push r10");
+                System.out.print("      ");
+                System.out.println("push r11");
+                System.out.print("      ");
+                System.out.println("mov\trdi,256");
+                System.out.print("      ");
+                System.out.println("call\tmalloc");
+                System.out.print("      ");
+                System.out.println("pop r10");
+                System.out.print("      ");
+                System.out.println("pop r11");
+                for (int i = 0;i < q.y.name.length();++i)
+                {
+                    System.out.print("      ");
+                    System.out.println("mov\tbyte[rax + " + i + "],'" + q.y.name.charAt(i) + "'");
+                }
+                System.out.print("      ");
+                System.out.println("mov\tbyte[rax + " + q.y.name.length() + "],0");
+                Integer addr3 = new Integer(temp3 - start);
+                addr3 = (addr3 + 1) * 8;
+                System.out.print("      ");
+                System.out.println("mov\t[rbp - " + addr3.toString() + "],rax");
             }
             if (q.op.equals("="))
             {
@@ -946,10 +1004,10 @@ public class Irtox86
                 {
                     if (q.z.params == null)
                     {
-                        Integer addr2 = new Integer(temp3 - start);
-                        addr2 = (addr2 + 1) * 8;
+                        Integer addr3 = new Integer(temp3 - start);
+                        addr3 = (addr3 + 1) * 8;
                         System.out.print("      ");
-                        System.out.println("mov\tqword[rbp - " + addr2.toString() + "]," + q.y.name);
+                        System.out.println("mov\tqword[rbp - " + addr3.toString() + "]," + q.y.name);
                     }
                     else
                     {

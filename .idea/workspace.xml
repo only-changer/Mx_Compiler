@@ -5,6 +5,7 @@
       <change beforePath="$PROJECT_DIR$/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/a.out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hello.asm" beforeDir="false" afterPath="$PROJECT_DIR$/hello.asm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hello.o" beforeDir="false" afterPath="$PROJECT_DIR$/hello.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Irtox86.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Irtox86.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -29,8 +30,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="969" column="37" lean-forward="true" selection-start-line="969" selection-start-column="37" selection-end-line="969" selection-end-column="37" />
+            <state relative-caret-position="199">
+              <caret line="1794" column="9" selection-start-line="1794" selection-start-column="9" selection-end-line="1794" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -38,8 +39,8 @@
       <file leaf-file-name="Irtox86.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Irtox86.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3402">
-              <caret line="1086" column="43" lean-forward="true" selection-start-line="1086" selection-start-column="43" selection-end-line="1086" selection-end-column="43" />
+            <state relative-caret-position="143">
+              <caret line="972" column="17" lean-forward="true" selection-start-line="972" selection-start-column="17" selection-end-line="972" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -47,7 +48,7 @@
       <file leaf-file-name="String.java" pinned="false" current-in-tab="false">
         <entry file="jar://C:/Program Files (x86)/Java/jdk1.8.0_161/src.zip!/java/lang/String.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="11514">
+            <state relative-caret-position="19">
               <caret line="657" selection-start-line="657" selection-end-line="657" />
             </state>
           </provider>
@@ -109,14 +110,11 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>mov</find>
-      <find />
-      <find>ord</find>
       <find>varname</find>
       <find>op.equals(&quot;=&quot;</find>
       <find>opcom</find>
       <find>15</find>
-      <find />
+      <find>&lt; 15</find>
       <find>[str+</find>
       <find>str</find>
       <find>fun</find>
@@ -133,12 +131,15 @@
       <find>&quot;return&quot;</find>
       <find>&quot;ret</find>
       <find>&quot;return</find>
-      <find>&quot;call&quot;</find>
       <find>&quot;push</find>
       <find>funname</find>
       <find>q.op.equals(&quot;call</find>
       <find>ismain</find>
+      <find>q.op.equals(&quot;=&quot;</find>
       <find>main</find>
+      <find>&quot;call&quot;</find>
+      <find>ord</find>
+      <find>&quot;str=</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -157,7 +158,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="535" />
     <option name="width" value="1300" />
     <option name="height" value="1040" />
@@ -298,13 +299,13 @@
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Tool Output" order="7" sideWeight="0.49798927" weight="0.074179746" />
-      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.19772118" weight="0.0042796005" />
+      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.19168901" weight="0.0042796005" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.41353887" side_tool="true" visible="true" weight="0.2382311" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.41957104" side_tool="true" visible="true" weight="0.20399429" />
       <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.5864611" visible="true" weight="0.2382311" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.58042896" visible="true" weight="0.20399429" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49932975" weight="0.32952926" />
       <window_info id="Capture Tool" order="2" />
@@ -697,13 +698,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files (x86)/Java/jdk1.8.0_161/src.zip!/java/lang/String.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="11514">
-          <caret line="657" selection-start-line="657" selection-end-line="657" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Mx.g4">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1254">
@@ -711,17 +705,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://C:/Program Files (x86)/Java/jdk1.8.0_161/src.zip!/java/lang/String.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="657" selection-start-line="657" selection-end-line="657" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Irtox86.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3402">
-          <caret line="1086" column="43" lean-forward="true" selection-start-line="1086" selection-start-column="43" selection-end-line="1086" selection-end-column="43" />
+        <state relative-caret-position="143">
+          <caret line="972" column="17" lean-forward="true" selection-start-line="972" selection-start-column="17" selection-end-line="972" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="969" column="37" lean-forward="true" selection-start-line="969" selection-start-column="37" selection-end-line="969" selection-end-column="37" />
+        <state relative-caret-position="199">
+          <caret line="1794" column="9" selection-start-line="1794" selection-start-column="9" selection-end-line="1794" selection-end-column="9" />
         </state>
       </provider>
     </entry>
