@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="014ac6d6-8e40-455f-95b1-dff8859644ca" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IDE/Irtox86.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/Irtox86.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Irtox86.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Irtox86.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/a.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hello.asm" beforeDir="false" afterPath="$PROJECT_DIR$/hello.asm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hello.o" beforeDir="false" afterPath="$PROJECT_DIR$/hello.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -28,8 +29,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="339">
-              <caret line="1774" column="9" selection-start-line="1774" selection-start-column="9" selection-end-line="1774" selection-end-column="9" />
+            <state relative-caret-position="170">
+              <caret line="969" column="37" lean-forward="true" selection-start-line="969" selection-start-column="37" selection-end-line="969" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -37,7 +38,7 @@
       <file leaf-file-name="Irtox86.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Irtox86.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="265">
+            <state relative-caret-position="-3402">
               <caret line="1086" column="43" lean-forward="true" selection-start-line="1086" selection-start-column="43" selection-end-line="1086" selection-end-column="43" />
             </state>
           </provider>
@@ -108,16 +109,14 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>NUM</find>
-      <find>&quot;???&quot;</find>
       <find>mov</find>
-      <find>op = &quot;s</find>
+      <find />
       <find>ord</find>
       <find>varname</find>
       <find>op.equals(&quot;=&quot;</find>
       <find>opcom</find>
       <find>15</find>
-      <find>&lt; 15</find>
+      <find />
       <find>[str+</find>
       <find>str</find>
       <find>fun</find>
@@ -138,6 +137,8 @@
       <find>&quot;push</find>
       <find>funname</find>
       <find>q.op.equals(&quot;call</find>
+      <find>ismain</find>
+      <find>main</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -156,7 +157,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="535" />
     <option name="width" value="1300" />
     <option name="height" value="1040" />
@@ -297,13 +298,13 @@
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Tool Output" order="7" sideWeight="0.49798927" weight="0.074179746" />
-      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.19839142" weight="0.0042796005" />
+      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.19772118" weight="0.0042796005" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.41286862" side_tool="true" visible="true" weight="0.2382311" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.41353887" side_tool="true" visible="true" weight="0.2382311" />
       <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.5871314" visible="true" weight="0.2382311" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.5864611" visible="true" weight="0.2382311" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49932975" weight="0.32952926" />
       <window_info id="Capture Tool" order="2" />
@@ -712,15 +713,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Irtox86.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
+        <state relative-caret-position="-3402">
           <caret line="1086" column="43" lean-forward="true" selection-start-line="1086" selection-start-column="43" selection-end-line="1086" selection-end-column="43" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="339">
-          <caret line="1774" column="9" selection-start-line="1774" selection-start-column="9" selection-end-line="1774" selection-end-column="9" />
+        <state relative-caret-position="170">
+          <caret line="969" column="37" lean-forward="true" selection-start-line="969" selection-start-column="37" selection-end-line="969" selection-end-column="37" />
         </state>
       </provider>
     </entry>

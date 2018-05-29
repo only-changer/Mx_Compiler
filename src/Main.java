@@ -966,7 +966,7 @@ class MyVisitor extends MxBaseVisitor<check>
             {
                 quard quad = new quard();
                 quad.y.name = ck.code.last.z.name;
-                if (ismain) quad.op = "return";
+                if (ismain) quad.op = "ret";
                 else quad.op = "ret";
                 chk.code.add(ck.code);
                 chk.code.push(quad);

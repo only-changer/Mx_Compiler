@@ -843,6 +843,7 @@ main:
       mov	rdi,[rbp-40]
       push	r10
       push	r11
+      mov	rax,0
       call	println
       pop	r11
       pop	r10
