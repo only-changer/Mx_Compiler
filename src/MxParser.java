@@ -1542,9 +1542,10 @@ public class MxParser extends Parser {
 						setState(215);
 						if (!(precpred(_ctx, 15))) throw new FailedPredicateException(this, "precpred(_ctx, 15)");
 						setState(216);
+						((ExprContext)_localctx).op = _input.LT(1);
 						_la = _input.LA(1);
 						if ( !(_la==T__32 || _la==T__33) ) {
-						_errHandler.recoverInline(this);
+							((ExprContext)_localctx).op = (Token)_errHandler.recoverInline(this);
 						}
 						else {
 							if ( _input.LA(1)==Token.EOF ) matchedEOF = true;

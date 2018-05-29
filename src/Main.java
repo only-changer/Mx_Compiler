@@ -455,9 +455,8 @@ class MyVisitor extends MxBaseVisitor<check>
                 }
             quad.z.name = curtemp.toString() + "temp";
             quad.y.name = ck.code.last.z.name;
-            if (ck.code.last.op.equals("str")) quad.op = "str=";
-            else
-                quad.op = "=";
+
+            quad.op = "=";
             chk.code.add(ck.code);
             chk.code.push(quad);
         }
@@ -1463,13 +1462,14 @@ class MyVisitor extends MxBaseVisitor<check>
             chk.var.add("string");
             quard quad = new quard();
             String s = ctx.STR().getText();
-            quad.z.name = new String();
+            quad.z.name = temp.toString() + "temp";
+            quad.y.name = new String();
             for (int i = 1; i < s.length() - 1; ++i)
             {
-                quad.z.name += ctx.STR().getText().charAt(i);
+                quad.y.name += ctx.STR().getText().charAt(i);
             }
             //System.out.println(quad.y.name);
-            quad.op = "str";
+            quad.op = "str=";
             chk.code.push(quad);
         }
         if (ctx.getText().contains("null")) chk.var.add("002");
@@ -1803,7 +1803,7 @@ public class Main
 
     public static check main() throws Exception
     {
-      // File f = new File("E:/test.txt");
+      //  File f = new File("E:/test.txt");
         File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
