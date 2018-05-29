@@ -721,95 +721,353 @@ Llege_021:  mov     eax, 1
 Llege_022:  pop     rbp
 	ret
 section   .text
-tak:
+gcd:
       push	rbp
       mov	rbp,rsp
-      sub	rsp,96
+      sub	rsp,40
       mov	[rbp - 8],rdi
       mov	[rbp - 16],rsi
+      mov	eax,[rbp - 8]
+      mov	r10d,[rbp - 16]
+      cdq
+      idiv r10d
+      movsx	rdx,edx
       mov	[rbp - 24],rdx
-      mov	r10,[rbp - 16]
-      cmp	r10,[rbp - 8]
-      setl r10b
+      mov	r10,[rbp - 24]
+      cmp	r10,0
+      sete r10b
       movzx r10,r10b
       mov	[rbp - 32],r10
       mov	 r10,[rbp-32]
       cmp	 r10,0
       je	_0else
 _0if:
-      mov	r10,[rbp - 8]
-      sub	r10,1
-      mov	[rbp - 32],r10
-      mov	rdi,[rbp-32]
-      mov	rsi,[rbp-16]
-      mov	rdx,[rbp-24]
-      push	r10
-      push	r11
-      call	tak
-      pop	r11
-      pop	r10
-      mov	[rbp -  40],rax
-      mov	r10,[rbp - 16]
-      sub	r10,1
-      mov	[rbp - 48],r10
-      mov	rdi,[rbp-48]
-      mov	rsi,[rbp-24]
-      mov	rdx,[rbp-8]
-      push	r10
-      push	r11
-      call	tak
-      pop	r11
-      pop	r10
-      mov	[rbp -  56],rax
-      mov	r10,[rbp - 24]
-      sub	r10,1
-      mov	[rbp - 64],r10
-      mov	rdi,[rbp-64]
-      mov	rsi,[rbp-8]
-      mov	rdx,[rbp-16]
-      push	r10
-      push	r11
-      call	tak
-      pop	r11
-      pop	r10
-      mov	[rbp -  72],rax
-      mov	rdi,[rbp-40]
-      mov	rsi,[rbp-56]
-      mov	rdx,[rbp-72]
-      push	r10
-      push	r11
-      call	tak
-      pop	r11
-      pop	r10
-      mov	[rbp -  80],rax
-      mov	r10,1
-      add	r10,[rbp - 80]
-      mov	[rbp - 88],r10
-      mov	rax,[rbp -  88]
+      mov	rax,[rbp -  16]
       mov	rsp,rbp
       pop rbp
       ret
       jmp	_0ifback
 _0else:
-      mov	rax,[rbp -  24]
+      mov	eax,[rbp - 8]
+      mov	r10d,[rbp - 16]
+      cdq
+      idiv r10d
+      movsx	rdx,edx
+      mov	[rbp - 24],rdx
+      mov	rdi,[rbp-16]
+      mov	rsi,[rbp-24]
+      push	r10
+      push	r11
+      call	gcd5
+      pop	r11
+      pop	r10
+      mov	[rbp -  32],rax
+      mov	rax,[rbp -  32]
       mov	rsp,rbp
       pop rbp
       ret
 _0ifback:
+gcd1:
+      push	rbp
+      mov	rbp,rsp
+      sub	rsp,40
+      mov	[rbp - 8],rdi
+      mov	[rbp - 16],rsi
+      mov	eax,[rbp - 8]
+      mov	r10d,[rbp - 16]
+      cdq
+      idiv r10d
+      movsx	rdx,edx
+      mov	[rbp - 24],rdx
+      mov	r10,[rbp - 24]
+      cmp	r10,0
+      sete r10b
+      movzx r10,r10b
+      mov	[rbp - 32],r10
+      mov	 r10,[rbp-32]
+      cmp	 r10,0
+      je	_1else
+_1if:
+      mov	rax,[rbp -  16]
+      mov	rsp,rbp
+      pop rbp
+      ret
+      jmp	_1ifback
+_1else:
+      mov	eax,[rbp - 8]
+      mov	r10d,[rbp - 16]
+      cdq
+      idiv r10d
+      movsx	rdx,edx
+      mov	[rbp - 24],rdx
+      mov	rdi,[rbp-16]
+      mov	rsi,[rbp-24]
+      push	r10
+      push	r11
+      call	gcd
+      pop	r11
+      pop	r10
+      mov	[rbp -  32],rax
+      mov	rax,[rbp -  32]
+      mov	rsp,rbp
+      pop rbp
+      ret
+_1ifback:
+gcd2:
+      push	rbp
+      mov	rbp,rsp
+      sub	rsp,40
+      mov	[rbp - 8],rdi
+      mov	[rbp - 16],rsi
+      mov	eax,[rbp - 8]
+      mov	r10d,[rbp - 16]
+      cdq
+      idiv r10d
+      movsx	rdx,edx
+      mov	[rbp - 24],rdx
+      mov	r10,[rbp - 24]
+      cmp	r10,0
+      sete r10b
+      movzx r10,r10b
+      mov	[rbp - 32],r10
+      mov	 r10,[rbp-32]
+      cmp	 r10,0
+      je	_2else
+_2if:
+      mov	rax,[rbp -  16]
+      mov	rsp,rbp
+      pop rbp
+      ret
+      jmp	_2ifback
+_2else:
+      mov	eax,[rbp - 8]
+      mov	r10d,[rbp - 16]
+      cdq
+      idiv r10d
+      movsx	rdx,edx
+      mov	[rbp - 24],rdx
+      mov	rdi,[rbp-16]
+      mov	rsi,[rbp-24]
+      push	r10
+      push	r11
+      call	gcd1
+      pop	r11
+      pop	r10
+      mov	[rbp -  32],rax
+      mov	rax,[rbp -  32]
+      mov	rsp,rbp
+      pop rbp
+      ret
+_2ifback:
+gcd3:
+      push	rbp
+      mov	rbp,rsp
+      sub	rsp,40
+      mov	[rbp - 8],rdi
+      mov	[rbp - 16],rsi
+      mov	eax,[rbp - 8]
+      mov	r10d,[rbp - 16]
+      cdq
+      idiv r10d
+      movsx	rdx,edx
+      mov	[rbp - 24],rdx
+      mov	r10,[rbp - 24]
+      cmp	r10,0
+      sete r10b
+      movzx r10,r10b
+      mov	[rbp - 32],r10
+      mov	 r10,[rbp-32]
+      cmp	 r10,0
+      je	_3else
+_3if:
+      mov	rax,[rbp -  16]
+      mov	rsp,rbp
+      pop rbp
+      ret
+      jmp	_3ifback
+_3else:
+      mov	eax,[rbp - 8]
+      mov	r10d,[rbp - 16]
+      cdq
+      idiv r10d
+      movsx	rdx,edx
+      mov	[rbp - 24],rdx
+      mov	rdi,[rbp-16]
+      mov	rsi,[rbp-24]
+      push	r10
+      push	r11
+      call	gcd2
+      pop	r11
+      pop	r10
+      mov	[rbp -  32],rax
+      mov	rax,[rbp -  32]
+      mov	rsp,rbp
+      pop rbp
+      ret
+_3ifback:
+gcd4:
+      push	rbp
+      mov	rbp,rsp
+      sub	rsp,40
+      mov	[rbp - 8],rdi
+      mov	[rbp - 16],rsi
+      mov	eax,[rbp - 8]
+      mov	r10d,[rbp - 16]
+      cdq
+      idiv r10d
+      movsx	rdx,edx
+      mov	[rbp - 24],rdx
+      mov	r10,[rbp - 24]
+      cmp	r10,0
+      sete r10b
+      movzx r10,r10b
+      mov	[rbp - 32],r10
+      mov	 r10,[rbp-32]
+      cmp	 r10,0
+      je	_4else
+_4if:
+      mov	rax,[rbp -  16]
+      mov	rsp,rbp
+      pop rbp
+      ret
+      jmp	_4ifback
+_4else:
+      mov	eax,[rbp - 8]
+      mov	r10d,[rbp - 16]
+      cdq
+      idiv r10d
+      movsx	rdx,edx
+      mov	[rbp - 24],rdx
+      mov	rdi,[rbp-16]
+      mov	rsi,[rbp-24]
+      push	r10
+      push	r11
+      call	gcd
+      pop	r11
+      pop	r10
+      mov	[rbp -  32],rax
+      mov	rax,[rbp -  32]
+      mov	rsp,rbp
+      pop rbp
+      ret
+_4ifback:
+gcd5:
+      push	rbp
+      mov	rbp,rsp
+      sub	rsp,40
+      mov	[rbp - 8],rdi
+      mov	[rbp - 16],rsi
+      mov	eax,[rbp - 8]
+      mov	r10d,[rbp - 16]
+      cdq
+      idiv r10d
+      movsx	rdx,edx
+      mov	[rbp - 24],rdx
+      mov	r10,[rbp - 24]
+      cmp	r10,0
+      sete r10b
+      movzx r10,r10b
+      mov	[rbp - 32],r10
+      mov	 r10,[rbp-32]
+      cmp	 r10,0
+      je	_5else
+_5if:
+      mov	rax,[rbp -  16]
+      mov	rsp,rbp
+      pop rbp
+      ret
+      jmp	_5ifback
+_5else:
+      mov	eax,[rbp - 8]
+      mov	r10d,[rbp - 16]
+      cdq
+      idiv r10d
+      movsx	rdx,edx
+      mov	[rbp - 24],rdx
+      mov	rdi,[rbp-16]
+      mov	rsi,[rbp-24]
+      push	r10
+      push	r11
+      call	gcd2
+      pop	r11
+      pop	r10
+      mov	[rbp -  32],rax
+      mov	rax,[rbp -  32]
+      mov	rsp,rbp
+      pop rbp
+      ret
+_5ifback:
 main:
       push	rbp
       mov	rbp,rsp
-      sub	rsp,96
-      mov	rdi,18
-      mov	rsi,12
-      mov	rdx,6
+      sub	rsp,40
+      mov	rdi,10
+      mov	rsi,1
       push	r10
       push	r11
-      call	tak
+      call	gcd
       pop	r11
       pop	r10
       mov	[rbp -  8],rax
-      mov	rdi,[rbp -  8]
+      mov	rdi,[rbp-8]
+      push	r10
+      push	r11
+      call	toString
+      pop	r11
+      pop	r10
+      mov	[rbp -  16],rax
+      mov	rdi,[rbp-16]
+      push	r10
+      push	r11
+      call	println
+      pop	r11
+      pop	r10
+      mov	[rbp -  24],rax
+      mov	rdi,34986
+      mov	rsi,3087
+      push	r10
+      push	r11
+      call	gcd
+      pop	r11
+      pop	r10
+      mov	[rbp -  8],rax
+      mov	rdi,[rbp-8]
+      push	r10
+      push	r11
+      call	toString
+      pop	r11
+      pop	r10
+      mov	[rbp -  16],rax
+      mov	rdi,[rbp-16]
+      push	r10
+      push	r11
+      call	println
+      pop	r11
+      pop	r10
+      mov	[rbp -  24],rax
+      mov	rdi,2907
+      mov	rsi,1539
+      push	r10
+      push	r11
+      call	gcd
+      pop	r11
+      pop	r10
+      mov	[rbp -  8],rax
+      mov	rdi,[rbp-8]
+      push	r10
+      push	r11
+      call	toString
+      pop	r11
+      pop	r10
+      mov	[rbp -  16],rax
+      mov	rdi,[rbp-16]
+      push	r10
+      push	r11
+      call	println
+      pop	r11
+      pop	r10
+      mov	[rbp -  24],rax
+      mov	rdi,0
       mov	rax,60
       syscall
 section .data

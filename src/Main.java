@@ -19,11 +19,13 @@ class varible
     boolean isconst;
     String addr;
     Vector<String> params;
+
     varible()
     {
         name = new String();
         addr = new String();
     }
+
     public varible(varible var)
     {
         this.name = new String(var.name);
@@ -33,6 +35,7 @@ class varible
             this.params = new Vector<>(var.params);
         }
     }
+
     void add(String param)
     {
         if (params == null) params = new Vector<>();
@@ -1249,7 +1252,7 @@ class MyVisitor extends MxBaseVisitor<check>
                         if (!constfunc)
                         {
 
-                           q.y.add(sv);
+                            q.y.add(sv);
 
                         }
 
@@ -1303,7 +1306,7 @@ class MyVisitor extends MxBaseVisitor<check>
                     sname += ctx.expr(0).getText().charAt(i);
                 }
                 int n = ctx.expr().size();
-                quard quad =  new quard();
+                quard quad = new quard();
                 if (regs.containsKey(sname))
                     quad.z.name = regs.get(sname).toString() + "temp";
                 ++temp;
@@ -1320,7 +1323,7 @@ class MyVisitor extends MxBaseVisitor<check>
                     quard q = new quard();
                     q.z.name = temp.toString() + "temp";
                     q.op = "+";
-                    q.y  = new varible(ck.code.last.z);
+                    q.y = new varible(ck.code.last.z);
                     q.x.name = "1";
                     chk.code.push(q);
                     q = new quard();
@@ -1768,8 +1771,8 @@ public class Main
 
     public static check main() throws Exception
     {
-         //File f = new File("E:/test.txt");
-        File f = new File("program.txt");
+       // File f = new File("E:/test.txt");
+         File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
         run(input);
