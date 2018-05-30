@@ -18,7 +18,7 @@ class varible
     Integer arr;
     boolean isfunc;
     String addr;
-    Vector<String> params;
+    Vector<varible> params;
 
     varible()
     {
@@ -36,7 +36,7 @@ class varible
         }
     }
 
-    void add(String param)
+    void add(varible param)
     {
         if (params == null) params = new Vector<>();
         params.add(param);
@@ -134,7 +134,7 @@ class check
     Map<String, vartype> defvars = new HashMap();
     Vector<Vector> vars = new Vector<>();
     Vector<String> var = new Vector();
-    Vector<String> params = new Vector<>();
+    Vector<varible> params = new Vector<>();
 
     check()
     {
@@ -453,7 +453,9 @@ class MyVisitor extends MxBaseVisitor<check>
             }
             else
             {
-                chk.params.add(ctx.varname().getText());
+                varible k = new varible();
+                k.name = ctx.varname().getText();
+                chk.params.add(k);
             }
         if (ctx.expr() != null && getin)
         {
@@ -695,7 +697,11 @@ class MyVisitor extends MxBaseVisitor<check>
         for (int i = 0; i < params.size(); ++i)
         {
             if (regs.containsKey(params.get(i)))
-                quad.z.add(regs.get(params.get(i)).toString() + "temp");
+            {
+                varible k = new varible();
+                k.name = regs.get(params.get(i)).toString() + "temp";
+                quad.z.add(k);
+            }
         }
         chk.code.push(quad);
        if (ismain) chk.code.add(global);
@@ -1116,7 +1122,7 @@ class MyVisitor extends MxBaseVisitor<check>
             check ck = visit(ctx.expr(i));
             chk.vars.add(ck.var);
             chk.code.add(ck.code);
-            chk.params.add(ck.code.last.z.name);
+            chk.params.add(ck.code.last.z);
         }
         return chk;
     }
@@ -1188,7 +1194,9 @@ class MyVisitor extends MxBaseVisitor<check>
                     quad.z.name = temp.toString() + "temp";
                     quad.op = "+";
                     quad.y.name = regs.get(arrname).toString() + "temp";
-                    quad.y.add("0");
+                    varible k = new varible();
+                    k.name = "0";
+                    quad.y.add(k);
                     quad.x.name = "0";
                     chk.code.push(quad);
                     constfunc = true;
@@ -1198,8 +1206,12 @@ class MyVisitor extends MxBaseVisitor<check>
                 quard quad = new quard();
                 quad.op = "call";
                 quad.z.name = "string.length";
+                varible k = new varible();
                 if (regs.containsKey(strname))
-                    quad.y.add(regs.get(strname).toString() + "temp");
+                {
+                    k.name = regs.get(strname).toString() + "temp";
+                    quad.y.add(k);
+                }
                 quad.y.name = temp.toString() + "temp";
                 chk.code.push(quad);
                 quad = new quard();
@@ -1214,8 +1226,12 @@ class MyVisitor extends MxBaseVisitor<check>
                 quard quad = new quard();
                 quad.op = "call";
                 quad.z.name = "string.ord";
+                varible k = new varible();
                 if (regs.containsKey(strname))
-                    quad.y.add(regs.get(strname).toString() + "temp");
+                {
+                    k.name = regs.get(strname).toString() + "temp";
+                    quad.y.add(k);
+                }
                 quad.y.add(chk.params.get(0));
                 quad.y.name = temp.toString() + "temp";
                 chk.code.push(quad);
@@ -1272,19 +1288,13 @@ class MyVisitor extends MxBaseVisitor<check>
                         Vector vec = new Vector();
                         vec.addAll(v.get(i));
                         vec.add(defun.get(s).get(i + 1));
-                        //  System.out.println(vec);
-                        //  System.out.println(defuns.get(s));
                         chk.vars.add(vec);
-                        String sv = new String();
+                         varible sv = new varible();
                         sv = chk.params.get(i);
-                        // System.err.println(sv);
                         if (!constfunc)
                         {
-
                             q.y.add(sv);
-
                         }
-
                     }
                     if (!constfunc)
                     {
@@ -1363,7 +1373,9 @@ class MyVisitor extends MxBaseVisitor<check>
                     q.y.name = temp.toString() + "temp";
                     q.x.name = "8";
                     chk.code.push(q);
-                    quad.z.add(temp.toString() + "temp");
+                    varible k = new varible();
+                    k.name = temp.toString() + "temp";
+                    quad.z.add(k);
                     ++temp;
                     if (temp > maxtemp) maxtemp = temp;
                 }
@@ -1594,7 +1606,9 @@ class MyVisitor extends MxBaseVisitor<check>
                     {
                         quard quad = new quard();
                         quad.z.name = q.z.name;
-                        quad.z.add(defclass.get(ty).vars.get(ck.code.last.x.name).toString());
+                        varible k = new varible();
+                        k.name = defclass.get(ty).vars.get(ck.code.last.x.name).toString();
+                        quad.z.add(k);
                         chk.code.push(quad);
                     }
                 }
@@ -1695,8 +1709,8 @@ class MyVisitor extends MxBaseVisitor<check>
                         quard quad = new quard();
                         quad.z.name = "string.add";
                         quad.op = "call";
-                        quad.y.add(ir1.last.z.name);
-                        quad.y.add(ir2.last.z.name);
+                        quad.y.add(ir1.last.z);
+                        quad.y.add(ir2.last.z);
                         quad.y.name = temp.toString() + "temp";
                         chk.code.add(ir1);
                         chk.code.add(ir2);
@@ -1768,7 +1782,9 @@ class MyVisitor extends MxBaseVisitor<check>
                     quard quad = new quard();
                     quad.op = "call";
                     quad.z.name = "malloc";
-                    quad.y.add(defclass.get(s).size.toString());
+                    varible k =  new varible();
+                    k.name = defclass.get(s).size.toString();
+                    quad.y.add(k);
                     quad.y.name = temp.toString() + "temp";
                     chk.code.push(quad);
                     quad = new quard();
@@ -1828,14 +1844,18 @@ class MyVisitor extends MxBaseVisitor<check>
                 quad = new quard();
                 quad.z.name = "malloc";
                 quad.op = "call";
-                quad.y.add(temp.toString() + "temp");
+                varible k = new varible();
+                k.name = temp.toString() + "temp";
+                quad.y.add(k);
                 ++temp;
                 if (temp > maxtemp) maxtemp = temp;
                 quad.y.name = temp.toString() + "temp";
                 chk.code.push(quad);
                 quad = new quard();
                 quad.z.name = temp.toString() + "temp";
-                quad.z.add("0");
+                k = new varible();
+                k.name = "0";
+                quad.z.add(k);
                 ++temp;
                 quad.op = "=";
                 quad.y = new varible(ck.code.last.z);

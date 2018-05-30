@@ -14,7 +14,8 @@ public class Irtox86
     static Integer temp3 = new Integer(0);
     static Integer start = new Integer(0);
     static Integer end = new Integer(0);
-    static Vector<String > global = new Vector<>();
+    static Vector<varible> global = new Vector<>();
+
     public static Integer move(String curtemp)
     {
         Integer temp0 = -1;
@@ -29,7 +30,7 @@ public class Irtox86
         return temp0;
     }
 
-    public static void getaddr(String s, Vector<String> params, String reg)
+    public static void getaddr(String s, Vector<varible> params, String reg)
     {
         Integer tmp = -1;
         String tmps = new String();
@@ -42,25 +43,26 @@ public class Irtox86
             tmp = Integer.parseInt(tmps);
         addr = new Integer(tmp - start);
         addr = (addr + 1) * 8;
-        if (!(s.charAt(0)>= '0' && s.charAt(0) <= '9'))
+        if (!(s.charAt(0) >= '0' && s.charAt(0) <= '9'))
         {
             System.out.print("      ");
             System.out.println("mov\t" + reg + ",[" + s + "]");
-        }else
+        }
+        else
         {
             System.out.print("      ");
             System.out.println("mov\t" + reg + ",[rbp - " + addr.toString() + "]");
         }
         for (int i = 0; i < params.size(); ++i)
         {
-            if (params.get(i).contains("temp"))
+            if (params.get(i).name.contains("temp"))
             {
                 tmp = -1;
                 tmps = new String();
-                for (int j = 0; j < params.get(i).length(); ++j)
+                for (int j = 0; j < params.get(i).name.length(); ++j)
                 {
-                    if (!(params.get(i).charAt(j) >= '0' && params.get(i).charAt(j) <= '9')) break;
-                    tmps += params.get(i).charAt(j);
+                    if (!(params.get(i).name.charAt(j) >= '0' && params.get(i).name.charAt(j) <= '9')) break;
+                    tmps += params.get(i).name.charAt(j);
                 }
                 if (!tmps.equals(""))
                     tmp = Integer.parseInt(tmps);
@@ -68,15 +70,16 @@ public class Irtox86
                 addr = (addr + 1) * 8;
                 System.out.print("      ");
                 System.out.println("add\t" + reg + ",[rbp - " + addr.toString() + "]");
-            }else if(!(params.get(i).charAt(0) >= '0' && params.get(i).charAt(0) <= '9'))
+            }
+            else if (!(params.get(i).name.charAt(0) >= '0' && params.get(i).name.charAt(0) <= '9'))
             {
                 System.out.print("      ");
-                System.out.println("add\t" + reg + ",[" + params.get(i)+"]");
+                System.out.println("add\t" + reg + ",[" + params.get(i).name + "]");
             }
             else
             {
                 System.out.print("      ");
-                System.out.println("add\t" + reg + "," + params.get(i));
+                System.out.println("add\t" + reg + "," + params.get(i).name);
             }
             if (i != params.size() - 1)
             {
@@ -949,10 +952,11 @@ public class Irtox86
                     {
                         Integer tmp = -1;
                         String tmps = new String();
-                        for (int j = 0; j < q.z.params.get(i).length(); ++j)
+                        for (int j = 0; j < q.z.params.get(i).name.length(); ++j)
                         {
-                            if (!(q.z.params.get(i).charAt(j) >= '0' && q.z.params.get(i).charAt(j) <= '9')) break;
-                            tmps += q.z.params.get(i).charAt(j);
+                            if (!(q.z.params.get(i).name.charAt(j) >= '0' && q.z.params.get(i).name.charAt(j) <= '9'))
+                                break;
+                            tmps += q.z.params.get(i).name.charAt(j);
                         }
                         if (!tmps.equals(""))
                             tmp = Integer.parseInt(tmps);
@@ -1003,7 +1007,8 @@ public class Irtox86
                         {
                             System.out.print("      ");
                             System.out.println("mov\t[" + q.z.name + "],r10");
-                        }else
+                        }
+                        else
                         {
                             Integer addr3 = new Integer(temp3 - start);
                             addr3 = (addr3 + 1) * 8;
@@ -1028,12 +1033,13 @@ public class Irtox86
                             System.out.println("mov\tr10,[" + q.y.name + "]");
                             System.out.print("      ");
                             System.out.println("mov\t[" + q.z.name + "],r10");
-                        }else
+                        }
+                        else
                         {
                             Integer addr3 = new Integer(temp3 - start);
                             addr3 = (addr3 + 1) * 8;
                             System.out.print("      ");
-                            System.out.println("mov\tr10,["+ q.y.name+"]" );
+                            System.out.println("mov\tr10,[" + q.y.name + "]");
                             System.out.print("      ");
                             System.out.println("mov\t[rbp-" + addr3.toString() + "],r10");
                         }
@@ -1056,7 +1062,8 @@ public class Irtox86
                         {
                             System.out.print("      ");
                             System.out.println("mov\tqword[" + q.z.name + "]," + q.y.name);
-                        }else
+                        }
+                        else
                         {
                             Integer addr3 = new Integer(temp3 - start);
                             addr3 = (addr3 + 1) * 8;
@@ -1161,15 +1168,21 @@ public class Irtox86
                     {
                         for (int i = 0; i < q.y.params.size(); ++i)
                         {
-                            if (q.y.params.get(i).contains("temp"))
+                            if (q.y.params.get(i).params != null)
+                            {
+                                getaddr(q.y.params.get(i).name, q.y.params.get(i).params, "r10");
+                                System.out.print("      ");
+                                System.out.println("mov\t" + callregs[i]  + ",[r10]");
+                            }
+                            else if (q.y.params.get(i).name.contains("temp"))
                             {
                                 Integer tmp = -1;
                                 String tmps = new String();
-                                for (int j = 0; j < q.y.params.get(i).length(); ++j)
+                                for (int j = 0; j < q.y.params.get(i).name.length(); ++j)
                                 {
-                                    if (!(q.y.params.get(i).charAt(j) >= '0' && q.y.params.get(i).charAt(j) <= '9'))
+                                    if (!(q.y.params.get(i).name.charAt(j) >= '0' && q.y.params.get(i).name.charAt(j) <= '9'))
                                         break;
-                                    tmps += q.y.params.get(i).charAt(j);
+                                    tmps += q.y.params.get(i).name.charAt(j);
                                 }
                                 if (!tmps.equals(""))
                                     tmp = Integer.parseInt(tmps);
@@ -1178,15 +1191,15 @@ public class Irtox86
                                 System.out.print("      ");
                                 System.out.println("mov\t" + callregs[i] + ",[rbp-" + addr.toString() + "]");
                             }
-                            else if(!(q.y.params.get(i).charAt(0) >= '0' && q.y.params.get(i).charAt(0) <= '9'))
+                            else if (!(q.y.params.get(i).name.charAt(0) >= '0' && q.y.params.get(i).name.charAt(0) <= '9'))
                             {
                                 System.out.print("      ");
-                                System.out.println("mov\t" + callregs[i]+ ",[" +q.y.params.get(i)+"]");
+                                System.out.println("mov\t" + callregs[i] + ",[" + q.y.params.get(i).name + "]");
                             }
                             else
                             {
                                 System.out.print("      ");
-                                System.out.println("mov\t" + callregs[i] + "," + q.y.params.get(i));
+                                System.out.println("mov\t" + callregs[i] + "," + q.y.params.get(i).name);
                             }
                         }
                     }
@@ -1215,7 +1228,7 @@ public class Irtox86
                 else
                 {
                     System.out.print("      ");
-                    System.out.println("mov\t[  " + q.y.name +"],rax");
+                    System.out.println("mov\t[  " + q.y.name + "],rax");
                 }
             }
 
@@ -1274,7 +1287,8 @@ public class Irtox86
                 {
                     System.out.print("      ");
                     System.out.println("mov\t[ " + q.z.name + "],r10");
-                }else
+                }
+                else
                 {
                     Integer addr3 = new Integer(temp3 - start);
                     addr3 = (addr3 + 1) * 8;
@@ -1290,8 +1304,7 @@ public class Irtox86
                     System.out.print("      ");
                     System.out.println("mov\tr10,[r10]");
                 }
-                else
-                if (q.y.name.contains("temp"))
+                else if (q.y.name.contains("temp"))
                 {
                     Integer addr1 = new Integer(temp - start);
                     addr1 = (addr1 + 1) * 8;
@@ -1314,8 +1327,7 @@ public class Irtox86
                     System.out.print("      ");
                     System.out.println("sub\tr10,[r11]");
                 }
-                else
-                if (q.x.name.contains("temp"))
+                else if (q.x.name.contains("temp"))
                 {
                     Integer addr2 = new Integer(temp2 - start);
                     addr2 = (addr2 + 1) * 8;
@@ -1586,8 +1598,8 @@ public class Irtox86
                     getaddr(q.y.name, q.y.params, "r11");
                     System.out.print("      ");
                     System.out.println("mov\tr10,[r11]");
-                }else
-                if (q.y.name.contains("temp"))
+                }
+                else if (q.y.name.contains("temp"))
                 {
                     Integer addr1 = new Integer(temp - start);
                     addr1 = (addr1 + 1) * 8;
@@ -1637,8 +1649,8 @@ public class Irtox86
                     getaddr(q.y.name, q.y.params, "r11");
                     System.out.print("      ");
                     System.out.println("mov\tr10,[r11]");
-                }else
-                if (q.y.name.contains("temp"))
+                }
+                else if (q.y.name.contains("temp"))
                 {
                     Integer addr1 = new Integer(temp - start);
                     addr1 = (addr1 + 1) * 8;
@@ -1688,8 +1700,8 @@ public class Irtox86
                     getaddr(q.y.name, q.y.params, "r11");
                     System.out.print("      ");
                     System.out.println("mov\tr10,[r11]");
-                }else
-                if (q.y.name.contains("temp"))
+                }
+                else if (q.y.name.contains("temp"))
                 {
                     Integer addr1 = new Integer(temp - start);
                     addr1 = (addr1 + 1) * 8;
@@ -1877,8 +1889,8 @@ public class Irtox86
                     getaddr(q.y.name, q.y.params, "r11");
                     System.out.print("      ");
                     System.out.println("mov\tr10,[r11]");
-                }else
-                if (q.y.name.contains("temp"))
+                }
+                else if (q.y.name.contains("temp"))
                 {
                     Integer addr1 = new Integer(temp - start);
                     addr1 = (addr1 + 1) * 8;
@@ -1928,8 +1940,8 @@ public class Irtox86
                     getaddr(q.y.name, q.y.params, "r11");
                     System.out.print("      ");
                     System.out.println("mov\tr10,[r11]");
-                }else
-                if (q.y.name.contains("temp"))
+                }
+                else if (q.y.name.contains("temp"))
                 {
                     Integer addr1 = new Integer(temp - start);
                     addr1 = (addr1 + 1) * 8;
@@ -1997,8 +2009,8 @@ public class Irtox86
                     getaddr(q.x.name, q.x.params, "r11");
                     System.out.print("      ");
                     System.out.println("and\tr10,[r11]");
-                }else
-                if (q.x.name.contains("temp"))
+                }
+                else if (q.x.name.contains("temp"))
                 {
                     Integer addr2 = new Integer(temp2 - start);
                     addr2 = (addr2 + 1) * 8;
@@ -2070,9 +2082,9 @@ public class Irtox86
         System.out.print("\tdb\"%lld\",0\n");
         System.out.print("format2:\n");
         System.out.print("\tdb\"%s\",0\n\n");
-        for (int i = 0;i < global.size();++i)
+        for (int i = 0; i < global.size(); ++i)
         {
-            System.out.println(global.get(i) + ":");
+            System.out.println(global.get(i).name + ":");
             System.out.print("\tdq 0\n");
         }
         System.out.print("section .bss\n");
@@ -2085,7 +2097,7 @@ public class Irtox86
     {
         Main m = new Main();
         check chk = m.main();
-         //chk.code.print();
+        //chk.code.print();
         addr = chk.addr;
         global = new Vector<>(chk.params);
         translate(chk.code);
