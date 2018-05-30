@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="014ac6d6-8e40-455f-95b1-dff8859644ca" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/a.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hello.asm" beforeDir="false" afterPath="$PROJECT_DIR$/hello.asm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hello.o" beforeDir="false" afterPath="$PROJECT_DIR$/hello.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Irtox86.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Irtox86.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
@@ -28,8 +30,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="1857" column="8" selection-start-line="1857" selection-start-column="8" selection-end-line="1857" selection-end-column="8" />
+            <state relative-caret-position="356">
+              <caret line="1870" column="10" selection-start-line="1870" selection-start-column="10" selection-end-line="1870" selection-end-column="10" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1347#1348#0" expanded="true" />
@@ -44,8 +46,8 @@
       <file leaf-file-name="Irtox86.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Irtox86.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="1119" column="47" lean-forward="true" selection-start-line="1119" selection-start-column="47" selection-end-line="1119" selection-end-column="47" />
+            <state relative-caret-position="232">
+              <caret line="1961" column="17" lean-forward="true" selection-start-line="1961" selection-start-column="17" selection-end-line="1961" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -53,8 +55,8 @@
       <file leaf-file-name="String.java" pinned="false" current-in-tab="false">
         <entry file="jar://C:/Program Files (x86)/Java/jdk1.8.0_161/src.zip!/java/lang/String.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="11514">
-              <caret line="657" selection-start-line="657" selection-end-line="657" />
+            <state relative-caret-position="209">
+              <caret line="667" column="6" lean-forward="true" selection-start-line="667" selection-start-column="6" selection-end-line="667" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -80,8 +82,8 @@
       <file leaf-file-name="Mx.g4" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Mx.g4">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1159">
-              <caret line="61" column="40" selection-start-line="61" selection-start-column="40" selection-end-line="61" selection-end-column="40" />
+            <state relative-caret-position="261">
+              <caret line="77" column="12" lean-forward="true" selection-start-line="77" selection-start-column="12" selection-end-line="77" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -115,15 +117,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>opd</find>
-      <find>ln</find>
-      <find>return</find>
-      <find>++temp</find>
-      <find>size</find>
-      <find>&quot;call</find>
-      <find>&quot;reu</find>
-      <find>&quot;ret</find>
-      <find>&quot;return</find>
       <find>&quot;push</find>
       <find>funname</find>
       <find>q.op.equals(&quot;call</find>
@@ -139,12 +132,21 @@
       <find>opf</find>
       <find>.print</find>
       <find>opw</find>
-      <find>STR</find>
       <find>varname</find>
       <find>chk.code</find>
-      <find>&quot;call&quot;</find>
       <find>secti</find>
       <find>&quot;ret&quot;</find>
+      <find>&quot;call&quot;</find>
+      <find>&quot;&amp;&amp;&quot;</find>
+      <find>&quot;if&quot;</find>
+      <find>if</find>
+      <find>&quot;if</find>
+      <find>opcom</find>
+      <find>&quot;=&quot;</find>
+      <find>&quot;++&quot;</find>
+      <find>STR</find>
+      <find>.STR</find>
+      <find>&quot;&amp;&amp;</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -163,7 +165,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="535" />
     <option name="width" value="1300" />
     <option name="height" value="1040" />
@@ -304,12 +306,13 @@
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Tool Output" order="7" sideWeight="0.49798927" weight="0.074179746" />
+      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.13873994" weight="0.0042796005" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.45509383" side_tool="true" visible="true" weight="0.32952926" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.47184986" side_tool="true" visible="true" weight="0.0" />
       <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.54490614" weight="0.0" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.52815014" visible="true" weight="0.0" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49932975" weight="0.32952926" />
       <window_info id="Capture Tool" order="2" />
@@ -328,7 +331,6 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.15549597" weight="0.0042796005" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" id="Palette" order="3" />
@@ -698,36 +700,36 @@
     </entry>
     <entry file="jar://C:/Program Files (x86)/Java/jdk1.8.0_161/src.zip!/java/util/Vector.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13262">
+        <state relative-caret-position="140">
           <caret line="747" selection-start-line="747" selection-end-line="747" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files (x86)/Java/jdk1.8.0_161/src.zip!/java/lang/String.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="11514">
-          <caret line="657" selection-start-line="657" selection-end-line="657" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Mx.g4">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1159">
-          <caret line="61" column="40" selection-start-line="61" selection-start-column="40" selection-end-line="61" selection-end-column="40" />
+        <state relative-caret-position="261">
+          <caret line="77" column="12" lean-forward="true" selection-start-line="77" selection-start-column="12" selection-end-line="77" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files (x86)/Java/jdk1.8.0_161/src.zip!/java/lang/String.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="667" column="6" lean-forward="true" selection-start-line="667" selection-start-column="6" selection-end-line="667" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Irtox86.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="1119" column="47" lean-forward="true" selection-start-line="1119" selection-start-column="47" selection-end-line="1119" selection-end-column="47" />
+        <state relative-caret-position="232">
+          <caret line="1961" column="17" lean-forward="true" selection-start-line="1961" selection-start-column="17" selection-end-line="1961" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="1857" column="8" selection-start-line="1857" selection-start-column="8" selection-end-line="1857" selection-end-column="8" />
+        <state relative-caret-position="356">
+          <caret line="1870" column="10" selection-start-line="1870" selection-start-column="10" selection-end-line="1870" selection-end-column="10" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1347#1348#0" expanded="true" />

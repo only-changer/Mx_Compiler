@@ -687,7 +687,7 @@ class MyVisitor extends MxBaseVisitor<check>
         quad.op = "label!!!!!!!!!";
         chk.code.push(quad);
         quad = new quard();
-        quad.y.name = origintemp.toString();
+        quad.y.name = "0";
         quad.x.name = maxtemp.toString();
         quad.op = "funcinit";
         Integer paddr = new Integer(addr);
@@ -1013,14 +1013,9 @@ class MyVisitor extends MxBaseVisitor<check>
                     quard quad = new quard();
                     chk.code.add(ck.code);
                     quad.y = new varible(ck.code.last.z);
-                    if (ck.code.last.op.equals("label!!!!!!!!!") && ck.code.last.prev != null)
-                    {
-                        quad.y = new varible(ck.code.last.prev.z);
-                    }
-                    quad = new quard();
+                   // quad.y.name = new String(ck.code.last.z.name);
                     quad.z.name = b_i - 1 + "else";
                     quad.op = "if";
-
                     chk.code.push(quad);
                     chk.code.add(irr);
                     continue;
@@ -1084,7 +1079,7 @@ class MyVisitor extends MxBaseVisitor<check>
             if (ctx.getText().contains(";i;")) v.add("string");
             chk.vars.addAll(ck.vars);
         }
-        temp = origintemp;
+       // temp = origintemp;
         // System.out.println("!!!");
         // System.out.println(v);
         if (ctx.getText().contains("if") && ctx.expr() != null)
@@ -1343,6 +1338,7 @@ class MyVisitor extends MxBaseVisitor<check>
                 quard quad = new quard();
                 if (regs.containsKey(sname))
                     quad.z.name = regs.get(sname).toString() + "temp";
+                else quad.z.name = sname;
                 ++temp;
                 if (temp > maxtemp) maxtemp = temp;
                 quad.op = "arr";
@@ -1481,12 +1477,28 @@ class MyVisitor extends MxBaseVisitor<check>
             quad.op = "imm";
             chk.code.push(quad);
         }
+        if (ctx.getText().equals("true") || ctx.getText().equals("TRUE"))
+        {
+            quard quad = new quard();
+            quad.z.name = "1";
+            quad.op = "imm";
+            chk.code.push(quad);
+        }
+        if (ctx.getText().equals("false") || ctx.getText().equals("FALSE"))
+        {
+            quard quad = new quard();
+            quad.z.name = "0";
+            quad.op = "imm";
+            chk.code.push(quad);
+        }
         if (ctx.STR() != null)
         {
             chk.var.add("string");
             quard quad = new quard();
             String s = ctx.STR().getText();
             quad.z.name = temp.toString() + "temp";
+            ++temp;
+            if (maxtemp < temp) maxtemp = temp;
             quad.y.name = new String();
             for (int i = 1; i < s.length() - 1; ++i)
             {
@@ -1602,6 +1614,7 @@ class MyVisitor extends MxBaseVisitor<check>
             if (i == 0 && ctx.opd != null) left = true;
             ck = visit(ctx.expr(i));
             left = false;
+            if (ck.var.size() >= 1)
             if (ck.var.get(0).equals("string")) isstr = true;
             if (i == 0) ir1 = ck.code;
             if (i == 1) ir2 = ck.code;
@@ -1855,7 +1868,7 @@ public class Main
 
     public static check main() throws Exception
     {
-      //  File f = new File("E:/test.txt");
+        //File f = new File("E:/test.txt");
         File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);

@@ -42,8 +42,15 @@ public class Irtox86
             tmp = Integer.parseInt(tmps);
         addr = new Integer(tmp - start);
         addr = (addr + 1) * 8;
-        System.out.print("      ");
-        System.out.println("mov\t" + reg + ",[rbp - " + addr.toString() + "]");
+        if (!(s.charAt(0)>= '0' && s.charAt(0) <= '9'))
+        {
+            System.out.print("      ");
+            System.out.println("mov\t" + reg + ",[" + s + "]");
+        }else
+        {
+            System.out.print("      ");
+            System.out.println("mov\t" + reg + ",[rbp - " + addr.toString() + "]");
+        }
         for (int i = 0; i < params.size(); ++i)
         {
             if (params.get(i).contains("temp"))
@@ -1026,9 +1033,9 @@ public class Irtox86
                             Integer addr3 = new Integer(temp3 - start);
                             addr3 = (addr3 + 1) * 8;
                             System.out.print("      ");
-                            System.out.println("mov\tr10,"+ q.y.name );
+                            System.out.println("mov\tr10,["+ q.y.name+"]" );
                             System.out.print("      ");
-                            System.out.println("mov\t[" + q.z.name + "],r10");
+                            System.out.println("mov\t[rbp-" + addr3.toString() + "],r10");
                         }
                     }
                     else
@@ -1078,6 +1085,11 @@ public class Irtox86
                     addr1 = (addr1 + 1) * 8;
                     System.out.print("      ");
                     System.out.println("mov\t r10,[rbp-" + addr1.toString() + "]");
+                }
+                else if (!(q.y.name.charAt(0) >= '0' && q.y.name.charAt(0) <= '9'))
+                {
+                    System.out.print("      ");
+                    System.out.println("mov\t r10,[" + q.y.name + "]");
                 }
                 System.out.print("      ");
                 System.out.println("cmp\t r10,0");
@@ -1199,6 +1211,11 @@ public class Irtox86
                     System.out.print("      ");
                     System.out.println("mov\t[rbp -  " + addr1.toString() + "],rax");
                 }
+                else
+                {
+                    System.out.print("      ");
+                    System.out.println("mov\t[  " + q.y.name +"],rax");
+                }
             }
 
             if (q.op.equals("str+"))
@@ -1252,10 +1269,17 @@ public class Irtox86
                     System.out.print("      ");
                     System.out.println("add\tr10," + q.x.name);
                 }
-                Integer addr3 = new Integer(temp3 - start);
-                addr3 = (addr3 + 1) * 8;
-                System.out.print("      ");
-                System.out.println("mov\t[rbp - " + addr3.toString() + "],r10");
+                if (!(q.z.name.charAt(0) >= '0' && q.z.name.charAt(0) <= '9'))
+                {
+                    System.out.print("      ");
+                    System.out.println("mov\t[ " + q.z.name + "],r10");
+                }else
+                {
+                    Integer addr3 = new Integer(temp3 - start);
+                    addr3 = (addr3 + 1) * 8;
+                    System.out.print("      ");
+                    System.out.println("mov\t[rbp - " + addr3.toString() + "],r10");
+                }
             }
             if (q.op.equals("-"))
             {
@@ -1923,6 +1947,12 @@ public class Irtox86
                     System.out.print("      ");
                     System.out.println("mov\tr10," + q.y.name);
                 }
+                if (q.x.params != null)
+                {
+                    getaddr(q.x.name, q.x.params, "r11");
+                    System.out.print("      ");
+                    System.out.println("and\tr10,[r11]");
+                }else
                 if (q.x.name.contains("temp"))
                 {
                     Integer addr2 = new Integer(temp2 - start);
@@ -2010,7 +2040,7 @@ public class Irtox86
     {
         Main m = new Main();
         check chk = m.main();
-        // chk.code.print();
+         //chk.code.print();
         addr = chk.addr;
         global = new Vector<>(chk.params);
         translate(chk.code);
