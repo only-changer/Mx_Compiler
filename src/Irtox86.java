@@ -1919,7 +1919,7 @@ public class Irtox86
                     System.out.println("cmp\tr10," + q.x.name);
                 }
                 System.out.print("      ");
-                System.out.println("setl r10b");
+                System.out.println("setne r10b");
                 System.out.print("      ");
                 System.out.println("movzx r10,r10b");
                 Integer addr3 = new Integer(temp3 - start);
