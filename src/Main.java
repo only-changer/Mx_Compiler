@@ -232,7 +232,7 @@ class MyVisitor extends MxBaseVisitor<check>
     boolean left;
     Integer maxtemp = new Integer(0);
     boolean isglobal = false;
-
+    ir global = new ir();
     MyVisitor()
     {
         cla = "";
@@ -315,6 +315,7 @@ class MyVisitor extends MxBaseVisitor<check>
         {
             check ck = visit(ctx.defs(k));
             chk.defvars.putAll(ck.defvars);
+
             for (String key : ck.defvars.keySet())
             {
                 if (defvars.containsKey(key))
@@ -339,6 +340,7 @@ class MyVisitor extends MxBaseVisitor<check>
             {
                 check ck = visit(ctx.defs(k));
                 chk.defvars.putAll(ck.defvars);
+                chk.params.addAll(ck.params);
                 chk.code.add(ck.code);
                 for (String key : ck.defvars.keySet())
                 {
@@ -451,7 +453,7 @@ class MyVisitor extends MxBaseVisitor<check>
             }
             else
             {
-                System.out.println("global\t" + ctx.varname().getText());
+                chk.params.add(ctx.varname().getText());
             }
         if (ctx.expr() != null && getin)
         {
@@ -463,11 +465,20 @@ class MyVisitor extends MxBaseVisitor<check>
                 {
                     System.exit(-1);
                 }
-            quad.z.name = curtemp.toString() + "temp";
+            if (!isglobal) quad.z.name = curtemp.toString() + "temp";
+            else quad.z.name = ctx.varname().getText();
             quad.y.name = ck.code.last.z.name;
             quad.op = "=";
-            chk.code.add(ck.code);
-            chk.code.push(quad);
+           if (!isglobal)
+           {
+               chk.code.add(ck.code);
+               chk.code.push(quad);
+           }
+           else
+           {
+               global.add(ck.code);
+               global.push(quad);
+           }
         }
         chk.var.add(ctx.type().getText());
         String ss = new String();
@@ -686,6 +697,7 @@ class MyVisitor extends MxBaseVisitor<check>
                 quad.z.add(regs.get(params.get(i)).toString() + "temp");
         }
         chk.code.push(quad);
+       if (ismain) chk.code.add(global);
         chk.code.add(ck.code);
         for (String key : ck.defvars.keySet())
         {
@@ -1843,8 +1855,8 @@ public class Main
 
     public static check main() throws Exception
     {
-        //File f = new File("E:/test.txt");
-         File f = new File("program.txt");
+       // File f = new File("E:/test.txt");
+        File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
         run(input);

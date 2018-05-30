@@ -32,7 +32,16 @@
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="342">
-              <caret line="1845" column="10" selection-start-line="1845" selection-start-column="10" selection-end-line="1845" selection-end-column="10" />
+              <caret line="1857" column="9" selection-start-line="1857" selection-start-column="9" selection-end-line="1857" selection-end-column="9" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1347#1348#0" expanded="true" />
+                <element signature="e#1374#1375#0" expanded="true" />
+                <element signature="e#2651#2652#0" expanded="true" />
+                <element signature="e#2682#2683#0" expanded="true" />
+                <element signature="e#9540#9541#0" expanded="true" />
+                <element signature="e#9582#9583#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -40,8 +49,8 @@
       <file leaf-file-name="Irtox86.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Irtox86.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="461">
-              <caret line="1784" column="10" lean-forward="true" selection-start-line="1784" selection-start-column="10" selection-end-line="1784" selection-end-column="10" />
+            <state relative-caret-position="63">
+              <caret line="1995" column="41" lean-forward="true" selection-start-line="1995" selection-start-column="41" selection-end-line="1995" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -76,7 +85,7 @@
       <file leaf-file-name="Mx.g4" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Mx.g4">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="143">
+            <state relative-caret-position="1159">
               <caret line="61" column="40" selection-start-line="61" selection-start-column="40" selection-end-line="61" selection-end-column="40" />
             </state>
           </provider>
@@ -111,8 +120,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>fun</find>
-      <find>str+</find>
       <find>ans.append</find>
       <find>opd</find>
       <find>ln</find>
@@ -129,7 +136,6 @@
       <find>ismain</find>
       <find>q.op.equals(&quot;=&quot;</find>
       <find>main</find>
-      <find>&quot;call&quot;</find>
       <find>ord</find>
       <find>&quot;str=</find>
       <find>&quot;return&quot;</find>
@@ -141,6 +147,9 @@
       <find>opw</find>
       <find>STR</find>
       <find>varname</find>
+      <find>chk.code</find>
+      <find>secti</find>
+      <find>&quot;call&quot;</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -173,8 +182,8 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="AndroidView" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -300,18 +309,18 @@
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Tool Output" order="7" sideWeight="0.49798927" weight="0.074179746" />
-      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.16487935" weight="0.0042796005" />
+      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.15616623" weight="0.0042796005" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.44571045" side_tool="true" visible="true" weight="0.0" />
+      <window_info active="true" anchor="bottom" id="Event Log" order="7" sideWeight="0.4544236" side_tool="true" visible="true" weight="0.0" />
       <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.5542895" visible="true" weight="0.0" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.5455764" visible="true" weight="0.0" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49932975" weight="0.32952926" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.059651475" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.060321715" />
       <window_info anchor="bottom" id="ANTLR Preview" order="7" sideWeight="0.81970507" weight="0.3951498" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" visible="true" weight="0.0053619305" />
@@ -328,20 +337,20 @@
     </layout>
     <layout-to-restore>
       <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info active="true" anchor="bottom" id="Run" order="3" sideWeight="0.8820375" visible="true" weight="0.382311" />
       <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Tool Output" order="8" sideWeight="0.49932975" weight="0.32905984" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.121983916" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="7" />
+      <window_info anchor="bottom" id="Version Control" order="11" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
+      <window_info anchor="bottom" id="ANTLR Preview" order="12" weight="0.46011397" />
       <window_info id="UI Designer" order="4" />
       <window_info anchor="bottom" id="Find" order="2" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.3988604" />
@@ -349,9 +358,9 @@
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.117962465" side_tool="true" visible="true" weight="0.382311" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
-      <window_info anchor="bottom" id="Version Control" order="11" />
+      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info id="Capture Tool" order="5" />
-      <window_info anchor="bottom" id="ANTLR Preview" order="12" weight="0.46011397" />
+      <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Messages" order="0" sideWeight="0.47855228" weight="0.3266762" />
       <window_info anchor="right" id="Maven Projects" order="7" />
       <window_info id="Favorites" order="6" side_tool="true" />
@@ -708,22 +717,31 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Mx.g4">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
+        <state relative-caret-position="1159">
           <caret line="61" column="40" selection-start-line="61" selection-start-column="40" selection-end-line="61" selection-end-column="40" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Irtox86.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="461">
-          <caret line="1784" column="10" lean-forward="true" selection-start-line="1784" selection-start-column="10" selection-end-line="1784" selection-end-column="10" />
+        <state relative-caret-position="63">
+          <caret line="1995" column="41" lean-forward="true" selection-start-line="1995" selection-start-column="41" selection-end-line="1995" selection-end-column="41" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
-          <caret line="1845" column="10" selection-start-line="1845" selection-start-column="10" selection-end-line="1845" selection-end-column="10" />
+          <caret line="1857" column="9" selection-start-line="1857" selection-start-column="9" selection-end-line="1857" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1347#1348#0" expanded="true" />
+            <element signature="e#1374#1375#0" expanded="true" />
+            <element signature="e#2651#2652#0" expanded="true" />
+            <element signature="e#2682#2683#0" expanded="true" />
+            <element signature="e#9540#9541#0" expanded="true" />
+            <element signature="e#9582#9583#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
