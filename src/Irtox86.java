@@ -1115,7 +1115,7 @@ public class Irtox86
                     System.out.print("      ");
                     System.out.println("mov\trax,[rbp -  " + addr1.toString() + "]");
                 }
-                else if (!(q.y.name.charAt(0) >= '0' && q.y.name.charAt(0) <= '9'))
+                else if (!(q.y.name.charAt(0) >= '0' && q.y.name.charAt(0) <= '9') && !q.y.name.equals("null"))
                 {
                     System.out.print("      ");
                     System.out.println("mov\trax,[" + q.y.name + "]");
