@@ -469,7 +469,11 @@ class MyVisitor extends MxBaseVisitor<check>
                 }
             if (!isglobal) quad.z.name = curtemp.toString() + "temp";
             else quad.z.name = ctx.varname().getText();
-            quad.y.name = ck.code.last.z.name;
+            if (ctx.expr().news() == null)
+            {
+                quad.y = new varible(ck.code.last.z);
+            }
+            else    quad.y.name = ck.code.last.z.name;
             quad.op = "=";
            if (!isglobal)
            {
@@ -721,7 +725,7 @@ class MyVisitor extends MxBaseVisitor<check>
         Vector<Vector> vv = ck.vars;
         chk.defvars.clear();
         defvars = origin;
-        temp = origintemp;
+       // temp = origintemp;
         quard q = new quard();
         q.y.name = "null";
         q.op = "ret";
@@ -1063,10 +1067,18 @@ class MyVisitor extends MxBaseVisitor<check>
             if (ctx.opw != null)
             {
                 quard quads = new quard();
+                quads.op = "goto";
+                quads.z.name =  b_f.toString() + "while";
+                chk.code.push(quads);
+                quads = new quard();
                 quads.z.name = "_" + b_f.toString() + "for";
                 quads.op = "label!!!!!!!!!";
                 chk.code.push(quads);
                 chk.code.add(code_for);
+                quads = new quard();
+                quads.z.name = "_" + b_f.toString() + "while";
+                quads.op = "label!!!!!!!!!";
+                chk.code.push(quads);
                 chk.code.add(ck.code);
                 quard quad = new quard();
                 quad.op = "for";
@@ -1198,6 +1210,8 @@ class MyVisitor extends MxBaseVisitor<check>
                     k.name = "0";
                     quad.y.add(k);
                     quad.x.name = "0";
+                    ++temp;
+                    if (temp > maxtemp) maxtemp = temp;
                     chk.code.push(quad);
                     constfunc = true;
                 }
@@ -1683,6 +1697,43 @@ class MyVisitor extends MxBaseVisitor<check>
                     }
                 }
             }
+            else if (ctx.op.getText().equals("--"))
+            {
+                if (ir1.last != null)
+                {
+                    if (ctx.getText().charAt(0) == '-')
+                    {
+                        quard quad = new quard();
+                        quad.z = new varible(ir1.last.z);
+                        quad.y = new varible(ir1.last.z);
+                        quad.x.name = "1";
+                        quad.x.addr = "-1";
+                        quad.op = "-";
+                        chk.code.add(ir1);
+                        chk.code.push(quad);
+                    }
+                    else
+                    {
+                        ir irr = new ir();
+                        quard quad = new quard();
+                        quad.z.name = temp.toString() + "temp";
+                        quad.y = new varible(ir1.last.z);
+                        quad.op = "=";
+                        chk.code.push(quad);
+                        quad = new quard();
+                        quad.z = new varible(ir1.last.z);
+                        quad.y = new varible(ir1.last.z);
+                        quad.x.name = "1";
+                        quad.op = "-";
+                        irr.push(quad);
+                        chk.code.push(quad);
+                        chk.code.add(ir1);
+                        ir1.last.z.name = temp.toString() + "temp";
+                        ++temp;
+                        if (temp > maxtemp) maxtemp = temp;
+                    }
+                }
+            }
         if (ctx.opc != null)
         {
             chk.code = ir1;
@@ -1889,7 +1940,7 @@ public class Main
 
     public static check main() throws Exception
     {
-       // File f = new File("E:/test.txt");
+        //File f = new File("E:/test.txt");
         File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);

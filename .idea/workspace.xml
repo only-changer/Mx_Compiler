@@ -6,6 +6,8 @@
       <change beforePath="$PROJECT_DIR$/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/a.out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hello.asm" beforeDir="false" afterPath="$PROJECT_DIR$/hello.asm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hello.o" beforeDir="false" afterPath="$PROJECT_DIR$/hello.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IDE/Irtox86.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/Irtox86.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IDE/MyVisitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/MyVisitor.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Irtox86.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Irtox86.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
@@ -31,8 +33,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="1891" column="9" selection-start-line="1891" selection-start-column="9" selection-end-line="1891" selection-end-column="9" />
+            <state relative-caret-position="336">
+              <caret line="1942" column="10" selection-start-line="1942" selection-start-column="10" selection-end-line="1942" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -40,8 +42,8 @@
       <file leaf-file-name="Irtox86.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Irtox86.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="156">
-              <caret line="1182" column="61" lean-forward="true" selection-start-line="1182" selection-start-column="61" selection-end-line="1182" selection-end-column="61" />
+            <state relative-caret-position="-49">
+              <caret line="1053" column="17" selection-start-line="1053" selection-start-column="17" selection-end-line="1053" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -111,18 +113,11 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>ismain</find>
-      <find>q.op.equals(&quot;=&quot;</find>
-      <find>main</find>
-      <find>ord</find>
-      <find>&quot;str=</find>
-      <find>&quot;return&quot;</find>
       <find>ret</find>
       <find>&quot;&amp;&quot;</find>
       <find>opr</find>
       <find>opf</find>
       <find>.print</find>
-      <find>opw</find>
       <find>chk.code</find>
       <find>secti</find>
       <find>&quot;ret&quot;</find>
@@ -131,16 +126,23 @@
       <find>if</find>
       <find>&quot;if</find>
       <find>opcom</find>
-      <find>&quot;++&quot;</find>
       <find>STR</find>
       <find>&quot;&amp;&amp;</find>
       <find>.STR</find>
       <find>&quot;!=&quot;</find>
       <find>varname</find>
-      <find>&quot;=&quot;</find>
       <find>&quot;+&quot;</find>
       <find>opd</find>
+      <find>&quot;/&quot;</find>
+      <find>qsrt</find>
       <find>&quot;call&quot;</find>
+      <find>&quot;++&quot;</find>
+      <find>temp</find>
+      <find>op1</find>
+      <find>&quot;&lt;&quot;</find>
+      <find>err</find>
+      <find>opw</find>
+      <find>&quot;=&quot;</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -159,7 +161,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
     <option name="x" value="535" />
     <option name="width" value="1300" />
     <option name="height" value="1040" />
@@ -294,27 +296,27 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="428" y="0" width="1040" height="832" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Tool Output" order="7" sideWeight="0.49798927" weight="0.074179746" />
-      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.13404825" weight="0.0042796005" />
+      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.20264766" weight="0.0028776978" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.4772118" side_tool="true" visible="true" weight="0.13837375" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.49083504" side_tool="true" visible="true" weight="0.0" />
       <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.5227882" visible="true" weight="0.13837375" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.509165" visible="true" weight="0.0" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49932975" weight="0.32952926" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.06233244" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.09470469" />
       <window_info anchor="bottom" id="ANTLR Preview" order="7" sideWeight="0.81970507" weight="0.3951498" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Ant Build" order="1" visible="true" weight="0.0053619305" />
+      <window_info anchor="right" id="Ant Build" order="1" visible="true" weight="0.00814664" />
       <window_info id="UI Designer" order="2" />
       <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49881798" weight="0.39786857" />
@@ -715,15 +717,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Irtox86.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="1182" column="61" lean-forward="true" selection-start-line="1182" selection-start-column="61" selection-end-line="1182" selection-end-column="61" />
+        <state relative-caret-position="-49">
+          <caret line="1053" column="17" selection-start-line="1053" selection-start-column="17" selection-end-line="1053" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="1891" column="9" selection-start-line="1891" selection-start-column="9" selection-end-line="1891" selection-end-column="9" />
+        <state relative-caret-position="336">
+          <caret line="1942" column="10" selection-start-line="1942" selection-start-column="10" selection-end-line="1942" selection-end-column="10" />
         </state>
       </provider>
     </entry>
