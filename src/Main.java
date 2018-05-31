@@ -1828,6 +1828,22 @@ class MyVisitor extends MxBaseVisitor<check>
                         quad.x = new varible(ir2.last.z);
                         quad.op = ctx.op.getText();
                         chk.code.add(ir1);
+                        if (quad.op.equals("||"))
+                        {
+                            quard q = new quard();
+                            q.op = "check";
+                            q.y = new varible(quad.y);
+                            q.x.name = "1";
+                            chk.code.push(q);
+                        }
+                        if (quad.op.equals("&&"))
+                        {
+                            quard q = new quard();
+                            q.op = "check";
+                            q.y = new varible(quad.y);
+                            q.x.name = "0";
+                            chk.code.push(q);
+                        }
                         chk.code.add(ir2);
                         chk.code.push(quad);
                     }

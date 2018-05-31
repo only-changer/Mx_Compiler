@@ -55,7 +55,13 @@ public class Irtox86
         }
         for (int i = 0; i < params.size(); ++i)
         {
-            if (params.get(i).name.contains("temp"))
+            if (params.get(i).params != null)
+            {
+                getaddr(params.get(i).name, params.get(i).params,"r12");
+                System.out.print("      ");
+                System.out.println("add\t" + reg + ",[r12]");
+            }
+            else if (params.get(i).name.contains("temp"))
             {
                 tmp = -1;
                 tmps = new String();
@@ -1454,10 +1460,6 @@ public class Irtox86
                     addr2 = (addr2 + 1) * 8;
                     System.out.print("      ");
                     System.out.println("mov\tr10d,[rbp - " + addr2.toString() + "]");
-                    System.out.print("      ");
-                    System.out.println("cmp\tr10d ,0");
-                    System.out.print("      ");
-                    System.out.println("je\t_" + b.toString() + "div");
                 }
                 else if (!(q.x.name.charAt(0) >= '0' && q.x.name.charAt(0) <= '9'))
                 {
@@ -1468,10 +1470,6 @@ public class Irtox86
                 {
                     System.out.print("      ");
                     System.out.println("mov\tr10," + q.x.name);
-                    System.out.print("      ");
-                    System.out.println("cmp\tr10,0");
-                    System.out.print("      ");
-                    System.out.println("je\t_" + b.toString() + "div");
                     System.out.print("      ");
                     System.out.println("mov\tr10d," + q.x.name);
                 }
@@ -1485,8 +1483,6 @@ public class Irtox86
                 System.out.println("movsx\trax,eax");
                 System.out.print("      ");
                 System.out.println("mov\t[rbp - " + addr3.toString() + "],rax");
-                System.out.println("_" + b.toString() + "div:");
-                ++b;
             }
             if (q.op.equals("%"))
             {
@@ -2011,6 +2007,30 @@ public class Irtox86
                 System.out.print("      ");
                 System.out.println("mov\t[rbp - " + addr3.toString() + "],r10");
             }
+            if (q.op.equals("check"))
+            {
+                if (q.y.name.contains("temp"))
+                {
+                    Integer addr1 = new Integer(temp - start);
+                    addr1 = (addr1 + 1) * 8;
+                    System.out.print("      ");
+                    System.out.println("mov\tr10,[rbp - " + addr1.toString() + "]");
+                }
+                else if (!(q.y.name.charAt(0) >= '0' && q.y.name.charAt(0) <= '9'))
+                {
+                    System.out.print("      ");
+                    System.out.println("and\tr10,[" + q.y.name + "]");
+                }
+                else
+                {
+                    System.out.print("      ");
+                    System.out.println("mov\tr10," + q.y.name);
+                }
+                System.out.print("      ");
+                System.out.println("cmp\tr10," + q.x.name);
+                System.out.print("      ");
+                System.out.println("je\t_" + b.toString() + "check");
+            }
             if (q.op.equals("&&") || (q.op.equals("&")))
             {
                 if (q.y.name.contains("temp"))
@@ -2056,6 +2076,8 @@ public class Irtox86
                 }
                 Integer addr3 = new Integer(temp3 - start);
                 addr3 = (addr3 + 1) * 8;
+                System.out.println("_" + b.toString() + "check:");
+                ++b;
                 System.out.print("      ");
                 System.out.println("mov\t[rbp - " + addr3.toString() + "],r10");
             }
@@ -2097,6 +2119,8 @@ public class Irtox86
                 }
                 Integer addr3 = new Integer(temp3 - start);
                 addr3 = (addr3 + 1) * 8;
+                System.out.println("_" + b.toString() + "check:");
+                ++b;
                 System.out.print("      ");
                 System.out.println("mov\t[rbp - " + addr3.toString() + "],r10");
             }
