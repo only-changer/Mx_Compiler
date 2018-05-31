@@ -455,7 +455,7 @@ class MyVisitor extends MxBaseVisitor<check>
             else
             {
                 varible k = new varible();
-                k.name = ctx.varname().getText();
+                k.name = "lc"+ctx.varname().getText();
                 chk.params.add(k);
             }
         if (ctx.expr() != null && getin)
@@ -2058,7 +2058,7 @@ public class Main
 
     public static check main() throws Exception
     {
-       // File f = new File("E:/test.txt");
+        //File f = new File("E:/test.txt");
           File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);

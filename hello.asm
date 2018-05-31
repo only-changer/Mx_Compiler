@@ -766,352 +766,538 @@ Llege_021:  mov     eax, 1
 Llege_022:  pop     rbp
 	ret
 section   .text
-calc:
+merge:
       push	rbp
       mov	rbp,rsp
-      sub	rsp,232
+      sub	rsp,264
       mov	[rbp - 8],rdi
-      mov	rdi,[rbp-8]
-      push	r10
-      push	r11
-      call	string.length
-      pop	r11
-      pop	r10
-      mov	[rbp -  24],rax
-      mov	r10,[rbp - 24]
-      mov	[rbp - 16],r10
-      mov	r10,1
-      cmp	r10,[rbp - 16]
+      mov	[rbp - 16],rsi
+      mov	r10,0
+      cmp	r10,[rbp - 8]
       sete r10b
       movzx r10,r10b
-      mov	[rbp - 32],r10
-      mov	 r10,[rbp-32]
+      mov	[rbp - 24],r10
+      mov	 r10,[rbp-24]
       cmp	 r10,0
       je	_0else
 _0if:
-      mov	rax,[rbp -  8]
+      mov	rax,[rbp -  16]
       mov	rsp,rbp
       pop rbp
       ret
       jmp	_0ifback
 _0else:
 _0ifback:
-      mov	eax,[rbp - 16]
-      mov	r10,2
-      mov	r10d,2
-      cdq
-      idiv r10d
-      movsx	rax,eax
-      mov	[rbp - 48],rax
-      mov	r10,[rbp - 48]
-      mov	[rbp - 40],r10
-      mov	r10,[rbp - 40]
-      sub	r10,1
-      mov	[rbp - 64],r10
-      mov	rdi,[rbp-8]
-      mov	rsi,0
-      mov	rdx,[rbp-64]
-      push	r10
-      push	r11
-      call	string.substring
-      pop	r11
-      pop	r10
-      mov	[rbp -  72],rax
-      mov	rdi,[rbp-72]
-      push	r10
-      push	r11
-      call	calc
-      pop	r11
-      pop	r10
-      mov	[rbp -  80],rax
-      mov	r10,[rbp - 80]
-      mov	[rbp - 56],r10
-      mov	r10,[rbp - 16]
-      sub	r10,1
-      mov	[rbp - 96],r10
-      mov	rdi,[rbp-8]
-      mov	rsi,[rbp-40]
-      mov	rdx,[rbp-96]
-      push	r10
-      push	r11
-      call	string.substring
-      pop	r11
-      pop	r10
-      mov	[rbp -  104],rax
-      mov	rdi,[rbp-104]
-      push	r10
-      push	r11
-      call	calc
-      pop	r11
-      pop	r10
-      mov	[rbp -  112],rax
-      mov	r10,[rbp - 112]
-      mov	[rbp - 88],r10
-      mov	rdi,[rbp-56]
-      mov	rsi,[rbp-88]
-      push	r10
-      push	r11
-      call	string.s
-      pop	r11
-      pop	r10
-      mov	[rbp -  208],rax
-      mov	 r10,[rbp-208]
+      mov	r10,0
+      cmp	r10,[rbp - 16]
+      sete r10b
+      movzx r10,r10b
+      mov	[rbp - 32],r10
+      mov	 r10,[rbp-32]
       cmp	 r10,0
       je	_1else
 _1if:
-      mov	rdi,[rbp-56]
-      mov	rsi,[rbp-88]
-      push	r10
-      push	r11
-      call	string.add
-      pop	r11
-      pop	r10
-      mov	[rbp -  120],rax
-      mov	rax,[rbp -  120]
+      mov	rax,[rbp -  8]
       mov	rsp,rbp
       pop rbp
       ret
       jmp	_1ifback
 _1else:
-      mov	rdi,[rbp-56]
-      mov	rsi,[rbp-88]
-      push	r10
-      push	r11
-      call	string.eq
-      pop	r11
-      pop	r10
-      mov	[rbp -  200],rax
-      mov	 r10,[rbp-200]
+_1ifback:
+      mov	r10,[rbp - 8]
+      add	r10,1
+      mov	[rbp - 64],r10
+      mov	r10,[rbp - 64]
+      imul	r10,8
+      mov	[rbp - 64],r10
+      mov	r10,[rbp - 16]
+      add	r10,1
+      mov	[rbp - 88],r10
+      mov	r10,[rbp - 88]
+      imul	r10,8
+      mov	[rbp - 88],r10
+      mov	r11,[lcw]
+      add	r11,[rbp - 64]
+      mov	r10,[r11]
+      cmp	r10,[lcw]
+      setl r10b
+      movzx r10,r10b
+      mov	[rbp - 96],r10
+      mov	 r10,[rbp-96]
       cmp	 r10,0
-      je	_3else
-_3if:
-      mov	rdi,[rbp-56]
-      mov	rsi,0
+      je	_2else
+_2if:
+      mov	r10,[rbp - 8]
+      mov	[rbp - 40],r10
+      mov	r10,[rbp - 16]
+      mov	[rbp - 8],r10
+      mov	r10,[rbp - 40]
+      mov	[rbp - 16],r10
+      jmp	_2ifback
+_2else:
+_2ifback:
+      mov	r10,[rbp - 8]
+      add	r10,1
+      mov	[rbp - 120],r10
+      mov	r10,[rbp - 120]
+      imul	r10,8
+      mov	[rbp - 120],r10
+      mov	r10,[rbp - 8]
+      add	r10,1
+      mov	[rbp - 144],r10
+      mov	r10,[rbp - 144]
+      imul	r10,8
+      mov	[rbp - 144],r10
+      mov	r10,[lcr]
+      add	r10,[rbp - 144]
+      mov	rdi,[r10]
+      mov	rsi,[rbp-16]
       push	r10
       push	r11
-      call	string.ord
-      pop	r11
-      pop	r10
-      mov	[rbp -  136],rax
-      mov	r10,[rbp - 136]
-      mov	[rbp - 128],r10
-      mov	rdi,[rbp-88]
-      mov	rsi,0
-      push	r10
-      push	r11
-      call	string.ord
+      call	merge
       pop	r11
       pop	r10
       mov	[rbp -  152],rax
       mov	r10,[rbp - 152]
-      mov	[rbp - 144],r10
-      mov	r10,[rbp - 128]
-      cmp	r10,[rbp - 144]
-      setl r10b
-      movzx r10,r10b
-      mov	[rbp - 168],r10
-      mov	 r10,[rbp-168]
-      cmp	 r10,0
-      je	_2else
-_2if:
-      mov	rdi,[rbp-56]
-      mov	rsi,[rbp-88]
-      push	r10
-      push	r11
-      call	string.add
-      pop	r11
-      pop	r10
-      mov	[rbp -  160],rax
-      mov	rax,[rbp -  160]
+      mov	r11,[lcr]
+      add	r11,[rbp - 120]
+      mov	[r11],r10
+      mov	r10,[rbp - 8]
+      add	r10,1
+      mov	[rbp - 184],r10
+      mov	r10,[rbp - 184]
+      imul	r10,8
+      mov	[rbp - 184],r10
+      mov	r10,[lcl]
+      add	r10,[rbp - 184]
+      mov	r10,[r10]
+      mov	[rbp - 160],r10
+      mov	r10,[rbp - 8]
+      add	r10,1
+      mov	[rbp - 208],r10
+      mov	r10,[rbp - 208]
+      imul	r10,8
+      mov	[rbp - 208],r10
+      mov	r10,[rbp - 8]
+      add	r10,1
+      mov	[rbp - 232],r10
+      mov	r10,[rbp - 232]
+      imul	r10,8
+      mov	[rbp - 232],r10
+      mov	r10,[lcr]
+      add	r10,[rbp - 232]
+      mov	r10,[r10]
+      mov	r11,[lcl]
+      add	r11,[rbp - 208]
+      mov	[r11],r10
+      mov	r10,[rbp - 8]
+      add	r10,1
+      mov	[rbp - 256],r10
+      mov	r10,[rbp - 256]
+      imul	r10,8
+      mov	[rbp - 256],r10
+      mov	r10,[rbp - 160]
+      mov	r11,[lcr]
+      add	r11,[rbp - 256]
+      mov	[r11],r10
+      mov	rax,[rbp -  8]
       mov	rsp,rbp
       pop rbp
       ret
-      jmp	_2ifback
-_2else:
-_2ifback:
-      mov	rdi,[rbp-88]
-      mov	rsi,[rbp-56]
-      push	r10
-      push	r11
-      call	string.add
-      pop	r11
-      pop	r10
-      mov	[rbp -  176],rax
-      mov	rax,[rbp -  176]
-      mov	rsp,rbp
-      pop rbp
-      ret
-      jmp	_3ifback
-_3else:
-      mov	rdi,[rbp-56]
-      mov	rsi,[rbp-88]
-      push	r10
-      push	r11
-      call	string.g
-      pop	r11
-      pop	r10
-      mov	[rbp -  192],rax
-      mov	 r10,[rbp-192]
-      cmp	 r10,0
-      je	_4else
-_4if:
-      mov	rdi,[rbp-88]
-      mov	rsi,[rbp-56]
-      push	r10
-      push	r11
-      call	string.add
-      pop	r11
-      pop	r10
-      mov	[rbp -  184],rax
-      mov	rax,[rbp -  184]
-      mov	rsp,rbp
-      pop rbp
-      ret
-      jmp	_4ifback
-_4else:
-_4ifback:
-_3ifback:
-_1ifback:
-      push r10
-      push r11
-      mov	rdi,256
-      call	malloc
-      pop r10
-      pop r11
-      mov	byte[rax + 0],'N'
-      mov	byte[rax + 1],'e'
-      mov	byte[rax + 2],'v'
-      mov	byte[rax + 3],'e'
-      mov	byte[rax + 4],'r'
-      mov	byte[rax + 5],' '
-      mov	byte[rax + 6],'E'
-      mov	byte[rax + 7],'v'
-      mov	byte[rax + 8],'e'
-      mov	byte[rax + 9],'r'
-      mov	byte[rax + 10],'!'
-      mov	byte[rax + 11],0
-      mov	[rbp - 216],rax
-      mov	rdi,[rbp-216]
-      push	r10
-      push	r11
-      mov	rax,0
-      call	println
-      pop	r11
-      pop	r10
-      mov	[rbp -  224],rax
       mov	rsp,rbp
       pop rbp
       ret
 main:
       push	rbp
       mov	rbp,rsp
-      sub	rsp,320
+      sub	rsp,880
       push	r10
       push	r11
-      call	getString
+      call	getInt
       pop	r11
       pop	r10
-      mov	[rbp -  232],rax
-      mov	r10,[rbp - 232]
-      mov	[A],r10
+      mov	[rbp -  264],rax
+      mov	r10,[rbp - 264]
+      mov	[lcN],r10
       push	r10
       push	r11
-      call	getString
-      pop	r11
-      pop	r10
-      mov	[rbp -  240],rax
-      mov	r10,[rbp - 240]
-      mov	[B],r10
-      mov	rdi,[B]
-      push	r10
-      push	r11
-      call	string.parseInt
-      pop	r11
-      pop	r10
-      mov	[rbp -  248],rax
-      mov	r10,[rbp - 248]
-      mov	[N],r10
-      mov	rdi,[A]
-      push	r10
-      push	r11
-      call	string.length
+      call	getInt
       pop	r11
       pop	r10
       mov	[rbp -  272],rax
       mov	r10,[rbp - 272]
-      cmp	r10,[N]
-      setl r10b
+      mov	[lcM],r10
+      push	r10
+      push	r11
+      call	getString
+      pop	r11
+      pop	r10
+      mov	[rbp -  280],rax
+      mov	r10,[rbp - 280]
+      mov	[lcch],r10
+      mov	r10,[lcN]
+      add	r10,[lcM]
+      mov	[rbp - 288],r10
+      mov	r10,[rbp - 288]
+      add	r10,5
+      mov	[rbp - 296],r10
+      mov	r10,[rbp - 296]
+      add	r10,1
+      mov	[rbp - 304],r10
+      mov	r10,[rbp - 304]
+      imul	r10,8
+      mov	[rbp - 304],r10
+      mov	rdi,[rbp-304]
+      push	r10
+      push	r11
+      call	malloc
+      pop	r11
+      pop	r10
+      mov	[rbp -  312],rax
+      mov	r10,[rbp - 296]
+      mov	r11,[rbp - 312]
+      add	r11,0
+      mov	[r11],r10
+      mov	r10,[rbp - 312]
+      mov	[lcl],r10
+      mov	r10,[lcN]
+      add	r10,[lcM]
+      mov	[rbp - 320],r10
+      mov	r10,[rbp - 320]
+      add	r10,5
+      mov	[rbp - 328],r10
+      mov	r10,[rbp - 328]
+      add	r10,1
+      mov	[rbp - 336],r10
+      mov	r10,[rbp - 336]
+      imul	r10,8
+      mov	[rbp - 336],r10
+      mov	rdi,[rbp-336]
+      push	r10
+      push	r11
+      call	malloc
+      pop	r11
+      pop	r10
+      mov	[rbp -  344],rax
+      mov	r10,[rbp - 328]
+      mov	r11,[rbp - 344]
+      add	r11,0
+      mov	[r11],r10
+      mov	r10,[rbp - 344]
+      mov	[lcr],r10
+      mov	r10,[lcN]
+      add	r10,[lcM]
+      mov	[rbp - 352],r10
+      mov	r10,[rbp - 352]
+      add	r10,5
+      mov	[rbp - 360],r10
+      mov	r10,[rbp - 360]
+      add	r10,1
+      mov	[rbp - 368],r10
+      mov	r10,[rbp - 368]
+      imul	r10,8
+      mov	[rbp - 368],r10
+      mov	rdi,[rbp-368]
+      push	r10
+      push	r11
+      call	malloc
+      pop	r11
+      pop	r10
+      mov	[rbp -  376],rax
+      mov	r10,[rbp - 360]
+      mov	r11,[rbp - 376]
+      add	r11,0
+      mov	[r11],r10
+      mov	r10,[rbp - 376]
+      mov	[lcw],r10
+      mov	qword[rbp - 384],1
+_0for:
+      mov	r10,[rbp - 384]
+      add	r10,1
+      mov	[rbp - 408],r10
+      mov	r10,[rbp - 408]
+      imul	r10,8
+      mov	[rbp - 408],r10
+      push	r10
+      push	r11
+      call	getInt
+      pop	r11
+      pop	r10
+      mov	[rbp -  416],rax
+      mov	r10,[rbp - 416]
+      mov	r11,[lcw]
+      add	r11,[rbp - 408]
+      mov	[r11],r10
+      mov	r10,[rbp - 384]
+      add	r10,1
+      mov	[rbp - 440],r10
+      mov	r10,[rbp - 440]
+      imul	r10,8
+      mov	[rbp - 440],r10
+      mov	r11,[lcl]
+      add	r11,[rbp - 440]
+      mov	qword[r11],0
+      mov	r10,[rbp - 384]
+      add	r10,1
+      mov	[rbp - 464],r10
+      mov	r10,[rbp - 464]
+      imul	r10,8
+      mov	[rbp - 464],r10
+      mov	r11,[lcr]
+      add	r11,[rbp - 464]
+      mov	qword[r11],0
+      mov	r10,[rbp - 384]
+      mov	[rbp - 472],r10
+      mov	r10,[rbp - 384]
+      add	r10,1
+      mov	[rbp - 384],r10
+      mov	r10,[rbp - 384]
+      cmp	r10,[lcN]
+      setle r10b
       movzx r10,r10b
-      mov	[rbp - 280],r10
-      mov	 r10,[rbp-280]
-      cmp	 r10,0
-      je	_5else
-_5if:
+      mov	[rbp - 480],r10
+      mov	r10,[rbp -  480]
+      cmp	r10,1
+      je	_0for
+_0forback:
+      mov	qword[rbp - 384],1
+_1for:
+      mov	r10,[rbp - 384]
+      add	r10,[lcN]
+      mov	[rbp - 512],r10
+      mov	r10,[rbp - 512]
+      add	r10,1
+      mov	[rbp - 520],r10
+      mov	r10,[rbp - 520]
+      imul	r10,8
+      mov	[rbp - 520],r10
+      mov	r10,[rbp - 384]
+      sub	r10,1
+      mov	[rbp - 528],r10
+      mov	rdi,[lcch]
+      mov	rsi,[rbp-528]
+      push	r10
+      push	r11
+      call	string.ord
+      pop	r11
+      pop	r10
+      mov	[rbp -  536],rax
+      mov	r10,[rbp - 536]
+      mov	r11,[lcw]
+      add	r11,[rbp - 520]
+      mov	[r11],r10
+      mov	r10,[rbp - 384]
+      add	r10,[lcN]
+      mov	[rbp - 560],r10
+      mov	r10,[rbp - 560]
+      add	r10,1
+      mov	[rbp - 568],r10
+      mov	r10,[rbp - 568]
+      imul	r10,8
+      mov	[rbp - 568],r10
+      mov	r11,[lcl]
+      add	r11,[rbp - 568]
+      mov	qword[r11],0
+      mov	r10,[rbp - 384]
+      add	r10,[lcN]
+      mov	[rbp - 592],r10
+      mov	r10,[rbp - 592]
+      add	r10,1
+      mov	[rbp - 600],r10
+      mov	r10,[rbp - 600]
+      imul	r10,8
+      mov	[rbp - 600],r10
+      mov	r11,[lcr]
+      add	r11,[rbp - 600]
+      mov	qword[r11],0
+      mov	r10,[rbp - 384]
+      mov	[rbp - 608],r10
+      mov	r10,[rbp - 384]
+      add	r10,1
+      mov	[rbp - 384],r10
+      mov	r10,[rbp - 384]
+      cmp	r10,[lcM]
+      setle r10b
+      movzx r10,r10b
+      mov	[rbp - 616],r10
+      mov	r10,[rbp -  616]
+      cmp	r10,1
+      je	_1for
+_1forback:
+      mov	qword[rbp - 632],1
+      mov	r10,[lcN]
+      add	r10,1
+      mov	[rbp - 648],r10
+      mov	r10,[rbp - 648]
+      mov	[rbp - 640],r10
+      mov	qword[rbp - 384],2
+_2for:
+      mov	rdi,[rbp-632]
+      mov	rsi,[rbp-384]
+      push	r10
+      push	r11
+      call	merge
+      pop	r11
+      pop	r10
+      mov	[rbp -  656],rax
+      mov	r10,[rbp - 656]
+      mov	[rbp - 632],r10
+      mov	r10,[rbp - 384]
+      mov	[rbp - 664],r10
+      mov	r10,[rbp - 384]
+      add	r10,1
+      mov	[rbp - 384],r10
+      mov	r10,[rbp - 384]
+      cmp	r10,[lcN]
+      setle r10b
+      movzx r10,r10b
+      mov	[rbp - 672],r10
+      mov	r10,[rbp -  672]
+      cmp	r10,1
+      je	_2for
+_2forback:
+      mov	r10,[lcN]
+      add	r10,2
+      mov	[rbp - 704],r10
+      mov	r10,[rbp - 704]
+      mov	[rbp - 384],r10
+_3for:
+      mov	rdi,[rbp-640]
+      mov	rsi,[rbp-384]
+      push	r10
+      push	r11
+      call	merge
+      pop	r11
+      pop	r10
+      mov	[rbp -  688],rax
+      mov	r10,[rbp - 688]
+      mov	[rbp - 640],r10
+      mov	r10,[rbp - 384]
+      mov	[rbp - 696],r10
+      mov	r10,[rbp - 384]
+      add	r10,1
+      mov	[rbp - 384],r10
+      mov	r10,[lcN]
+      add	r10,[lcM]
+      mov	[rbp - 712],r10
+      mov	r10,[rbp - 384]
+      cmp	r10,[rbp - 712]
+      setle r10b
+      movzx r10,r10b
+      mov	[rbp - 720],r10
+      mov	r10,[rbp -  720]
+      cmp	r10,1
+      je	_3for
+_3forback:
+      mov	r10,[rbp - 632]
+      add	r10,1
+      mov	[rbp - 752],r10
+      mov	r10,[rbp - 752]
+      imul	r10,8
+      mov	[rbp - 752],r10
+      mov	r10,[lcw]
+      add	r10,[rbp - 752]
+      mov	rdi,[r10]
+      push	r10
+      push	r11
+      call	toString
+      pop	r11
+      pop	r10
+      mov	[rbp -  760],rax
+      mov	rdi,[rbp-760]
+      push	r10
+      push	r11
+      mov	rax,0
+      call	print
+      pop	r11
+      pop	r10
+      mov	[rbp -  768],rax
       push r10
       push r11
       mov	rdi,256
       call	malloc
       pop r10
       pop r11
-      mov	byte[rax + 0],'l'
-      mov	byte[rax + 1],'e'
-      mov	byte[rax + 2],'n'
-      mov	byte[rax + 3],'g'
-      mov	byte[rax + 4],'t'
-      mov	byte[rax + 5],'h'
-      mov	byte[rax + 6],' '
-      mov	byte[rax + 7],'e'
-      mov	byte[rax + 8],'r'
-      mov	byte[rax + 9],'r'
-      mov	byte[rax + 10],'o'
-      mov	byte[rax + 11],'r'
-      mov	byte[rax + 12],'!'
-      mov	byte[rax + 13],0
-      mov	[rbp - 256],rax
-      mov	rdi,[rbp-256]
+      mov	byte[rax + 0],' '
+      mov	byte[rax + 1],0
+      mov	[rbp - 776],rax
+      mov	rdi,[rbp-776]
       push	r10
       push	r11
       mov	rax,0
-      call	println
+      call	print
       pop	r11
       pop	r10
-      mov	[rbp -  264],rax
-      mov	rax,0
-      mov	rsp,rbp
-      pop rbp
-      ret
-      jmp	_5ifback
-_5else:
-_5ifback:
-      mov	r10,[N]
+      mov	[rbp -  784],rax
+      mov	r10,[rbp - 640]
+      sub	r10,[lcN]
+      mov	[rbp - 792],r10
+      mov	r10,[rbp - 792]
       sub	r10,1
-      mov	[rbp - 288],r10
-      mov	rdi,[A]
-      mov	rsi,0
-      mov	rdx,[rbp-288]
+      mov	[rbp - 800],r10
+      mov	r10,[rbp - 640]
+      sub	r10,[lcN]
+      mov	[rbp - 808],r10
+      mov	r10,[rbp - 808]
+      sub	r10,1
+      mov	[rbp - 816],r10
+      mov	rdi,[lcch]
+      mov	rsi,[rbp-800]
+      mov	rdx,[rbp-816]
       push	r10
       push	r11
       call	string.substring
       pop	r11
       pop	r10
-      mov	[rbp -  296],rax
-      mov	rdi,[rbp-296]
+      mov	[rbp -  824],rax
+      mov	rdi,[rbp-824]
       push	r10
       push	r11
-      call	calc
+      mov	rax,0
+      call	print
       pop	r11
       pop	r10
-      mov	[rbp -  304],rax
-      mov	r10,[rbp - 304]
-      mov	[C],r10
-      mov	rdi,[C]
+      mov	[rbp -  832],rax
+      push r10
+      push r11
+      mov	rdi,256
+      call	malloc
+      pop r10
+      pop r11
+      mov	byte[rax + 0],10
+      mov	byte[rax + 1],0
+      mov	[rbp - 840],rax
+      mov	rdi,[rbp-840]
+      push	r10
+      push	r11
+      mov	rax,0
+      call	print
+      pop	r11
+      pop	r10
+      mov	[rbp -  848],rax
+      mov	rdi,[rbp-632]
+      mov	rsi,[rbp-640]
+      push	r10
+      push	r11
+      call	merge
+      pop	r11
+      pop	r10
+      mov	[rbp -  856],rax
+      mov	rdi,[rbp-856]
+      push	r10
+      push	r11
+      call	toString
+      pop	r11
+      pop	r10
+      mov	[rbp -  864],rax
+      mov	rdi,[rbp-864]
       push	r10
       push	r11
       mov	rax,0
       call	println
       pop	r11
       pop	r10
-      mov	[rbp -  312],rax
+      mov	[rbp -  872],rax
       mov	rax,0
       mov	rsp,rbp
       pop rbp
@@ -1127,13 +1313,17 @@ format1:
 format2:
 	db"%s",0
 
-A:
+lcN:
 	dq 0
-B:
+lcM:
 	dq 0
-C:
+lcch:
 	dq 0
-N:
+lcl:
+	dq 0
+lcr:
+	dq 0
+lcw:
 	dq 0
 section .bss
 stringbuffer:

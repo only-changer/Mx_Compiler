@@ -46,7 +46,7 @@ public class Irtox86
         if (!(s.charAt(0) >= '0' && s.charAt(0) <= '9'))
         {
             System.out.print("      ");
-            System.out.println("mov\t" + reg + ",[" + s + "]");
+            System.out.println("mov\t" + reg + ",[lc" + s + "]");
         }
         else
         {
@@ -80,7 +80,7 @@ public class Irtox86
             else if (!(params.get(i).name.charAt(0) >= '0' && params.get(i).name.charAt(0) <= '9'))
             {
                 System.out.print("      ");
-                System.out.println("add\t" + reg + ",[" + params.get(i).name + "]");
+                System.out.println("add\t" + reg + ",[lc" + params.get(i).name + "]");
             }
             else
             {
@@ -987,13 +987,29 @@ public class Irtox86
                 System.out.println("pop r10");
                 System.out.print("      ");
                 System.out.println("pop r11");
+                Integer sub = new Integer(0);
                 for (int i = 0; i < q.y.name.length(); ++i)
                 {
-                    System.out.print("      ");
-                    System.out.println("mov\tbyte[rax + " + i + "],'" + q.y.name.charAt(i) + "'");
+                    char c = q.y.name.charAt(i);
+                    if (c == '\\')
+                    {
+                        Integer sn = new Integer(0);
+                        if (q.y.name.charAt(i + 1) == 'n') sn = 10;
+                        if (q.y.name.charAt(i + 1) == '\\') sn = 92;
+                        if (q.y.name.charAt(i + 1) == '\"') sn = 34;
+                        System.out.print("      ");
+                        System.out.println("mov\tbyte[rax + " + i + "]," + sn.toString() );
+                        ++i;
+                        ++sub;
+                    }
+                    else
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov\tbyte[rax + " + (i - sub) + "],'" + q.y.name.charAt(i) + "'");
+                    }
                 }
                 System.out.print("      ");
-                System.out.println("mov\tbyte[rax + " + q.y.name.length() + "],0");
+                System.out.println("mov\tbyte[rax + " + (q.y.name.length()-sub) + "],0");
                 Integer addr3 = new Integer(temp3 - start);
                 addr3 = (addr3 + 1) * 8;
                 System.out.print("      ");
@@ -1011,7 +1027,7 @@ public class Irtox86
                         if (!(q.z.name.charAt(0) >= '0' && q.z.name.charAt(0) <= '9'))
                         {
                             System.out.print("      ");
-                            System.out.println("mov\t[" + q.z.name + "],r10");
+                            System.out.println("mov\t[lc" + q.z.name + "],r10");
                         }
                         else
                         {
@@ -1039,7 +1055,7 @@ public class Irtox86
                         if (!(q.z.name.charAt(0) >= '0' && q.z.name.charAt(0) <= '9'))
                         {
                             System.out.print("      ");
-                            System.out.println("mov\t[" + q.z.name + "],r10");
+                            System.out.println("mov\t[lc" + q.z.name + "],r10");
                         }
                         else
                         {
@@ -1063,16 +1079,16 @@ public class Irtox86
                         if (!(q.z.name.charAt(0) >= '0' && q.z.name.charAt(0) <= '9'))
                         {
                             System.out.print("      ");
-                            System.out.println("mov\tr10,[" + q.y.name + "]");
+                            System.out.println("mov\tr10,[lc" + q.y.name + "]");
                             System.out.print("      ");
-                            System.out.println("mov\t[" + q.z.name + "],r10");
+                            System.out.println("mov\t[lc" + q.z.name + "],r10");
                         }
                         else
                         {
                             Integer addr3 = new Integer(temp3 - start);
                             addr3 = (addr3 + 1) * 8;
                             System.out.print("      ");
-                            System.out.println("mov\tr10,[" + q.y.name + "]");
+                            System.out.println("mov\tr10,[lc" + q.y.name + "]");
                             System.out.print("      ");
                             System.out.println("mov\t[rbp-" + addr3.toString() + "],r10");
                         }
@@ -1081,7 +1097,7 @@ public class Irtox86
                     {
                         getaddr(q.z.name, q.z.params, "r11");
                         System.out.print("      ");
-                        System.out.println("mov\tr10,[" + q.y.name + "]");
+                        System.out.println("mov\tr10,[lc" + q.y.name + "]");
                         System.out.print("      ");
                         System.out.println("mov\tqword[r11],r10");
                     }
@@ -1093,7 +1109,7 @@ public class Irtox86
                         if (!(q.z.name.charAt(0) >= '0' && q.z.name.charAt(0) <= '9'))
                         {
                             System.out.print("      ");
-                            System.out.println("mov\tqword[" + q.z.name + "]," + q.y.name);
+                            System.out.println("mov\tqword[lc" + q.z.name + "]," + q.y.name);
                         }
                         else
                         {
@@ -1170,7 +1186,7 @@ public class Irtox86
                 else if (!(q.y.name.charAt(0) >= '0' && q.y.name.charAt(0) <= '9') && !q.y.name.equals("null"))
                 {
                     System.out.print("      ");
-                    System.out.println("mov\trax,[" + q.y.name + "]");
+                    System.out.println("mov\trax,[lc" + q.y.name + "]");
                 }
                 else if (!q.y.name.equals("null"))
                 {
@@ -1226,7 +1242,7 @@ public class Irtox86
                             else if (!(q.y.params.get(i).name.charAt(0) >= '0' && q.y.params.get(i).name.charAt(0) <= '9'))
                             {
                                 System.out.print("      ");
-                                System.out.println("mov\t" + callregs[i] + ",[" + q.y.params.get(i).name + "]");
+                                System.out.println("mov\t" + callregs[i] + ",[lc" + q.y.params.get(i).name + "]");
                             }
                             else
                             {
@@ -1285,7 +1301,7 @@ public class Irtox86
                 else if (!(q.y.name.charAt(0) >= '0' && q.y.name.charAt(0) <= '9'))
                 {
                     System.out.print("      ");
-                    System.out.println("mov\tr10,[" + q.y.name + "]");
+                    System.out.println("mov\tr10,[lc" + q.y.name + "]");
                 }
                 else
                 {
@@ -1308,7 +1324,7 @@ public class Irtox86
                 else if (!(q.x.name.charAt(0) >= '0' && q.x.name.charAt(0) <= '9'))
                 {
                     System.out.print("      ");
-                    System.out.println("add\tr10,[" + q.x.name + "]");
+                    System.out.println("add\tr10,[lc" + q.x.name + "]");
                 }
                 else
                 {
@@ -1318,7 +1334,7 @@ public class Irtox86
                 if (!(q.z.name.charAt(0) >= '0' && q.z.name.charAt(0) <= '9'))
                 {
                     System.out.print("      ");
-                    System.out.println("mov\t[ " + q.z.name + "],r10");
+                    System.out.println("mov\t[lc" + q.z.name + "],r10");
                 }
                 else
                 {
@@ -1346,7 +1362,7 @@ public class Irtox86
                 else if (!(q.y.name.charAt(0) >= '0' && q.y.name.charAt(0) <= '9'))
                 {
                     System.out.print("      ");
-                    System.out.println("mov\tr10,[" + q.y.name + "]");
+                    System.out.println("mov\tr10,[lc" + q.y.name + "]");
                 }
                 else
                 {
@@ -1369,25 +1385,33 @@ public class Irtox86
                 else if (!(q.x.name.charAt(0) >= '0' && q.x.name.charAt(0) <= '9'))
                 {
                     System.out.print("      ");
-                    System.out.println("sub\tr10,[" + q.x.name + "]");
+                    System.out.println("sub\tr10,[lc" + q.x.name + "]");
                 }
                 else
                 {
                     System.out.print("      ");
                     System.out.println("sub\tr10," + q.x.name);
                 }
-                Integer addr3 = new Integer(temp3 - start);
-                addr3 = (addr3 + 1) * 8;
-                System.out.print("      ");
-                System.out.println("mov\t[rbp - " + addr3.toString() + "],r10");
+                if (!(q.z.name.charAt(0) >= '0' && q.z.name.charAt(0) <= '9'))
+                {
+                    System.out.print("      ");
+                    System.out.println("mov\t[lc" + q.z.name + "],r10");
+                }
+                else
+                {
+                    Integer addr3 = new Integer(temp3 - start);
+                    addr3 = (addr3 + 1) * 8;
+                    System.out.print("      ");
+                    System.out.println("mov\t[rbp - " + addr3.toString() + "],r10");
+                }
             }
             if (q.op.equals("*"))
             {
                 if (q.y.params != null)
                 {
-                    getaddr(q.y.name, q.y.params, "r11");
+                    getaddr(q.y.name, q.y.params, "r10");
                     System.out.print("      ");
-                    System.out.println("mov\tr10,[r11]");
+                    System.out.println("mov\tr10,[r10]");
                 }
                 else if (q.y.name.contains("temp"))
                 {
@@ -1399,7 +1423,7 @@ public class Irtox86
                 else if (!(q.y.name.charAt(0) >= '0' && q.y.name.charAt(0) <= '9'))
                 {
                     System.out.print("      ");
-                    System.out.println("mov\tr10,[" + q.y.name + "]");
+                    System.out.println("mov\tr10,[lc" + q.y.name + "]");
                 }
                 else
                 {
@@ -1422,17 +1446,25 @@ public class Irtox86
                 else if (!(q.x.name.charAt(0) >= '0' && q.x.name.charAt(0) <= '9'))
                 {
                     System.out.print("      ");
-                    System.out.println("imul\tr10,[" + q.x.name + "]");
+                    System.out.println("imul\tr10,[lc" + q.x.name + "]");
                 }
                 else
                 {
                     System.out.print("      ");
                     System.out.println("imul\tr10," + q.x.name);
                 }
-                Integer addr3 = new Integer(temp3 - start);
-                addr3 = (addr3 + 1) * 8;
-                System.out.print("      ");
-                System.out.println("mov\t[rbp - " + addr3.toString() + "],r10");
+                if (!(q.z.name.charAt(0) >= '0' && q.z.name.charAt(0) <= '9'))
+                {
+                    System.out.print("      ");
+                    System.out.println("mov\t[lc" + q.z.name + "],r10");
+                }
+                else
+                {
+                    Integer addr3 = new Integer(temp3 - start);
+                    addr3 = (addr3 + 1) * 8;
+                    System.out.print("      ");
+                    System.out.println("mov\t[rbp - " + addr3.toString() + "],r10");
+                }
             }
             if (q.op.equals("/"))
             {
@@ -1447,7 +1479,7 @@ public class Irtox86
                 else if (!(q.y.name.charAt(0) >= '0' && q.y.name.charAt(0) <= '9'))
                 {
                     System.out.print("      ");
-                    System.out.println("mov\teax,[" + q.y.name + "]");
+                    System.out.println("mov\teax,[lc" + q.y.name + "]");
                 }
                 else
                 {
@@ -1464,7 +1496,7 @@ public class Irtox86
                 else if (!(q.x.name.charAt(0) >= '0' && q.x.name.charAt(0) <= '9'))
                 {
                     System.out.print("      ");
-                    System.out.println("mov\tr10d,[" + q.x.name + "]");
+                    System.out.println("mov\tr10d,[lc" + q.x.name + "]");
                 }
                 else
                 {
@@ -1496,7 +1528,7 @@ public class Irtox86
                 else if (!(q.y.name.charAt(0) >= '0' && q.y.name.charAt(0) <= '9'))
                 {
                     System.out.print("      ");
-                    System.out.println("mov\teax,[" + q.y.name + "]");
+                    System.out.println("mov\teax,[lc" + q.y.name + "]");
                 }
                 else
                 {
@@ -1513,7 +1545,7 @@ public class Irtox86
                 else if (!(q.x.name.charAt(0) >= '0' && q.x.name.charAt(0) <= '9'))
                 {
                     System.out.print("      ");
-                    System.out.println("mov\tr10d,[" + q.x.name + "]");
+                    System.out.println("mov\tr10d,[lc" + q.x.name + "]");
                 }
                 else
                 {
@@ -1543,7 +1575,7 @@ public class Irtox86
                 else if (!(q.y.name.charAt(0) >= '0' && q.y.name.charAt(0) <= '9'))
                 {
                     System.out.print("      ");
-                    System.out.println("mov\tr10,[" + q.y.name + "]");
+                    System.out.println("mov\tr10,[lc" + q.y.name + "]");
                 }
                 else
                 {
@@ -1560,7 +1592,7 @@ public class Irtox86
                 else if (!(q.x.name.charAt(0) >= '0' && q.x.name.charAt(0) <= '9'))
                 {
                     System.out.print("      ");
-                    System.out.println("shr\tr10,[" + q.x.name + "]");
+                    System.out.println("shr\tr10,[lc" + q.x.name + "]");
                 }
                 else
                 {
@@ -1584,7 +1616,7 @@ public class Irtox86
                 else if (!(q.y.name.charAt(0) >= '0' && q.y.name.charAt(0) <= '9'))
                 {
                     System.out.print("      ");
-                    System.out.println("mov\tr10,[" + q.y.name + "]");
+                    System.out.println("mov\tr10,[lc" + q.y.name + "]");
                 }
                 else
                 {
@@ -1601,7 +1633,7 @@ public class Irtox86
                 else if (!(q.x.name.charAt(0) >= '0' && q.x.name.charAt(0) <= '9'))
                 {
                     System.out.print("      ");
-                    System.out.println("shl\tr10,[" + q.x.name + "]");
+                    System.out.println("shl\tr10,[lc" + q.x.name + "]");
                 }
                 else
                 {
@@ -1631,7 +1663,7 @@ public class Irtox86
                 else if (!(q.y.name.charAt(0) >= '0' && q.y.name.charAt(0) <= '9'))
                 {
                     System.out.print("      ");
-                    System.out.println("mov\tr10,[" + q.y.name + "]");
+                    System.out.println("mov\tr10,[lc" + q.y.name + "]");
                 }
                 else
                 {
@@ -1648,7 +1680,7 @@ public class Irtox86
                 else if (!(q.x.name.charAt(0) >= '0' && q.x.name.charAt(0) <= '9'))
                 {
                     System.out.print("      ");
-                    System.out.println("cmp\tr10,[" + q.x.name + "]");
+                    System.out.println("cmp\tr10,[lc" + q.x.name + "]");
                 }
                 else
                 {
@@ -1683,7 +1715,7 @@ public class Irtox86
                 else if (!(q.y.name.charAt(0) >= '0' && q.y.name.charAt(0) <= '9'))
                 {
                     System.out.print("      ");
-                    System.out.println("mov\tr10,[" + q.y.name + "]");
+                    System.out.println("mov\tr10,[lc" + q.y.name + "]");
                 }
                 else
                 {
@@ -1700,7 +1732,7 @@ public class Irtox86
                 else if (!(q.x.name.charAt(0) >= '0' && q.x.name.charAt(0) <= '9'))
                 {
                     System.out.print("      ");
-                    System.out.println("cmp\tr10,[" + q.x.name + "]");
+                    System.out.println("cmp\tr10,[lc" + q.x.name + "]");
                 }
                 else
                 {
@@ -1734,7 +1766,7 @@ public class Irtox86
                 else if (!(q.y.name.charAt(0) >= '0' && q.y.name.charAt(0) <= '9'))
                 {
                     System.out.print("      ");
-                    System.out.println("mov\tr10,[" + q.y.name + "]");
+                    System.out.println("mov\tr10,[lc" + q.y.name + "]");
                 }
                 else
                 {
@@ -1751,7 +1783,7 @@ public class Irtox86
                 else if (!(q.x.name.charAt(0) >= '0' && q.x.name.charAt(0) <= '9'))
                 {
                     System.out.print("      ");
-                    System.out.println("cmp\tr10,[" + q.x.name + "]");
+                    System.out.println("cmp\tr10,[lc" + q.x.name + "]");
                 }
                 else
                 {
@@ -1785,7 +1817,7 @@ public class Irtox86
                 else if (!(q.y.name.charAt(0) >= '0' && q.y.name.charAt(0) <= '9'))
                 {
                     System.out.print("      ");
-                    System.out.println("mov\tr10,[" + q.y.name + "]");
+                    System.out.println("mov\tr10,[lc" + q.y.name + "]");
                 }
                 else
                 {
@@ -1808,7 +1840,7 @@ public class Irtox86
                 else if (!(q.x.name.charAt(0) >= '0' && q.x.name.charAt(0) <= '9'))
                 {
                     System.out.print("      ");
-                    System.out.println("cmp\tr10,[" + q.x.name + "]");
+                    System.out.println("cmp\tr10,[lc" + q.x.name + "]");
                 }
                 else
                 {
@@ -1836,7 +1868,7 @@ public class Irtox86
                 else if (!(q.y.name.charAt(0) >= '0' && q.y.name.charAt(0) <= '9'))
                 {
                     System.out.print("      ");
-                    System.out.println("mov\tr10,[" + q.y.name + "]");
+                    System.out.println("mov\tr10,[lc" + q.y.name + "]");
                 }
                 else
                 {
@@ -1863,7 +1895,7 @@ public class Irtox86
                 else if (!(q.y.name.charAt(0) >= '0' && q.y.name.charAt(0) <= '9'))
                 {
                     System.out.print("      ");
-                    System.out.println("mov\tr10,[" + q.y.name + "]");
+                    System.out.println("mov\tr10,[lc" + q.y.name + "]");
                 }
                 else
                 {
@@ -1889,7 +1921,7 @@ public class Irtox86
                 else if (!(q.y.name.charAt(0) >= '0' && q.y.name.charAt(0) <= '9'))
                 {
                     System.out.print("      ");
-                    System.out.println("mov\tr10,[" + q.y.name + "]");
+                    System.out.println("mov\tr10,[lc" + q.y.name + "]");
                 }
                 else
                 {
@@ -1923,7 +1955,7 @@ public class Irtox86
                 else if (!(q.y.name.charAt(0) >= '0' && q.y.name.charAt(0) <= '9'))
                 {
                     System.out.print("      ");
-                    System.out.println("mov\tr10,[" + q.y.name + "]");
+                    System.out.println("mov\tr10,[lc" + q.y.name + "]");
                 }
                 else
                 {
@@ -1940,7 +1972,7 @@ public class Irtox86
                 else if (!(q.x.name.charAt(0) >= '0' && q.x.name.charAt(0) <= '9'))
                 {
                     System.out.print("      ");
-                    System.out.println("cmp\tr10,[" + q.x.name + "]");
+                    System.out.println("cmp\tr10,[lc" + q.x.name + "]");
                 }
                 else
                 {
@@ -1974,7 +2006,7 @@ public class Irtox86
                 else if (!(q.y.name.charAt(0) >= '0' && q.y.name.charAt(0) <= '9'))
                 {
                     System.out.print("      ");
-                    System.out.println("mov\tr10,[" + q.y.name + "]");
+                    System.out.println("mov\tr10,[lc" + q.y.name + "]");
                 }
                 else
                 {
@@ -1991,7 +2023,7 @@ public class Irtox86
                 else if (!(q.x.name.charAt(0) >= '0' && q.x.name.charAt(0) <= '9'))
                 {
                     System.out.print("      ");
-                    System.out.println("cmp\tr10,[" + q.x.name + "]");
+                    System.out.println("cmp\tr10,[lc" + q.x.name + "]");
                 }
                 else
                 {
@@ -2019,7 +2051,7 @@ public class Irtox86
                 else if (!(q.y.name.charAt(0) >= '0' && q.y.name.charAt(0) <= '9'))
                 {
                     System.out.print("      ");
-                    System.out.println("and\tr10,[" + q.y.name + "]");
+                    System.out.println("and\tr10,[lc" + q.y.name + "]");
                 }
                 else
                 {
@@ -2043,7 +2075,7 @@ public class Irtox86
                 else if (!(q.y.name.charAt(0) >= '0' && q.y.name.charAt(0) <= '9'))
                 {
                     System.out.print("      ");
-                    System.out.println("and\tr10,[" + q.y.name + "]");
+                    System.out.println("and\tr10,[lc" + q.y.name + "]");
                 }
                 else
 
@@ -2067,7 +2099,7 @@ public class Irtox86
                 else if (!(q.x.name.charAt(0) >= '0' && q.x.name.charAt(0) <= '9'))
                 {
                     System.out.print("      ");
-                    System.out.println("and\tr10,[" + q.x.name + "]");
+                    System.out.println("and\tr10,[lc" + q.x.name + "]");
                 }
                 else
                 {
@@ -2093,7 +2125,7 @@ public class Irtox86
                 else if (!(q.y.name.charAt(0) >= '0' && q.y.name.charAt(0) <= '9'))
                 {
                     System.out.print("      ");
-                    System.out.println("or\tr10,[" + q.y.name + "]");
+                    System.out.println("mov\tr10,[lc" + q.y.name + "]");
                 }
                 else
                 {
@@ -2110,7 +2142,7 @@ public class Irtox86
                 else if (!(q.x.name.charAt(0) >= '0' && q.x.name.charAt(0) <= '9'))
                 {
                     System.out.print("      ");
-                    System.out.println("or\tr10,[" + q.x.name + "]");
+                    System.out.println("or\tr10,[lc" + q.x.name + "]");
                 }
                 else
                 {
