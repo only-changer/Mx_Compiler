@@ -3,30 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="014ac6d6-8e40-455f-95b1-dff8859644ca" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/a.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hello.asm" beforeDir="false" afterPath="$PROJECT_DIR$/hello.asm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hello.o" beforeDir="false" afterPath="$PROJECT_DIR$/hello.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IDE/Irtox86.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/Irtox86.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/IDE/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IDE/Mx.g4" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/Mx.g4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IDE/MxBaseListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/MxBaseListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IDE/MxBaseVisitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/MxBaseVisitor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IDE/MxListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/MxListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IDE/MxParser$ExprContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/MxParser$ExprContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IDE/MxParser$ExprsContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/MxParser$ExprsContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IDE/MxParser$NewsContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/MxParser$NewsContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IDE/MxParser$StmtContext.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/MxParser$StmtContext.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IDE/MxParser.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/MxParser.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IDE/MxVisitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/MxVisitor.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/IDE/MyVisitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/MyVisitor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Irtox86.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Irtox86.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Mx.g4" beforeDir="false" afterPath="$PROJECT_DIR$/src/Mx.g4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MxBaseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MxBaseListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MxBaseVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MxBaseVisitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MxListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MxListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MxParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MxParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MxVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MxVisitor.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -50,8 +29,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="111">
-              <caret line="2110" column="9" selection-start-line="2110" selection-start-column="9" selection-end-line="2110" selection-end-column="9" />
+            <state relative-caret-position="213">
+              <caret line="2121" column="10" selection-start-line="2121" selection-start-column="10" selection-end-line="2121" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -130,7 +109,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>STR</find>
       <find>&quot;&amp;&amp;</find>
       <find>.STR</find>
       <find>&quot;!=&quot;</find>
@@ -160,6 +138,7 @@
       <find>&quot;/&quot;</find>
       <find>irr</find>
       <find>b_f</find>
+      <find>out</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -325,7 +304,7 @@
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5305499" side_tool="true" weight="0.6906475" />
       <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.46945012" visible="true" weight="0.32952926" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.46945012" visible="true" weight="0.18402283" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49932975" weight="0.32952926" />
       <window_info id="Capture Tool" order="2" />
@@ -741,8 +720,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="111">
-          <caret line="2110" column="9" selection-start-line="2110" selection-start-column="9" selection-end-line="2110" selection-end-column="9" />
+        <state relative-caret-position="213">
+          <caret line="2121" column="10" selection-start-line="2121" selection-start-column="10" selection-end-line="2121" selection-end-column="10" />
         </state>
       </provider>
     </entry>

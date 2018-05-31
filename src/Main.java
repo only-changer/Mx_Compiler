@@ -233,7 +233,9 @@ class MyVisitor extends MxBaseVisitor<check>
     Integer maxtemp = new Integer(0);
     boolean isglobal = false;
     ir global = new ir();
-    Integer fors  = new Integer(0);
+    Integer forss  = new Integer(0);
+    boolean isloop = false;
+
     MyVisitor()
     {
         cla = "";
@@ -777,8 +779,11 @@ class MyVisitor extends MxBaseVisitor<check>
     {
         Map<String, vartype> origin = new HashMap<>(defvars);
         check chk = new check();
+        Integer fi = new Integer(forss);
         for (int k = 0; k < ctx.stmt().size(); ++k)
         {
+
+            forss = fi;
             check ck = visit(ctx.stmt(k));
             chk.code.add(ck.code);
             chk.defvars.putAll(ck.defvars);
@@ -917,7 +922,10 @@ class MyVisitor extends MxBaseVisitor<check>
 
     public check visitStmt(MxParser.StmtContext ctx)
     {
+
         Integer fors = new Integer(0);
+        fors = new Integer(forss);
+
         ir code_for = new ir();
         Map<String, vartype> origin = new HashMap<>(defvars);
         boolean isreturn = false;
@@ -933,24 +941,22 @@ class MyVisitor extends MxBaseVisitor<check>
             {
                 isreturn = true;
             }
+
         if (ctx.block() != null)
         {
+            forss = fors;
             check ck = visit(ctx.block());
             chk.defvars.putAll(ck.defvars);
             chk.vars.addAll(ck.vars);
             chk.code.add(ck.code);
         }
-        if (ctx.opf != null || ctx.opw != null)
-        {
-            fors = b_f;
-            ++b_f;
-        }
+
+
         if (ctx.opb != null)
         {
             quard quad = new quard();
             quad.op = "goto";
-            Integer b = new Integer(b_f);
-            --b;
+            Integer b = new Integer(fors);
             quad.z.name = b.toString() + "forback";
             chk.code.push(quad);
         }
@@ -958,10 +964,14 @@ class MyVisitor extends MxBaseVisitor<check>
         {
             quard quad = new quard();
             quad.op = "goto";
-            Integer b = new Integer(b_f);
-            --b;
+            Integer b = new Integer(fors);
             quad.z.name = b.toString() + "while";
             chk.code.push(quad);
+        }
+        if (ctx.opf != null || ctx.opw != null)
+        {
+            fors = b_f;
+            ++b_f;
         }
         ir irr = new ir();
         Integer k = new Integer(0);
@@ -969,8 +979,9 @@ class MyVisitor extends MxBaseVisitor<check>
 
         for (int i = 0; i < ctx.stmt().size(); ++i)
         {
-
+            forss = fors;
             check ck = visit(ctx.stmt(i));
+
             chk.defvars.putAll(ck.defvars);
             chk.vars.addAll(ck.vars);
             if (ctx.opf != null || ctx.opw != null)
@@ -2108,7 +2119,7 @@ public class Main
 
     public static check main() throws Exception
     {
-       // File f = new File("E:/test.txt");
+        //File f = new File("E:/test.txt");
          File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
