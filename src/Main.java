@@ -451,6 +451,7 @@ class MyVisitor extends MxBaseVisitor<check>
                 regs.put(ctx.varname().getText(), t);
                 curtemp = temp;
                 ++temp;
+                System.err.println(regs);
             }
             else
             {
@@ -916,6 +917,8 @@ class MyVisitor extends MxBaseVisitor<check>
 
     public check visitStmt(MxParser.StmtContext ctx)
     {
+        System.err.println(ctx.getText());
+        System.err.println(regs);
         ir code_for = new ir();
         Map<String, vartype> origin = new HashMap<>(defvars);
         boolean isreturn = false;
@@ -1107,7 +1110,7 @@ class MyVisitor extends MxBaseVisitor<check>
             if (ctx.getText().contains(";i;")) v.add("string");
             chk.vars.addAll(ck.vars);
         }
-        curreg.putAll(regs);
+        //curreg.putAll(regs);
         regs = curreg;
         // temp = origintemp;
         // System.out.println("!!!");
@@ -1558,6 +1561,8 @@ class MyVisitor extends MxBaseVisitor<check>
                 quard quad = new quard();
                 quad.op = chk.var.get(0);
                 String s = new String();
+                System.err.println("????");
+                System.err.println(regs);
                 if (regs.containsKey(ctx.varname().getText()))
                     s = regs.get(ctx.varname().getText()).toString() + "temp";
                 else
@@ -2063,7 +2068,7 @@ public class Main
 
     public static check main() throws Exception
     {
-       // File f = new File("E:/test.txt");
+     //   File f = new File("E:/test.txt");
           File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
