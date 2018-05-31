@@ -938,8 +938,10 @@ class MyVisitor extends MxBaseVisitor<check>
             chk.code.add(ck.code);
         }
         ir irr = new ir();
+        Integer k = new Integer(0);
         for (int i = 0; i < ctx.stmt().size(); ++i)
         {
+
             check ck = visit(ctx.stmt(i));
             chk.defvars.putAll(ck.defvars);
             chk.vars.addAll(ck.vars);
@@ -963,6 +965,8 @@ class MyVisitor extends MxBaseVisitor<check>
                         quad = new quard();
                         quad.z.name = "_" + b_i.toString() + "else";
                         quad.op = "label!!!!!!!!!";
+                        k = b_i;
+                        ++b_i;
                         irr.push(quad);
                     }
                     else
@@ -974,8 +978,7 @@ class MyVisitor extends MxBaseVisitor<check>
             if (ctx.op.getText().equals("if"))
             {
                 quard quad = new quard();
-                quad.z.name = "_" + b_i.toString() + "ifback";
-                ++b_i;
+                quad.z.name = "_" + k.toString() + "ifback";
                 quad.op = "label!!!!!!!!!";
                 irr.push(quad);
             }
@@ -1235,6 +1238,26 @@ class MyVisitor extends MxBaseVisitor<check>
                 chk.code.push(quad);
                 constfunc = true;
             }
+            if (s.equals("parseInt") && cla.equals("002"))
+            {
+                quard quad = new quard();
+                quad.op = "call";
+                quad.z.name = "string.parseInt";
+                varible k = new varible();
+                if (regs.containsKey(strname))
+                {
+                    k.name = regs.get(strname).toString() + "temp";
+                    quad.y.add(k);
+                }
+                quad.y.name = temp.toString() + "temp";
+                chk.code.push(quad);
+                quad = new quard();
+                quad.z.name = temp.toString() + "temp";
+                ++temp;
+                if (temp > maxtemp) maxtemp = temp;
+                chk.code.push(quad);
+                constfunc = true;
+            }
             if (s.equals("ord") && cla.equals("002"))
             {
                 quard quad = new quard();
@@ -1256,6 +1279,29 @@ class MyVisitor extends MxBaseVisitor<check>
                 chk.code.push(quad);
                 constfunc = true;
             }
+            if (s.equals("substring") && cla.equals("002"))
+            {
+                quard quad = new quard();
+                quad.op = "call";
+                quad.z.name = "string.substring";
+                varible k = new varible();
+                if (regs.containsKey(strname))
+                {
+                    k.name = regs.get(strname).toString() + "temp";
+                    quad.y.add(k);
+                }
+                quad.y.add(chk.params.get(0));
+                quad.y.add(chk.params.get(1));
+                quad.y.name = temp.toString() + "temp";
+                chk.code.push(quad);
+                quad = new quard();
+                quad.z.name = temp.toString() + "temp";
+                ++temp;
+                if (temp > maxtemp) maxtemp = temp;
+                chk.code.push(quad);
+                constfunc = true;
+            }
+
             Map<String, Vector<String>> defun = new HashMap();
             //System.out.println(cla);
             if (!cla.equals(""))
@@ -1802,7 +1848,11 @@ class MyVisitor extends MxBaseVisitor<check>
         {
             quard quad = new quard();
             quad.z = new varible(ir1.last.z);
-            quad.y = new varible(ir2.last.z);
+            if (ctx.expr(1).news() == null)
+            {
+                quad.y = new varible(ir2.last.z);
+            }
+            else quad.y.name = ir2.last.z.name;
             quad.op = "=";
             chk.code.add(ir1);
             chk.code.add(ir2);
@@ -1940,7 +1990,7 @@ public class Main
 
     public static check main() throws Exception
     {
-        //File f = new File("E:/test.txt");
+       // File f = new File("E:/test.txt");
         File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
