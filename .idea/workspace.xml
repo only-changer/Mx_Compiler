@@ -5,7 +5,6 @@
       <change beforePath="$PROJECT_DIR$/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/a.out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hello.asm" beforeDir="false" afterPath="$PROJECT_DIR$/hello.asm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hello.o" beforeDir="false" afterPath="$PROJECT_DIR$/hello.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Irtox86.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Irtox86.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -21,7 +20,7 @@
       <file leaf-file-name="MxBaseVisitor.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MxBaseVisitor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
+            <state relative-caret-position="19">
               <caret line="19" column="7" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
             </state>
           </provider>
@@ -30,8 +29,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="2008" column="9" selection-start-line="2008" selection-start-column="9" selection-end-line="2008" selection-end-column="9" />
+            <state relative-caret-position="231">
+              <caret line="2060" column="9" selection-start-line="2060" selection-start-column="9" selection-end-line="2060" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -110,7 +109,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>opf</find>
       <find>.print</find>
       <find>chk.code</find>
       <find>secti</find>
@@ -130,7 +128,6 @@
       <find>&quot;call&quot;</find>
       <find>&quot;++&quot;</find>
       <find>temp</find>
-      <find>op1</find>
       <find>&quot;&lt;&quot;</find>
       <find>err</find>
       <find>opw</find>
@@ -140,6 +137,8 @@
       <find>ord</find>
       <find>&quot;||</find>
       <find>op</find>
+      <find>parseInt</find>
+      <find>op1</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -303,10 +302,10 @@
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.49898168" side_tool="true" visible="true" weight="0.0" />
+      <window_info active="true" anchor="bottom" id="Event Log" order="7" sideWeight="0.50610995" side_tool="true" visible="true" weight="0.15107913" />
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.50101835" visible="true" weight="0.0" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49389002" visible="true" weight="0.15107913" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49932975" weight="0.32952926" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
@@ -663,13 +662,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MxBaseVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="19" column="7" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/MxListener.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
@@ -719,10 +711,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/MxBaseVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="19" column="7" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="2008" column="9" selection-start-line="2008" selection-start-column="9" selection-end-line="2008" selection-end-column="9" />
+        <state relative-caret-position="231">
+          <caret line="2060" column="9" selection-start-line="2060" selection-start-column="9" selection-end-line="2060" selection-end-column="9" />
         </state>
       </provider>
     </entry>
