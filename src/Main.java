@@ -451,7 +451,6 @@ class MyVisitor extends MxBaseVisitor<check>
                 regs.put(ctx.varname().getText(), t);
                 curtemp = temp;
                 ++temp;
-                System.err.println(regs);
             }
             else
             {
@@ -917,8 +916,7 @@ class MyVisitor extends MxBaseVisitor<check>
 
     public check visitStmt(MxParser.StmtContext ctx)
     {
-        System.err.println(ctx.getText());
-        System.err.println(regs);
+
         ir code_for = new ir();
         Map<String, vartype> origin = new HashMap<>(defvars);
         boolean isreturn = false;
@@ -940,6 +938,14 @@ class MyVisitor extends MxBaseVisitor<check>
             chk.defvars.putAll(ck.defvars);
             chk.vars.addAll(ck.vars);
             chk.code.add(ck.code);
+        }
+        if (ctx.opb != null)
+        {
+            quard quad = new quard();
+            quad.op = "goto";
+            Integer b = new Integer(b_f);
+            quad.z.name = b.toString() + "forback";
+            chk.code.push(quad);
         }
         ir irr = new ir();
         Integer k = new Integer(0);
@@ -1197,10 +1203,12 @@ class MyVisitor extends MxBaseVisitor<check>
             Vector<Vector> v = new Vector<>();
             if (!ctx.getText().contains(")"))
                 System.exit(-1);
+            varible vs = new varible();
             if (ctx.exprs() != null)
             {
                 check ck = visit(ctx.exprs());
                 v.addAll(ck.vars);
+                vs = new varible(ck.code.last.z);
                 chk.code.add(ck.code);
                 chk.params = ck.params;
                 // System.out.println(v);
@@ -1219,7 +1227,9 @@ class MyVisitor extends MxBaseVisitor<check>
                     quard quad = new quard();
                     quad.z.name = temp.toString() + "temp";
                     quad.op = "+";
+                    if (regs.containsKey(arrname))
                     quad.y.name = regs.get(arrname).toString() + "temp";
+                    else quad.y.name = arrname;
                     varible k = new varible();
                     k.name = "0";
                     quad.y.add(k);
@@ -1268,6 +1278,7 @@ class MyVisitor extends MxBaseVisitor<check>
                 else
                 {
                     k.name = strname;
+                    if (strname.contains("()")) k.name = "rax";
                     quad.y.add(k);
                 }
                 quad.y.name = temp.toString() + "temp";
@@ -1561,8 +1572,7 @@ class MyVisitor extends MxBaseVisitor<check>
                 quard quad = new quard();
                 quad.op = chk.var.get(0);
                 String s = new String();
-                System.err.println("????");
-                System.err.println(regs);
+
                 if (regs.containsKey(ctx.varname().getText()))
                     s = regs.get(ctx.varname().getText()).toString() + "temp";
                 else
@@ -2068,8 +2078,8 @@ public class Main
 
     public static check main() throws Exception
     {
-     //   File f = new File("E:/test.txt");
-          File f = new File("program.txt");
+       // File f = new File("E:/test.txt");
+         File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
         run(input);

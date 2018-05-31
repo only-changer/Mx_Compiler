@@ -1005,6 +1005,8 @@ public class MxParser extends Parser {
 		public Token opf;
 		public Token opw;
 		public Token opr;
+		public Token opb;
+		public Token opc;
 		public BlockContext block() {
 			return getRuleContext(BlockContext.class,0);
 		}
@@ -1177,7 +1179,7 @@ public class MxParser extends Parser {
 				enterOuterAlt(_localctx, 6);
 				{
 				setState(162);
-				match(T__19);
+				((StmtContext)_localctx).opb = match(T__19);
 				setState(163);
 				match(T__0);
 				}
@@ -1186,7 +1188,7 @@ public class MxParser extends Parser {
 				enterOuterAlt(_localctx, 7);
 				{
 				setState(164);
-				match(T__20);
+				((StmtContext)_localctx).opc = match(T__20);
 				setState(165);
 				match(T__0);
 				}

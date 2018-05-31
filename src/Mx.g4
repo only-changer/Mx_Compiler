@@ -43,8 +43,8 @@ stmt    :   block
         |   opf = 'for' '(' expr? ';' expr? ';' expr? ')' stmt
         |   opw = 'while' '(' expr? ')' stmt
         |   opr = 'return' expr? ';'
-        |   'break' ';'
-        |   'continue' ';'
+        |   opb = 'break' ';'
+        |   opc = 'continue' ';'
         |   defvars
         |   ';'
         |   expr ';'    ;

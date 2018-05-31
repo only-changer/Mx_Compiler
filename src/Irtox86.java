@@ -1241,8 +1241,15 @@ public class Irtox86
                             }
                             else if (!(q.y.params.get(i).name.charAt(0) >= '0' && q.y.params.get(i).name.charAt(0) <= '9'))
                             {
-                                System.out.print("      ");
-                                System.out.println("mov\t" + callregs[i] + ",[lc" + q.y.params.get(i).name + "]");
+                                if (q.y.params.get(i).name.equals("rax"))
+                                {
+                                    System.out.print("      ");
+                                    System.out.println("mov\t" + callregs[i] + ",rax");
+                                }else
+                                {
+                                    System.out.print("      ");
+                                    System.out.println("mov\t" + callregs[i] + ",[lc" + q.y.params.get(i).name + "]");
+                                }
                             }
                             else
                             {
@@ -1670,6 +1677,13 @@ public class Irtox86
                     System.out.print("      ");
                     System.out.println("mov\tr10," + q.y.name);
                 }
+                if (q.x.params != null)
+                {
+                    getaddr(q.x.name, q.x.params, "r11");
+                    System.out.print("      ");
+                    System.out.println("cmp\tr10,[r11]");
+                }
+                else
                 if (q.x.name.contains("temp"))
                 {
                     Integer addr2 = new Integer(temp2 - start);
@@ -1722,6 +1736,13 @@ public class Irtox86
                     System.out.print("      ");
                     System.out.println("mov\tr10," + q.y.name);
                 }
+                if (q.x.params != null)
+                {
+                    getaddr(q.x.name, q.x.params, "r11");
+                    System.out.print("      ");
+                    System.out.println("cmp\tr10,[r11]");
+                }
+                else
                 if (q.x.name.contains("temp"))
                 {
                     Integer addr2 = new Integer(temp2 - start);
@@ -1773,6 +1794,13 @@ public class Irtox86
                     System.out.print("      ");
                     System.out.println("mov\tr10," + q.y.name);
                 }
+                if (q.x.params != null)
+                {
+                    getaddr(q.x.name, q.x.params, "r11");
+                    System.out.print("      ");
+                    System.out.println("cmp\tr10,[r11]");
+                }
+                else
                 if (q.x.name.contains("temp"))
                 {
                     Integer addr2 = new Integer(temp2 - start);
