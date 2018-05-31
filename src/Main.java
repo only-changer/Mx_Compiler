@@ -940,6 +940,7 @@ class MyVisitor extends MxBaseVisitor<check>
         }
         ir irr = new ir();
         Integer k = new Integer(0);
+        Map<String,Integer> originreg = new HashMap<>(regs);
         for (int i = 0; i < ctx.stmt().size(); ++i)
         {
 
@@ -1008,6 +1009,8 @@ class MyVisitor extends MxBaseVisitor<check>
             chk.code.push(quad);
         }
         Integer ifs = new Integer(b_i);
+        Map<String,Integer> curreg = new HashMap<>(regs);
+        regs = originreg;
         for (int i = 0; i < ctx.expr().size(); ++i)
         {
             check ck = visit(ctx.expr(i));
@@ -1104,6 +1107,8 @@ class MyVisitor extends MxBaseVisitor<check>
             if (ctx.getText().contains(";i;")) v.add("string");
             chk.vars.addAll(ck.vars);
         }
+        curreg.putAll(regs);
+        regs = curreg;
         // temp = origintemp;
         // System.out.println("!!!");
         // System.out.println(v);
@@ -2058,7 +2063,7 @@ public class Main
 
     public static check main() throws Exception
     {
-        //File f = new File("E:/test.txt");
+       // File f = new File("E:/test.txt");
           File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
