@@ -40,7 +40,7 @@ block   :   '{' stmt* '}' ;
 
 stmt    :   block
         |   op = 'if' '(' expr ')' stmt ( 'else' stmt)?
-        |   opf = 'for' '(' expr? ';' expr? ';' expr? ')' stmt
+        |   opf = 'for' '(' expr1? ';' expr2? ';' expr3? ')' stmt
         |   opw = 'while' '(' expr? ')' stmt
         |   opr = 'return' expr? ';'
         |   opb = 'break' ';'
@@ -49,7 +49,9 @@ stmt    :   block
         |   ';'
         |   expr ';'    ;
 
-
+expr1:expr;
+expr2:expr;
+expr3:expr;
 exprs   :   expr(',' expr)* ;
 
 

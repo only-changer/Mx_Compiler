@@ -1508,8 +1508,6 @@ public class Irtox86
                 else
                 {
                     System.out.print("      ");
-                    System.out.println("mov\tr10," + q.x.name);
-                    System.out.print("      ");
                     System.out.println("mov\tr10d," + q.x.name);
                 }
                 System.out.print("      ");

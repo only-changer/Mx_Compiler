@@ -233,7 +233,7 @@ class MyVisitor extends MxBaseVisitor<check>
     Integer maxtemp = new Integer(0);
     boolean isglobal = false;
     ir global = new ir();
-
+    Integer fors  = new Integer(0);
     MyVisitor()
     {
         cla = "";
@@ -283,6 +283,7 @@ class MyVisitor extends MxBaseVisitor<check>
         Vector v10 = new Vector();
         v10.add("string");
         defuns.put("getString", v10);
+
     }
 
     public Integer move(String curtemp)
@@ -455,7 +456,7 @@ class MyVisitor extends MxBaseVisitor<check>
             else
             {
                 varible k = new varible();
-                k.name = "lc"+ctx.varname().getText();
+                k.name = "lc" + ctx.varname().getText();
                 chk.params.add(k);
             }
         if (ctx.expr() != null && getin)
@@ -916,7 +917,7 @@ class MyVisitor extends MxBaseVisitor<check>
 
     public check visitStmt(MxParser.StmtContext ctx)
     {
-
+        Integer fors = new Integer(0);
         ir code_for = new ir();
         Map<String, vartype> origin = new HashMap<>(defvars);
         boolean isreturn = false;
@@ -939,17 +940,33 @@ class MyVisitor extends MxBaseVisitor<check>
             chk.vars.addAll(ck.vars);
             chk.code.add(ck.code);
         }
+        if (ctx.opf != null || ctx.opw != null)
+        {
+            fors = b_f;
+            ++b_f;
+        }
         if (ctx.opb != null)
         {
             quard quad = new quard();
             quad.op = "goto";
             Integer b = new Integer(b_f);
+            --b;
             quad.z.name = b.toString() + "forback";
+            chk.code.push(quad);
+        }
+        if (ctx.opc != null)
+        {
+            quard quad = new quard();
+            quad.op = "goto";
+            Integer b = new Integer(b_f);
+            --b;
+            quad.z.name = b.toString() + "while";
             chk.code.push(quad);
         }
         ir irr = new ir();
         Integer k = new Integer(0);
-        Map<String,Integer> originreg = new HashMap<>(regs);
+        Map<String, Integer> originreg = new HashMap<>(regs);
+
         for (int i = 0; i < ctx.stmt().size(); ++i)
         {
 
@@ -1009,113 +1026,126 @@ class MyVisitor extends MxBaseVisitor<check>
         Integer origintemp = new Integer(temp);
         Vector v = new Vector();
         ir code_temp = new ir();
-        if (ctx.expr().size() == 3) code_temp = visit(ctx.expr(2)).code;
-        if (ctx.opr != null && ctx.expr().size() == 0)
+        if (ctx.expr3() != null) code_temp = visit(ctx.expr3()).code;
+        if (ctx.opr != null && ctx.expr() == null)
         {
             quard quad = new quard();
             quad.y.name = "null";
             quad.op = "ret";
             chk.code.push(quad);
         }
+
         Integer ifs = new Integer(b_i);
-        Map<String,Integer> curreg = new HashMap<>(regs);
+        Map<String, Integer> curreg = new HashMap<>(regs);
         regs = originreg;
-        for (int i = 0; i < ctx.expr().size(); ++i)
+        check ck = new check();
+        if (ctx.expr() != null)
+            ck = visit(ctx.expr());
+        v.addAll(ck.var);
+        if (ctx.op != null)
+            if (ctx.expr().getText().equals("1"))
+                System.exit(-1);
+        if (ctx.opr != null && ck.code.last != null)
         {
-            check ck = visit(ctx.expr(i));
-            v.addAll(ck.var);
-            if (ctx.op != null)
-                if (ctx.expr(0).getText().equals("1"))
-                    System.exit(-1);
-            if (ctx.opr != null && ck.code.last != null)
+            quard quad = new quard();
+            quad.y.name = ck.code.last.z.name;
+            quad.op = "ret";
+            chk.code.add(ck.code);
+            chk.code.push(quad);
+        }
+        else if (ctx.op != null && ck.code.last != null)
+        {
+            if (ctx.op.getText().equals("if"))
             {
                 quard quad = new quard();
-                quad.y.name = ck.code.last.z.name;
-                quad.op = "ret";
                 chk.code.add(ck.code);
+                quad.y = new varible(ck.code.last.z);
+                // quad.y.name = new String(ck.code.last.z.name);
+                quad.z.name = k + "else";
+                quad.op = "if";
                 chk.code.push(quad);
-                continue;
+                chk.code.add(irr);
             }
-            if (ctx.op != null && ck.code.last != null)
-                if (ctx.op.getText().equals("if"))
-                {
-                    quard quad = new quard();
-                    chk.code.add(ck.code);
-                    quad.y = new varible(ck.code.last.z);
-                    // quad.y.name = new String(ck.code.last.z.name);
-                    quad.z.name = k + "else";
-                    quad.op = "if";
-                    chk.code.push(quad);
-                    chk.code.add(irr);
-                    continue;
-                }
-            if (ctx.opf != null && ctx.expr().size() == 3)
+        }
+        else if (ctx.opf != null)
+        {
+            irr = new ir();
+            quard quads = new quard();
+            quads.z.name = "_" + fors.toString() + "for";
+            quads.op = "label!!!!!!!!!";
+            if (ctx.expr1() != null)
             {
-                if (i == 0)
-                {
-                    quard quads = new quard();
-                    quads.z.name = "_" + b_f.toString() + "for";
-                    quads.op = "label!!!!!!!!!";
-
-                    chk.code.add(ck.code);
-                    chk.code.push(quads);
-                }
-                if (i == 1)
-                {
-                    chk.code.add(code_for);
-                    chk.code.add(code_temp);
-                    chk.code.add(ck.code);
-                    quard quad = new quard();
-                    quad.op = "for";
-                    quad.z.name = "_" + b_f.toString() + "for";
-                    quad.y.name = ck.code.last.z.name;
-                    irr.push(quad);
-                    quad = new quard();
-                    quad.z.name = "_" + b_f.toString() + "forback";
-                    ++b_f;
-                    quad.op = "label!!!!!!!!!";
-                    irr.push(quad);
-                }
-                if (i == 2)
-                {
-                    chk.code.add(irr);
-                }
-                continue;
+                ck = visit(ctx.expr1());
+                chk.code.add(ck.code);
             }
-            if (ctx.opw != null)
+            chk.code.push(quads);
+            chk.code.add(code_for);
+            quads = new quard();
+            quads.z.name = "_" + fors.toString() + "while";
+            quads.op = "label!!!!!!!!!";
+            chk.code.push(quads);
+            chk.code.add(code_temp);
+            if (ctx.expr2() != null)
             {
-                quard quads = new quard();
-                quads.op = "goto";
-                quads.z.name = b_f.toString() + "while";
-                chk.code.push(quads);
-                quads = new quard();
-                quads.z.name = "_" + b_f.toString() + "for";
-                quads.op = "label!!!!!!!!!";
-                chk.code.push(quads);
-                chk.code.add(code_for);
-                quads = new quard();
-                quads.z.name = "_" + b_f.toString() + "while";
-                quads.op = "label!!!!!!!!!";
-                chk.code.push(quads);
+                ck = visit(ctx.expr2());
                 chk.code.add(ck.code);
                 quard quad = new quard();
                 quad.op = "for";
-                quad.z.name = "_" + b_f.toString() + "for";
-                quad.y = new varible(ck.code.last.z);
-                irr.push(quad);
-                quad = new quard();
-                quad.z.name = "_" + b_f.toString() + "forback";
-                ++b_f;
-                quad.op = "label!!!!!!!!!";
-                chk.code.add(irr);
+                quad.z.name = "_" + fors.toString() + "for";
+                quad.y.name = ck.code.last.z.name;
                 chk.code.push(quad);
-                continue;
+
             }
-            chk.code.add(ck.code);
-            if (ctx.opf != null || ctx.getText().contains("while(")) v.add("bool");
-            if (ctx.getText().contains(";i;")) v.add("string");
-            chk.vars.addAll(ck.vars);
+            else
+            {
+                quard quad = new quard();
+                quad.op = "for";
+                quad.z.name = "_" + fors.toString() + "for";
+                quad.y.name = "1";
+                chk.code.push(quad);
+            }
+            quard quad0 = new quard();
+            quad0.z.name = "_" + fors.toString() + "forback";
+            quad0.op = "label!!!!!!!!!";
+            chk.code.push(quad0);
+
         }
+        else if (ctx.opw != null)
+        {
+            quard quads = new quard();
+            quads.op = "goto";
+            quads.z.name = fors.toString() + "while";
+            chk.code.push(quads);
+            quads = new quard();
+            quads.z.name = "_" + fors.toString() + "for";
+            quads.op = "label!!!!!!!!!";
+            chk.code.push(quads);
+            chk.code.add(code_for);
+            quads = new quard();
+            quads.z.name = "_" + fors.toString() + "while";
+            quads.op = "label!!!!!!!!!";
+            chk.code.push(quads);
+            chk.code.add(ck.code);
+            quard quad = new quard();
+            quad.op = "for";
+            quad.z.name = "_" + fors.toString() + "for";
+            quad.y = new varible(ck.code.last.z);
+            irr.push(quad);
+            quad = new quard();
+            quad.z.name = "_" + fors.toString() + "forback";
+            quad.op = "label!!!!!!!!!";
+            chk.code.add(irr);
+            chk.code.push(quad);
+        }
+        else
+        {
+            // System.out.println(ctx.getText());
+            chk.code.add(ck.code);
+        }
+        if (ctx.opf != null || ctx.getText().contains("while(")) v.add("bool");
+        if (ctx.getText().contains(";i;")) v.add("string");
+        chk.vars.addAll(ck.vars);
+
         //curreg.putAll(regs);
         regs = curreg;
         // temp = origintemp;
@@ -1228,7 +1258,7 @@ class MyVisitor extends MxBaseVisitor<check>
                     quad.z.name = temp.toString() + "temp";
                     quad.op = "+";
                     if (regs.containsKey(arrname))
-                    quad.y.name = regs.get(arrname).toString() + "temp";
+                        quad.y.name = regs.get(arrname).toString() + "temp";
                     else quad.y.name = arrname;
                     varible k = new varible();
                     k.name = "0";
@@ -1892,7 +1922,7 @@ class MyVisitor extends MxBaseVisitor<check>
                     }
         if (ctx.op1 != null && ir1.last != null && ir2.last != null)
         {
-            if ( isstr)
+            if (isstr)
             {
                 quard quad = new quard();
                 if (ctx.op1.getText().equals(">"))
