@@ -1037,7 +1037,7 @@ class MyVisitor extends MxBaseVisitor<check>
         Integer origintemp = new Integer(temp);
         Vector v = new Vector();
         ir code_temp = new ir();
-        if (ctx.expr3() != null) code_temp = visit(ctx.expr3()).code;
+
         if (ctx.opr != null && ctx.expr() == null)
         {
             quard quad = new quard();
@@ -1049,6 +1049,7 @@ class MyVisitor extends MxBaseVisitor<check>
         Integer ifs = new Integer(b_i);
         Map<String, Integer> curreg = new HashMap<>(regs);
         regs = originreg;
+        if (ctx.expr3() != null) code_temp = visit(ctx.expr3()).code;
         check ck = new check();
         if (ctx.expr() != null)
             ck = visit(ctx.expr());
@@ -2119,7 +2120,7 @@ public class Main
 
     public static check main() throws Exception
     {
-        //File f = new File("E:/test.txt");
+       // File f = new File("E:/test.txt");
          File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
