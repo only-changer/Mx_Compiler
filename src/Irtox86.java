@@ -952,9 +952,10 @@ public class Irtox86
                 length *= 8;
                 System.out.print("      ");
                 System.out.println("sub\trsp," + length.toString());
-                if (q.z.params != null && q.z.params.size() <= 6)
+                if (q.z.params != null )
                 {
                     for (int i = 0; i < q.z.params.size(); ++i)
+                    if (i < 6)
                     {
                         Integer tmp = -1;
                         String tmps = new String();
@@ -970,6 +971,28 @@ public class Irtox86
                         addr = (addr + 1) * 8;
                         System.out.print("      ");
                         System.out.println("mov\t[rbp - " + addr.toString() + "]," + callregs[i]);
+                    }
+                    else
+                    {
+                        Integer tmp = -1;
+                        String tmps = new String();
+                        for (int j = 0; j < q.z.params.get(i).name.length(); ++j)
+                        {
+                            if (!(q.z.params.get(i).name.charAt(j) >= '0' && q.z.params.get(i).name.charAt(j) <= '9'))
+                                break;
+                            tmps += q.z.params.get(i).name.charAt(j);
+                        }
+                        if (!tmps.equals(""))
+                            tmp = Integer.parseInt(tmps);
+                        Integer addr = new Integer(tmp - start);
+                        addr = (addr + 1) * 8;
+                        Integer I = new Integer(i);
+                        I = q.z.params.size() - I + 2;
+                        I *= 8;
+                        System.out.print("      ");
+                        System.out.println("mov\tr10,[rbp + "+I.toString() + "]");
+                        System.out.print("      ");
+                        System.out.println("mov\t[rbp - " + addr.toString() + "],r10");
                     }
                 }
             }
@@ -1240,9 +1263,18 @@ public class Irtox86
             if (q.op.equals("call"))
             {
                 if (q.y.params != null)
-                    if (q.y.params.size() <= 6)
+                {
+                    Integer off = new Integer(0);
+                    off = q.y.params.size() - 6;
+                    off *= 8;
+                    if (off > 0)
                     {
-                        for (int i = 0; i < q.y.params.size(); ++i)
+                        System.out.print("      ");
+                        System.out.println("sub\trsp," + off.toString());
+                    }
+                    for (int i = 0; i < q.y.params.size(); ++i)
+                    {
+                        if (i < 6)
                         {
                             if (q.y.params.get(i).params != null)
                             {
@@ -1286,7 +1318,70 @@ public class Irtox86
                                 System.out.println("mov\t" + callregs[i] + "," + q.y.params.get(i).name);
                             }
                         }
+                        else
+                        {
+                            if (q.y.params.get(i).params != null)
+                            {
+                                getaddr(q.y.params.get(i).name, q.y.params.get(i).params, "r10");
+                                System.out.print("      ");
+                                System.out.println("mov\tr10,[r10]");
+                                System.out.print("      ");
+                                Integer I = new Integer(i - 6);
+                                I *= 8;
+                                System.out.println("mov\t[rsp + " + I.toString() + "],r10");
+                            }
+                            else if (q.y.params.get(i).name.contains("temp"))
+                            {
+                                Integer tmp = -1;
+                                String tmps = new String();
+                                for (int j = 0; j < q.y.params.get(i).name.length(); ++j)
+                                {
+                                    if (!(q.y.params.get(i).name.charAt(j) >= '0' && q.y.params.get(i).name.charAt(j) <= '9'))
+                                        break;
+                                    tmps += q.y.params.get(i).name.charAt(j);
+                                }
+                                if (!tmps.equals(""))
+                                    tmp = Integer.parseInt(tmps);
+                                Integer addr = new Integer(tmp - start);
+                                addr = (addr + 1) * 8;
+                                System.out.print("      ");
+                                System.out.println("mov\tr10,[rbp-" + addr.toString() + "]");
+                                System.out.print("      ");
+                                Integer I = new Integer(i - 6);
+                                I *= 8;
+                                System.out.println("mov\t[rsp + " + I.toString() + "],r10");
+                            }
+                            else if (!(q.y.params.get(i).name.charAt(0) >= '0' && q.y.params.get(i).name.charAt(0) <= '9'))
+                            {
+                                if (q.y.params.get(i).name.equals("rax"))
+                                {
+                                    System.out.print("      ");
+                                    Integer I = new Integer(i - 6);
+                                    I *= 8;
+                                    System.out.println("mov\t[rsp + " + I.toString() + "],rax");
+                                }
+                                else
+                                {
+                                    System.out.print("      ");
+                                    System.out.println("mov\tr10,[lc" + q.y.params.get(i).name + "]");
+                                    System.out.print("      ");
+                                    Integer I = new Integer(i - 6);
+                                    I *= 8;
+                                    System.out.println("mov\t[rsp + " + I.toString() + "],r10");
+                                }
+                            }
+                            else
+                            {
+                                System.out.print("      ");
+                                System.out.println("mov\tr10," + q.y.params.get(i).name);
+                                System.out.print("      ");
+                                Integer I = new Integer(i - 6);
+                                I *= 8;
+                                System.out.println("mov\t[rsp + " + I.toString() + "],r10");
+                            }
+                        }
                     }
+                }
                 System.out.print("      ");
                 System.out.println("push\tr10");
                 System.out.print("      ");
