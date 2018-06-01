@@ -233,7 +233,7 @@ class MyVisitor extends MxBaseVisitor<check>
     Integer maxtemp = new Integer(0);
     boolean isglobal = false;
     ir global = new ir();
-    Integer forss  = new Integer(0);
+    Integer forss = new Integer(0);
     boolean isloop = false;
 
     MyVisitor()
@@ -324,11 +324,11 @@ class MyVisitor extends MxBaseVisitor<check>
             {
                 if (defvars.containsKey(key))
                 {
-                   // System.out.println(ctx.defs(k).getText());
+                    // System.out.println(ctx.defs(k).getText());
                     //System.out.println(key);
-                   // System.out.println(ctx.defs(k).getText());
-                   // System.out.println("Variables redefined!");
-                   // System.exit(-1);
+                    // System.out.println(ctx.defs(k).getText());
+                    // System.out.println("Variables redefined!");
+                    // System.exit(-1);
                 }
             }
             if (ctx.defs(k).defvars() != null) defvars.putAll(ck.defvars);
@@ -584,7 +584,7 @@ class MyVisitor extends MxBaseVisitor<check>
             al.addr.put(ctx.defvars(i).defvar().varname().getText(), size);
 
             Integer I = new Integer(size);
-                size += 8;
+            size += 8;
             al.vars.put(ctx.defvars(i).defvar().varname().getText(), I);
             for (String key : ck.defvars.keySet())
             {
@@ -1518,7 +1518,11 @@ class MyVisitor extends MxBaseVisitor<check>
                     q.op = "*";
                     q.y.name = temp.toString() + "temp";
                     if (ss.equals("int") || ss.equals("bool"))
-                    q.x.name = "8";
+                        q.x.name = "8";
+                    else if (ss.equals("string"))
+                    {
+                        q.x.name = "256";
+                    }
                     else
                     {
                         q.x.name = defclass.get(ss).size.toString();
@@ -1764,7 +1768,7 @@ class MyVisitor extends MxBaseVisitor<check>
                     if (defclass.get(ty).vars.containsKey(ck.code.last.x.name))
                     {
                         quard quad = new quard();
-                        quad.y =new varible(q.z);
+                        quad.y = new varible(q.z);
                         quad.z.name = temp.toString() + "temp";
                         quad.op = "=";
                         chk.code.push(quad);
@@ -2096,6 +2100,10 @@ class MyVisitor extends MxBaseVisitor<check>
                 quad.op = "*";
                 quad.y.name = temp.toString() + "temp";
                 if (sa.equals("int") || sa.equals("bool")) quad.x.name = "8";
+                else if (sa.equals("string"))
+                {
+                    quad.x.name = "256";
+                }
                 else
                 {
                     quad.x.name = defclass.get(sa).size.toString();
@@ -2149,7 +2157,7 @@ public class Main
 
     public static check main() throws Exception
     {
-        //File f = new File("E:/test.txt");
+       // File f = new File("E:/test.txt");
          File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
