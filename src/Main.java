@@ -1517,7 +1517,7 @@ class MyVisitor extends MxBaseVisitor<check>
                     q.z.name = temp.toString() + "temp";
                     q.op = "*";
                     q.y.name = temp.toString() + "temp";
-                    if (ss.equals("int"))
+                    if (ss.equals("int") || ss.equals("bool"))
                     q.x.name = "8";
                     else
                     {
@@ -2095,7 +2095,7 @@ class MyVisitor extends MxBaseVisitor<check>
                 quad.z.name = temp.toString() + "temp";
                 quad.op = "*";
                 quad.y.name = temp.toString() + "temp";
-                if (sa.equals("int")) quad.x.name = "8";
+                if (sa.equals("int") || sa.equals("bool")) quad.x.name = "8";
                 else
                 {
                     quad.x.name = defclass.get(sa).size.toString();

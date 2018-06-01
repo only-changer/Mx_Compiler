@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="014ac6d6-8e40-455f-95b1-dff8859644ca" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/a.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hello.asm" beforeDir="false" afterPath="$PROJECT_DIR$/hello.asm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hello.o" beforeDir="false" afterPath="$PROJECT_DIR$/hello.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -29,7 +26,7 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="149">
+            <state relative-caret-position="285">
               <caret line="2151" column="9" selection-start-line="2151" selection-start-column="9" selection-end-line="2151" selection-end-column="9" />
             </state>
           </provider>
@@ -129,16 +126,16 @@
       <find>&quot;%&quot;</find>
       <find>out</find>
       <find>&quot;!=&quot;</find>
-      <find />
+      <find>q.z.params != null</find>
       <find>&quot;str=</find>
       <find>opw</find>
       <find>&quot;++&quot;</find>
       <find>&quot;+&quot;</find>
-      <find />
-      <find>opcom</find>
+      <find>Variables redefined!</find>
       <find>STR</find>
       <find>NUM</find>
       <find>&quot;=&quot;</find>
+      <find>opcom</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -157,7 +154,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
+  <component name="ProjectFrameBounds">
     <option name="x" value="632" />
     <option name="width" value="1300" />
     <option name="height" value="1040" />
@@ -720,7 +717,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
+        <state relative-caret-position="285">
           <caret line="2151" column="9" selection-start-line="2151" selection-start-column="9" selection-end-line="2151" selection-end-column="9" />
         </state>
       </provider>
