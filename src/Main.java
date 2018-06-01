@@ -324,11 +324,11 @@ class MyVisitor extends MxBaseVisitor<check>
             {
                 if (defvars.containsKey(key))
                 {
-                    System.out.println(ctx.defs(k).getText());
+                   // System.out.println(ctx.defs(k).getText());
                     //System.out.println(key);
-                    System.out.println(ctx.defs(k).getText());
-                    System.out.println("Variables redefined!");
-                    System.exit(-1);
+                   // System.out.println(ctx.defs(k).getText());
+                   // System.out.println("Variables redefined!");
+                   // System.exit(-1);
                 }
             }
             if (ctx.defs(k).defvars() != null) defvars.putAll(ck.defvars);
@@ -2125,7 +2125,7 @@ public class Main
 
     public static check main() throws Exception
     {
-       // File f = new File("E:/test.txt");
+        //File f = new File("E:/test.txt");
          File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);

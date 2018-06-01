@@ -29,8 +29,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="254">
-              <caret line="2127" column="9" selection-start-line="2127" selection-start-column="9" selection-end-line="2127" selection-end-column="9" />
+            <state relative-caret-position="281">
+              <caret line="2127" column="10" selection-start-line="2127" selection-start-column="10" selection-end-line="2127" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -109,7 +109,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>qsrt</find>
       <find>temp</find>
       <find>&quot;&lt;&quot;</find>
       <find>&quot;if&quot;</find>
@@ -139,6 +138,7 @@
       <find>&quot;++&quot;</find>
       <find>&quot;+&quot;</find>
       <find>&quot;=&quot;</find>
+      <find>Variables redefined!</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -304,7 +304,7 @@
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5305499" side_tool="true" weight="0.6906475" />
       <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.46945012" visible="true" weight="0.11798561" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.46945012" visible="true" weight="0.07913669" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49932975" weight="0.32952926" />
       <window_info id="Capture Tool" order="2" />
@@ -720,8 +720,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="2127" column="9" selection-start-line="2127" selection-start-column="9" selection-end-line="2127" selection-end-column="9" />
+        <state relative-caret-position="281">
+          <caret line="2127" column="10" selection-start-line="2127" selection-start-column="10" selection-end-line="2127" selection-end-column="10" />
         </state>
       </provider>
     </entry>
