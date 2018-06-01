@@ -478,7 +478,9 @@ class MyVisitor extends MxBaseVisitor<check>
                 quad.y = new varible(ck.code.last.z);
             }
             else quad.y.name = ck.code.last.z.name;
+
             quad.op = "=";
+
             if (!isglobal)
             {
                 chk.code.add(ck.code);
@@ -582,7 +584,7 @@ class MyVisitor extends MxBaseVisitor<check>
             al.addr.put(ctx.defvars(i).defvar().varname().getText(), size);
 
             Integer I = new Integer(size);
-            size += 8;
+                size += 8;
             al.vars.put(ctx.defvars(i).defvar().varname().getText(), I);
             for (String key : ck.defvars.keySet())
             {
@@ -1515,7 +1517,12 @@ class MyVisitor extends MxBaseVisitor<check>
                     q.z.name = temp.toString() + "temp";
                     q.op = "*";
                     q.y.name = temp.toString() + "temp";
+                    if (ss.equals("int"))
                     q.x.name = "8";
+                    else
+                    {
+                        q.x.name = defclass.get(ss).size.toString();
+                    }
                     chk.code.push(q);
                     varible k = new varible();
                     k.name = temp.toString() + "temp";
@@ -1642,6 +1649,13 @@ class MyVisitor extends MxBaseVisitor<check>
             quad.op = "imm";
             chk.code.push(quad);
         }
+        if (ctx.getText().equals("null"))
+        {
+            quard quad = new quard();
+            quad.z.name = "0";
+            quad.op = "imm";
+            chk.code.push(quad);
+        }
         if (ctx.getText().equals("false") || ctx.getText().equals("FALSE"))
         {
             quard quad = new quard();
@@ -1750,8 +1764,15 @@ class MyVisitor extends MxBaseVisitor<check>
                     if (defclass.get(ty).vars.containsKey(ck.code.last.x.name))
                     {
                         quard quad = new quard();
-                        quad.z.name = q.z.name;
+                        quad.y =new varible(q.z);
+                        quad.z.name = temp.toString() + "temp";
+                        quad.op = "=";
+                        chk.code.push(quad);
+                        quad = new quard();
                         varible k = new varible();
+                        quad.z.name = temp.toString() + "temp";
+                        ++temp;
+                        if (temp > maxtemp) maxtemp = temp;
                         k.name = defclass.get(ty).vars.get(ck.code.last.x.name).toString();
                         quad.z.add(k);
                         chk.code.push(quad);
@@ -2046,10 +2067,9 @@ class MyVisitor extends MxBaseVisitor<check>
             }
         }
         int num = 0;
-        String sa = new String();
+        String sa = new String(s);
         for (int i = 0; i < ctx.getText().length(); ++i)
         {
-            sa += ctx.getText().charAt(i);
             if (ctx.getText().charAt(i) == '[')
             {
                 ++num;
@@ -2075,7 +2095,11 @@ class MyVisitor extends MxBaseVisitor<check>
                 quad.z.name = temp.toString() + "temp";
                 quad.op = "*";
                 quad.y.name = temp.toString() + "temp";
-                quad.x.name = "8";
+                if (sa.equals("int")) quad.x.name = "8";
+                else
+                {
+                    quad.x.name = defclass.get(sa).size.toString();
+                }
                 chk.code.push(quad);
                 quad = new quard();
                 quad.z.name = "malloc";
@@ -2125,7 +2149,7 @@ public class Main
 
     public static check main() throws Exception
     {
-        //File f = new File("E:/test.txt");
+       // File f = new File("E:/test.txt");
          File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);

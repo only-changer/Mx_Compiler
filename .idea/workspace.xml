@@ -29,8 +29,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="281">
-              <caret line="2127" column="10" selection-start-line="2127" selection-start-column="10" selection-end-line="2127" selection-end-column="10" />
+            <state relative-caret-position="149">
+              <caret line="2151" column="9" selection-start-line="2151" selection-start-column="9" selection-end-line="2151" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -38,8 +38,8 @@
       <file leaf-file-name="Irtox86.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Irtox86.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="82">
-              <caret line="1024" column="31" selection-start-line="1024" selection-start-column="28" selection-end-line="1024" selection-end-column="31" />
+            <state relative-caret-position="266">
+              <caret line="66" column="36" lean-forward="true" selection-start-line="66" selection-start-column="36" selection-end-line="66" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -109,9 +109,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>temp</find>
-      <find>&quot;&lt;&quot;</find>
-      <find>&quot;if&quot;</find>
       <find>ord</find>
       <find>&quot;||</find>
       <find>op</find>
@@ -132,13 +129,16 @@
       <find>&quot;%&quot;</find>
       <find>out</find>
       <find>&quot;!=&quot;</find>
-      <find>q.z.params != null</find>
+      <find />
       <find>&quot;str=</find>
       <find>opw</find>
       <find>&quot;++&quot;</find>
       <find>&quot;+&quot;</find>
+      <find />
+      <find>opcom</find>
+      <find>STR</find>
+      <find>NUM</find>
       <find>&quot;=&quot;</find>
-      <find>Variables redefined!</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -157,7 +157,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="1">
     <option name="x" value="632" />
     <option name="width" value="1300" />
     <option name="height" value="1040" />
@@ -304,7 +304,7 @@
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5305499" side_tool="true" weight="0.6906475" />
       <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.46945012" visible="true" weight="0.07913669" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.46945012" visible="true" weight="0.26906475" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49932975" weight="0.32952926" />
       <window_info id="Capture Tool" order="2" />
@@ -713,15 +713,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Irtox86.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="82">
-          <caret line="1024" column="31" selection-start-line="1024" selection-start-column="28" selection-end-line="1024" selection-end-column="31" />
+        <state relative-caret-position="266">
+          <caret line="66" column="36" lean-forward="true" selection-start-line="66" selection-start-column="36" selection-end-line="66" selection-end-column="36" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="2127" column="10" selection-start-line="2127" selection-start-column="10" selection-end-line="2127" selection-end-column="10" />
+        <state relative-caret-position="149">
+          <caret line="2151" column="9" selection-start-line="2151" selection-start-column="9" selection-end-line="2151" selection-end-column="9" />
         </state>
       </provider>
     </entry>
