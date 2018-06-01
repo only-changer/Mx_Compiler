@@ -1062,7 +1062,7 @@ class MyVisitor extends MxBaseVisitor<check>
         if (ctx.opr != null && ck.code.last != null)
         {
             quard quad = new quard();
-            quad.y.name = ck.code.last.z.name;
+            quad.y = new varible(ck.code.last.z);
             quad.op = "ret";
             chk.code.add(ck.code);
             chk.code.push(quad);
