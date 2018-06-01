@@ -1809,6 +1809,7 @@ class MyVisitor extends MxBaseVisitor<check>
                     else
                     {
                         ir irr = new ir();
+                        chk.code.add(ir1);
                         quard quad = new quard();
                         quad.z.name = temp.toString() + "temp";
                         quad.y = new varible(ir1.last.z);
@@ -1820,11 +1821,13 @@ class MyVisitor extends MxBaseVisitor<check>
                         quad.x.name = "1";
                         quad.op = "+";
                         irr.push(quad);
+
                         chk.code.push(quad);
-                        chk.code.add(ir1);
-                        ir1.last.z.name = temp.toString() + "temp";
+                        quad = new quard();
+                        quad.z.name = temp.toString() + "temp";
                         ++temp;
                         if (temp > maxtemp) maxtemp = temp;
+                        chk.code.push(quad);
                     }
                 }
             }
@@ -1838,7 +1841,6 @@ class MyVisitor extends MxBaseVisitor<check>
                         quad.z = new varible(ir1.last.z);
                         quad.y = new varible(ir1.last.z);
                         quad.x.name = "1";
-                        quad.x.addr = "-1";
                         quad.op = "-";
                         chk.code.add(ir1);
                         chk.code.push(quad);
@@ -1846,6 +1848,7 @@ class MyVisitor extends MxBaseVisitor<check>
                     else
                     {
                         ir irr = new ir();
+                        chk.code.add(ir1);
                         quard quad = new quard();
                         quad.z.name = temp.toString() + "temp";
                         quad.y = new varible(ir1.last.z);
@@ -1857,11 +1860,13 @@ class MyVisitor extends MxBaseVisitor<check>
                         quad.x.name = "1";
                         quad.op = "-";
                         irr.push(quad);
+
                         chk.code.push(quad);
-                        chk.code.add(ir1);
-                        ir1.last.z.name = temp.toString() + "temp";
+                        quad = new quard();
+                        quad.z.name = temp.toString() + "temp";
                         ++temp;
                         if (temp > maxtemp) maxtemp = temp;
+                        chk.code.push(quad);
                     }
                 }
             }
