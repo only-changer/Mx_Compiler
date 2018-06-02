@@ -1,4 +1,3 @@
-
 global main
 
 extern puts
@@ -767,983 +766,900 @@ Llege_021:  mov     eax, 1
 Llege_022:  pop     rbp
 	ret
 section   .text
-pointset:
+main:
       push	rbp
       mov	rbp,rsp
-      sub	rsp,1000
-      mov	[rbp - 56],rdi
-      mov	[rbp - 32],rsi
-      mov	[rbp - 40],rdx
-      mov	[rbp - 48],rcx
-      mov	r10,[rbp - 32]
-      mov	r11,[rbp - 56]
-      add	r11,0
-      mov	[r11],r10
-      mov	r10,[rbp - 40]
-      mov	r11,[rbp - 56]
-      add	r11,8
-      mov	[r11],r10
-      mov	r10,[rbp - 48]
-      mov	r11,[rbp - 56]
-      add	r11,16
-      mov	[r11],r10
-      mov	rsp,rbp
-      pop rbp
-      ret
-pointsqrLen:
-      push	rbp
-      mov	rbp,rsp
-      sub	rsp,1000
-      mov	[rbp - 64],rdi
-      mov	r10,[rbp - 64]
-      add	r10,0
-      mov	r10,[r10]
-      mov	r11,[rbp - 64]
-      add	r11,0
-      imul	r10,[r11]
-      mov	[rbp - 72],r10
-      mov	r10,[rbp - 64]
-      add	r10,8
-      mov	r10,[r10]
-      mov	r11,[rbp - 64]
-      add	r11,8
-      imul	r10,[r11]
-      mov	[rbp - 80],r10
-      mov	r10,[rbp - 72]
-      add	r10,[rbp - 80]
-      mov	[rbp - 88],r10
-      mov	r10,[rbp - 64]
-      add	r10,16
-      mov	r10,[r10]
-      mov	r11,[rbp - 64]
-      add	r11,16
-      imul	r10,[r11]
-      mov	[rbp - 96],r10
-      mov	r10,[rbp - 88]
-      add	r10,[rbp - 96]
-      mov	[rbp - 104],r10
-      mov	rax,[rbp -  104]
-      mov	rsp,rbp
-      pop rbp
-      ret
-      mov	rsp,rbp
-      pop rbp
-      ret
-pointsqrDis:
-      push	rbp
-      mov	rbp,rsp
-      sub	rsp,1000
-      mov	[rbp - 120],rdi
-      mov	[rbp - 112],rsi
-      mov	r10,[rbp - 112]
-      mov	[rbp - 128],r10
-      mov	r10,[rbp - 120]
-      add	r10,0
-      mov	r10,[r10]
-      mov	r11,[rbp - 128]
-      add	r11,0
-      sub	r10,[r11]
-      mov	[rbp - 136],r10
-      mov	r10,[rbp - 112]
-      mov	[rbp - 144],r10
-      mov	r10,[rbp - 120]
-      add	r10,0
-      mov	r10,[r10]
-      mov	r11,[rbp - 144]
-      add	r11,0
-      sub	r10,[r11]
-      mov	[rbp - 152],r10
-      mov	r10,[rbp - 136]
-      imul	r10,[rbp - 152]
-      mov	[rbp - 160],r10
-      mov	r10,[rbp - 112]
-      mov	[rbp - 168],r10
-      mov	r10,[rbp - 120]
-      add	r10,8
-      mov	r10,[r10]
-      mov	r11,[rbp - 168]
-      add	r11,8
-      sub	r10,[r11]
-      mov	[rbp - 176],r10
-      mov	r10,[rbp - 112]
-      mov	[rbp - 184],r10
-      mov	r10,[rbp - 120]
-      add	r10,8
-      mov	r10,[r10]
-      mov	r11,[rbp - 184]
-      add	r11,8
-      sub	r10,[r11]
-      mov	[rbp - 192],r10
-      mov	r10,[rbp - 176]
-      imul	r10,[rbp - 192]
-      mov	[rbp - 200],r10
-      mov	r10,[rbp - 160]
-      add	r10,[rbp - 200]
-      mov	[rbp - 208],r10
-      mov	r10,[rbp - 112]
-      mov	[rbp - 216],r10
-      mov	r10,[rbp - 120]
-      add	r10,16
-      mov	r10,[r10]
-      mov	r11,[rbp - 216]
-      add	r11,16
-      sub	r10,[r11]
-      mov	[rbp - 224],r10
-      mov	r10,[rbp - 112]
-      mov	[rbp - 232],r10
-      mov	r10,[rbp - 120]
-      add	r10,16
-      mov	r10,[r10]
-      mov	r11,[rbp - 232]
-      add	r11,16
-      sub	r10,[r11]
-      mov	[rbp - 240],r10
-      mov	r10,[rbp - 224]
-      imul	r10,[rbp - 240]
-      mov	[rbp - 248],r10
-      mov	r10,[rbp - 208]
-      add	r10,[rbp - 248]
-      mov	[rbp - 256],r10
-      mov	rax,[rbp -  256]
-      mov	rsp,rbp
-      pop rbp
-      ret
-      mov	rsp,rbp
-      pop rbp
-      ret
-pointdot:
-      push	rbp
-      mov	rbp,rsp
-      sub	rsp,1000
-      mov	[rbp - 272],rdi
-      mov	[rbp - 264],rsi
-      mov	r10,[rbp - 264]
-      mov	[rbp - 280],r10
-      mov	r10,[rbp - 272]
-      add	r10,0
-      mov	r10,[r10]
-      mov	r11,[rbp - 280]
-      add	r11,0
-      imul	r10,[r11]
-      mov	[rbp - 288],r10
-      mov	r10,[rbp - 264]
-      mov	[rbp - 296],r10
-      mov	r10,[rbp - 272]
-      add	r10,8
-      mov	r10,[r10]
-      mov	r11,[rbp - 296]
-      add	r11,8
-      imul	r10,[r11]
-      mov	[rbp - 304],r10
-      mov	r10,[rbp - 288]
-      add	r10,[rbp - 304]
-      mov	[rbp - 312],r10
-      mov	r10,[rbp - 264]
-      mov	[rbp - 320],r10
-      mov	r10,[rbp - 272]
-      add	r10,16
-      mov	r10,[r10]
-      mov	r11,[rbp - 320]
-      add	r11,16
-      imul	r10,[r11]
-      mov	[rbp - 328],r10
-      mov	r10,[rbp - 312]
-      add	r10,[rbp - 328]
-      mov	[rbp - 336],r10
-      mov	rax,[rbp -  336]
-      mov	rsp,rbp
-      pop rbp
-      ret
-      mov	rsp,rbp
-      pop rbp
-      ret
-pointcross:
-      push	rbp
-      mov	rbp,rsp
-      sub	rsp,1000
-      mov	[rbp - 352],rdi
-      mov	[rbp - 344],rsi
-      mov	rdi,24
-      push	r10
-      push	r11
-      call	malloc
-      pop	r11
-      pop	r10
-      mov	[rbp -  368],rax
-      mov	r10,[rbp - 368]
-      mov	[rbp - 360],r10
-      mov	r10,[rbp - 360]
-      mov	[rbp - 376],r10
-      mov	r11,[rbp - 376]
-      add	r11,0
-      mov	qword[r11],0
-      mov	r10,[rbp - 360]
-      mov	[rbp - 384],r10
-      mov	r11,[rbp - 384]
-      add	r11,8
-      mov	qword[r11],0
-      mov	r10,[rbp - 360]
-      mov	[rbp - 392],r10
-      mov	r11,[rbp - 392]
-      add	r11,16
-      mov	qword[r11],0
-      mov	r10,[rbp - 344]
-      mov	[rbp - 400],r10
-      mov	r10,[rbp - 352]
-      add	r10,8
-      mov	r10,[r10]
-      mov	r11,[rbp - 400]
-      add	r11,16
-      imul	r10,[r11]
-      mov	[rbp - 408],r10
-      mov	r10,[rbp - 344]
-      mov	[rbp - 416],r10
-      mov	r10,[rbp - 352]
-      add	r10,16
-      mov	r10,[r10]
-      mov	r11,[rbp - 416]
-      add	r11,8
-      imul	r10,[r11]
-      mov	[rbp - 424],r10
-      mov	r10,[rbp - 408]
-      sub	r10,[rbp - 424]
-      mov	[rbp - 432],r10
-      mov	r10,[rbp - 344]
-      mov	[rbp - 440],r10
-      mov	r10,[rbp - 352]
-      add	r10,16
-      mov	r10,[r10]
-      mov	r11,[rbp - 440]
-      add	r11,0
-      imul	r10,[r11]
-      mov	[rbp - 448],r10
-      mov	r10,[rbp - 344]
-      mov	[rbp - 456],r10
-      mov	r10,[rbp - 352]
-      add	r10,0
-      mov	r10,[r10]
-      mov	r11,[rbp - 456]
-      add	r11,16
-      imul	r10,[r11]
-      mov	[rbp - 464],r10
-      mov	r10,[rbp - 448]
-      sub	r10,[rbp - 464]
-      mov	[rbp - 472],r10
-      mov	r10,[rbp - 344]
-      mov	[rbp - 480],r10
-      mov	r10,[rbp - 352]
-      add	r10,0
-      mov	r10,[r10]
-      mov	r11,[rbp - 480]
-      add	r11,8
-      imul	r10,[r11]
-      mov	[rbp - 488],r10
-      mov	r10,[rbp - 344]
-      mov	[rbp - 496],r10
-      mov	r10,[rbp - 352]
-      add	r10,8
-      mov	r10,[r10]
-      mov	r11,[rbp - 496]
-      add	r11,0
-      imul	r10,[r11]
-      mov	[rbp - 504],r10
-      mov	r10,[rbp - 488]
-      sub	r10,[rbp - 504]
-      mov	[rbp - 512],r10
-      mov	rdi,[rbp-360]
-      mov	rsi,[rbp-432]
-      mov	rdx,[rbp-472]
-      mov	rcx,[rbp-512]
-      push	r10
-      push	r11
-      call	pointset
-      pop	r11
-      pop	r10
-      mov	[rbp -  528],rax
-      mov	rax,[rbp -  360]
-      mov	rsp,rbp
-      pop rbp
-      ret
-      mov	rsp,rbp
-      pop rbp
-      ret
-pointadd:
-      push	rbp
-      mov	rbp,rsp
-      sub	rsp,1000
-      mov	[rbp - 544],rdi
-      mov	[rbp - 536],rsi
-      mov	r10,[rbp - 536]
-      mov	[rbp - 552],r10
-      mov	r10,[rbp - 544]
-      add	r10,0
-      mov	r10,[r10]
-      mov	r11,[rbp - 552]
-      add	r11,0
-      add	r10,[r11]
-      mov	[rbp - 560],r10
-      mov	r10,[rbp - 560]
-      mov	r11,[rbp - 544]
-      add	r11,0
-      mov	[r11],r10
-      mov	r10,[rbp - 536]
-      mov	[rbp - 568],r10
-      mov	r10,[rbp - 544]
-      add	r10,8
-      mov	r10,[r10]
-      mov	r11,[rbp - 568]
-      add	r11,8
-      add	r10,[r11]
-      mov	[rbp - 576],r10
-      mov	r10,[rbp - 576]
-      mov	r11,[rbp - 544]
-      add	r11,8
-      mov	[r11],r10
-      mov	r10,[rbp - 536]
-      mov	[rbp - 584],r10
-      mov	r10,[rbp - 544]
-      add	r10,16
-      mov	r10,[r10]
-      mov	r11,[rbp - 584]
-      add	r11,16
-      add	r10,[r11]
-      mov	[rbp - 592],r10
-      mov	r10,[rbp - 592]
-      mov	r11,[rbp - 544]
-      add	r11,16
-      mov	[r11],r10
-      mov	rax,[rbp -  544]
-      mov	rsp,rbp
-      pop rbp
-      ret
-      mov	rsp,rbp
-      pop rbp
-      ret
-pointsub:
-      push	rbp
-      mov	rbp,rsp
-      sub	rsp,1000
-      mov	[rbp - 608],rdi
-      mov	[rbp - 600],rsi
-      mov	r10,[rbp - 600]
-      mov	[rbp - 616],r10
-      mov	r10,[rbp - 608]
-      add	r10,0
-      mov	r10,[r10]
-      mov	r11,[rbp - 616]
-      add	r11,0
-      sub	r10,[r11]
-      mov	[rbp - 624],r10
-      mov	r10,[rbp - 624]
-      mov	r11,[rbp - 608]
-      add	r11,0
-      mov	[r11],r10
-      mov	r10,[rbp - 600]
-      mov	[rbp - 632],r10
-      mov	r10,[rbp - 608]
-      add	r10,8
-      mov	r10,[r10]
-      mov	r11,[rbp - 632]
-      add	r11,8
-      sub	r10,[r11]
-      mov	[rbp - 640],r10
-      mov	r10,[rbp - 640]
-      mov	r11,[rbp - 608]
-      add	r11,8
-      mov	[r11],r10
-      mov	r10,[rbp - 600]
-      mov	[rbp - 648],r10
-      mov	r10,[rbp - 608]
-      add	r10,16
-      mov	r10,[r10]
-      mov	r11,[rbp - 648]
-      add	r11,16
-      sub	r10,[r11]
-      mov	[rbp - 656],r10
-      mov	r10,[rbp - 656]
-      mov	r11,[rbp - 608]
-      add	r11,16
-      mov	[r11],r10
-      mov	rax,[rbp -  608]
-      mov	rsp,rbp
-      pop rbp
-      ret
-      mov	rsp,rbp
-      pop rbp
-      ret
-pointprintPoint:
-      push	rbp
-      mov	rbp,rsp
-      sub	rsp,1000
-      mov	[rbp - 664],rdi
+      sub	rsp,2000
       push r10
       push r11
       mov	rdi,256
       call	malloc
       pop r10
       pop r11
-      mov	byte[rax + 0],'('
-      mov	byte[rax + 1],0
-      mov	[rbp - 672],rax
-      mov	r10,[rbp - 664]
-      add	r10,0
-      mov	rdi,[r10]
-      push	r10
-      push	r11
-      call	toString
-      pop	r11
-      pop	r10
-      mov	[rbp -  680],rax
-      mov	rdi,[rbp-672]
-      mov	rsi,[rbp-680]
+      mov	byte[rax + 0],34
+      mov	byte[rax + 1],10
+      mov	byte[rax + 2],'b'
+      mov	byte[rax + 3],'d'
+      mov	byte[rax + 4],'a'
+      mov	byte[rax + 5],92
+      mov	byte[rax + 6],34
+      mov	byte[rax + 7],10
+      mov	byte[rax + 8],'d'
+      mov	byte[rax + 9],'b'
+      mov	byte[rax + 10],'d'
+      mov	byte[rax + 11],92
+      mov	byte[rax + 12],'c'
+      mov	byte[rax + 13],34
+      mov	byte[rax + 14],92
+      mov	byte[rax + 15],34
+      mov	byte[rax + 16],'c'
+      mov	byte[rax + 17],92
+      mov	byte[rax + 18],'c'
+      mov	byte[rax + 19],34
+      mov	byte[rax + 20],0
+      mov	[rbp - 16],rax
+      mov	r10,[rbp - 16]
+      mov	[rbp - 8],r10
+      push r10
+      push r11
+      mov	rdi,256
+      call	malloc
+      pop r10
+      pop r11
+      mov	byte[rax + 0],92
+      mov	byte[rax + 1],'a'
+      mov	byte[rax + 2],'b'
+      mov	byte[rax + 3],10
+      mov	byte[rax + 4],'a'
+      mov	byte[rax + 5],'c'
+      mov	byte[rax + 6],34
+      mov	byte[rax + 7],34
+      mov	byte[rax + 8],'a'
+      mov	byte[rax + 9],'d'
+      mov	byte[rax + 10],'d'
+      mov	byte[rax + 11],10
+      mov	byte[rax + 12],34
+      mov	byte[rax + 13],10
+      mov	byte[rax + 14],'a'
+      mov	byte[rax + 15],'c'
+      mov	byte[rax + 16],10
+      mov	byte[rax + 17],'d'
+      mov	byte[rax + 18],'b'
+      mov	byte[rax + 19],34
+      mov	byte[rax + 20],0
+      mov	[rbp - 32],rax
+      mov	r10,[rbp - 32]
+      mov	[rbp - 24],r10
+      push r10
+      push r11
+      mov	rdi,256
+      call	malloc
+      pop r10
+      pop r11
+      mov	byte[rax + 0],10
+      mov	byte[rax + 1],'a'
+      mov	byte[rax + 2],'b'
+      mov	byte[rax + 3],'b'
+      mov	byte[rax + 4],'d'
+      mov	byte[rax + 5],'b'
+      mov	byte[rax + 6],'d'
+      mov	byte[rax + 7],'d'
+      mov	byte[rax + 8],92
+      mov	byte[rax + 9],92
+      mov	byte[rax + 10],34
+      mov	byte[rax + 11],'d'
+      mov	byte[rax + 12],34
+      mov	byte[rax + 13],'c'
+      mov	byte[rax + 14],92
+      mov	byte[rax + 15],'a'
+      mov	byte[rax + 16],'d'
+      mov	byte[rax + 17],'c'
+      mov	byte[rax + 18],34
+      mov	byte[rax + 19],'c'
+      mov	byte[rax + 20],0
+      mov	[rbp - 48],rax
+      mov	r10,[rbp - 48]
+      mov	[rbp - 40],r10
+      mov	rdi,[rbp-40]
+      mov	rsi,[rbp-24]
       push	r10
       push	r11
       call	string.add
       pop	r11
       pop	r10
+      mov	[rbp -  56],rax
+      mov	rdi,[rbp-56]
+      mov	rsi,[rbp-24]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  64],rax
+      mov	rdi,[rbp-64]
+      mov	rsi,[rbp-40]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  72],rax
+      mov	rdi,[rbp-72]
+      mov	rsi,[rbp-40]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  80],rax
+      mov	rdi,[rbp-80]
+      mov	rsi,[rbp-8]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  88],rax
+      mov	rdi,[rbp-88]
+      mov	rsi,[rbp-40]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  96],rax
+      mov	rdi,[rbp-96]
+      mov	rsi,[rbp-24]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  104],rax
+      mov	rdi,[rbp-104]
+      mov	rsi,[rbp-40]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  112],rax
+      mov	rdi,[rbp-112]
+      mov	rsi,[rbp-24]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  120],rax
+      mov	rdi,[rbp-120]
+      push	r10
+      push	r11
+      mov	rax,0
+      call	print
+      pop	r11
+      pop	r10
+      mov	[rbp -  128],rax
+      mov	rdi,[rbp-40]
+      mov	rsi,[rbp-40]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  136],rax
+      mov	rdi,[rbp-136]
+      mov	rsi,[rbp-8]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  144],rax
+      mov	rdi,[rbp-144]
+      mov	rsi,[rbp-8]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  152],rax
+      mov	rdi,[rbp-152]
+      mov	rsi,[rbp-8]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  160],rax
+      mov	rdi,[rbp-160]
+      mov	rsi,[rbp-40]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  168],rax
+      mov	rdi,[rbp-168]
+      mov	rsi,[rbp-40]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  176],rax
+      mov	rdi,[rbp-176]
+      mov	rsi,[rbp-24]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  184],rax
+      mov	rdi,[rbp-184]
+      mov	rsi,[rbp-24]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  192],rax
+      mov	rdi,[rbp-192]
+      mov	rsi,[rbp-24]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  200],rax
+      mov	rdi,[rbp-200]
+      push	r10
+      push	r11
+      mov	rax,0
+      call	print
+      pop	r11
+      pop	r10
+      mov	[rbp -  208],rax
+      mov	rdi,[rbp-24]
+      mov	rsi,[rbp-8]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  216],rax
+      mov	rdi,[rbp-216]
+      mov	rsi,[rbp-40]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  224],rax
+      mov	rdi,[rbp-224]
+      mov	rsi,[rbp-24]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  232],rax
+      mov	rdi,[rbp-232]
+      mov	rsi,[rbp-40]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  240],rax
+      mov	rdi,[rbp-240]
+      mov	rsi,[rbp-40]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  248],rax
+      mov	rdi,[rbp-248]
+      mov	rsi,[rbp-24]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  256],rax
+      mov	rdi,[rbp-256]
+      mov	rsi,[rbp-24]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  264],rax
+      mov	rdi,[rbp-264]
+      mov	rsi,[rbp-8]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  272],rax
+      mov	rdi,[rbp-272]
+      mov	rsi,[rbp-40]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  280],rax
+      mov	rdi,[rbp-280]
+      push	r10
+      push	r11
+      mov	rax,0
+      call	print
+      pop	r11
+      pop	r10
+      mov	[rbp -  288],rax
+      mov	rdi,[rbp-24]
+      mov	rsi,[rbp-8]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  296],rax
+      mov	rdi,[rbp-296]
+      mov	rsi,[rbp-40]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  304],rax
+      mov	rdi,[rbp-304]
+      mov	rsi,[rbp-8]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  312],rax
+      mov	rdi,[rbp-312]
+      mov	rsi,[rbp-8]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  320],rax
+      mov	rdi,[rbp-320]
+      mov	rsi,[rbp-8]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  328],rax
+      mov	rdi,[rbp-328]
+      mov	rsi,[rbp-24]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  336],rax
+      mov	rdi,[rbp-336]
+      mov	rsi,[rbp-24]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  344],rax
+      mov	rdi,[rbp-344]
+      mov	rsi,[rbp-24]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  352],rax
+      mov	rdi,[rbp-352]
+      mov	rsi,[rbp-40]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  360],rax
+      mov	rdi,[rbp-360]
+      push	r10
+      push	r11
+      mov	rax,0
+      call	print
+      pop	r11
+      pop	r10
+      mov	[rbp -  368],rax
+      mov	rdi,[rbp-24]
+      mov	rsi,[rbp-8]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  376],rax
+      mov	rdi,[rbp-376]
+      mov	rsi,[rbp-24]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  384],rax
+      mov	rdi,[rbp-384]
+      mov	rsi,[rbp-8]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  392],rax
+      mov	rdi,[rbp-392]
+      mov	rsi,[rbp-40]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  400],rax
+      mov	rdi,[rbp-400]
+      mov	rsi,[rbp-40]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  408],rax
+      mov	rdi,[rbp-408]
+      mov	rsi,[rbp-40]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  416],rax
+      mov	rdi,[rbp-416]
+      mov	rsi,[rbp-24]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  424],rax
+      mov	rdi,[rbp-424]
+      mov	rsi,[rbp-40]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  432],rax
+      mov	rdi,[rbp-432]
+      mov	rsi,[rbp-8]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  440],rax
+      mov	rdi,[rbp-440]
+      push	r10
+      push	r11
+      mov	rax,0
+      call	print
+      pop	r11
+      pop	r10
+      mov	[rbp -  448],rax
+      mov	rdi,[rbp-8]
+      mov	rsi,[rbp-8]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  456],rax
+      mov	rdi,[rbp-456]
+      mov	rsi,[rbp-40]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  464],rax
+      mov	rdi,[rbp-464]
+      mov	rsi,[rbp-40]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  472],rax
+      mov	rdi,[rbp-472]
+      mov	rsi,[rbp-8]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  480],rax
+      mov	rdi,[rbp-480]
+      mov	rsi,[rbp-40]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  488],rax
+      mov	rdi,[rbp-488]
+      mov	rsi,[rbp-24]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  496],rax
+      mov	rdi,[rbp-496]
+      mov	rsi,[rbp-40]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  504],rax
+      mov	rdi,[rbp-504]
+      mov	rsi,[rbp-40]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  512],rax
+      mov	rdi,[rbp-512]
+      mov	rsi,[rbp-8]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  520],rax
+      mov	rdi,[rbp-520]
+      push	r10
+      push	r11
+      mov	rax,0
+      call	print
+      pop	r11
+      pop	r10
+      mov	[rbp -  528],rax
+      mov	rdi,[rbp-24]
+      mov	rsi,[rbp-24]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  536],rax
+      mov	rdi,[rbp-536]
+      mov	rsi,[rbp-24]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  544],rax
+      mov	rdi,[rbp-544]
+      mov	rsi,[rbp-24]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  552],rax
+      mov	rdi,[rbp-552]
+      mov	rsi,[rbp-40]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  560],rax
+      mov	rdi,[rbp-560]
+      mov	rsi,[rbp-8]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  568],rax
+      mov	rdi,[rbp-568]
+      mov	rsi,[rbp-40]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  576],rax
+      mov	rdi,[rbp-576]
+      mov	rsi,[rbp-24]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  584],rax
+      mov	rdi,[rbp-584]
+      mov	rsi,[rbp-8]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  592],rax
+      mov	rdi,[rbp-592]
+      mov	rsi,[rbp-8]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  600],rax
+      mov	rdi,[rbp-600]
+      push	r10
+      push	r11
+      mov	rax,0
+      call	print
+      pop	r11
+      pop	r10
+      mov	[rbp -  608],rax
+      mov	rdi,[rbp-8]
+      mov	rsi,[rbp-8]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  616],rax
+      mov	rdi,[rbp-616]
+      mov	rsi,[rbp-40]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  624],rax
+      mov	rdi,[rbp-624]
+      mov	rsi,[rbp-24]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  632],rax
+      mov	rdi,[rbp-632]
+      mov	rsi,[rbp-8]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  640],rax
+      mov	rdi,[rbp-640]
+      mov	rsi,[rbp-24]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  648],rax
+      mov	rdi,[rbp-648]
+      mov	rsi,[rbp-40]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  656],rax
+      mov	rdi,[rbp-656]
+      mov	rsi,[rbp-40]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  664],rax
+      mov	rdi,[rbp-664]
+      mov	rsi,[rbp-24]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  672],rax
+      mov	rdi,[rbp-672]
+      mov	rsi,[rbp-24]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  680],rax
+      mov	rdi,[rbp-680]
+      push	r10
+      push	r11
+      mov	rax,0
+      call	print
+      pop	r11
+      pop	r10
       mov	[rbp -  688],rax
-      push r10
-      push r11
-      mov	rdi,256
-      call	malloc
-      pop r10
-      pop r11
-      mov	byte[rax + 0],','
-      mov	byte[rax + 1],' '
-      mov	byte[rax + 2],0
-      mov	[rbp - 696],rax
-      mov	rdi,[rbp-688]
-      mov	rsi,[rbp-696]
+      mov	rdi,[rbp-40]
+      mov	rsi,[rbp-24]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  696],rax
+      mov	rdi,[rbp-696]
+      mov	rsi,[rbp-8]
       push	r10
       push	r11
       call	string.add
       pop	r11
       pop	r10
       mov	[rbp -  704],rax
-      mov	r10,[rbp - 664]
-      add	r10,8
-      mov	rdi,[r10]
+      mov	rdi,[rbp-704]
+      mov	rsi,[rbp-8]
       push	r10
       push	r11
-      call	toString
+      call	string.add
       pop	r11
       pop	r10
       mov	[rbp -  712],rax
-      mov	rdi,[rbp-704]
-      mov	rsi,[rbp-712]
+      mov	rdi,[rbp-712]
+      mov	rsi,[rbp-40]
       push	r10
       push	r11
       call	string.add
       pop	r11
       pop	r10
       mov	[rbp -  720],rax
-      push r10
-      push r11
-      mov	rdi,256
-      call	malloc
-      pop r10
-      pop r11
-      mov	byte[rax + 0],','
-      mov	byte[rax + 1],' '
-      mov	byte[rax + 2],0
-      mov	[rbp - 728],rax
       mov	rdi,[rbp-720]
-      mov	rsi,[rbp-728]
+      mov	rsi,[rbp-24]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  728],rax
+      mov	rdi,[rbp-728]
+      mov	rsi,[rbp-8]
       push	r10
       push	r11
       call	string.add
       pop	r11
       pop	r10
       mov	[rbp -  736],rax
-      mov	r10,[rbp - 664]
-      add	r10,16
-      mov	rdi,[r10]
+      mov	rdi,[rbp-736]
+      mov	rsi,[rbp-8]
       push	r10
       push	r11
-      call	toString
+      call	string.add
       pop	r11
       pop	r10
       mov	[rbp -  744],rax
-      mov	rdi,[rbp-736]
-      mov	rsi,[rbp-744]
+      mov	rdi,[rbp-744]
+      mov	rsi,[rbp-40]
       push	r10
       push	r11
       call	string.add
       pop	r11
       pop	r10
       mov	[rbp -  752],rax
-      push r10
-      push r11
-      mov	rdi,256
-      call	malloc
-      pop r10
-      pop r11
-      mov	byte[rax + 0],')'
-      mov	byte[rax + 1],0
-      mov	[rbp - 760],rax
       mov	rdi,[rbp-752]
-      mov	rsi,[rbp-760]
+      mov	rsi,[rbp-24]
       push	r10
       push	r11
       call	string.add
       pop	r11
       pop	r10
-      mov	[rbp -  768],rax
-      mov	rdi,[rbp-768]
+      mov	[rbp -  760],rax
+      mov	rdi,[rbp-760]
       push	r10
       push	r11
       mov	rax,0
-      call	println
+      call	print
+      pop	r11
+      pop	r10
+      mov	[rbp -  768],rax
+      mov	rdi,[rbp-8]
+      mov	rsi,[rbp-40]
+      push	r10
+      push	r11
+      call	string.add
       pop	r11
       pop	r10
       mov	[rbp -  776],rax
-      mov	rsp,rbp
-      pop rbp
-      ret
-main:
-      push	rbp
-      mov	rbp,rsp
-      sub	rsp,1000
-      mov	rdi,24
+      mov	rdi,[rbp-776]
+      mov	rsi,[rbp-24]
       push	r10
       push	r11
-      call	malloc
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  784],rax
+      mov	rdi,[rbp-784]
+      mov	rsi,[rbp-24]
+      push	r10
+      push	r11
+      call	string.add
       pop	r11
       pop	r10
       mov	[rbp -  792],rax
-      mov	r10,[rbp - 792]
-      mov	[rbp - 784],r10
-      mov	r10,[rbp - 784]
-      mov	[rbp - 800],r10
-      mov	r11,[rbp - 800]
-      add	r11,0
-      mov	qword[r11],0
-      mov	r10,[rbp - 784]
-      mov	[rbp - 808],r10
-      mov	r11,[rbp - 808]
-      add	r11,8
-      mov	qword[r11],0
-      mov	r10,[rbp - 784]
-      mov	[rbp - 816],r10
-      mov	r11,[rbp - 816]
-      add	r11,16
-      mov	qword[r11],0
-      mov	rdi,24
+      mov	rdi,[rbp-792]
+      mov	rsi,[rbp-24]
       push	r10
       push	r11
-      call	malloc
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  800],rax
+      mov	rdi,[rbp-800]
+      mov	rsi,[rbp-40]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  808],rax
+      mov	rdi,[rbp-808]
+      mov	rsi,[rbp-40]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  816],rax
+      mov	rdi,[rbp-816]
+      mov	rsi,[rbp-40]
+      push	r10
+      push	r11
+      call	string.add
+      pop	r11
+      pop	r10
+      mov	[rbp -  824],rax
+      mov	rdi,[rbp-824]
+      mov	rsi,[rbp-24]
+      push	r10
+      push	r11
+      call	string.add
       pop	r11
       pop	r10
       mov	[rbp -  832],rax
-      mov	r10,[rbp - 832]
-      mov	[rbp - 824],r10
-      mov	r10,[rbp - 824]
-      mov	[rbp - 840],r10
-      mov	r11,[rbp - 840]
-      add	r11,0
-      mov	qword[r11],0
-      mov	r10,[rbp - 824]
-      mov	[rbp - 848],r10
-      mov	r11,[rbp - 848]
-      add	r11,8
-      mov	qword[r11],0
-      mov	r10,[rbp - 824]
-      mov	[rbp - 856],r10
-      mov	r11,[rbp - 856]
-      add	r11,16
-      mov	qword[r11],0
-      mov	rdi,24
+      mov	rdi,[rbp-832]
+      mov	rsi,[rbp-40]
       push	r10
       push	r11
-      call	malloc
+      call	string.add
       pop	r11
       pop	r10
-      mov	[rbp -  872],rax
-      mov	r10,[rbp - 872]
-      mov	[rbp - 864],r10
-      mov	r10,[rbp - 864]
-      mov	[rbp - 880],r10
-      mov	r11,[rbp - 880]
-      add	r11,0
-      mov	qword[r11],0
-      mov	r10,[rbp - 864]
-      mov	[rbp - 888],r10
-      mov	r11,[rbp - 888]
-      add	r11,8
-      mov	qword[r11],0
-      mov	r10,[rbp - 864]
-      mov	[rbp - 896],r10
-      mov	r11,[rbp - 896]
-      add	r11,16
-      mov	qword[r11],0
-      mov	rdi,24
-      push	r10
-      push	r11
-      call	malloc
-      pop	r11
-      pop	r10
-      mov	[rbp -  912],rax
-      mov	r10,[rbp - 912]
-      mov	[rbp - 904],r10
-      mov	r10,[rbp - 904]
-      mov	[rbp - 920],r10
-      mov	r11,[rbp - 920]
-      add	r11,0
-      mov	qword[r11],0
-      mov	r10,[rbp - 904]
-      mov	[rbp - 928],r10
-      mov	r11,[rbp - 928]
-      add	r11,8
-      mov	qword[r11],0
-      mov	r10,[rbp - 904]
-      mov	[rbp - 936],r10
-      mov	r11,[rbp - 936]
-      add	r11,16
-      mov	qword[r11],0
-      mov	rdi,[rbp-784]
+      mov	[rbp -  840],rax
+      mov	rdi,[rbp-840]
       push	r10
       push	r11
       mov	rax,0
-      call	pointprintPoint
+      call	print
       pop	r11
       pop	r10
-      mov	[rbp -  952],rax
-      mov	r10,463
-      not	r10
-      add	r10,1
-      mov	[rbp - 960],r10
-      mov	rdi,[rbp-784]
-      mov	rsi,849
-      mov	rdx,[rbp-960]
-      mov	rcx,480
-      push	r10
-      push	r11
-      call	pointset
-      pop	r11
-      pop	r10
-      mov	[rbp -  976],rax
-      mov	r10,208
-      not	r10
-      add	r10,1
-      mov	[rbp - 984],r10
-      mov	r10,150
-      not	r10
-      add	r10,1
-      mov	[rbp - 992],r10
-      mov	rdi,[rbp-824]
-      mov	rsi,[rbp-984]
-      mov	rdx,585
-      mov	rcx,[rbp-992]
-      push	r10
-      push	r11
-      call	pointset
-      pop	r11
-      pop	r10
-      mov	[rbp -  1008],rax
-      mov	r10,670
-      not	r10
-      add	r10,1
-      mov	[rbp - 1016],r10
-      mov	r10,742
-      not	r10
-      add	r10,1
-      mov	[rbp - 1024],r10
-      mov	rdi,[rbp-864]
-      mov	rsi,360
-      mov	rdx,[rbp-1016]
-      mov	rcx,[rbp-1024]
-      push	r10
-      push	r11
-      call	pointset
-      pop	r11
-      pop	r10
-      mov	[rbp -  1040],rax
-      mov	r10,29
-      not	r10
-      add	r10,1
-      mov	[rbp - 1048],r10
-      mov	r10,591
-      not	r10
-      add	r10,1
-      mov	[rbp - 1056],r10
-      mov	r10,960
-      not	r10
-      add	r10,1
-      mov	[rbp - 1064],r10
-      mov	rdi,[rbp-904]
-      mov	rsi,[rbp-1048]
-      mov	rdx,[rbp-1056]
-      mov	rcx,[rbp-1064]
-      push	r10
-      push	r11
-      call	pointset
-      pop	r11
-      pop	r10
-      mov	[rbp -  1080],rax
-      mov	rdi,[rbp-784]
-      mov	rsi,[rbp-824]
-      push	r10
-      push	r11
-      call	pointadd
-      pop	r11
-      pop	r10
-      mov	[rbp -  1096],rax
-      mov	rdi,[rbp-824]
-      mov	rsi,[rbp-864]
-      push	r10
-      push	r11
-      call	pointadd
-      pop	r11
-      pop	r10
-      mov	[rbp -  1112],rax
-      mov	rdi,[rbp-904]
-      mov	rsi,[rbp-864]
-      push	r10
-      push	r11
-      call	pointadd
-      pop	r11
-      pop	r10
-      mov	[rbp -  1128],rax
-      mov	rdi,[rbp-864]
-      mov	rsi,[rbp-784]
-      push	r10
-      push	r11
-      call	pointsub
-      pop	r11
-      pop	r10
-      mov	[rbp -  1144],rax
-      mov	rdi,[rbp-824]
-      mov	rsi,[rbp-904]
-      push	r10
-      push	r11
-      call	pointsub
-      pop	r11
-      pop	r10
-      mov	[rbp -  1160],rax
-      mov	rdi,[rbp-904]
-      mov	rsi,[rbp-864]
-      push	r10
-      push	r11
-      call	pointsub
-      pop	r11
-      pop	r10
-      mov	[rbp -  1176],rax
-      mov	rdi,[rbp-864]
-      mov	rsi,[rbp-824]
-      push	r10
-      push	r11
-      call	pointadd
-      pop	r11
-      pop	r10
-      mov	[rbp -  1192],rax
-      mov	rdi,[rbp-784]
-      mov	rsi,[rbp-824]
-      push	r10
-      push	r11
-      call	pointadd
-      pop	r11
-      pop	r10
-      mov	[rbp -  1208],rax
-      mov	rdi,[rbp-824]
-      mov	rsi,[rbp-824]
-      push	r10
-      push	r11
-      call	pointadd
-      pop	r11
-      pop	r10
-      mov	[rbp -  1224],rax
-      mov	rdi,[rbp-864]
-      mov	rsi,[rbp-864]
-      push	r10
-      push	r11
-      call	pointadd
-      pop	r11
-      pop	r10
-      mov	[rbp -  1240],rax
-      mov	rdi,[rbp-784]
-      mov	rsi,[rbp-904]
-      push	r10
-      push	r11
-      call	pointsub
-      pop	r11
-      pop	r10
-      mov	[rbp -  1256],rax
-      mov	rdi,[rbp-784]
-      mov	rsi,[rbp-824]
-      push	r10
-      push	r11
-      call	pointadd
-      pop	r11
-      pop	r10
-      mov	[rbp -  1272],rax
-      mov	rdi,[rbp-824]
-      mov	rsi,[rbp-864]
-      push	r10
-      push	r11
-      call	pointsub
-      pop	r11
-      pop	r10
-      mov	[rbp -  1288],rax
-      mov	rdi,[rbp-784]
-      push	r10
-      push	r11
-      call	pointsqrLen
-      pop	r11
-      pop	r10
-      mov	[rbp -  1304],rax
-      mov	rdi,[rbp-1304]
-      push	r10
-      push	r11
-      call	toString
-      pop	r11
-      pop	r10
-      mov	[rbp -  1312],rax
-      mov	rdi,[rbp-1312]
-      push	r10
-      push	r11
-      mov	rax,0
-      call	println
-      pop	r11
-      pop	r10
-      mov	[rbp -  1320],rax
-      mov	rdi,[rbp-824]
-      push	r10
-      push	r11
-      call	pointsqrLen
-      pop	r11
-      pop	r10
-      mov	[rbp -  1336],rax
-      mov	rdi,[rbp-1336]
-      push	r10
-      push	r11
-      call	toString
-      pop	r11
-      pop	r10
-      mov	[rbp -  1344],rax
-      mov	rdi,[rbp-1344]
-      push	r10
-      push	r11
-      mov	rax,0
-      call	println
-      pop	r11
-      pop	r10
-      mov	[rbp -  1352],rax
-      mov	rdi,[rbp-824]
-      mov	rsi,[rbp-864]
-      push	r10
-      push	r11
-      call	pointsqrDis
-      pop	r11
-      pop	r10
-      mov	[rbp -  1368],rax
-      mov	rdi,[rbp-1368]
-      push	r10
-      push	r11
-      call	toString
-      pop	r11
-      pop	r10
-      mov	[rbp -  1376],rax
-      mov	rdi,[rbp-1376]
-      push	r10
-      push	r11
-      mov	rax,0
-      call	println
-      pop	r11
-      pop	r10
-      mov	[rbp -  1384],rax
-      mov	rdi,[rbp-904]
-      mov	rsi,[rbp-784]
-      push	r10
-      push	r11
-      call	pointsqrDis
-      pop	r11
-      pop	r10
-      mov	[rbp -  1400],rax
-      mov	rdi,[rbp-1400]
-      push	r10
-      push	r11
-      call	toString
-      pop	r11
-      pop	r10
-      mov	[rbp -  1408],rax
-      mov	rdi,[rbp-1408]
-      push	r10
-      push	r11
-      mov	rax,0
-      call	println
-      pop	r11
-      pop	r10
-      mov	[rbp -  1416],rax
-      mov	rdi,[rbp-864]
-      mov	rsi,[rbp-784]
-      push	r10
-      push	r11
-      call	pointdot
-      pop	r11
-      pop	r10
-      mov	[rbp -  1432],rax
-      mov	rdi,[rbp-1432]
-      push	r10
-      push	r11
-      call	toString
-      pop	r11
-      pop	r10
-      mov	[rbp -  1440],rax
-      mov	rdi,[rbp-1440]
-      push	r10
-      push	r11
-      mov	rax,0
-      call	println
-      pop	r11
-      pop	r10
-      mov	[rbp -  1448],rax
-      mov	rdi,[rbp-824]
-      mov	rsi,[rbp-904]
-      push	r10
-      push	r11
-      call	pointcross
-      pop	r11
-      pop	r10
-      mov	[rbp -  1464],rax
-      push	r10
-      push	r11
-      mov	rax,0
-      call	pointprintPoint
-      pop	r11
-      pop	r10
-      mov	[rbp -  1472],rax
-      mov	rdi,[rbp-784]
-      push	r10
-      push	r11
-      mov	rax,0
-      call	pointprintPoint
-      pop	r11
-      pop	r10
-      mov	[rbp -  1488],rax
-      mov	rdi,[rbp-824]
-      push	r10
-      push	r11
-      mov	rax,0
-      call	pointprintPoint
-      pop	r11
-      pop	r10
-      mov	[rbp -  1504],rax
-      mov	rdi,[rbp-864]
-      push	r10
-      push	r11
-      mov	rax,0
-      call	pointprintPoint
-      pop	r11
-      pop	r10
-      mov	[rbp -  1520],rax
-      mov	rdi,[rbp-904]
-      push	r10
-      push	r11
-      mov	rax,0
-      call	pointprintPoint
-      pop	r11
-      pop	r10
-      mov	[rbp -  1536],rax
+      mov	[rbp -  848],rax
       mov	rax,0
       mov	rsp,rbp
       pop rbp

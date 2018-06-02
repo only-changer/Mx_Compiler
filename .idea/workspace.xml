@@ -7,8 +7,6 @@
       <change beforePath="$PROJECT_DIR$/hello.asm" beforeDir="false" afterPath="$PROJECT_DIR$/hello.asm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hello.o" beforeDir="false" afterPath="$PROJECT_DIR$/hello.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/IDE/Irtox86.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/Irtox86.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IDE/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IDE/MyVisitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/MyVisitor.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Irtox86.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Irtox86.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
@@ -34,8 +32,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="2245" column="9" selection-start-line="2245" selection-start-column="9" selection-end-line="2245" selection-end-column="9" />
+            <state relative-caret-position="184">
+              <caret line="2245" column="7" selection-start-line="2245" selection-start-column="7" selection-end-line="2245" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -43,8 +41,8 @@
       <file leaf-file-name="Irtox86.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Irtox86.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="942" column="32" selection-start-line="942" selection-start-column="32" selection-end-line="942" selection-end-column="32" />
+            <state relative-caret-position="152">
+              <caret line="1026" column="30" lean-forward="true" selection-start-line="1026" selection-start-column="30" selection-end-line="1026" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -114,7 +112,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>regs</find>
       <find>defvars</find>
       <find>err</find>
       <find>&quot;call&quot;</find>
@@ -126,7 +123,6 @@
       <find>&quot;%&quot;</find>
       <find>&quot;!=&quot;</find>
       <find>q.z.params != null</find>
-      <find>&quot;str=</find>
       <find>opw</find>
       <find>&quot;++&quot;</find>
       <find>&quot;+&quot;</find>
@@ -144,6 +140,8 @@
       <find>clname</find>
       <find>funname</find>
       <find>out</find>
+      <find>length</find>
+      <find>&quot;str=</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -718,15 +716,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Irtox86.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="942" column="32" selection-start-line="942" selection-start-column="32" selection-end-line="942" selection-end-column="32" />
+        <state relative-caret-position="152">
+          <caret line="1026" column="30" lean-forward="true" selection-start-line="1026" selection-start-column="30" selection-end-line="1026" selection-end-column="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="2245" column="9" selection-start-line="2245" selection-start-column="9" selection-end-line="2245" selection-end-column="9" />
+        <state relative-caret-position="184">
+          <caret line="2245" column="7" selection-start-line="2245" selection-start-column="7" selection-end-line="2245" selection-end-column="7" />
         </state>
       </provider>
     </entry>

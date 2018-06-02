@@ -951,7 +951,7 @@ public class Irtox86
                 Integer length = new Integer(end - start + 1);
                 length *= 8;
                 System.out.print("      ");
-                if (length < 1000) length = 1000;
+                if (length < 2000) length = 2000;
                 System.out.println("sub\trsp," + length.toString());
                 if (q.z.params != null )
                 {
@@ -1022,7 +1022,7 @@ public class Irtox86
                         if (q.y.name.charAt(i + 1) == '\\') sn = 92;
                         if (q.y.name.charAt(i + 1) == '\"') sn = 34;
                         System.out.print("      ");
-                        System.out.println("mov\tbyte[rax + " + i + "]," + sn.toString());
+                        System.out.println("mov\tbyte[rax + " + (i-sub) + "]," + sn.toString());
                         ++i;
                         ++sub;
                     }
