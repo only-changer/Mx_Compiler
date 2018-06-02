@@ -238,6 +238,7 @@ class MyVisitor extends MxBaseVisitor<check>
     String clname = new String();
     Integer keytemp = new Integer(0);
     String fyi = new String();
+    varible clarr = new varible();
     MyVisitor()
     {
         cla = "";
@@ -1596,9 +1597,9 @@ class MyVisitor extends MxBaseVisitor<check>
                 }
                 int n = ctx.expr().size();
                 quard quad = new quard();
-                // System.out.println(ctx.getText());
-                // System.out.println(ck0.code.last.z.name);
                 quad.z = new varible(ck0.code.last.z);
+                if (regs.containsKey(quad.z.name))
+                    quad.z.name = regs.get(quad.z.name).toString() + "temp";
                 ++temp;
                 if (temp > maxtemp) maxtemp = temp;
                 quad.op = "arr";
@@ -1677,7 +1678,7 @@ class MyVisitor extends MxBaseVisitor<check>
                     s = ctx.varname().getText();
                     varible k = new varible();
                     k.name = defclass.get(cla).vars.get(s).toString();
-                    quad.z.name = clname;
+                    quad.z = new varible(clarr);
                     if (regs.containsKey(quad.z.name))
                         quad.z.name = regs.get(quad.z.name).toString() + "temp";
                     quad.z.add(k);
@@ -1923,16 +1924,20 @@ class MyVisitor extends MxBaseVisitor<check>
                 {
                     if (!ctx.expr(0).getText().equals("this"))
                         clname = ctx.expr(0).getText();
+                    clarr = new varible(ckk.code.last.z);
                     cla = ty;
                     check ck = visit(ctx.expr(1));
                     chk.var.addAll(ck.var);
                     chk.vars.addAll(ck.vars);
                     chk.code.add(ck.code);
                     //System.out.println(ctx.getText());
+                   //ck.code.print();
+                   // System.err.println(ctx.getText());
                     if (defclass.get(ty).vars.containsKey(ck.code.last.x.name))
                     {
                         quard quad = new quard();
                         quad.y = new varible(q.z);
+                       // System.out.println(quad.y.name);
                         quad.z.name = temp.toString() + "temp";
                         quad.op = "=";
                         chk.code.push(quad);
@@ -2322,7 +2327,7 @@ public class Main
     public static check main() throws Exception
     {
         //File f = new File("E:/test.txt");
-          File f = new File("program.txt");
+         File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
         run(input);
