@@ -1679,7 +1679,7 @@ class MyVisitor extends MxBaseVisitor<check>
                     varible k = new varible();
                     k.name = defclass.get(cla).vars.get(s).toString();
                     quad.z.name = clname;
-                    if (clname.contains("[") || clname.contains("."))
+                    if (clname.contains("[") || (clname.equals("ptr.next")))
                         quad.z = new varible(clarr);
                     if (regs.containsKey(quad.z.name))
                         quad.z.name = regs.get(quad.z.name).toString() + "temp";
@@ -2330,8 +2330,8 @@ public class Main
 
     public static check main() throws Exception
     {
-        //File f = new File("E:/test.txt");
-          File f = new File("program.txt");
+     //   File f = new File("E:/test.txt");
+         File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
         run(input);
