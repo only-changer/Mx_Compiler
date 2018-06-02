@@ -1470,7 +1470,7 @@ class MyVisitor extends MxBaseVisitor<check>
                             q.y.add(k);
                         }
                     }
-                    if ((!classname.equals("")) && c.equals("")&& (!constfunc) && defclass.get(classname).defuns.containsKey(ctx.funname().getText()))
+                    if ((!classname.equals("")) && c.equals ("")&&!constfunc&& defclass.get(classname).defuns.containsKey(ctx.funname().getText()))
                     {
                         varible k = new varible();
                         k.name = keytemp.toString() + "temp";
@@ -1491,7 +1491,8 @@ class MyVisitor extends MxBaseVisitor<check>
                             q.y.add(sv);
                         }
                     }
-                    if ((!classname.equals("")) && c.equals(""))
+
+                    if (!classname.equals(""))
                     {
                         if ((!classname.equals("")) && (!constfunc))
                             if (defclass.get(classname).defuns.containsKey(ctx.funname().getText()))
@@ -1678,10 +1679,8 @@ class MyVisitor extends MxBaseVisitor<check>
                     varible k = new varible();
                     k.name = defclass.get(cla).vars.get(s).toString();
                     quad.z.name = clname;
-                    //if (clname.contains("[") || (clname.equals("ptr.next")))
-                   //     quad.z = new varible(clarr);
-                   // System.out.println(ctx.getText());
-                   // System.out.println(quad.z.name);
+                    if (clname.contains("[") || (clname.equals("ptr.next")))
+                        quad.z = new varible(clarr);
                     if (regs.containsKey(quad.z.name))
                         quad.z.name = regs.get(quad.z.name).toString() + "temp";
 
@@ -2331,8 +2330,8 @@ public class Main
 
     public static check main() throws Exception
     {
-       //File f = new File("E:/test.txt");
-         File f = new File("program.txt");
+      // File f = new File("E:/test.txt");
+        File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
         run(input);

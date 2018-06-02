@@ -766,483 +766,358 @@ Llege_021:  mov     eax, 1
 Llege_022:  pop     rbp
 	ret
 section   .text
-vectorinit:
+pointset:
       push	rbp
       mov	rbp,rsp
       sub	rsp,20000
-      mov	[rbp - 24],rdi
-      mov	[rbp - 16],rsi
-      mov	r10,[rbp - 16]
-      cmp	r10,0
-      sete r10b
-      movzx r10,r10b
-      mov	[rbp - 32],r10
-      mov	 r10,[rbp-32]
-      cmp	 r10,0
-      je	_0else
-_0if:
-      mov	rsp,rbp
-      pop rbp
-      ret
-      jmp	_0ifback
-_0else:
-_0ifback:
-      mov	r10,[rbp - 16]
-      add	r10,0
-      mov	r10,[r10]
-      add	r10,0
-      mov	[rbp - 40],r10
-      mov	r10,[rbp - 40]
-      add	r10,1
-      mov	[rbp - 48],r10
-      mov	r10,[rbp - 48]
-      imul	r10,8
-      mov	[rbp - 48],r10
-      mov	rdi,[rbp-48]
-      push	r10
-      push	r11
-      call	malloc
-      pop	r11
-      pop	r10
-      mov	[rbp -  56],rax
-      mov	r10,[rbp - 40]
+      mov	[rbp - 56],rdi
+      mov	[rbp - 32],rsi
+      mov	[rbp - 40],rdx
+      mov	[rbp - 48],rcx
+      mov	r10,[rbp - 32]
       mov	r11,[rbp - 56]
       add	r11,0
       mov	[r11],r10
-      mov	r10,[rbp - 56]
-      mov	r11,[rbp - 24]
-      add	r11,0
+      mov	r10,[rbp - 40]
+      mov	r11,[rbp - 56]
+      add	r11,8
       mov	[r11],r10
-      mov	qword[rbp - 64],0
-_0for:
+      mov	r10,[rbp - 48]
+      mov	r11,[rbp - 56]
+      add	r11,16
+      mov	[r11],r10
+      mov	rsp,rbp
+      pop rbp
+      ret
+pointsqrLen:
+      push	rbp
+      mov	rbp,rsp
+      sub	rsp,20000
+      mov	[rbp - 64],rdi
       mov	r10,[rbp - 64]
-      add	r10,1
+      add	r10,0
+      mov	r10,[r10]
+      mov	r11,[rbp - 64]
+      add	r11,0
+      imul	r10,[r11]
+      mov	[rbp - 72],r10
+      mov	r10,[rbp - 64]
+      add	r10,8
+      mov	r10,[r10]
+      mov	r11,[rbp - 64]
+      add	r11,8
+      imul	r10,[r11]
+      mov	[rbp - 80],r10
+      mov	r10,[rbp - 72]
+      add	r10,[rbp - 80]
       mov	[rbp - 88],r10
+      mov	r10,[rbp - 64]
+      add	r10,16
+      mov	r10,[r10]
+      mov	r11,[rbp - 64]
+      add	r11,16
+      imul	r10,[r11]
+      mov	[rbp - 96],r10
       mov	r10,[rbp - 88]
-      imul	r10,8
-      mov	[rbp - 88],r10
-      mov	r10,[rbp - 64]
-      add	r10,1
-      mov	[rbp - 112],r10
-      mov	r10,[rbp - 112]
-      imul	r10,8
-      mov	[rbp - 112],r10
-      mov	r10,[rbp - 16]
-      add	r10,[rbp - 112]
+      add	r10,[rbp - 96]
+      mov	[rbp - 104],r10
+      mov	rax,[rbp -  104]
+      mov	rsp,rbp
+      pop rbp
+      ret
+      mov	rsp,rbp
+      pop rbp
+      ret
+pointsqrDis:
+      push	rbp
+      mov	rbp,rsp
+      sub	rsp,20000
+      mov	[rbp - 120],rdi
+      mov	[rbp - 112],rsi
+      mov	r10,[rbp - 120]
+      add	r10,0
       mov	r10,[r10]
-      mov	r11,[rbp - 24]
+      mov	r11,[rbp - 112]
       add	r11,0
-      mov	r11,[r11]
-      add	r11,[rbp - 88]
-      mov	[r11],r10
-_0while:
-      mov	r10,[rbp - 64]
-      add	r10,1
-      mov	[rbp - 64],r10
-      mov	r10,[rbp - 16]
-      add	r10,0
-      mov	r10,[r10]
-      add	r10,0
-      mov	[rbp - 120],r10
-      mov	r10,[rbp - 64]
-      cmp	r10,[rbp - 120]
-      setl r10b
-      movzx r10,r10b
+      sub	r10,[r11]
       mov	[rbp - 128],r10
-      mov	r10,[rbp -  128]
-      cmp	r10,1
-      je	_0for
-_0forback:
-      mov	rsp,rbp
-      pop rbp
-      ret
-vectorgetDim:
-      push	rbp
-      mov	rbp,rsp
-      sub	rsp,20000
-      mov	[rbp - 136],rdi
-      mov	r11,[rbp - 136]
+      mov	r10,[rbp - 120]
+      add	r10,0
+      mov	r10,[r10]
+      mov	r11,[rbp - 112]
       add	r11,0
-      mov	r10,[r11]
-      cmp	r10,0
-      sete r10b
-      movzx r10,r10b
+      sub	r10,[r11]
+      mov	[rbp - 136],r10
+      mov	r10,[rbp - 128]
+      imul	r10,[rbp - 136]
       mov	[rbp - 144],r10
-      mov	 r10,[rbp-144]
-      cmp	 r10,0
-      je	_1else
-_1if:
-      mov	rax,0
-      mov	rsp,rbp
-      pop rbp
-      ret
-      jmp	_1ifback
-_1else:
-_1ifback:
-      mov	r10,[rbp - 136]
-      add	r10,0
+      mov	r10,[rbp - 120]
+      add	r10,8
       mov	r10,[r10]
-      add	r10,0
-      mov	r10,[r10]
-      add	r10,0
+      mov	r11,[rbp - 112]
+      add	r11,8
+      sub	r10,[r11]
       mov	[rbp - 152],r10
-      mov	rax,[rbp -  152]
+      mov	r10,[rbp - 120]
+      add	r10,8
+      mov	r10,[r10]
+      mov	r11,[rbp - 112]
+      add	r11,8
+      sub	r10,[r11]
+      mov	[rbp - 160],r10
+      mov	r10,[rbp - 152]
+      imul	r10,[rbp - 160]
+      mov	[rbp - 168],r10
+      mov	r10,[rbp - 144]
+      add	r10,[rbp - 168]
+      mov	[rbp - 176],r10
+      mov	r10,[rbp - 120]
+      add	r10,16
+      mov	r10,[r10]
+      mov	r11,[rbp - 112]
+      add	r11,16
+      sub	r10,[r11]
+      mov	[rbp - 184],r10
+      mov	r10,[rbp - 120]
+      add	r10,16
+      mov	r10,[r10]
+      mov	r11,[rbp - 112]
+      add	r11,16
+      sub	r10,[r11]
+      mov	[rbp - 192],r10
+      mov	r10,[rbp - 184]
+      imul	r10,[rbp - 192]
+      mov	[rbp - 200],r10
+      mov	r10,[rbp - 176]
+      add	r10,[rbp - 200]
+      mov	[rbp - 208],r10
+      mov	rax,[rbp -  208]
       mov	rsp,rbp
       pop rbp
       ret
       mov	rsp,rbp
       pop rbp
       ret
-vectordot:
+pointdot:
       push	rbp
       mov	rbp,rsp
       sub	rsp,20000
-      mov	[rbp - 168],rdi
-      mov	[rbp - 160],rsi
-      mov	qword[rbp - 176],0
-      mov	qword[rbp - 184],0
-      jmp	_1while
-_1for:
-      mov	r10,[rbp - 176]
-      add	r10,1
-      mov	[rbp - 208],r10
-      mov	r10,[rbp - 208]
-      imul	r10,8
-      mov	[rbp - 208],r10
-      mov	r10,[rbp - 176]
-      add	r10,1
-      mov	[rbp - 232],r10
-      mov	r10,[rbp - 232]
-      imul	r10,8
-      mov	[rbp - 232],r10
-      mov	r10,[rbp - 168]
+      mov	[rbp - 224],rdi
+      mov	[rbp - 216],rsi
+      mov	r10,[rbp - 224]
       add	r10,0
       mov	r10,[r10]
-      add	r10,[rbp - 208]
-      mov	r10,[r10]
-      mov	r11,[rbp - 160]
+      mov	r11,[rbp - 216]
       add	r11,0
-      mov	r11,[r11]
-      add	r11,[rbp - 232]
+      imul	r10,[r11]
+      mov	[rbp - 232],r10
+      mov	r10,[rbp - 224]
+      add	r10,8
+      mov	r10,[r10]
+      mov	r11,[rbp - 216]
+      add	r11,8
       imul	r10,[r11]
       mov	[rbp - 240],r10
-      mov	r10,[rbp - 240]
-      mov	[rbp - 184],r10
-      mov	r10,[rbp - 176]
-      add	r10,1
-      mov	[rbp - 176],r10
-_1while:
-      mov	rdi,[rbp-168]
-      push	r10
-      push	r11
-      call	vectorgetDim
-      pop	r11
-      pop	r10
-      mov	[rbp -  256],rax
-      mov	r10,[rbp - 176]
-      cmp	r10,[rbp - 256]
-      setl r10b
-      movzx r10,r10b
+      mov	r10,[rbp - 232]
+      add	r10,[rbp - 240]
+      mov	[rbp - 248],r10
+      mov	r10,[rbp - 224]
+      add	r10,16
+      mov	r10,[r10]
+      mov	r11,[rbp - 216]
+      add	r11,16
+      imul	r10,[r11]
+      mov	[rbp - 256],r10
+      mov	r10,[rbp - 248]
+      add	r10,[rbp - 256]
       mov	[rbp - 264],r10
-      mov	r10,[rbp -  264]
-      cmp	r10,1
-      je	_1for
-_1forback:
-      mov	rax,[rbp -  184]
+      mov	rax,[rbp -  264]
       mov	rsp,rbp
       pop rbp
       ret
       mov	rsp,rbp
       pop rbp
       ret
-vectorscalarInPlaceMultiply:
+pointcross:
       push	rbp
       mov	rbp,rsp
       sub	rsp,20000
       mov	[rbp - 280],rdi
       mov	[rbp - 272],rsi
-      mov	r11,[rbp - 280]
-      add	r11,0
-      mov	r10,[r11]
-      cmp	r10,0
-      sete r10b
-      movzx r10,r10b
+      mov	rdi,24
+      push	r10
+      push	r11
+      call	malloc
+      pop	r11
+      pop	r10
+      mov	[rbp -  296],rax
+      mov	r10,[rbp - 296]
       mov	[rbp - 288],r10
-      mov	 r10,[rbp-288]
-      cmp	 r10,0
-      je	_2else
-_2if:
-      mov	rax,0
-      mov	rsp,rbp
-      pop rbp
-      ret
-      jmp	_2ifback
-_2else:
-_2ifback:
-      mov	qword[rbp - 296],0
-_2for:
-      mov	r10,[rbp - 296]
-      add	r10,1
-      mov	[rbp - 320],r10
-      mov	r10,[rbp - 320]
-      imul	r10,8
-      mov	[rbp - 320],r10
-      mov	r10,[rbp - 296]
-      add	r10,1
-      mov	[rbp - 344],r10
-      mov	r10,[rbp - 344]
-      imul	r10,8
-      mov	[rbp - 344],r10
-      mov	r10,[rbp - 272]
-      mov	r11,[rbp - 280]
-      add	r11,0
-      mov	r11,[r11]
-      add	r11,[rbp - 344]
+      mov	r10,[rbp - 280]
+      add	r10,8
+      mov	r10,[r10]
+      mov	r11,[rbp - 272]
+      add	r11,16
       imul	r10,[r11]
-      mov	[rbp - 352],r10
-      mov	r10,[rbp - 352]
-      mov	r11,[rbp - 280]
+      mov	[rbp - 304],r10
+      mov	r10,[rbp - 280]
+      add	r10,16
+      mov	r10,[r10]
+      mov	r11,[rbp - 272]
+      add	r11,8
+      imul	r10,[r11]
+      mov	[rbp - 312],r10
+      mov	r10,[rbp - 304]
+      sub	r10,[rbp - 312]
+      mov	[rbp - 320],r10
+      mov	r10,[rbp - 280]
+      add	r10,16
+      mov	r10,[r10]
+      mov	r11,[rbp - 272]
       add	r11,0
-      mov	r11,[r11]
-      add	r11,[rbp - 320]
-      mov	[r11],r10
-_2while:
-      mov	r10,[rbp - 296]
-      add	r10,1
-      mov	[rbp - 296],r10
-      mov	rdi,[rbp-280]
-      push	r10
-      push	r11
-      call	vectorgetDim
-      pop	r11
-      pop	r10
-      mov	[rbp -  368],rax
-      mov	r10,[rbp - 296]
-      cmp	r10,[rbp - 368]
-      setl r10b
-      movzx r10,r10b
-      mov	[rbp - 376],r10
-      mov	r10,[rbp -  376]
-      cmp	r10,1
-      je	_2for
-_2forback:
-      mov	rax,[rbp -  280]
-      mov	rsp,rbp
-      pop rbp
-      ret
-      mov	rsp,rbp
-      pop rbp
-      ret
-vectoradd:
-      push	rbp
-      mov	rbp,rsp
-      sub	rsp,20000
-      mov	[rbp - 392],rdi
-      mov	[rbp - 384],rsi
-      mov	rdi,[rbp-392]
-      push	r10
-      push	r11
-      call	vectorgetDim
-      pop	r11
-      pop	r10
-      mov	[rbp -  408],rax
-      mov	rdi,[rbp-384]
-      push	r10
-      push	r11
-      call	vectorgetDim
-      pop	r11
-      pop	r10
-      mov	[rbp -  424],rax
-      mov	r10,[rbp - 408]
-      cmp	r10,[rbp - 424]
-      setne r10b
-      movzx r10,r10b
-      mov	[rbp - 432],r10
-      mov	r10,[rbp - 432]
-      cmp	r10,1
-      je	_0check
-      mov	rdi,[rbp-392]
-      push	r10
-      push	r11
-      call	vectorgetDim
-      pop	r11
-      pop	r10
-      mov	[rbp -  448],rax
-      mov	r10,[rbp - 448]
-      cmp	r10,0
-      sete r10b
-      movzx r10,r10b
-      mov	[rbp - 456],r10
-      mov	r10,[rbp - 432]
-      or	r10,[rbp - 456]
-_0check:
-      mov	[rbp - 464],r10
-      mov	 r10,[rbp-464]
-      cmp	 r10,0
-      je	_3else
-_3if:
-      mov	rax,0
-      mov	rsp,rbp
-      pop rbp
-      ret
-      jmp	_3ifback
-_3else:
-_3ifback:
-      mov	rdi,8
-      push	r10
-      push	r11
-      call	malloc
-      pop	r11
-      pop	r10
-      mov	[rbp -  480],rax
-      mov	r10,[rbp - 480]
-      mov	[rbp - 472],r10
-      mov	rdi,[rbp-392]
-      push	r10
-      push	r11
-      call	vectorgetDim
-      pop	r11
-      pop	r10
-      mov	[rbp -  504],rax
-      mov	r10,[rbp - 504]
-      add	r10,1
-      mov	[rbp - 512],r10
-      mov	r10,[rbp - 512]
-      imul	r10,8
-      mov	[rbp - 512],r10
-      mov	rdi,[rbp-512]
-      push	r10
-      push	r11
-      call	malloc
-      pop	r11
-      pop	r10
-      mov	[rbp -  520],rax
-      mov	r10,[rbp - 504]
-      mov	r11,[rbp - 520]
-      add	r11,0
-      mov	[r11],r10
-      mov	r10,[rbp - 520]
-      mov	r11,[rbp - 472]
-      add	r11,0
-      mov	[r11],r10
-      mov	qword[rbp - 488],0
-_3for:
-      mov	r10,[rbp - 488]
-      add	r10,1
-      mov	[rbp - 544],r10
-      mov	r10,[rbp - 544]
-      imul	r10,8
-      mov	[rbp - 544],r10
-      mov	r10,[rbp - 488]
-      add	r10,1
-      mov	[rbp - 568],r10
-      mov	r10,[rbp - 568]
-      imul	r10,8
-      mov	[rbp - 568],r10
-      mov	r10,[rbp - 488]
-      add	r10,1
-      mov	[rbp - 592],r10
-      mov	r10,[rbp - 592]
-      imul	r10,8
-      mov	[rbp - 592],r10
-      mov	r10,[rbp - 392]
+      imul	r10,[r11]
+      mov	[rbp - 328],r10
+      mov	r10,[rbp - 280]
       add	r10,0
       mov	r10,[r10]
-      add	r10,[rbp - 568]
+      mov	r11,[rbp - 272]
+      add	r11,16
+      imul	r10,[r11]
+      mov	[rbp - 336],r10
+      mov	r10,[rbp - 328]
+      sub	r10,[rbp - 336]
+      mov	[rbp - 344],r10
+      mov	r10,[rbp - 280]
+      add	r10,0
       mov	r10,[r10]
-      mov	r11,[rbp - 384]
+      mov	r11,[rbp - 272]
+      add	r11,8
+      imul	r10,[r11]
+      mov	[rbp - 352],r10
+      mov	r10,[rbp - 280]
+      add	r10,8
+      mov	r10,[r10]
+      mov	r11,[rbp - 272]
       add	r11,0
-      mov	r11,[r11]
-      add	r11,[rbp - 592]
+      imul	r10,[r11]
+      mov	[rbp - 360],r10
+      mov	r10,[rbp - 352]
+      sub	r10,[rbp - 360]
+      mov	[rbp - 368],r10
+      mov	rdi,[rbp-288]
+      mov	rsi,[rbp-320]
+      mov	rdx,[rbp-344]
+      mov	rcx,[rbp-368]
+      push	r10
+      push	r11
+      call	pointset
+      pop	r11
+      pop	r10
+      mov	[rbp -  384],rax
+      mov	rax,[rbp -  288]
+      mov	rsp,rbp
+      pop rbp
+      ret
+      mov	rsp,rbp
+      pop rbp
+      ret
+pointadd:
+      push	rbp
+      mov	rbp,rsp
+      sub	rsp,20000
+      mov	[rbp - 400],rdi
+      mov	[rbp - 392],rsi
+      mov	r10,[rbp - 400]
+      add	r10,0
+      mov	r10,[r10]
+      mov	r11,[rbp - 392]
+      add	r11,0
       add	r10,[r11]
-      mov	[rbp - 600],r10
-      mov	r10,[rbp - 600]
-      mov	r11,[rbp - 472]
+      mov	[rbp - 408],r10
+      mov	r10,[rbp - 408]
+      mov	r11,[rbp - 400]
       add	r11,0
-      mov	r11,[r11]
-      add	r11,[rbp - 544]
       mov	[r11],r10
-_3while:
-      mov	r10,[rbp - 488]
-      add	r10,1
-      mov	[rbp - 488],r10
-      mov	rdi,[rbp-392]
-      push	r10
-      push	r11
-      call	vectorgetDim
-      pop	r11
-      pop	r10
-      mov	[rbp -  616],rax
-      mov	r10,[rbp - 488]
-      cmp	r10,[rbp - 616]
-      setl r10b
-      movzx r10,r10b
-      mov	[rbp - 624],r10
-      mov	r10,[rbp -  624]
-      cmp	r10,1
-      je	_3for
-_3forback:
-      mov	rax,[rbp -  472]
+      mov	r10,[rbp - 400]
+      add	r10,8
+      mov	r10,[r10]
+      mov	r11,[rbp - 392]
+      add	r11,8
+      add	r10,[r11]
+      mov	[rbp - 416],r10
+      mov	r10,[rbp - 416]
+      mov	r11,[rbp - 400]
+      add	r11,8
+      mov	[r11],r10
+      mov	r10,[rbp - 400]
+      add	r10,16
+      mov	r10,[r10]
+      mov	r11,[rbp - 392]
+      add	r11,16
+      add	r10,[r11]
+      mov	[rbp - 424],r10
+      mov	r10,[rbp - 424]
+      mov	r11,[rbp - 400]
+      add	r11,16
+      mov	[r11],r10
+      mov	rax,[rbp -  400]
       mov	rsp,rbp
       pop rbp
       ret
       mov	rsp,rbp
       pop rbp
       ret
-vectorset:
+pointsub:
       push	rbp
       mov	rbp,rsp
       sub	rsp,20000
-      mov	[rbp - 648],rdi
-      mov	[rbp - 632],rsi
-      mov	[rbp - 640],rdx
-      mov	rdi,[rbp-648]
-      push	r10
-      push	r11
-      call	vectorgetDim
-      pop	r11
-      pop	r10
-      mov	[rbp -  664],rax
-      mov	r10,[rbp - 664]
-      cmp	r10,[rbp - 632]
-      setl r10b
-      movzx r10,r10b
-      mov	[rbp - 672],r10
-      mov	 r10,[rbp-672]
-      cmp	 r10,0
-      je	_4else
-_4if:
-      mov	rax,0
-      mov	rsp,rbp
-      pop rbp
-      ret
-      jmp	_4ifback
-_4else:
-_4ifback:
-      mov	r10,[rbp - 632]
-      add	r10,1
-      mov	[rbp - 696],r10
-      mov	r10,[rbp - 696]
-      imul	r10,8
-      mov	[rbp - 696],r10
-      mov	r10,[rbp - 640]
-      mov	r11,[rbp - 648]
+      mov	[rbp - 440],rdi
+      mov	[rbp - 432],rsi
+      mov	r10,[rbp - 440]
+      add	r10,0
+      mov	r10,[r10]
+      mov	r11,[rbp - 432]
       add	r11,0
-      mov	r11,[r11]
-      add	r11,[rbp - 696]
+      sub	r10,[r11]
+      mov	[rbp - 448],r10
+      mov	r10,[rbp - 448]
+      mov	r11,[rbp - 440]
+      add	r11,0
       mov	[r11],r10
-      mov	rax,1
+      mov	r10,[rbp - 440]
+      add	r10,8
+      mov	r10,[r10]
+      mov	r11,[rbp - 432]
+      add	r11,8
+      sub	r10,[r11]
+      mov	[rbp - 456],r10
+      mov	r10,[rbp - 456]
+      mov	r11,[rbp - 440]
+      add	r11,8
+      mov	[r11],r10
+      mov	r10,[rbp - 440]
+      add	r10,16
+      mov	r10,[r10]
+      mov	r11,[rbp - 432]
+      add	r11,16
+      sub	r10,[r11]
+      mov	[rbp - 464],r10
+      mov	r10,[rbp - 464]
+      mov	r11,[rbp - 440]
+      add	r11,16
+      mov	[r11],r10
+      mov	rax,[rbp -  440]
       mov	rsp,rbp
       pop rbp
       ret
       mov	rsp,rbp
       pop rbp
       ret
-vectortostring:
+pointprintPoint:
       push	rbp
       mov	rbp,rsp
       sub	rsp,20000
-      mov	[rbp - 704],rdi
+      mov	[rbp - 472],rdi
       push r10
       push r11
       mov	rdi,256
@@ -1250,59 +1125,25 @@ vectortostring:
       pop r10
       pop r11
       mov	byte[rax + 0],'('
-      mov	byte[rax + 1],' '
-      mov	byte[rax + 2],0
-      mov	[rbp - 720],rax
-      mov	r10,[rbp - 720]
-      mov	[rbp - 712],r10
-      mov	rdi,[rbp-704]
-      push	r10
-      push	r11
-      call	vectorgetDim
-      pop	r11
-      pop	r10
-      mov	[rbp -  776],rax
-      mov	r10,[rbp - 776]
-      cmp	r10,0
-      setg r10b
-      movzx r10,r10b
-      mov	[rbp - 784],r10
-      mov	 r10,[rbp-784]
-      cmp	 r10,0
-      je	_5else
-_5if:
-      mov	r10,0
-      add	r10,1
-      mov	[rbp - 744],r10
-      mov	r10,[rbp - 744]
-      imul	r10,8
-      mov	[rbp - 744],r10
-      mov	r10,[rbp - 704]
+      mov	byte[rax + 1],0
+      mov	[rbp - 480],rax
+      mov	r10,[rbp - 472]
       add	r10,0
-      mov	r10,[r10]
-      add	r10,[rbp - 744]
       mov	rdi,[r10]
       push	r10
       push	r11
       call	toString
       pop	r11
       pop	r10
-      mov	[rbp -  752],rax
-      mov	rdi,[rbp-712]
-      mov	rsi,[rbp-752]
+      mov	[rbp -  488],rax
+      mov	rdi,[rbp-480]
+      mov	rsi,[rbp-488]
       push	r10
       push	r11
       call	string.add
       pop	r11
       pop	r10
-      mov	[rbp -  760],rax
-      mov	r10,[rbp - 760]
-      mov	[rbp - 712],r10
-      jmp	_5ifback
-_5else:
-_5ifback:
-      mov	qword[rbp - 792],1
-_4for:
+      mov	[rbp -  496],rax
       push r10
       push r11
       mov	rdi,256
@@ -1312,209 +1153,92 @@ _4for:
       mov	byte[rax + 0],','
       mov	byte[rax + 1],' '
       mov	byte[rax + 2],0
-      mov	[rbp - 800],rax
-      mov	rdi,[rbp-712]
-      mov	rsi,[rbp-800]
+      mov	[rbp - 504],rax
+      mov	rdi,[rbp-496]
+      mov	rsi,[rbp-504]
       push	r10
       push	r11
       call	string.add
       pop	r11
       pop	r10
-      mov	[rbp -  808],rax
-      mov	r10,[rbp - 792]
-      add	r10,1
-      mov	[rbp - 832],r10
-      mov	r10,[rbp - 832]
-      imul	r10,8
-      mov	[rbp - 832],r10
-      mov	r10,[rbp - 704]
-      add	r10,0
-      mov	r10,[r10]
-      add	r10,[rbp - 832]
+      mov	[rbp -  512],rax
+      mov	r10,[rbp - 472]
+      add	r10,8
       mov	rdi,[r10]
       push	r10
       push	r11
       call	toString
       pop	r11
       pop	r10
-      mov	[rbp -  840],rax
-      mov	rdi,[rbp-808]
-      mov	rsi,[rbp-840]
+      mov	[rbp -  520],rax
+      mov	rdi,[rbp-512]
+      mov	rsi,[rbp-520]
       push	r10
       push	r11
       call	string.add
       pop	r11
       pop	r10
-      mov	[rbp -  848],rax
-      mov	r10,[rbp - 848]
-      mov	[rbp - 712],r10
-_4while:
-      mov	r10,[rbp - 792]
-      add	r10,1
-      mov	[rbp - 792],r10
-      mov	rdi,[rbp-704]
-      push	r10
-      push	r11
-      call	vectorgetDim
-      pop	r11
-      pop	r10
-      mov	[rbp -  864],rax
-      mov	r10,[rbp - 792]
-      cmp	r10,[rbp - 864]
-      setl r10b
-      movzx r10,r10b
-      mov	[rbp - 872],r10
-      mov	r10,[rbp -  872]
-      cmp	r10,1
-      je	_4for
-_4forback:
+      mov	[rbp -  528],rax
       push r10
       push r11
       mov	rdi,256
       call	malloc
       pop r10
       pop r11
-      mov	byte[rax + 0],' '
-      mov	byte[rax + 1],')'
+      mov	byte[rax + 0],','
+      mov	byte[rax + 1],' '
       mov	byte[rax + 2],0
-      mov	[rbp - 880],rax
-      mov	rdi,[rbp-712]
-      mov	rsi,[rbp-880]
+      mov	[rbp - 536],rax
+      mov	rdi,[rbp-528]
+      mov	rsi,[rbp-536]
       push	r10
       push	r11
       call	string.add
       pop	r11
       pop	r10
-      mov	[rbp -  888],rax
-      mov	r10,[rbp - 888]
-      mov	[rbp - 712],r10
-      mov	rax,[rbp -  712]
-      mov	rsp,rbp
-      pop rbp
-      ret
-      mov	rsp,rbp
-      pop rbp
-      ret
-vectorcopy:
-      push	rbp
-      mov	rbp,rsp
-      sub	rsp,20000
-      mov	[rbp - 904],rdi
-      mov	[rbp - 896],rsi
-      mov	r10,[rbp - 896]
-      cmp	r10,0
-      sete r10b
-      movzx r10,r10b
-      mov	[rbp - 912],r10
-      mov	 r10,[rbp-912]
-      cmp	 r10,0
-      je	_6else
-_6if:
-      mov	rax,0
-      mov	rsp,rbp
-      pop rbp
-      ret
-      jmp	_6ifback
-_6else:
-_6ifback:
-      mov	rdi,[rbp-896]
+      mov	[rbp -  544],rax
+      mov	r10,[rbp - 472]
+      add	r10,16
+      mov	rdi,[r10]
       push	r10
       push	r11
-      call	vectorgetDim
+      call	toString
       pop	r11
       pop	r10
-      mov	[rbp -  1040],rax
-      mov	r10,[rbp - 1040]
-      cmp	r10,0
-      sete r10b
-      movzx r10,r10b
-      mov	[rbp - 1048],r10
-      mov	 r10,[rbp-1048]
-      cmp	 r10,0
-      je	_7else
-_7if:
-      mov	r11,[rbp - 904]
-      add	r11,0
-      mov	qword[r11],0
-      jmp	_7ifback
-_7else:
-      mov	rdi,[rbp-896]
+      mov	[rbp -  552],rax
+      mov	rdi,[rbp-544]
+      mov	rsi,[rbp-552]
       push	r10
       push	r11
-      call	vectorgetDim
+      call	string.add
       pop	r11
       pop	r10
-      mov	[rbp -  928],rax
-      mov	r10,[rbp - 928]
-      add	r10,1
-      mov	[rbp - 936],r10
-      mov	r10,[rbp - 936]
-      imul	r10,8
-      mov	[rbp - 936],r10
-      mov	rdi,[rbp-936]
-      push	r10
-      push	r11
+      mov	[rbp -  560],rax
+      push r10
+      push r11
+      mov	rdi,256
       call	malloc
-      pop	r11
-      pop	r10
-      mov	[rbp -  944],rax
-      mov	r10,[rbp - 928]
-      mov	r11,[rbp - 944]
-      add	r11,0
-      mov	[r11],r10
-      mov	r10,[rbp - 944]
-      mov	r11,[rbp - 904]
-      add	r11,0
-      mov	[r11],r10
-      mov	qword[rbp - 952],0
-_5for:
-      mov	r10,[rbp - 952]
-      add	r10,1
-      mov	[rbp - 976],r10
-      mov	r10,[rbp - 976]
-      imul	r10,8
-      mov	[rbp - 976],r10
-      mov	r10,[rbp - 952]
-      add	r10,1
-      mov	[rbp - 1000],r10
-      mov	r10,[rbp - 1000]
-      imul	r10,8
-      mov	[rbp - 1000],r10
-      mov	r10,[rbp - 896]
-      add	r10,0
-      mov	r10,[r10]
-      add	r10,[rbp - 1000]
-      mov	r10,[r10]
-      mov	r11,[rbp - 904]
-      add	r11,0
-      mov	r11,[r11]
-      add	r11,[rbp - 976]
-      mov	[r11],r10
-_5while:
-      mov	r10,[rbp - 952]
-      add	r10,1
-      mov	[rbp - 952],r10
-      mov	rdi,[rbp-904]
+      pop r10
+      pop r11
+      mov	byte[rax + 0],')'
+      mov	byte[rax + 1],0
+      mov	[rbp - 568],rax
+      mov	rdi,[rbp-560]
+      mov	rsi,[rbp-568]
       push	r10
       push	r11
-      call	vectorgetDim
+      call	string.add
       pop	r11
       pop	r10
-      mov	[rbp -  1016],rax
-      mov	r10,[rbp - 952]
-      cmp	r10,[rbp - 1016]
-      setl r10b
-      movzx r10,r10b
-      mov	[rbp - 1024],r10
-      mov	r10,[rbp -  1024]
-      cmp	r10,1
-      je	_5for
-_5forback:
-_7ifback:
-      mov	rax,1
-      mov	rsp,rbp
-      pop rbp
-      ret
+      mov	[rbp -  576],rax
+      mov	rdi,[rbp-576]
+      push	r10
+      push	r11
+      mov	rax,0
+      call	println
+      pop	r11
+      pop	r10
+      mov	[rbp -  584],rax
       mov	rsp,rbp
       pop rbp
       ret
@@ -1522,356 +1246,387 @@ main:
       push	rbp
       mov	rbp,rsp
       sub	rsp,20000
-      mov	rdi,8
+      mov	rdi,24
       push	r10
       push	r11
       call	malloc
       pop	r11
       pop	r10
-      mov	[rbp -  1064],rax
-      mov	r10,[rbp - 1064]
-      mov	[rbp - 1056],r10
-      mov	r10,10
+      mov	[rbp -  600],rax
+      mov	r10,[rbp - 600]
+      mov	[rbp - 592],r10
+      mov	rdi,24
+      push	r10
+      push	r11
+      call	malloc
+      pop	r11
+      pop	r10
+      mov	[rbp -  616],rax
+      mov	r10,[rbp - 616]
+      mov	[rbp - 608],r10
+      mov	rdi,24
+      push	r10
+      push	r11
+      call	malloc
+      pop	r11
+      pop	r10
+      mov	[rbp -  632],rax
+      mov	r10,[rbp - 632]
+      mov	[rbp - 624],r10
+      mov	rdi,24
+      push	r10
+      push	r11
+      call	malloc
+      pop	r11
+      pop	r10
+      mov	[rbp -  648],rax
+      mov	r10,[rbp - 648]
+      mov	[rbp - 640],r10
+      mov	rdi,[rbp-592]
+      push	r10
+      push	r11
+      mov	rax,0
+      call	pointprintPoint
+      pop	r11
+      pop	r10
+      mov	[rbp -  664],rax
+      mov	r10,463
+      not	r10
       add	r10,1
-      mov	[rbp - 1080],r10
-      mov	r10,[rbp - 1080]
-      imul	r10,8
-      mov	[rbp - 1080],r10
-      mov	rdi,[rbp-1080]
+      mov	[rbp - 672],r10
+      mov	rdi,[rbp-592]
+      mov	rsi,849
+      mov	rdx,[rbp-672]
+      mov	rcx,480
       push	r10
       push	r11
-      call	malloc
+      call	pointset
       pop	r11
       pop	r10
-      mov	[rbp -  1088],rax
-      mov	r11,[rbp - 1088]
-      add	r11,0
-      mov	qword[r11],10
-      mov	r10,[rbp - 1088]
-      mov	[rbp - 1072],r10
-      mov	qword[rbp - 1096],0
-_6for:
-      mov	r10,[rbp - 1096]
+      mov	[rbp -  688],rax
+      mov	r10,208
+      not	r10
       add	r10,1
-      mov	[rbp - 1120],r10
-      mov	r10,[rbp - 1120]
-      imul	r10,8
-      mov	[rbp - 1120],r10
-      mov	r10,9
-      sub	r10,[rbp - 1096]
-      mov	[rbp - 1128],r10
-      mov	r10,[rbp - 1128]
-      mov	r11,[rbp - 1072]
-      add	r11,[rbp - 1120]
-      mov	[r11],r10
-_6while:
-      mov	r10,[rbp - 1096]
+      mov	[rbp - 696],r10
+      mov	r10,150
+      not	r10
       add	r10,1
-      mov	[rbp - 1096],r10
-      mov	r10,[rbp - 1096]
-      cmp	r10,10
-      setl r10b
-      movzx r10,r10b
-      mov	[rbp - 1136],r10
-      mov	r10,[rbp -  1136]
-      cmp	r10,1
-      je	_6for
-_6forback:
-      mov	rdi,[rbp-1056]
-      mov	rsi,[rbp-1072]
+      mov	[rbp - 704],r10
+      mov	rdi,[rbp-608]
+      mov	rsi,[rbp-696]
+      mov	rdx,585
+      mov	rcx,[rbp-704]
       push	r10
       push	r11
-      call	vectorinit
+      call	pointset
       pop	r11
       pop	r10
-      mov	[rbp -  1152],rax
-      push r10
-      push r11
-      mov	rdi,256
-      call	malloc
-      pop r10
-      pop r11
-      mov	byte[rax + 0],'v'
-      mov	byte[rax + 1],'e'
-      mov	byte[rax + 2],'c'
-      mov	byte[rax + 3],'t'
-      mov	byte[rax + 4],'o'
-      mov	byte[rax + 5],'r'
-      mov	byte[rax + 6],' '
-      mov	byte[rax + 7],'x'
-      mov	byte[rax + 8],':'
-      mov	byte[rax + 9],' '
-      mov	byte[rax + 10],0
-      mov	[rbp - 1160],rax
-      mov	rdi,[rbp-1160]
+      mov	[rbp -  720],rax
+      mov	r10,670
+      not	r10
+      add	r10,1
+      mov	[rbp - 728],r10
+      mov	r10,742
+      not	r10
+      add	r10,1
+      mov	[rbp - 736],r10
+      mov	rdi,[rbp-624]
+      mov	rsi,360
+      mov	rdx,[rbp-728]
+      mov	rcx,[rbp-736]
       push	r10
       push	r11
-      mov	rax,0
-      call	print
+      call	pointset
       pop	r11
       pop	r10
-      mov	[rbp -  1168],rax
-      mov	rdi,[rbp-1056]
+      mov	[rbp -  752],rax
+      mov	r10,29
+      not	r10
+      add	r10,1
+      mov	[rbp - 760],r10
+      mov	r10,591
+      not	r10
+      add	r10,1
+      mov	[rbp - 768],r10
+      mov	r10,960
+      not	r10
+      add	r10,1
+      mov	[rbp - 776],r10
+      mov	rdi,[rbp-640]
+      mov	rsi,[rbp-760]
+      mov	rdx,[rbp-768]
+      mov	rcx,[rbp-776]
       push	r10
       push	r11
-      call	vectortostring
+      call	pointset
       pop	r11
       pop	r10
-      mov	[rbp -  1184],rax
-      mov	rdi,[rbp-1184]
+      mov	[rbp -  792],rax
+      mov	rdi,[rbp-592]
+      mov	rsi,[rbp-608]
       push	r10
       push	r11
-      mov	rax,0
-      call	println
+      call	pointadd
       pop	r11
       pop	r10
-      mov	[rbp -  1192],rax
-      mov	rdi,8
+      mov	[rbp -  808],rax
+      mov	rdi,[rbp-608]
+      mov	rsi,[rbp-624]
       push	r10
       push	r11
-      call	malloc
+      call	pointadd
       pop	r11
       pop	r10
-      mov	[rbp -  1208],rax
-      mov	r10,[rbp - 1208]
-      mov	[rbp - 1200],r10
-      mov	rdi,[rbp-1200]
-      mov	rsi,[rbp-1056]
+      mov	[rbp -  824],rax
+      mov	rdi,[rbp-640]
+      mov	rsi,[rbp-624]
       push	r10
       push	r11
-      call	vectorcopy
+      call	pointadd
       pop	r11
       pop	r10
-      mov	[rbp -  1224],rax
-      mov	rdi,[rbp-1200]
-      mov	rsi,3
-      mov	rdx,817
+      mov	[rbp -  840],rax
+      mov	rdi,[rbp-624]
+      mov	rsi,[rbp-592]
       push	r10
       push	r11
-      call	vectorset
+      call	pointsub
       pop	r11
       pop	r10
-      mov	[rbp -  1256],rax
-      mov	 r10,[rbp-1256]
-      cmp	 r10,0
-      je	_8else
-_8if:
-      push r10
-      push r11
-      mov	rdi,256
-      call	malloc
-      pop r10
-      pop r11
-      mov	byte[rax + 0],'e'
-      mov	byte[rax + 1],'x'
-      mov	byte[rax + 2],'c'
-      mov	byte[rax + 3],'i'
-      mov	byte[rax + 4],'t'
-      mov	byte[rax + 5],'e'
-      mov	byte[rax + 6],'d'
-      mov	byte[rax + 7],'!'
-      mov	byte[rax + 8],0
-      mov	[rbp - 1232],rax
-      mov	rdi,[rbp-1232]
+      mov	[rbp -  856],rax
+      mov	rdi,[rbp-608]
+      mov	rsi,[rbp-640]
       push	r10
       push	r11
-      mov	rax,0
-      call	println
+      call	pointsub
       pop	r11
       pop	r10
-      mov	[rbp -  1240],rax
-      jmp	_8ifback
-_8else:
-_8ifback:
-      push r10
-      push r11
-      mov	rdi,256
-      call	malloc
-      pop r10
-      pop r11
-      mov	byte[rax + 0],'v'
-      mov	byte[rax + 1],'e'
-      mov	byte[rax + 2],'c'
-      mov	byte[rax + 3],'t'
-      mov	byte[rax + 4],'o'
-      mov	byte[rax + 5],'r'
-      mov	byte[rax + 6],' '
-      mov	byte[rax + 7],'y'
-      mov	byte[rax + 8],':'
-      mov	byte[rax + 9],' '
-      mov	byte[rax + 10],0
-      mov	[rbp - 1264],rax
-      mov	rdi,[rbp-1264]
+      mov	[rbp -  872],rax
+      mov	rdi,[rbp-640]
+      mov	rsi,[rbp-624]
       push	r10
       push	r11
-      mov	rax,0
-      call	print
+      call	pointsub
       pop	r11
       pop	r10
-      mov	[rbp -  1272],rax
-      mov	rdi,[rbp-1200]
+      mov	[rbp -  888],rax
+      mov	rdi,[rbp-624]
+      mov	rsi,[rbp-608]
       push	r10
       push	r11
-      call	vectortostring
+      call	pointadd
       pop	r11
       pop	r10
-      mov	[rbp -  1288],rax
-      mov	rdi,[rbp-1288]
+      mov	[rbp -  904],rax
+      mov	rdi,[rbp-592]
+      mov	rsi,[rbp-608]
       push	r10
       push	r11
-      mov	rax,0
-      call	println
+      call	pointadd
       pop	r11
       pop	r10
-      mov	[rbp -  1296],rax
-      push r10
-      push r11
-      mov	rdi,256
-      call	malloc
-      pop r10
-      pop r11
-      mov	byte[rax + 0],'x'
-      mov	byte[rax + 1],' '
-      mov	byte[rax + 2],'+'
-      mov	byte[rax + 3],' '
-      mov	byte[rax + 4],'y'
-      mov	byte[rax + 5],':'
-      mov	byte[rax + 6],' '
-      mov	byte[rax + 7],0
-      mov	[rbp - 1304],rax
-      mov	rdi,[rbp-1304]
+      mov	[rbp -  920],rax
+      mov	rdi,[rbp-608]
+      mov	rsi,[rbp-608]
       push	r10
       push	r11
-      mov	rax,0
-      call	print
+      call	pointadd
       pop	r11
       pop	r10
-      mov	[rbp -  1312],rax
-      mov	rdi,[rbp-1056]
-      mov	rsi,[rbp-1200]
+      mov	[rbp -  936],rax
+      mov	rdi,[rbp-624]
+      mov	rsi,[rbp-624]
       push	r10
       push	r11
-      call	vectoradd
+      call	pointadd
       pop	r11
       pop	r10
-      mov	[rbp -  1328],rax
-      mov	rdi,rax
+      mov	[rbp -  952],rax
+      mov	rdi,[rbp-592]
+      mov	rsi,[rbp-640]
       push	r10
       push	r11
-      call	vectortostring
+      call	pointsub
       pop	r11
       pop	r10
-      mov	[rbp -  1336],rax
-      mov	rdi,[rbp-1336]
+      mov	[rbp -  968],rax
+      mov	rdi,[rbp-592]
+      mov	rsi,[rbp-608]
       push	r10
       push	r11
-      mov	rax,0
-      call	println
+      call	pointadd
       pop	r11
       pop	r10
-      mov	[rbp -  1344],rax
-      push r10
-      push r11
-      mov	rdi,256
-      call	malloc
-      pop r10
-      pop r11
-      mov	byte[rax + 0],'x'
-      mov	byte[rax + 1],' '
-      mov	byte[rax + 2],'*'
-      mov	byte[rax + 3],' '
-      mov	byte[rax + 4],'y'
-      mov	byte[rax + 5],':'
-      mov	byte[rax + 6],' '
-      mov	byte[rax + 7],0
-      mov	[rbp - 1352],rax
-      mov	rdi,[rbp-1352]
+      mov	[rbp -  984],rax
+      mov	rdi,[rbp-608]
+      mov	rsi,[rbp-624]
       push	r10
       push	r11
-      mov	rax,0
-      call	print
+      call	pointsub
       pop	r11
       pop	r10
-      mov	[rbp -  1360],rax
-      mov	rdi,[rbp-1056]
-      mov	rsi,[rbp-1200]
+      mov	[rbp -  1000],rax
+      mov	rdi,[rbp-592]
       push	r10
       push	r11
-      call	vectordot
+      call	pointsqrLen
       pop	r11
       pop	r10
-      mov	[rbp -  1376],rax
-      mov	rdi,[rbp-1376]
+      mov	[rbp -  1016],rax
+      mov	rdi,[rbp-1016]
       push	r10
       push	r11
       call	toString
       pop	r11
       pop	r10
-      mov	[rbp -  1384],rax
-      mov	rdi,[rbp-1384]
+      mov	[rbp -  1024],rax
+      mov	rdi,[rbp-1024]
       push	r10
       push	r11
       mov	rax,0
       call	println
       pop	r11
       pop	r10
-      mov	[rbp -  1392],rax
-      push r10
-      push r11
-      mov	rdi,256
-      call	malloc
-      pop r10
-      pop r11
-      mov	byte[rax + 0],'('
-      mov	byte[rax + 1],'1'
-      mov	byte[rax + 2],' '
-      mov	byte[rax + 3],'<'
-      mov	byte[rax + 4],'<'
-      mov	byte[rax + 5],' '
-      mov	byte[rax + 6],'3'
-      mov	byte[rax + 7],')'
-      mov	byte[rax + 8],' '
-      mov	byte[rax + 9],'*'
-      mov	byte[rax + 10],' '
-      mov	byte[rax + 11],'y'
-      mov	byte[rax + 12],':'
-      mov	byte[rax + 13],' '
-      mov	byte[rax + 14],0
-      mov	[rbp - 1400],rax
-      mov	rdi,[rbp-1400]
+      mov	[rbp -  1032],rax
+      mov	rdi,[rbp-608]
+      push	r10
+      push	r11
+      call	pointsqrLen
+      pop	r11
+      pop	r10
+      mov	[rbp -  1048],rax
+      mov	rdi,[rbp-1048]
+      push	r10
+      push	r11
+      call	toString
+      pop	r11
+      pop	r10
+      mov	[rbp -  1056],rax
+      mov	rdi,[rbp-1056]
       push	r10
       push	r11
       mov	rax,0
-      call	print
+      call	println
       pop	r11
       pop	r10
-      mov	[rbp -  1408],rax
-      mov	r10,1
-      shl	r10,3
-      mov	[rbp - 1416],r10
-      mov	rdi,[rbp-1200]
-      mov	rsi,[rbp-1416]
+      mov	[rbp -  1064],rax
+      mov	rdi,[rbp-608]
+      mov	rsi,[rbp-624]
       push	r10
       push	r11
-      call	vectorscalarInPlaceMultiply
+      call	pointsqrDis
       pop	r11
       pop	r10
-      mov	[rbp -  1432],rax
+      mov	[rbp -  1080],rax
+      mov	rdi,[rbp-1080]
+      push	r10
+      push	r11
+      call	toString
+      pop	r11
+      pop	r10
+      mov	[rbp -  1088],rax
+      mov	rdi,[rbp-1088]
+      push	r10
+      push	r11
+      mov	rax,0
+      call	println
+      pop	r11
+      pop	r10
+      mov	[rbp -  1096],rax
+      mov	rdi,[rbp-640]
+      mov	rsi,[rbp-592]
+      push	r10
+      push	r11
+      call	pointsqrDis
+      pop	r11
+      pop	r10
+      mov	[rbp -  1112],rax
+      mov	rdi,[rbp-1112]
+      push	r10
+      push	r11
+      call	toString
+      pop	r11
+      pop	r10
+      mov	[rbp -  1120],rax
+      mov	rdi,[rbp-1120]
+      push	r10
+      push	r11
+      mov	rax,0
+      call	println
+      pop	r11
+      pop	r10
+      mov	[rbp -  1128],rax
+      mov	rdi,[rbp-624]
+      mov	rsi,[rbp-592]
+      push	r10
+      push	r11
+      call	pointdot
+      pop	r11
+      pop	r10
+      mov	[rbp -  1144],rax
+      mov	rdi,[rbp-1144]
+      push	r10
+      push	r11
+      call	toString
+      pop	r11
+      pop	r10
+      mov	[rbp -  1152],rax
+      mov	rdi,[rbp-1152]
+      push	r10
+      push	r11
+      mov	rax,0
+      call	println
+      pop	r11
+      pop	r10
+      mov	[rbp -  1160],rax
+      mov	rdi,[rbp-608]
+      mov	rsi,[rbp-640]
+      push	r10
+      push	r11
+      call	pointcross
+      pop	r11
+      pop	r10
+      mov	[rbp -  1176],rax
       mov	rdi,rax
       push	r10
       push	r11
-      call	vectortostring
+      mov	rax,0
+      call	pointprintPoint
       pop	r11
       pop	r10
-      mov	[rbp -  1440],rax
-      mov	rdi,[rbp-1440]
+      mov	[rbp -  1184],rax
+      mov	rdi,[rbp-592]
       push	r10
       push	r11
       mov	rax,0
-      call	println
+      call	pointprintPoint
       pop	r11
       pop	r10
-      mov	[rbp -  1448],rax
+      mov	[rbp -  1200],rax
+      mov	rdi,[rbp-608]
+      push	r10
+      push	r11
+      mov	rax,0
+      call	pointprintPoint
+      pop	r11
+      pop	r10
+      mov	[rbp -  1216],rax
+      mov	rdi,[rbp-624]
+      push	r10
+      push	r11
+      mov	rax,0
+      call	pointprintPoint
+      pop	r11
+      pop	r10
+      mov	[rbp -  1232],rax
+      mov	rdi,[rbp-640]
+      push	r10
+      push	r11
+      mov	rax,0
+      call	pointprintPoint
+      pop	r11
+      pop	r10
+      mov	[rbp -  1248],rax
       mov	rax,0
       mov	rsp,rbp
       pop rbp

@@ -32,8 +32,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="262">
-              <caret line="2333" column="9" selection-start-line="2333" selection-start-column="9" selection-end-line="2333" selection-end-column="9" />
+            <state relative-caret-position="107">
+              <caret line="2332" column="8" selection-start-line="2332" selection-start-column="8" selection-end-line="2332" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -309,7 +309,7 @@
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5305499" side_tool="true" weight="0.6906475" />
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.46945012" visible="true" weight="0.10647482" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.46945012" visible="true" weight="0.3294964" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49932975" weight="0.32952926" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
@@ -724,8 +724,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="2333" column="9" selection-start-line="2333" selection-start-column="9" selection-end-line="2333" selection-end-column="9" />
+        <state relative-caret-position="107">
+          <caret line="2332" column="8" selection-start-line="2332" selection-start-column="8" selection-end-line="2332" selection-end-column="8" />
         </state>
       </provider>
     </entry>
