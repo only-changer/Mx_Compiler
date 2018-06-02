@@ -2,10 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="014ac6d6-8e40-455f-95b1-dff8859644ca" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/a.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hello.asm" beforeDir="false" afterPath="$PROJECT_DIR$/hello.asm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hello.o" beforeDir="false" afterPath="$PROJECT_DIR$/hello.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -30,8 +26,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="89">
-              <caret line="2332" column="7" selection-start-line="2332" selection-start-column="7" selection-end-line="2332" selection-end-column="7" />
+            <state relative-caret-position="177">
+              <caret line="1686" column="21" selection-start-line="1686" selection-start-column="21" selection-end-line="1686" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -137,9 +133,9 @@
       <find>MULti</find>
       <find>rax</find>
       <find>funcinit</find>
-      <find>opcom</find>
       <find>err</find>
       <find>clarr</find>
+      <find>opcom</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -722,8 +718,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="89">
-          <caret line="2332" column="7" selection-start-line="2332" selection-start-column="7" selection-end-line="2332" selection-end-column="7" />
+        <state relative-caret-position="177">
+          <caret line="1686" column="21" selection-start-line="1686" selection-start-column="21" selection-end-line="1686" selection-end-column="21" />
         </state>
       </provider>
     </entry>

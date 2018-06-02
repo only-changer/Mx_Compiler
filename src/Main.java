@@ -1684,7 +1684,7 @@ class MyVisitor extends MxBaseVisitor<check>
                     if (regs.containsKey(quad.z.name))
                         quad.z.name = regs.get(quad.z.name).toString() + "temp";
 
-                    System.out.println("????");
+                   // System.out.println("????");
                     quad.z.add(k);
                     chk.code.push(quad);
                     cla = "";
