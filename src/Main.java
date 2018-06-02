@@ -237,6 +237,7 @@ class MyVisitor extends MxBaseVisitor<check>
     boolean isloop = false;
     String clname = new String();
     Integer keytemp = new Integer(0);
+    String fyi = new String();
     MyVisitor()
     {
         cla = "";
@@ -1281,24 +1282,35 @@ class MyVisitor extends MxBaseVisitor<check>
                 System.exit(-1);
             }
             boolean constfunc = false;
-            if (s.equals("size") && cla.equals("001"))
-                if (defcom.containsKey(arrname))
+            if (s.contains("size") && cla.equals("001"))
+            {
+
+                quard quad = new quard();
+                quad.z.name = temp.toString() + "temp";
+                quad.op = "+";
+                if (regs.containsKey(arrname))
+                    quad.y.name = regs.get(arrname).toString() + "temp";
+                else if (!classname.equals("") && defclass.get(classname).vars.containsKey(arrname))
                 {
-                    quard quad = new quard();
-                    quad.z.name = temp.toString() + "temp";
-                    quad.op = "+";
-                    if (regs.containsKey(arrname))
-                        quad.y.name = regs.get(arrname).toString() + "temp";
-                    else quad.y.name = arrname;
+                    quad.y.name = keytemp.toString() + "temp";
                     varible k = new varible();
-                    k.name = "0";
+                    k.name = defclass.get(classname).vars.get(arrname).toString();
                     quad.y.add(k);
-                    quad.x.name = "0";
-                    ++temp;
-                    if (temp > maxtemp) maxtemp = temp;
-                    chk.code.push(quad);
-                    constfunc = true;
                 }
+                else
+                {
+                    quad.y.name = arrname;
+                }
+                varible k = new varible();
+                k.name = "0";
+                quad.y.add(k);
+                quad.x.name = "0";
+                ++temp;
+                if (temp > maxtemp) maxtemp = temp;
+                chk.code.push(quad);
+                constfunc = true;
+
+            }
             if (s.equals("length") && cla.equals("002"))
             {
                 quard quad = new quard();
@@ -1338,7 +1350,7 @@ class MyVisitor extends MxBaseVisitor<check>
                 else
                 {
                     k.name = strname;
-                    if (strname.contains("()")) k.name = "rax";
+                    if (strname.contains("(")) k.name = "rax";
                     quad.y.add(k);
                 }
                 quad.y.name = temp.toString() + "temp";
@@ -1446,18 +1458,25 @@ class MyVisitor extends MxBaseVisitor<check>
                     quard q = new quard();
                     Integer originaddr = new Integer(addr);
                     Integer origintemmp = new Integer(temp);
-                     if (!c.equals(""))
-                     {
-                         if (regs.containsKey(curla))
-                         {
-
-                             varible k = new varible();
-                             k.name = regs.get(curla).toString() + "temp";
-                             ++temp;
-                             if (temp > maxtemp) maxtemp = temp;
-                             q.y.add(k);
-                         }
-                     }
+                    if ((!c.equals("")) && (!constfunc))
+                    {
+                        if (regs.containsKey(curla))
+                        {
+                            varible k = new varible();
+                            k.name = regs.get(curla).toString() + "temp";
+                            ++temp;
+                            if (temp > maxtemp) maxtemp = temp;
+                            q.y.add(k);
+                        }
+                    }
+                    if ((!classname.equals("")) && (!constfunc) && defclass.get(classname).defuns.containsKey(ctx.funname().getText()))
+                    {
+                        varible k = new varible();
+                        k.name = keytemp.toString() + "temp";
+                        ++temp;
+                        if (temp > maxtemp) maxtemp = temp;
+                        q.y.add(k);
+                    }
                     for (int i = 0; i < v.size(); ++i)
                     {
                         Vector vec = new Vector();
@@ -1471,32 +1490,74 @@ class MyVisitor extends MxBaseVisitor<check>
                             q.y.add(sv);
                         }
                     }
-                    if (!c.equals("") && !constfunc)
+
+                    if (!classname.equals(""))
                     {
-                        q.z.isfunc = true;
-                        q.op = "call";
-                        q.z.name = c + ctx.funname().getText();
-                        q.y.name = temp.toString() + "temp";
-                        chk.code.push(q);
-                        q = new quard();
-                        q.z.name = temp.toString() + "temp";
-                        chk.code.push(q);
-                        ++temp;
-                        if (temp > maxtemp) maxtemp = temp;
-                    }else
-                    if (!constfunc)
-                    {
-                        q.z.isfunc = true;
-                        q.op = "call";
-                        q.z.name = ctx.funname().getText();
-                        q.y.name = temp.toString() + "temp";
-                        chk.code.push(q);
-                        q = new quard();
-                        q.z.name = temp.toString() + "temp";
-                        chk.code.push(q);
-                        ++temp;
-                        if (temp > maxtemp) maxtemp = temp;
+                        if ((!classname.equals("")) && (!constfunc))
+                            if (defclass.get(classname).defuns.containsKey(ctx.funname().getText()))
+                            {
+                                q.z.isfunc = true;
+                                q.op = "call";
+                                q.z.name = classname + ctx.funname().getText();
+                                q.y.name = temp.toString() + "temp";
+                                chk.code.push(q);
+                                q = new quard();
+                                q.z.name = temp.toString() + "temp";
+                                chk.code.push(q);
+                                ++temp;
+                                if (temp > maxtemp) maxtemp = temp;
+                            }
+                            else
+                            {
+                                q.z.isfunc = true;
+                                q.op = "call";
+                                q.z.name = ctx.funname().getText();
+                                q.y.name = temp.toString() + "temp";
+                                chk.code.push(q);
+                                q = new quard();
+                                q.z.name = temp.toString() + "temp";
+                                chk.code.push(q);
+                                ++temp;
+                                if (temp > maxtemp) maxtemp = temp;
+                            }
                     }
+                    else if (!c.equals("001"))
+                    {
+                        if ((!c.equals("")) && (!constfunc))
+                        {
+                            q.z.isfunc = true;
+                            q.op = "call";
+                            q.z.name = c + ctx.funname().getText();
+                            q.y.name = temp.toString() + "temp";
+                            varible k = new varible();
+                            //System.out.println(fyi);
+                            if (fyi.contains("("))
+                            {
+                                k.name = "rax";
+                                q.y.add(k);
+                            }
+                            chk.code.push(q);
+                            q = new quard();
+                            q.z.name = temp.toString() + "temp";
+                            chk.code.push(q);
+                            ++temp;
+                            if (temp > maxtemp) maxtemp = temp;
+                        }
+                        else if (!constfunc)
+                        {
+                            q.z.isfunc = true;
+                            q.op = "call";
+                            q.z.name = ctx.funname().getText();
+                            q.y.name = temp.toString() + "temp";
+                            chk.code.push(q);
+                            q = new quard();
+                            q.z.name = temp.toString() + "temp";
+                            chk.code.push(q);
+                            ++temp;
+                            if (temp > maxtemp) maxtemp = temp;
+                        }
+                    }
+
                 }
             }
             else
@@ -1535,9 +1596,9 @@ class MyVisitor extends MxBaseVisitor<check>
                 }
                 int n = ctx.expr().size();
                 quard quad = new quard();
-                if (regs.containsKey(sname))
-                    quad.z.name = regs.get(sname).toString() + "temp";
-                else quad.z.name = sname;
+                // System.out.println(ctx.getText());
+                // System.out.println(ck0.code.last.z.name);
+                quad.z = new varible(ck0.code.last.z);
                 ++temp;
                 if (temp > maxtemp) maxtemp = temp;
                 quad.op = "arr";
@@ -1612,17 +1673,14 @@ class MyVisitor extends MxBaseVisitor<check>
                     chk.var.add(defclass.get(cla).defvars.get(ctx.varname().getText()).type);
                     quard quad = new quard();
                     quad.op = chk.var.get(0);
-                    Integer c = -1;
                     String s = new String();
-                    if (regs.containsKey(ctx.varname().getText()))
-                        s = regs.get(ctx.varname().getText()).toString() + "temp";
-                    else
-                    {
-                    }
-                    quad.x.name = ctx.varname().getText();
-                    quad.x.addr = defclass.get(cla).addr.get(ctx.varname().getText()).toString();
-                    quad.y.name = s;
-                    quad.y.addr = quad.x.addr;
+                    s = ctx.varname().getText();
+                    varible k = new varible();
+                    k.name = defclass.get(cla).vars.get(s).toString();
+                    quad.z.name = clname;
+                    if (regs.containsKey(quad.z.name))
+                        quad.z.name = regs.get(quad.z.name).toString() + "temp";
+                    quad.z.add(k);
                     chk.code.push(quad);
                     cla = "";
                 }
@@ -1647,22 +1705,21 @@ class MyVisitor extends MxBaseVisitor<check>
                     if (s.equals("this"))
                     {
                         quad.z.name = keytemp.toString() + "temp";
-                        varible k = new varible();
-                        k.name = s;
-                        //quad.z.add(k);
+                        clname = quad.z.name;
                         chk.code.push(quad);
-                    }else
-                    if (regs.containsKey(s))
+                    }
+                    else if (regs.containsKey(s))
                     {
                         s = regs.get(s).toString() + "temp";
                         quad.z.name = s;
                         chk.code.push(quad);
-                    } else
+                    }
+                    else
                     {
                         //System.out.println(s);
                         s = defclass.get(classname).vars.get(s).toString();
                         quad.z.name = keytemp.toString() + "temp";
-                     //   System.out.println(keytemp);
+                        //   System.out.println(keytemp);
                         varible k = new varible();
                         k.name = s;
                         quad.z.add(k);
@@ -1793,8 +1850,9 @@ class MyVisitor extends MxBaseVisitor<check>
                 // System.out.println("???????");
                 // System.out.println(ctx.getText());
                 String s = ctx.expr(0).getText();
-
+                fyi = s;
                 check ckk = visit(ctx.expr(0));
+                fyi = s;
                 quard q = ckk.code.last;
                 chk.code.add(ckk.code);
                 String sa = ckk.var.get(0);
@@ -1808,7 +1866,7 @@ class MyVisitor extends MxBaseVisitor<check>
                 if (defvars.containsKey(sa))
                 {
                     ty = defvars.get(sa).type;
-                    System.out.println(ty);
+                    //System.out.println(ty);
                 }
                 if (ty.equals("000"))
                 {
@@ -1818,6 +1876,24 @@ class MyVisitor extends MxBaseVisitor<check>
                     //System.out.println("???");
                     chk.var.addAll(ck.var);
                     chk.vars.addAll(ck.vars);
+                    chk.code.add(ck.code);
+                    //System.out.println(ctx.getText());
+                    if (defclass.get(classname).vars.containsKey(ck.code.last.x.name))
+                    {
+                        quard quad = new quard();
+                        quad.y = new varible(q.z);
+                        quad.z.name = temp.toString() + "temp";
+                        quad.op = "=";
+                        chk.code.push(quad);
+                        quad = new quard();
+                        varible k = new varible();
+                        quad.z.name = temp.toString() + "temp";
+                        ++temp;
+                        if (temp > maxtemp) maxtemp = temp;
+                        k.name = defclass.get(classname).vars.get(ck.code.last.x.name).toString();
+                        quad.z.add(k);
+                        chk.code.push(quad);
+                    }
                 }
                 else if (ty.contains("[]"))
                 {
@@ -1845,12 +1921,14 @@ class MyVisitor extends MxBaseVisitor<check>
                 }
                 else if (defclass.containsKey(ty))
                 {
-                    clname = ctx.expr(0).getText();
+                    if (!ctx.expr(0).getText().equals("this"))
+                        clname = ctx.expr(0).getText();
                     cla = ty;
                     check ck = visit(ctx.expr(1));
                     chk.var.addAll(ck.var);
                     chk.vars.addAll(ck.vars);
                     chk.code.add(ck.code);
+                    //System.out.println(ctx.getText());
                     if (defclass.get(ty).vars.containsKey(ck.code.last.x.name))
                     {
                         quard quad = new quard();
@@ -2243,8 +2321,8 @@ public class Main
 
     public static check main() throws Exception
     {
-      // File f = new File("E:/test.txt");
-         File f = new File("program.txt");
+        //File f = new File("E:/test.txt");
+          File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
         run(input);

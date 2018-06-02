@@ -5,7 +5,6 @@
       <change beforePath="$PROJECT_DIR$/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/a.out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hello.asm" beforeDir="false" afterPath="$PROJECT_DIR$/hello.asm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hello.o" beforeDir="false" afterPath="$PROJECT_DIR$/hello.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Irtox86.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Irtox86.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -21,7 +20,7 @@
       <file leaf-file-name="MxBaseVisitor.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MxBaseVisitor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
+            <state relative-caret-position="19">
               <caret line="19" column="7" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
             </state>
           </provider>
@@ -30,8 +29,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="2245" column="8" selection-start-line="2245" selection-start-column="8" selection-end-line="2245" selection-end-column="8" />
+            <state relative-caret-position="176">
+              <caret line="2323" column="10" selection-start-line="2323" selection-start-column="10" selection-end-line="2323" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -39,8 +38,8 @@
       <file leaf-file-name="Irtox86.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Irtox86.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="953" column="51" lean-forward="true" selection-start-line="953" selection-start-column="51" selection-end-line="953" selection-end-column="51" />
+            <state relative-caret-position="34">
+              <caret line="45" selection-start-line="45" selection-end-line="45" />
             </state>
           </provider>
         </entry>
@@ -110,13 +109,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>err</find>
-      <find>&quot;call&quot;</find>
-      <find>parseInt</find>
-      <find>&quot;&gt;&quot;</find>
-      <find>&quot;/&quot;</find>
-      <find>irr</find>
-      <find>b_f</find>
       <find>&quot;%&quot;</find>
       <find>&quot;!=&quot;</find>
       <find>q.z.params != null</find>
@@ -129,17 +121,24 @@
       <find>&quot;=&quot;</find>
       <find>funcin</find>
       <find>opr</find>
-      <find>opcom</find>
       <find>&quot;func</find>
       <find>defun</find>
       <find>keytemp</find>
       <find>ans.append</find>
       <find>clname</find>
-      <find>funname</find>
       <find>length</find>
       <find>&quot;str=</find>
-      <find>out</find>
+      <find>001size</find>
+      <find>001s</find>
+      <find>001</find>
       <find>funcinit</find>
+      <find>out</find>
+      <find>opcom</find>
+      <find>Multi</find>
+      <find>MULt</find>
+      <find>funname</find>
+      <find>MULti</find>
+      <find>rax</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -306,7 +305,7 @@
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5305499" side_tool="true" weight="0.6906475" />
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.46945012" visible="true" weight="0.31223023" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.46945012" visible="true" weight="0.23021583" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49932975" weight="0.32952926" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
@@ -698,13 +697,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MxBaseVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="19" column="7" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Mx.g4">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="836">
@@ -714,15 +706,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Irtox86.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="953" column="51" lean-forward="true" selection-start-line="953" selection-start-column="51" selection-end-line="953" selection-end-column="51" />
+        <state relative-caret-position="34">
+          <caret line="45" selection-start-line="45" selection-end-line="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MxBaseVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="19" column="7" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="2245" column="8" selection-start-line="2245" selection-start-column="8" selection-end-line="2245" selection-end-column="8" />
+        <state relative-caret-position="176">
+          <caret line="2323" column="10" selection-start-line="2323" selection-start-column="10" selection-end-line="2323" selection-end-column="10" />
         </state>
       </provider>
     </entry>
