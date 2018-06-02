@@ -1679,10 +1679,12 @@ class MyVisitor extends MxBaseVisitor<check>
                     varible k = new varible();
                     k.name = defclass.get(cla).vars.get(s).toString();
                     quad.z.name = clname;
-                    if (clname.contains("["))
+                    if (clname.contains("[") || clname.contains("."))
                         quad.z = new varible(clarr);
                     if (regs.containsKey(quad.z.name))
                         quad.z.name = regs.get(quad.z.name).toString() + "temp";
+
+                    System.out.println("????");
                     quad.z.add(k);
                     chk.code.push(quad);
                     cla = "";

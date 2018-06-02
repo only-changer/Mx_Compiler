@@ -6,8 +6,6 @@
       <change beforePath="$PROJECT_DIR$/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/a.out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hello.asm" beforeDir="false" afterPath="$PROJECT_DIR$/hello.asm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hello.o" beforeDir="false" afterPath="$PROJECT_DIR$/hello.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IDE/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IDE/MyVisitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/MyVisitor.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -32,8 +30,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="199">
-              <caret line="2330" column="10" selection-start-line="2330" selection-start-column="10" selection-end-line="2330" selection-end-column="10" />
+            <state relative-caret-position="80">
+              <caret line="2332" column="10" selection-start-line="2332" selection-start-column="10" selection-end-line="2332" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -112,7 +110,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>&quot;!=&quot;</find>
       <find>q.z.params != null</find>
       <find>opw</find>
       <find>&quot;++&quot;</find>
@@ -142,6 +139,7 @@
       <find>funcinit</find>
       <find>opcom</find>
       <find>err</find>
+      <find>clarr</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -309,7 +307,7 @@
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5305499" side_tool="true" weight="0.6906475" />
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.46945012" visible="true" weight="0.1971223" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.46945012" visible="true" weight="0.36834532" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49932975" weight="0.32952926" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
@@ -724,8 +722,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="2330" column="10" selection-start-line="2330" selection-start-column="10" selection-end-line="2330" selection-end-column="10" />
+        <state relative-caret-position="80">
+          <caret line="2332" column="10" selection-start-line="2332" selection-start-column="10" selection-end-line="2332" selection-end-column="10" />
         </state>
       </provider>
     </entry>
