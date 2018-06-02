@@ -951,6 +951,7 @@ public class Irtox86
                 Integer length = new Integer(end - start + 1);
                 length *= 8;
                 System.out.print("      ");
+                if (length < 1000) length = 1000;
                 System.out.println("sub\trsp," + length.toString());
                 if (q.z.params != null )
                 {
