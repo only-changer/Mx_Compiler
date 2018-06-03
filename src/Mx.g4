@@ -63,8 +63,7 @@ expr    :   funname '(' exprs? ')'
         |   op = ('++' | '--') expr
         |   opf = ('-' | '!' | '~') expr
         |   expr op =('++'  | '--')
-        |   expr op = ('*' | '/') expr
-        |   expr op = '%' expr
+        |   expr op = ('*' | '/' | '%') expr
         |   expr op=('+' |'-' ) expr
         |   expr op = ('>>' | '<<') expr
         |   expr op = '&' expr

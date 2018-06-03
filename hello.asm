@@ -797,505 +797,12 @@ dp:
       cmp	r10,1
       setle r10b
       movzx r10,r10b
-      mov	[rbp - 928],r10
-      mov	 r10,[rbp-928]
+      mov	[rbp - 56],r10
+      mov	 r10,[rbp-56]
       cmp	 r10,0
       je	_0else
 _0if:
-      mov	r10,233
-      imul	r10,7
-      mov	[rbp - 56],r10
-      mov	eax,7
-      mov	r10d,[rbp - 56]
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 64],rdx
-      mov	r10,233
-      imul	r10,7
-      mov	[rbp - 72],r10
-      mov	eax,[rbp - 64]
-      mov	r10d,[rbp - 72]
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 80],rdx
-      mov	r10,233
-      imul	r10,7
-      mov	[rbp - 88],r10
-      mov	eax,[rbp - 80]
-      mov	r10d,[rbp - 88]
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 96],rdx
-      mov	r10,233
-      imul	r10,7
-      mov	[rbp - 104],r10
-      mov	eax,[rbp - 96]
-      mov	r10d,[rbp - 104]
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 112],rdx
-      mov	r10,233
-      imul	r10,7
-      mov	[rbp - 120],r10
-      mov	eax,[rbp - 112]
-      mov	r10d,[rbp - 120]
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 128],rdx
-      mov	r10,233
-      imul	r10,7
-      mov	[rbp - 136],r10
-      mov	eax,[rbp - 128]
-      mov	r10d,[rbp - 136]
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 144],rdx
-      mov	r10,233
-      imul	r10,7
-      mov	[rbp - 152],r10
-      mov	eax,[rbp - 144]
-      mov	r10d,[rbp - 152]
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 160],rdx
-      mov	r10,233
-      imul	r10,7
-      mov	[rbp - 168],r10
-      mov	eax,[rbp - 160]
-      mov	r10d,[rbp - 168]
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 176],rdx
-      mov	r10,233
-      imul	r10,7
-      mov	[rbp - 184],r10
-      mov	eax,[rbp - 176]
-      mov	r10d,[rbp - 184]
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 192],rdx
-      mov	r10,233
-      imul	r10,7
-      mov	[rbp - 200],r10
-      mov	eax,[rbp - 192]
-      mov	r10d,[rbp - 200]
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 208],rdx
-      mov	r10,233
-      imul	r10,7
-      mov	[rbp - 216],r10
-      mov	eax,[rbp - 208]
-      mov	r10d,[rbp - 216]
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 224],rdx
-      mov	r10,233
-      imul	r10,7
-      mov	[rbp - 232],r10
-      mov	eax,[rbp - 224]
-      mov	r10d,[rbp - 232]
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 240],rdx
-      mov	r10,233
-      imul	r10,7
-      mov	[rbp - 248],r10
-      mov	eax,[rbp - 240]
-      mov	r10d,[rbp - 248]
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 256],rdx
-      mov	r10,233
-      imul	r10,7
-      mov	[rbp - 264],r10
-      mov	eax,[rbp - 256]
-      mov	r10d,[rbp - 264]
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 272],rdx
-      mov	r10,233
-      imul	r10,7
-      mov	[rbp - 280],r10
-      mov	eax,[rbp - 272]
-      mov	r10d,[rbp - 280]
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 288],rdx
-      mov	r10,233
-      imul	r10,7
-      mov	[rbp - 296],r10
-      mov	eax,[rbp - 288]
-      mov	r10d,[rbp - 296]
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 304],rdx
-      mov	r10,233
-      imul	r10,7
-      mov	[rbp - 312],r10
-      mov	eax,[rbp - 304]
-      mov	r10d,[rbp - 312]
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 320],rdx
-      mov	r10,233
-      imul	r10,7
-      mov	[rbp - 328],r10
-      mov	eax,[rbp - 320]
-      mov	r10d,[rbp - 328]
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 336],rdx
-      mov	r10,233
-      imul	r10,7
-      mov	[rbp - 344],r10
-      mov	eax,[rbp - 336]
-      mov	r10d,[rbp - 344]
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 352],rdx
-      mov	r10,233
-      imul	r10,7
-      mov	[rbp - 360],r10
-      mov	eax,[rbp - 352]
-      mov	r10d,[rbp - 360]
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 368],rdx
-      mov	r10,233
-      imul	r10,7
-      mov	[rbp - 376],r10
-      mov	eax,[rbp - 368]
-      mov	r10d,[rbp - 376]
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 384],rdx
-      mov	r10,233
-      imul	r10,7
-      mov	[rbp - 392],r10
-      mov	eax,[rbp - 384]
-      mov	r10d,[rbp - 392]
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 400],rdx
-      mov	r10,233
-      imul	r10,7
-      mov	[rbp - 408],r10
-      mov	eax,[rbp - 400]
-      mov	r10d,[rbp - 408]
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 416],rdx
-      mov	r10,233
-      imul	r10,7
-      mov	[rbp - 424],r10
-      mov	eax,[rbp - 416]
-      mov	r10d,[rbp - 424]
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 432],rdx
-      mov	r10,233
-      imul	r10,7
-      mov	[rbp - 440],r10
-      mov	eax,[rbp - 432]
-      mov	r10d,[rbp - 440]
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 448],rdx
-      mov	r10,233
-      imul	r10,7
-      mov	[rbp - 456],r10
-      mov	eax,[rbp - 448]
-      mov	r10d,[rbp - 456]
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 464],rdx
-      mov	r10,233
-      imul	r10,7
-      mov	[rbp - 472],r10
-      mov	eax,[rbp - 464]
-      mov	r10d,[rbp - 472]
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 480],rdx
-      mov	r10,233
-      imul	r10,7
-      mov	[rbp - 488],r10
-      mov	eax,[rbp - 480]
-      mov	r10d,[rbp - 488]
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 496],rdx
-      mov	r10,233
-      imul	r10,7
-      mov	[rbp - 504],r10
-      mov	eax,[rbp - 496]
-      mov	r10d,[rbp - 504]
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 512],rdx
-      mov	r10,233
-      imul	r10,7
-      mov	[rbp - 520],r10
-      mov	eax,[rbp - 512]
-      mov	r10d,[rbp - 520]
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 528],rdx
-      mov	r10,233
-      imul	r10,7
-      mov	[rbp - 536],r10
-      mov	eax,[rbp - 528]
-      mov	r10d,[rbp - 536]
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 544],rdx
-      mov	r10,233
-      imul	r10,7
-      mov	[rbp - 552],r10
-      mov	eax,[rbp - 544]
-      mov	r10d,[rbp - 552]
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 560],rdx
-      mov	r10,233
-      imul	r10,7
-      mov	[rbp - 568],r10
-      mov	eax,[rbp - 560]
-      mov	r10d,[rbp - 568]
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 576],rdx
-      mov	r10,233
-      imul	r10,7
-      mov	[rbp - 584],r10
-      mov	eax,[rbp - 576]
-      mov	r10d,[rbp - 584]
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 592],rdx
-      mov	r10,233
-      imul	r10,7
-      mov	[rbp - 600],r10
-      mov	eax,[rbp - 592]
-      mov	r10d,[rbp - 600]
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 608],rdx
-      mov	r10,233
-      imul	r10,7
-      mov	[rbp - 616],r10
-      mov	eax,[rbp - 608]
-      mov	r10d,[rbp - 616]
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 624],rdx
-      mov	r10,233
-      imul	r10,7
-      mov	[rbp - 632],r10
-      mov	eax,[rbp - 624]
-      mov	r10d,[rbp - 632]
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 640],rdx
-      mov	r10,233
-      imul	r10,7
-      mov	[rbp - 648],r10
-      mov	eax,[rbp - 640]
-      mov	r10d,[rbp - 648]
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 656],rdx
-      mov	r10,233
-      imul	r10,7
-      mov	[rbp - 664],r10
-      mov	eax,[rbp - 656]
-      mov	r10d,[rbp - 664]
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 672],rdx
-      mov	r10,233
-      imul	r10,7
-      mov	[rbp - 680],r10
-      mov	eax,[rbp - 672]
-      mov	r10d,[rbp - 680]
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 688],rdx
-      mov	r10,233
-      imul	r10,7
-      mov	[rbp - 696],r10
-      mov	eax,[rbp - 688]
-      mov	r10d,[rbp - 696]
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 704],rdx
-      mov	r10,233
-      imul	r10,7
-      mov	[rbp - 712],r10
-      mov	eax,[rbp - 704]
-      mov	r10d,[rbp - 712]
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 720],rdx
-      mov	r10,233
-      imul	r10,7
-      mov	[rbp - 728],r10
-      mov	eax,[rbp - 720]
-      mov	r10d,[rbp - 728]
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 736],rdx
-      mov	r10,233
-      imul	r10,7
-      mov	[rbp - 744],r10
-      mov	eax,[rbp - 736]
-      mov	r10d,[rbp - 744]
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 752],rdx
-      mov	r10,233
-      imul	r10,7
-      mov	[rbp - 760],r10
-      mov	eax,[rbp - 752]
-      mov	r10d,[rbp - 760]
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 768],rdx
-      mov	r10,233
-      imul	r10,7
-      mov	[rbp - 776],r10
-      mov	eax,[rbp - 768]
-      mov	r10d,[rbp - 776]
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 784],rdx
-      mov	r10,233
-      imul	r10,7
-      mov	[rbp - 792],r10
-      mov	eax,[rbp - 784]
-      mov	r10d,[rbp - 792]
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 800],rdx
-      mov	r10,233
-      imul	r10,7
-      mov	[rbp - 808],r10
-      mov	eax,[rbp - 800]
-      mov	r10d,[rbp - 808]
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 816],rdx
-      mov	r10,233
-      imul	r10,7
-      mov	[rbp - 824],r10
-      mov	eax,[rbp - 816]
-      mov	r10d,[rbp - 824]
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 832],rdx
-      mov	r10,233
-      imul	r10,7
-      mov	[rbp - 840],r10
-      mov	eax,[rbp - 832]
-      mov	r10d,[rbp - 840]
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 848],rdx
-      mov	r10,233
-      imul	r10,7
-      mov	[rbp - 856],r10
-      mov	eax,[rbp - 848]
-      mov	r10d,[rbp - 856]
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 864],rdx
-      mov	r10,233
-      imul	r10,7
-      mov	[rbp - 872],r10
-      mov	eax,[rbp - 864]
-      mov	r10d,[rbp - 872]
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 880],rdx
-      mov	r10,233
-      imul	r10,7
-      mov	[rbp - 888],r10
-      mov	eax,[rbp - 880]
-      mov	r10d,[rbp - 888]
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 896],rdx
-      mov	r10,233
-      imul	r10,7
-      mov	[rbp - 904],r10
-      mov	eax,[rbp - 896]
-      mov	r10d,[rbp - 904]
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 912],rdx
-      mov	eax,[rbp - 912]
-      mov	r10d,233
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	[rbp - 920],rdx
-      mov	r10,[rbp - 920]
-      mov	[rbp - 48],r10
+      mov	qword[rbp - 48],36
       mov	rax,[rbp -  48]
       mov	rsp,rbp
       pop rbp
@@ -1303,60 +810,60 @@ _0if:
       jmp	_0ifback
 _0else:
 _0ifback:
-      mov	qword[rbp - 936],0
-      mov	qword[rbp - 944],2
+      mov	qword[rbp - 64],0
+      mov	qword[rbp - 72],2
 _0for:
       mov	r10,[rbp - 40]
-      xor	r10,[rbp - 944]
-      mov	[rbp - 976],r10
-      mov	r10,[rbp - 976]
+      xor	r10,[rbp - 72]
+      mov	[rbp - 104],r10
+      mov	r10,[rbp - 104]
       cmp	r10,[rbp - 40]
       setl r10b
       movzx r10,r10b
-      mov	[rbp - 984],r10
-      mov	 r10,[rbp-984]
+      mov	[rbp - 112],r10
+      mov	 r10,[rbp-112]
       cmp	 r10,0
       je	_1else
 _1if:
       mov	r10,[rbp - 40]
-      xor	r10,[rbp - 944]
-      mov	[rbp - 952],r10
-      mov	rdi,[rbp-952]
+      xor	r10,[rbp - 72]
+      mov	[rbp - 80],r10
+      mov	rdi,[rbp-80]
       push	r10
       push	r11
       call	dp
       pop	r11
       pop	r10
-      mov	[rbp -  960],rax
-      mov	rdi,[rbp-936]
-      mov	rsi,[rbp-960]
+      mov	[rbp -  88],rax
+      mov	rdi,[rbp-64]
+      mov	rsi,[rbp-88]
       push	r10
       push	r11
       call	add
       pop	r11
       pop	r10
-      mov	[rbp -  968],rax
-      mov	r10,[rbp - 968]
-      mov	[rbp - 936],r10
+      mov	[rbp -  96],rax
+      mov	r10,[rbp - 96]
+      mov	[rbp - 64],r10
       jmp	_1ifback
 _1else:
 _1ifback:
 _0while:
-      mov	r10,[rbp - 944]
-      mov	[rbp - 992],r10
-      mov	r10,[rbp - 944]
+      mov	r10,[rbp - 72]
+      mov	[rbp - 120],r10
+      mov	r10,[rbp - 72]
       add	r10,1
-      mov	[rbp - 944],r10
-      mov	r10,[rbp - 944]
+      mov	[rbp - 72],r10
+      mov	r10,[rbp - 72]
       cmp	r10,[rbp - 40]
       setle r10b
       movzx r10,r10b
-      mov	[rbp - 1000],r10
-      mov	r10,[rbp -  1000]
+      mov	[rbp - 128],r10
+      mov	r10,[rbp -  128]
       cmp	r10,1
       je	_0for
 _0forback:
-      mov	rax,[rbp -  936]
+      mov	rax,[rbp -  64]
       mov	rsp,rbp
       pop rbp
       ret
@@ -1372,45 +879,45 @@ main:
       call	getInt
       pop	r11
       pop	r10
-      mov	[rbp -  1024],rax
-      mov	r10,[rbp - 1024]
-      mov	[rbp - 1016],r10
-      mov	qword[rbp - 1008],1
+      mov	[rbp -  152],rax
+      mov	r10,[rbp - 152]
+      mov	[rbp - 144],r10
+      mov	qword[rbp - 136],1
 _1for:
-      mov	rdi,[rbp-1008]
+      mov	rdi,[rbp-136]
       push	r10
       push	r11
       call	dp
       pop	r11
       pop	r10
-      mov	[rbp -  1032],rax
-      mov	rdi,[rbp-1032]
+      mov	[rbp -  160],rax
+      mov	rdi,[rbp-160]
       push	r10
       push	r11
       call	toString
       pop	r11
       pop	r10
-      mov	[rbp -  1040],rax
-      mov	rdi,[rbp-1040]
+      mov	[rbp -  168],rax
+      mov	rdi,[rbp-168]
       push	r10
       push	r11
       mov	rax,0
       call	println
       pop	r11
       pop	r10
-      mov	[rbp -  1048],rax
+      mov	[rbp -  176],rax
 _1while:
-      mov	r10,[rbp - 1008]
-      mov	[rbp - 1056],r10
-      mov	r10,[rbp - 1008]
+      mov	r10,[rbp - 136]
+      mov	[rbp - 184],r10
+      mov	r10,[rbp - 136]
       add	r10,1
-      mov	[rbp - 1008],r10
-      mov	r10,[rbp - 1008]
-      cmp	r10,[rbp - 1016]
+      mov	[rbp - 136],r10
+      mov	r10,[rbp - 136]
+      cmp	r10,[rbp - 144]
       setle r10b
       movzx r10,r10b
-      mov	[rbp - 1064],r10
-      mov	r10,[rbp -  1064]
+      mov	[rbp - 192],r10
+      mov	r10,[rbp -  192]
       cmp	r10,1
       je	_1for
 _1forback:
