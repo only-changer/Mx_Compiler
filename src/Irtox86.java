@@ -1659,9 +1659,11 @@ public class Irtox86
                 start = Integer.parseInt(q.y.name);
                 end = Integer.parseInt(q.x.name);
                 Integer length = new Integer(end - start + 1);
+                length += 15;
                 length *= 8;
                 System.out.print("      ");
                 //if (length < 1000) length = 1000;
+
                 System.out.println("sub\trsp," + length.toString());
                 if (q.z.params != null)
                 {
@@ -1698,7 +1700,7 @@ public class Irtox86
                             Integer addr = new Integer(tmp - start);
                             addr = (addr + 1) * 8;
                             Integer I = new Integer(i);
-                            I = q.z.params.size() - I + 2;
+                            I = q.z.params.size() - I + 1;
                             I *= 8;
                             System.out.print("      ");
                             System.out.println("mov\tr10,[rbp + " + I.toString() + "]");
