@@ -1101,14 +1101,18 @@ class MyVisitor extends MxBaseVisitor<check>
         else if (ctx.opf != null)
         {
             irr = new ir();
-            quard quads = new quard();
-            quads.z.name = "_" + fors.toString() + "for";
-            quads.op = "label!!!!!!!!!";
             if (ctx.expr1() != null)
             {
                 ck = visit(ctx.expr1());
                 chk.code.add(ck.code);
             }
+            quard quads = new quard();
+            quads.op = "goto";
+            quads.z.name =fors.toString() + "whilecheck";
+            chk.code.push(quads);
+            quads = new quard();
+            quads.z.name = "_" + fors.toString() + "for";
+            quads.op = "label!!!!!!!!!";
             chk.code.push(quads);
             chk.code.add(code_for);
             quads = new quard();
@@ -1116,6 +1120,10 @@ class MyVisitor extends MxBaseVisitor<check>
             quads.op = "label!!!!!!!!!";
             chk.code.push(quads);
             chk.code.add(code_temp);
+            quads = new quard();
+            quads.z.name = "_" + fors.toString() + "whilecheck";
+            quads.op = "label!!!!!!!!!";
+            chk.code.push(quads);
             if (ctx.expr2() != null)
             {
                 ck = visit(ctx.expr2());
@@ -1125,7 +1133,6 @@ class MyVisitor extends MxBaseVisitor<check>
                 quad.z.name = "_" + fors.toString() + "for";
                 quad.y.name = ck.code.last.z.name;
                 chk.code.push(quad);
-
             }
             else
             {
@@ -2492,8 +2499,8 @@ public class Main
 
     public static check main() throws Exception
     {
-       // File f = new File("E:/test.txt");
-         File f = new File("program.txt");
+      //  File f = new File("E:/test.txt");
+        File f = new File("program.txt");
 
         InputStream input = null;
         input = new FileInputStream(f);
