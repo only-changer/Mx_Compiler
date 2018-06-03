@@ -707,7 +707,7 @@ class MyVisitor extends MxBaseVisitor<check>
         chk.code.push(quad);
         quad = new quard();
         quad.y.name = "0";
-        quad.x.name = maxtemp.toString();
+
         quad.op = "funcinit";
         Integer paddr = new Integer(addr);
         if (!classname.equals(""))
@@ -729,8 +729,10 @@ class MyVisitor extends MxBaseVisitor<check>
                 quad.z.add(k);
             }
         }
-        chk.code.push(quad);
+
         check ck = visit(ctx.block());
+        chk.code.push(quad);
+        quad.x.name = maxtemp.toString();
         if (ismain) chk.code.add(global);
         chk.code.add(ck.code);
         for (String key : ck.defvars.keySet())
@@ -748,7 +750,8 @@ class MyVisitor extends MxBaseVisitor<check>
         Vector<Vector> vv = ck.vars;
         chk.defvars.clear();
         defvars = origin;
-        // temp = origintemp;
+        temp = 0;
+        maxtemp = 0;
         quard q = new quard();
         q.y.name = "null";
         q.op = "ret";
@@ -2322,6 +2325,23 @@ class MyVisitor extends MxBaseVisitor<check>
         //  System.out.println(ctx.getText());
         Integer tmp = new Integer(0);
         String arrsize = new String();
+        if (ctx.expr().size() > 5)
+        {
+            quard quad = new quard();
+            quad.op = "multiarr";
+            Integer kk = new Integer(0);
+            quad.z.name = kk.toString() + "temp";
+            temp += 100;
+            if (temp > maxtemp) maxtemp = temp;
+            for (int i = 0;i < ctx.expr().size();++i)
+            {
+                check ck = visit(ctx.expr(i));
+                varible k = new varible();
+                k.name = ck.code.last.z.name;
+                quad.y.add(k);
+                chk.code.push(quad);
+            }
+        }else
         for (int i = 0; i < ctx.expr().size(); ++i)
         {
             check ck = visit(ctx.expr(i));

@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="014ac6d6-8e40-455f-95b1-dff8859644ca" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/a.out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hello.asm" beforeDir="false" afterPath="$PROJECT_DIR$/hello.asm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hello.o" beforeDir="false" afterPath="$PROJECT_DIR$/hello.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Irtox86.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Irtox86.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -29,8 +31,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="151">
-              <caret line="2501" column="8" selection-start-line="2501" selection-start-column="8" selection-end-line="2501" selection-end-column="8" />
+            <state relative-caret-position="183">
+              <caret line="2521" column="8" selection-start-line="2521" selection-start-column="8" selection-end-line="2521" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -38,8 +40,8 @@
       <file leaf-file-name="Irtox86.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Irtox86.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="131">
-              <caret line="1201" column="24" lean-forward="true" selection-start-line="1201" selection-start-column="24" selection-end-line="1201" selection-end-column="24" />
+            <state relative-caret-position="217">
+              <caret line="1663" column="18" selection-start-line="1663" selection-start-column="18" selection-end-line="1663" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -56,8 +58,8 @@
       <file leaf-file-name="String.java" pinned="false" current-in-tab="false">
         <entry file="jar://C:/Program Files (x86)/Java/jdk1.8.0_161/src.zip!/java/lang/String.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="11704">
-              <caret line="667" column="6" selection-start-line="667" selection-start-column="6" selection-end-line="667" selection-end-column="6" />
+            <state relative-caret-position="190">
+              <caret line="676" column="10" lean-forward="true" selection-start-line="676" selection-start-column="10" selection-end-line="676" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -118,11 +120,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>keytemp</find>
-      <find>ans.append</find>
-      <find>clname</find>
-      <find>length</find>
-      <find>&quot;str=</find>
       <find>001size</find>
       <find>001s</find>
       <find>001</find>
@@ -145,9 +142,14 @@
       <find>&quot;&amp;&quot;</find>
       <find>opcom</find>
       <find>&quot;==&quot;</find>
-      <find>expr1</find>
       <find>for</find>
+      <find>expr1</find>
       <find>&quot;for&quot;</find>
+      <find>&quot;&gt;&gt;&quot;</find>
+      <find />
+      <find>funcin</find>
+      <find>func</find>
+      <find>maxtemp</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -166,7 +168,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="1">
     <option name="x" value="543" />
     <option name="y" value="5" />
     <option name="width" value="1300" />
@@ -206,7 +208,7 @@
     <property name="$PROJECT_DIR$/src/Mx.g4::/gen-listener" value="true" />
     <property name="$PROJECT_DIR$/src/Mx.g4::/gen-visitor" value="true" />
     <property name="$PROJECT_DIR$/src/Mx.g4::/output-dir" value="E:\Java_Files\IDE\src" />
-    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://E:/Java_Files/IDE/src/MxListener.java&#10;heck&#9;PSI&#9;JAVA://check" />
+    <property name="SearchEverywhereHistoryKey" value=" &#9;FILE&#9;jar://C:/Program Files (x86)/Java/jdk1.8.0_161/src.zip!/java/lang/String.java&#10;heck&#9;PSI&#9;JAVA://check" />
     <property name="last_opened_file_path" value="F:/antlr-4.7-complete.jar!/" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
@@ -314,7 +316,7 @@
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5305499" side_tool="true" weight="0.6906475" />
       <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.46945012" visible="true" weight="0.23884892" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.46945012" visible="true" weight="0.19280575" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49932975" weight="0.32952926" />
       <window_info id="Capture Tool" order="2" />
@@ -370,7 +372,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="2" />
+      <option name="time" value="6" />
     </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
@@ -693,13 +695,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files (x86)/Java/jdk1.8.0_161/src.zip!/java/lang/String.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="11704">
-          <caret line="667" column="6" selection-start-line="667" selection-start-column="6" selection-end-line="667" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/MxBaseVisitor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="361">
@@ -723,15 +718,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Irtox86.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="131">
-          <caret line="1201" column="24" lean-forward="true" selection-start-line="1201" selection-start-column="24" selection-end-line="1201" selection-end-column="24" />
+        <state relative-caret-position="217">
+          <caret line="1663" column="18" selection-start-line="1663" selection-start-column="18" selection-end-line="1663" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files (x86)/Java/jdk1.8.0_161/src.zip!/java/lang/String.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="676" column="10" lean-forward="true" selection-start-line="676" selection-start-column="10" selection-end-line="676" selection-end-column="10" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="2501" column="8" selection-start-line="2501" selection-start-column="8" selection-end-line="2501" selection-end-column="8" />
+        <state relative-caret-position="183">
+          <caret line="2521" column="8" selection-start-line="2521" selection-start-column="8" selection-end-line="2521" selection-end-column="8" />
         </state>
       </provider>
     </entry>

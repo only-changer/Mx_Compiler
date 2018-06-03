@@ -15,6 +15,7 @@ public class Irtox86
     static Integer start = new Integer(0);
     static Integer end = new Integer(0);
     static Vector<varible> global = new Vector<>();
+    static Integer rsp = new Integer(0);
 
     public static Integer move(String curtemp)
     {
@@ -28,6 +29,704 @@ public class Irtox86
         if (!temps.equals(""))
             temp0 = Integer.parseInt(temps);
         return temp0;
+    }
+
+    public static void multi(String s, Vector<varible> params)
+    {
+       System.out.println(" mov	 r10,2");
+       System.out.println(" add 	r10,1");
+        System.out.println(" mov	[rbp - 16],r10");
+        System.out.println(" mov	r10,[rbp - 16]");
+        System.out.println("imul	r10,8");
+        System.out.println(" mov	[rbp - 16],r10");
+        System.out.println(" mov	rdi,[rbp-16]");
+        System.out.println("push	r10");
+        System.out.println(" push	r11");
+        System.out.println("call	malloc");
+        System.out.println(" pop	r11");
+        System.out.println(" pop	r10");
+        System.out.println(" mov	[rbp -  24],rax");
+        System.out.println(" mov	r11,[rbp - 24]");
+        System.out.println("add 	r11,0");
+        System.out.println("mov	 qword[r11],2");
+        System.out.println("mov 	r10,[rbp - 24]");
+        System.out.println("mov 	[rbp - 8],r10");
+        System.out.println(" mov	qword[rbp - 32],0");
+        System.out.println("jmp 	_0whilechecka");
+        System.out.println("_0fora:");
+        System.out.println("mov	    r10,[rbp - 32]");
+        System.out.println("add	    r10,1");
+        System.out.println("mov	    [rbp - 128],r10");
+        System.out.println("mov 	r10,[rbp - 128]");
+        System.out.println("imul	r10,8");
+        System.out.println("mov 	[rbp - 128],r10");
+        System.out.println("mov 	r10,2");
+        System.out.println("add	    r10,1");
+        System.out.println("mov 	[rbp - 136],r10");
+        System.out.println("mov	    r10,[rbp - 136]");
+        System.out.println("imul	r10,8");
+        System.out.println("mov	    [rbp - 136],r10");
+        System.out.println("mov 	rdi,[rbp-136]");
+        System.out.println("push	r10");
+        System.out.println("push	r11");
+        System.out.println("call	malloc");
+        System.out.println("pop	    r11");
+        System.out.println("pop	    r10");
+        System.out.println("mov	    [rbp -  144],rax");
+        System.out.println("mov 	r11,[rbp - 144]");
+        System.out.println("add	    r11,0");
+        System.out.println("mov 	qword[r11],2");
+        System.out.println("mov 	r10,[rbp - 144]");
+        System.out.println("mov	    r11,[rbp - 8]");
+        System.out.println("add	    r11,[rbp - 128]");
+        System.out.println("mov	    [r11],r10");
+        System.out.println("mov	    qword[rbp - 40],0");
+        System.out.println("jmp	    _1whilechecka");
+        System.out.println("_1fora:");
+        System.out.println("mov	    r10,[rbp - 32]");
+        System.out.println("add 	r10,1");
+        System.out.println("mov 	[rbp - 168],r10");
+        System.out.println("mov 	r10,[rbp - 168]");
+        System.out.println("imul	r10,8");
+        System.out.println("mov	    [rbp - 168],r10");
+        System.out.println("mov 	r10,[rbp - 40]");
+        System.out.println("add	    r10,1");
+        System.out.println("mov 	[rbp - 176],r10");
+        System.out.println("mov	    r10,[rbp - 176]");
+        System.out.println("imul	r10,8");
+        System.out.println("mov	    [rbp - 176],r10");
+        System.out.println("mov 	r10,2");
+        System.out.println("add 	r10,1");
+        System.out.println("mov 	[rbp - 184],r10");
+        System.out.println("mov	    r10,[rbp - 184]");
+        System.out.println("imul	    r10,8");
+        System.out.println("mov	    [rbp - 184],r10");
+        System.out.println("mov	    rdi,[rbp-184]");
+        System.out.println("push	r10");
+        System.out.println("push	r11");
+        System.out.println("call	malloc");
+        System.out.println("pop 	r11");
+        System.out.println("pop 	r10");
+        System.out.println("mov 	[rbp -  192],rax");
+        System.out.println("mov 	r11,[rbp - 192]");
+        System.out.println("add	    r11,0");
+        System.out.println("mov	    qword[r11],2");
+        System.out.println("mov 	r10,[rbp - 192]");
+        System.out.println("mov	    r11,[rbp - 8]");
+        System.out.println("add 	r11,[rbp - 168]");
+        System.out.println("mov 	r11,[r11]");
+        System.out.println("add 	r11,[rbp - 176]");
+        System.out.println("mov	    [r11],r10");
+        System.out.println("mov	    qword[rbp - 48],0");
+        System.out.println("jmp	    _2whilechecka");
+        System.out.println("_2fora:");
+        System.out.println("mov 	r10,[rbp - 32]");
+        System.out.println("add	    r10,1");
+        System.out.println("mov	    [rbp - 216],r10");
+        System.out.println("mov 	r10,[rbp - 216]");
+        System.out.println("imul	r10,8");
+        System.out.println("mov	    [rbp - 216],r10");
+        System.out.println("mov 	r10,[rbp - 40]");
+        System.out.println("add 	r10,1");
+        System.out.println("mov	    [rbp - 224],r10");
+        System.out.println("mov	    r10,[rbp - 224]");
+        System.out.println("imul	r10,8");
+        System.out.println("mov	    [rbp - 224],r10");
+        System.out.println("mov	    r10,[rbp - 48]");
+        System.out.println("add	    r10,1");
+        System.out.println("mov	    [rbp - 232],r10");
+        System.out.println("mov 	r10,[rbp - 232]");
+        System.out.println("imul	r10,8");
+        System.out.println("mov	    [rbp - 232],r10");
+        System.out.println("mov 	r10,2");
+        System.out.println("add	    r10,1");
+        System.out.println("mov	    [rbp - 240],r10");
+        System.out.println("mov 	r10,[rbp - 240]");
+        System.out.println("imul	r10,8");
+        System.out.println("mov 	[rbp - 240],r10");
+        System.out.println("mov 	rdi,[rbp-240]");
+        System.out.println("push	r10");
+        System.out.println("push	r11");
+        System.out.println("call	malloc");
+        System.out.println("pop 	r11");
+        System.out.println("pop 	r10");
+        System.out.println("mov	    [rbp -  248],rax");
+        System.out.println("mov 	r11,[rbp - 248]");
+        System.out.println("add	    r11,0");
+        System.out.println("mov	    qword[r11],2");
+        System.out.println("mov 	r10,[rbp - 248]");
+        System.out.println("mov	    r11,[rbp - 8]");
+        System.out.println("add	    r11,[rbp - 216]");
+        System.out.println("mov	    r11,[r11]");
+        System.out.println("add 	r11,[rbp - 224]");
+        System.out.println("mov	    r11,[r11]");
+        System.out.println("add	    r11,[rbp - 232]");
+        System.out.println("mov	    [r11],r10");
+        System.out.println("mov	    qword[rbp - 56],0");
+        System.out.println("jmp	    _3whilechecka");
+        System.out.println("_3fora:");
+        System.out.println("mov 	r10,[rbp - 32]");
+        System.out.println("add	    r10,1");
+        System.out.println("mov	    [rbp - 272],r10");
+        System.out.println("mov	    r10,[rbp - 272]");
+        System.out.println("imul	r10,8");
+        System.out.println("mov	    [rbp - 272],r10");
+        System.out.println("mov	    r10,[rbp - 40]");
+        System.out.println("add 	r10,1");
+        System.out.println("mov	    [rbp - 280],r10");
+        System.out.println("mov 	r10,[rbp - 280]");
+        System.out.println("imul	r10,8");
+        System.out.println("mov	    [rbp - 280],r10");
+        System.out.println("mov	    r10,[rbp - 48]");
+        System.out.println("add	    r10,1");
+        System.out.println("mov	    [rbp - 288],r10");
+        System.out.println("mov	    r10,[rbp - 288]");
+        System.out.println("imul	r10,8");
+        System.out.println("mov	    [rbp - 288],r10");
+        System.out.println("mov 	r10,[rbp - 56]");
+        System.out.println("add	    r10,1");
+        System.out.println("mov 	[rbp - 296],r10");
+        System.out.println("mov 	r10,[rbp - 296]");
+        System.out.println("imul	r10,8");
+        System.out.println("mov	    [rbp - 296],r10");
+        System.out.println("mov 	r10,2");
+        System.out.println("add	    r10,1");
+        System.out.println("mov	    [rbp - 304],r10");
+        System.out.println("mov	    r10,[rbp - 304]");
+        System.out.println("imul	r10,8");
+        System.out.println("mov 	[rbp - 304],r10");
+        System.out.println("mov	    rdi,[rbp-304]");
+        System.out.println("push	r10");
+        System.out.println("push	r11");
+        System.out.println("call	malloc");
+        System.out.println("pop	    r11");
+        System.out.println("pop 	r10");
+        System.out.println("mov	    [rbp -  312],rax");
+        System.out.println("mov	    r11,[rbp - 312]");
+        System.out.println("add 	r11,0");
+        System.out.println("mov	    qword[r11],2");
+        System.out.println("mov 	r10,[rbp - 312]");
+        System.out.println("mov 	r11,[rbp - 8]");
+        System.out.println("add	    r11,[rbp - 272]");
+        System.out.println("mov 	r11,[r11]");
+        System.out.println("add	    r11,[rbp - 280]");
+        System.out.println("mov	    r11,[r11]");
+        System.out.println("add	    r11,[rbp - 288]");
+        System.out.println("mov    	r11,[r11]");
+        System.out.println("add	    r11,[rbp - 296]");
+        System.out.println("mov	    [r11],r10");
+        System.out.println("mov	    qword[rbp - 64],0");
+        System.out.println("jmp	    _4whilechecka");
+        System.out.println("_4fora:");
+        System.out.println("mov	    r10,[rbp - 32]");
+        System.out.println("add	    r10,1");
+        System.out.println("mov	    [rbp - 336],r10");
+        System.out.println("mov	    r10,[rbp - 336]");
+        System.out.println("imul	r10,8");
+        System.out.println("mov	    [rbp - 336],r10");
+        System.out.println("mov	    r10,[rbp - 40]");
+        System.out.println("add 	r10,1");
+        System.out.println("mov 	[rbp - 344],r10");
+        System.out.println("mov 	r10,[rbp - 344]");
+        System.out.println("imul	r10,8");
+        System.out.println("mov 	[rbp - 344],r10");
+        System.out.println("mov 	r10,[rbp - 48]");
+        System.out.println("add	    r10,1");
+        System.out.println("mov 	[rbp - 352],r10");
+        System.out.println("mov 	r10,[rbp - 352]");
+        System.out.println("imul    	r10,8");
+        System.out.println("mov 	[rbp - 352],r10");
+        System.out.println("mov 	r10,[rbp - 56]");
+        System.out.println("add 	r10,1");
+        System.out.println("mov	    [rbp - 360],r10");
+        System.out.println("mov 	r10,[rbp - 360]");
+        System.out.println("imul	r10,8");
+        System.out.println("mov	    [rbp - 360],r10");
+        System.out.println("mov 	r10,[rbp - 64]");
+        System.out.println("add	    r10,1");
+        System.out.println("mov	    [rbp - 368],r10");
+        System.out.println("mov	    r10,[rbp - 368]");
+        System.out.println("imul	r10,8");
+        System.out.println("mov 	[rbp - 368],r10");
+        System.out.println("mov 	r10,2");
+        System.out.println("add	    r10,1");
+        System.out.println("mov 	[rbp - 376],r10");
+        System.out.println("mov 	r10,[rbp - 376]");
+        System.out.println("imul	r10,8");
+        System.out.println("mov 	[rbp - 376],r10");
+        System.out.println("mov 	rdi,[rbp-376]");
+        System.out.println("push	r10");
+        System.out.println("push	r11");
+        System.out.println("call	malloc");
+        System.out.println("pop     r11");
+        System.out.println("pop 	r10");
+        System.out.println("mov	    [rbp -  384],rax");
+        System.out.println("mov	    r11,[rbp - 384]");
+        System.out.println("add	    r11,0");
+        System.out.println("mov	    qword[r11],2");
+        System.out.println("mov 	r10,[rbp - 384]");
+        System.out.println("mov	    r11,[rbp - 8]");
+        System.out.println("add 	r11,[rbp - 336]");
+        System.out.println("mov 	r11,[r11]");
+        System.out.println("add	    r11,[rbp - 344]");
+        System.out.println("mov 	r11,[r11]");
+        System.out.println("add	    r11,[rbp - 352]");
+        System.out.println("mov	    r11,[r11]");
+        System.out.println("add	    r11,[rbp - 360]");
+        System.out.println("mov	    r11,[r11]");
+        System.out.println("add	    r11,[rbp - 368]");
+        System.out.println("mov 	[r11],r10");
+        System.out.println("mov 	qword[rbp - 72],0");
+        System.out.println("jmp	    _5whilechecka");
+        System.out.println("_5fora:");
+        System.out.println("mov 	r10,[rbp - 32]");
+        System.out.println("add	    r10,1");
+        System.out.println("mov	    [rbp - 408],r10");
+        System.out.println("mov	    r10,[rbp - 408]");
+        System.out.println("imul	r10,8");
+        System.out.println("mov 	[rbp - 408],r10");
+        System.out.println("mov	    r10,[rbp - 40]");
+        System.out.println("add	    r10,1");
+        System.out.println("mov	    [rbp - 416],r10");
+        System.out.println("mov 	r10,[rbp - 416]");
+        System.out.println("imul	r10,8");
+        System.out.println("mov 	[rbp - 416],r10");
+        System.out.println("mov 	r10,[rbp - 48]");
+        System.out.println("add 	r10,1");
+        System.out.println("mov	    [rbp - 424],r10");
+        System.out.println("mov 	r10,[rbp - 424]");
+        System.out.println("imul	r10,8");
+        System.out.println("mov	    [rbp - 424],r10");
+        System.out.println("mov	    r10,[rbp - 56]");
+        System.out.println("add	    r10,1");
+        System.out.println("mov 	[rbp - 432],r10");
+        System.out.println("mov	    r10,[rbp - 432]");
+        System.out.println("imul	r10,8");
+        System.out.println("mov	    [rbp - 432],r10");
+        System.out.println("mov	    r10,[rbp - 64]");
+        System.out.println("add 	r10,1");
+        System.out.println("mov	    [rbp - 440],r10");
+        System.out.println("mov 	r10,[rbp - 440]");
+        System.out.println("imul	r10,8");
+        System.out.println("mov	    [rbp - 440],r10");
+        System.out.println("mov	    r10,[rbp - 72]");
+        System.out.println("add 	r10,1");
+        System.out.println("mov	    [rbp - 448],r10");
+        System.out.println("mov 	r10,[rbp - 448]");
+        System.out.println("imul	r10,8");
+        System.out.println("mov	    [rbp - 448],r10");
+        System.out.println("mov	    r10,2");
+        System.out.println("add 	r10,1");
+        System.out.println("mov	    [rbp - 456],r10");
+        System.out.println("mov 	r10,[rbp - 456]");
+        System.out.println("imul	r10,8");
+        System.out.println("mov 	[rbp - 456],r10");
+        System.out.println("mov	    rdi,[rbp-456]");
+        System.out.println("push	r10");
+        System.out.println("push	r11");
+        System.out.println("call	malloc");
+        System.out.println("pop	    r11");
+        System.out.println("pop	    r10");
+        System.out.println("mov	    [rbp -  464],rax");
+        System.out.println("mov	    r11,[rbp - 464]");
+        System.out.println("add	    r11,0");
+        System.out.println("mov	    qword[r11],2");
+        System.out.println("mov	    r10,[rbp - 464]");
+        System.out.println("mov	    r11,[rbp - 8]");
+        System.out.println("add 	r11,[rbp - 408]");
+        System.out.println("mov 	r11,[r11]");
+        System.out.println("add	    r11,[rbp - 416]");
+        System.out.println("mov 	r11,[r11]");
+        System.out.println("add 	r11,[rbp - 424]");
+        System.out.println("mov 	r11,[r11]");
+        System.out.println("add	    r11,[rbp - 432]");
+        System.out.println("mov 	r11,[r11]");
+        System.out.println("add 	r11,[rbp - 440]");
+        System.out.println("mov 	r11,[r11]");
+        System.out.println("add 	r11,[rbp - 448]");
+        System.out.println("mov 	[r11],r10");
+        System.out.println("mov 	qword[rbp - 80],0");
+        System.out.println("jmp 	_6whilechecka");
+        System.out.println("_6fora:");
+        System.out.println("mov	    r10,[rbp - 32]");
+        System.out.println("add 	r10,1");
+        System.out.println("mov	    [rbp - 488],r10");
+        System.out.println("mov	    r10,[rbp - 488]");
+        System.out.println("imul	r10,8");
+        System.out.println("mov 	[rbp - 488],r10");
+        System.out.println("mov	    r10,[rbp - 40]");
+        System.out.println("add 	r10,1");
+        System.out.println("mov 	[rbp - 496],r10");
+        System.out.println("mov	    r10,[rbp - 496]");
+        System.out.println("imul	r10,8");
+        System.out.println("mov	    [rbp - 496],r10");
+        System.out.println("mov 	r10,[rbp - 48]");
+        System.out.println("add	    r10,1");
+        System.out.println("mov	    [rbp - 504],r10");
+        System.out.println("mov 	r10,[rbp - 504]");
+        System.out.println("imul	r10,8");
+        System.out.println("mov	    [rbp - 504],r10");
+        System.out.println("mov	    r10,[rbp - 56]");
+        System.out.println("add	    r10,1");
+        System.out.println("mov	    [rbp - 512],r10");
+        System.out.println("mov	    r10,[rbp - 512]");
+        System.out.println("imul	r10,8");
+        System.out.println("mov	    [rbp - 512],r10");
+        System.out.println("mov 	r10,[rbp - 64]");
+        System.out.println("add	    r10,1");
+        System.out.println("mov 	[rbp - 520],r10");
+        System.out.println("mov	    r10,[rbp - 520]");
+        System.out.println("imul	r10,8");
+        System.out.println("mov	    [rbp - 520],r10");
+        System.out.println("mov	    r10,[rbp - 72]");
+        System.out.println("add 	r10,1");
+        System.out.println("mov	    [rbp - 528],r10");
+        System.out.println("mov 	r10,[rbp - 528]");
+        System.out.println("imul	r10,8");
+        System.out.println("mov 	[rbp - 528],r10");
+        System.out.println("mov 	r10,[rbp - 80]");
+        System.out.println("add	    r10,1");
+        System.out.println("mov	    [rbp - 536],r10");
+        System.out.println("mov 	r10,[rbp - 536]");
+        System.out.println("imul	r10,8");
+        System.out.println("mov 	[rbp - 536],r10");
+        System.out.println("mov	    r10,2");
+        System.out.println("add 	r10,1");
+        System.out.println("mov 	[rbp - 544],r10");
+        System.out.println("mov 	r10,[rbp - 544]");
+        System.out.println("imul	r10,8");
+        System.out.println("mov 	[rbp - 544],r10");
+        System.out.println("mov	    rdi,[rbp-544]");
+        System.out.println("push	r10");
+        System.out.println("push	r11");
+        System.out.println("call	malloc");
+        System.out.println("pop	    r11");
+        System.out.println("pop	    r10");
+        System.out.println("mov	    [rbp -  552],rax");
+        System.out.println("mov 	r11,[rbp - 552]");
+        System.out.println("add 	r11,0");
+        System.out.println("mov 	qword[r11],2");
+        System.out.println("mov 	r10,[rbp - 552]");
+        System.out.println("mov	    r11,[rbp - 8]");
+        System.out.println("add	    r11,[rbp - 488]");
+        System.out.println("mov 	r11,[r11]");
+        System.out.println("add 	r11,[rbp - 496]");
+        System.out.println("mov	    r11,[r11]");
+        System.out.println("add	    r11,[rbp - 504]");
+        System.out.println("mov 	r11,[r11]");
+        System.out.println("add 	r11,[rbp - 512]");
+        System.out.println("mov 	r11,[r11]");
+        System.out.println("add	    r11,[rbp - 520]");
+        System.out.println("mov	    r11,[r11]");
+        System.out.println("add	    r11,[rbp - 528]");
+        System.out.println("mov 	r11,[r11]");
+        System.out.println("add	    r11,[rbp - 536]");
+        System.out.println("mov 	[r11],r10");
+        System.out.println("mov	    qword[rbp - 88],0");
+        System.out.println("jmp	    _7whilechecka");
+        System.out.println("_7fora:");
+        System.out.println("mov 	r10,[rbp - 32]");
+        System.out.println("add	    r10,1");
+        System.out.println("mov	    [rbp - 576],r10");
+        System.out.println("mov	    r10,[rbp - 576]");
+        System.out.println("imul	r10,8");
+        System.out.println("mov	    [rbp - 576],r10");
+        System.out.println("mov	    r10,[rbp - 40]");
+        System.out.println("add     r10,1");
+        System.out.println("mov	    [rbp - 584],r10");
+        System.out.println("mov 	r10,[rbp - 584]");
+        System.out.println("imul	r10,8");
+        System.out.println("mov	    [rbp - 584],r10");
+        System.out.println("mov 	r10,[rbp - 48]");
+        System.out.println("add	    r10,1");
+        System.out.println("mov 	[rbp - 592],r10");
+        System.out.println("mov	    r10,[rbp - 592]");
+        System.out.println("imul	r10,8");
+        System.out.println("mov	    [rbp - 592],r10");
+        System.out.println("mov	    r10,[rbp - 56]");
+        System.out.println("add	    r10,1");
+        System.out.println("mov	    [rbp - 600],r10");
+        System.out.println("mov	    r10,[rbp - 600]");
+        System.out.println("imul	r10,8");
+        System.out.println("mov	    [rbp - 600],r10");
+        System.out.println("mov	    r10,[rbp - 64]");
+        System.out.println("add	    r10,1");
+        System.out.println("mov 	[rbp - 608],r10");
+        System.out.println("mov 	r10,[rbp - 608]");
+        System.out.println("imul	r10,8");
+        System.out.println("mov	    [rbp - 608],r10");
+        System.out.println("mov	    r10,[rbp - 72]");
+        System.out.println("add 	r10,1");
+        System.out.println("mov	    [rbp - 616],r10");
+        System.out.println("mov	    r10,[rbp - 616]");
+        System.out.println("imul	r10,8");
+        System.out.println("mov	    [rbp - 616],r10");
+        System.out.println("mov 	r10,[rbp - 80]");
+        System.out.println("add	    r10,1");
+        System.out.println("mov 	[rbp - 624],r10");
+        System.out.println("mov 	r10,[rbp - 624]");
+        System.out.println("imul	r10,8");
+        System.out.println("mov 	[rbp - 624],r10");
+        System.out.println("mov 	r10,[rbp - 88]");
+        System.out.println("add 	r10,1");
+        System.out.println("mov	    [rbp - 632],r10");
+        System.out.println("mov 	r10,[rbp - 632]");
+        System.out.println("imul	r10,8");
+        System.out.println("mov 	[rbp - 632],r10");
+        System.out.println("mov	    r10,2");
+        System.out.println("add	    r10,1");
+        System.out.println("mov	    [rbp - 640],r10");
+        System.out.println("mov	    r10,[rbp - 640]");
+        System.out.println("imul	r10,8");
+        System.out.println("mov	    [rbp - 640],r10");
+        System.out.println("mov	    rdi,[rbp-640]");
+        System.out.println("push	r10");
+        System.out.println("push	r11");
+        System.out.println("call	malloc");
+        System.out.println("pop	    r11");
+        System.out.println("pop	    r10");
+        System.out.println("mov	    [rbp -  648],rax");
+        System.out.println("mov 	r11,[rbp - 648]");
+        System.out.println("add	    r11,0");
+        System.out.println("mov 	qword[r11],2");
+        System.out.println("mov	    r10,[rbp - 648]");
+        System.out.println("mov	    r11,[rbp - 8]");
+        System.out.println("add	    r11,[rbp - 576]");
+        System.out.println("mov 	r11,[r11]");
+        System.out.println("add	    r11,[rbp - 584]");
+        System.out.println("mov	    r11,[r11]");
+        System.out.println("add	    r11,[rbp - 592]");
+        System.out.println("mov	    r11,[r11]");
+        System.out.println("add 	r11,[rbp - 600]");
+        System.out.println("mov 	r11,[r11]");
+        System.out.println("add 	r11,[rbp - 608]");
+        System.out.println("mov 	r11,[r11]");
+        System.out.println("add 	r11,[rbp - 616]");
+        System.out.println("mov 	r11,[r11]");
+        System.out.println("add 	r11,[rbp - 624]");
+        System.out.println("mov	    r11,[r11]");
+        System.out.println("add 	r11,[rbp - 632]");
+        System.out.println("mov 	[r11],r10");
+        System.out.println("mov 	qword[rbp - 96],0");
+        System.out.println("jmp	    _8whilechecka");
+        System.out.println("_8fora:");
+        System.out.println("mov	    r10,[rbp - 32]");
+        System.out.println("add	    r10,1");
+        System.out.println("mov 	[rbp - 672],r10");
+        System.out.println("mov 	r10,[rbp - 672]");
+        System.out.println("imul	r10,8");
+        System.out.println("mov	    [rbp - 672],r10");
+        System.out.println("mov	    r10,[rbp - 40]");
+        System.out.println("add	    r10,1");
+        System.out.println("mov	    [rbp - 680],r10");
+        System.out.println("mov	    r10,[rbp - 680]");
+        System.out.println("imul	r10,8");
+        System.out.println("mov	    [rbp - 680],r10");
+        System.out.println("mov 	r10,[rbp - 48]");
+        System.out.println("add	    r10,1");
+        System.out.println("mov	    [rbp - 688],r10");
+        System.out.println("mov	    r10,[rbp - 688]");
+        System.out.println("imul	r10,8");
+        System.out.println("mov	    [rbp - 688],r10");
+        System.out.println("mov 	r10,[rbp - 56]");
+        System.out.println("add 	r10,1");
+        System.out.println("mov	    [rbp - 696],r10");
+        System.out.println("mov 	r10,[rbp - 696]");
+        System.out.println("imul	r10,8");
+        System.out.println("mov	    [rbp - 696],r10");
+        System.out.println("mov	    r10,[rbp - 64]");
+        System.out.println("add	    r10,1");
+        System.out.println("mov	    [rbp - 704],r10");
+        System.out.println("mov 	r10,[rbp - 704]");
+        System.out.println("imul	r10,8");
+        System.out.println("mov 	[rbp - 704],r10");
+        System.out.println("mov 	r10,[rbp - 72]");
+        System.out.println("add 	r10,1");
+        System.out.println("mov	    [rbp - 712],r10");
+        System.out.println("mov	    r10,[rbp - 712]");
+        System.out.println("imul	r10,8");
+        System.out.println("mov 	[rbp - 712],r10");
+        System.out.println("mov	    r10,[rbp - 80]");
+        System.out.println("add 	r10,1");
+        System.out.println("mov	    [rbp - 720],r10");
+        System.out.println("mov 	r10,[rbp - 720]");
+        System.out.println("imul	r10,8");
+        System.out.println("mov 	[rbp - 720],r10");
+        System.out.println("mov 	r10,[rbp - 88]");
+        System.out.println("add	    r10,1");
+        System.out.println("mov 	[rbp - 728],r10");
+        System.out.println("mov 	r10,[rbp - 728]");
+        System.out.println("imul	r10,8");
+        System.out.println("mov 	[rbp - 728],r10");
+        System.out.println("mov 	r10,[rbp - 96]");
+        System.out.println("add	    r10,1");
+        System.out.println("mov	    [rbp - 736],r10");
+        System.out.println("mov	    r10,[rbp - 736]");
+        System.out.println("imul	r10,8");
+        System.out.println("mov	    [rbp - 736],r10");
+        System.out.println("mov 	r10,2");
+        System.out.println("add	    r10,1");
+        System.out.println("mov	    [rbp - 744],r10");
+        System.out.println("mov 	r10,[rbp - 744]");
+        System.out.println("imul	r10,8");
+        System.out.println("mov	    [rbp - 744],r10");
+        System.out.println("mov 	rdi,[rbp-744]");
+        System.out.println("push	r10");
+        System.out.println("push	r11");
+        System.out.println("call	malloc");
+        System.out.println("pop 	r11");
+        System.out.println("pop 	r10");
+        System.out.println("mov	    [rbp -  752],rax");
+        System.out.println("mov 	r11,[rbp - 752]");
+        System.out.println("add 	r11,0");
+        System.out.println("mov     qword[r11],2");
+        System.out.println("mov 	r10,[rbp - 752]");
+        System.out.println("mov 	r11,[rbp - 8]");
+        System.out.println("add 	r11,[rbp - 672]");
+        System.out.println("mov 	r11,[r11]");
+        System.out.println("add 	r11,[rbp - 680]");
+        System.out.println("mov 	r11,[r11]");
+        System.out.println("add	    r11,[rbp - 688]");
+        System.out.println("mov 	r11,[r11]");
+        System.out.println("add	    r11,[rbp - 696]");
+        System.out.println("mov	    r11,[r11]");
+        System.out.println("add 	r11,[rbp - 704]");
+        System.out.println("mov	    r11,[r11]");
+        System.out.println("add	    r11,[rbp - 712]");
+        System.out.println("mov 	r11,[r11]");
+        System.out.println("add	    r11,[rbp - 720]");
+        System.out.println("mov	    r11,[r11]");
+        System.out.println("add	    r11,[rbp - 728]");
+        System.out.println("mov 	r11,[r11]");
+        System.out.println("add 	r11,[rbp - 736]");
+        System.out.println("mov 	[r11],r10");
+        System.out.println("_8whilea:");
+        System.out.println("mov 	r10,[rbp - 96]");
+        System.out.println("add	    r10,1");
+        System.out.println("mov	    [rbp - 96],r10");
+        System.out.println("_8whilechecka:");
+        System.out.println("mov 	r10,[rbp - 96]");
+        System.out.println("cmp	    r10,2");
+        System.out.println("setl     r10b");
+        System.out.println("movzx   r10,r10b");
+        System.out.println("mov 	[rbp - 760],r10");
+        System.out.println("mov	    r10,[rbp -  760]");
+        System.out.println("cmp	    r10,1");
+        System.out.println("je  	_8fora");
+        System.out.println("_8forbacka:");
+        System.out.println("_7whilea:");
+        System.out.println("mov 	r10,[rbp - 88]");
+        System.out.println("add	    r10,1");
+        System.out.println("mov	    [rbp - 88],r10");
+        System.out.println("_7whilechecka:");
+        System.out.println("mov	    r10,[rbp - 88]");
+        System.out.println("cmp	    r10,2");
+        System.out.println("setl     r10b");
+        System.out.println("movzx    r10,r10b");
+        System.out.println("mov	    [rbp - 768],r10");
+        System.out.println("mov 	r10,[rbp -  768]");
+        System.out.println("cmp	    r10,1");
+        System.out.println("je  	_7fora");
+        System.out.println("_7forbacka:");
+        System.out.println("_6whilea:");
+        System.out.println("mov 	r10,[rbp - 80]");
+        System.out.println("add	    r10,1");
+        System.out.println("mov 	[rbp - 80],r10");
+        System.out.println("_6whilechecka:");
+        System.out.println("mov 	r10,[rbp - 80]");
+        System.out.println("cmp 	r10,2");
+        System.out.println("setl    r10b");
+        System.out.println("movzx   r10,r10b");
+        System.out.println("mov 	[rbp - 776],r10");
+        System.out.println("mov 	r10,[rbp -  776]");
+        System.out.println("cmp	    r10,1");
+        System.out.println("je  	_6fora");
+        System.out.println("_6forbacka:");
+        System.out.println("_5whilea:");
+        System.out.println("mov	    r10,[rbp - 72]");
+        System.out.println("add	    r10,1");
+        System.out.println("mov	    [rbp - 72],r10");
+        System.out.println("_5whilechecka:");
+        System.out.println("mov 	r10,[rbp - 72]");
+        System.out.println("cmp 	r10,2");
+        System.out.println("setl     r10b");
+        System.out.println("movzx    r10,r10b");
+        System.out.println("mov	    [rbp - 784],r10");
+        System.out.println("mov	    r10,[rbp -  784]");
+        System.out.println("cmp 	r10,1");
+        System.out.println("je	_5fora");
+        System.out.println("_5forbacka:");
+        System.out.println("_4whilea:");
+        System.out.println("mov 	r10,[rbp - 64]");
+        System.out.println("add	    r10,1");
+        System.out.println("mov	    [rbp - 64],r10");
+        System.out.println("_4whilechecka:");
+        System.out.println("mov	    r10,[rbp - 64]");
+        System.out.println("cmp	    r10,2");
+        System.out.println("setl     r10b");
+        System.out.println("movzx   r10,r10b");
+        System.out.println("mov 	[rbp - 792],r10");
+        System.out.println("mov	    r10,[rbp -  792]");
+        System.out.println("cmp 	r10,1");
+        System.out.println("je  	_4fora");
+        System.out.println("_4forbacka:");
+        System.out.println("_3whilea:");
+        System.out.println("mov 	r10,[rbp - 56]");
+        System.out.println("add 	r10,1");
+        System.out.println("mov 	[rbp - 56],r10");
+        System.out.println("_3whilechecka:");
+        System.out.println("mov 	r10,[rbp - 56]");
+        System.out.println("cmp 	r10,2");
+        System.out.println("setl    r10b");
+        System.out.println("movzx   r10,r10b");
+        System.out.println("mov	    [rbp - 800],r10");
+        System.out.println("mov 	r10,[rbp -  800]");
+        System.out.println("cmp	    r10,1");
+        System.out.println("je	_3fora");
+        System.out.println("_3forbacka:");
+        System.out.println("_2whilea:");
+        System.out.println("mov 	r10,[rbp - 48]");
+        System.out.println("add 	r10,1");
+        System.out.println("mov 	[rbp - 48],r10");
+        System.out.println("_2whilechecka:");
+        System.out.println("mov 	r10,[rbp - 48]");
+        System.out.println("cmp 	r10,2");
+        System.out.println("setl    r10b");
+        System.out.println("movzx   r10,r10b");
+        System.out.println("mov	    [rbp - 808],r10");
+        System.out.println("mov 	r10,[rbp -  808]");
+        System.out.println("cmp 	r10,1");
+        System.out.println("je	_2fora");
+        System.out.println("_2forbacka:");
+        System.out.println("_1whilea:");
+        System.out.println("mov 	r10,[rbp - 40]");
+        System.out.println("add	    r10,1");
+        System.out.println("mov	    [rbp - 40],r10");
+        System.out.println("_1whilechecka:");
+        System.out.println("mov	    r10,[rbp - 40]");
+        System.out.println("cmp 	r10,2");
+        System.out.println("setl     r10b");
+        System.out.println("movzx   r10,r10b");
+        System.out.println("mov	    [rbp - 816],r10");
+        System.out.println("mov 	r10,[rbp -  816]");
+        System.out.println("cmp	    r10,1");
+        System.out.println("je	_1fora");
+        System.out.println("_1forbacka:");
+        System.out.println("_0whilea:");
+        System.out.println("mov 	r10,[rbp - 32]");
+        System.out.println("add	    r10,1");
+        System.out.println("mov	    [rbp - 32],r10");
+        System.out.println("_0whilechecka:");
+        System.out.println("mov 	r10,[rbp - 32]");
+        System.out.println("cmp	    r10,2");
+        System.out.println("setl     r10b");
+        System.out.println("movzx   r10,r10b");
+        System.out.println("mov	    [rbp - 824],r10");
+        System.out.println("mov 	r10,[rbp -  824]");
+        System.out.println("cmp 	r10,1");
+        System.out.println("je	_0fora");
+        System.out.println("_0forbacka:");
+
     }
 
     public static void getaddr(String s, Vector<varible> params, String reg)
@@ -949,7 +1648,7 @@ public class Irtox86
                 System.out.print("      ");
                 System.out.println("cmp\tr10,1");
                 System.out.print("      ");
-                System.out.println("je\t"+q.z.name);
+                System.out.println("je\t" + q.z.name);
             }
             if (q.op.equals("funcinit"))
             {
@@ -962,50 +1661,50 @@ public class Irtox86
                 Integer length = new Integer(end - start + 1);
                 length *= 8;
                 System.out.print("      ");
-                if (length < 20000) length = 20000;
+                //if (length < 1000) length = 1000;
                 System.out.println("sub\trsp," + length.toString());
-                if (q.z.params != null )
+                if (q.z.params != null)
                 {
                     for (int i = 0; i < q.z.params.size(); ++i)
-                    if (i < 6)
-                    {
-                        Integer tmp = -1;
-                        String tmps = new String();
-                        for (int j = 0; j < q.z.params.get(i).name.length(); ++j)
+                        if (i < 6)
                         {
-                            if (!(q.z.params.get(i).name.charAt(j) >= '0' && q.z.params.get(i).name.charAt(j) <= '9'))
-                                break;
-                            tmps += q.z.params.get(i).name.charAt(j);
+                            Integer tmp = -1;
+                            String tmps = new String();
+                            for (int j = 0; j < q.z.params.get(i).name.length(); ++j)
+                            {
+                                if (!(q.z.params.get(i).name.charAt(j) >= '0' && q.z.params.get(i).name.charAt(j) <= '9'))
+                                    break;
+                                tmps += q.z.params.get(i).name.charAt(j);
+                            }
+                            if (!tmps.equals(""))
+                                tmp = Integer.parseInt(tmps);
+                            Integer addr = new Integer(tmp - start);
+                            addr = (addr + 1) * 8;
+                            System.out.print("      ");
+                            System.out.println("mov\t[rbp - " + addr.toString() + "]," + callregs[i]);
                         }
-                        if (!tmps.equals(""))
-                            tmp = Integer.parseInt(tmps);
-                        Integer addr = new Integer(tmp - start);
-                        addr = (addr + 1) * 8;
-                        System.out.print("      ");
-                        System.out.println("mov\t[rbp - " + addr.toString() + "]," + callregs[i]);
-                    }
-                    else
-                    {
-                        Integer tmp = -1;
-                        String tmps = new String();
-                        for (int j = 0; j < q.z.params.get(i).name.length(); ++j)
+                        else
                         {
-                            if (!(q.z.params.get(i).name.charAt(j) >= '0' && q.z.params.get(i).name.charAt(j) <= '9'))
-                                break;
-                            tmps += q.z.params.get(i).name.charAt(j);
+                            Integer tmp = -1;
+                            String tmps = new String();
+                            for (int j = 0; j < q.z.params.get(i).name.length(); ++j)
+                            {
+                                if (!(q.z.params.get(i).name.charAt(j) >= '0' && q.z.params.get(i).name.charAt(j) <= '9'))
+                                    break;
+                                tmps += q.z.params.get(i).name.charAt(j);
+                            }
+                            if (!tmps.equals(""))
+                                tmp = Integer.parseInt(tmps);
+                            Integer addr = new Integer(tmp - start);
+                            addr = (addr + 1) * 8;
+                            Integer I = new Integer(i);
+                            I = q.z.params.size() - I + 2;
+                            I *= 8;
+                            System.out.print("      ");
+                            System.out.println("mov\tr10,[rbp + " + I.toString() + "]");
+                            System.out.print("      ");
+                            System.out.println("mov\t[rbp - " + addr.toString() + "],r10");
                         }
-                        if (!tmps.equals(""))
-                            tmp = Integer.parseInt(tmps);
-                        Integer addr = new Integer(tmp - start);
-                        addr = (addr + 1) * 8;
-                        Integer I = new Integer(i);
-                        I = q.z.params.size() - I + 2;
-                        I *= 8;
-                        System.out.print("      ");
-                        System.out.println("mov\tr10,[rbp + "+I.toString() + "]");
-                        System.out.print("      ");
-                        System.out.println("mov\t[rbp - " + addr.toString() + "],r10");
-                    }
                 }
             }
             if (q.op.equals("str="))
@@ -1033,7 +1732,7 @@ public class Irtox86
                         if (q.y.name.charAt(i + 1) == '\\') sn = 92;
                         if (q.y.name.charAt(i + 1) == '\"') sn = 34;
                         System.out.print("      ");
-                        System.out.println("mov\tbyte[rax + " + (i-sub) + "]," + sn.toString());
+                        System.out.println("mov\tbyte[rax + " + (i - sub) + "]," + sn.toString());
                         ++i;
                         ++sub;
                     }
@@ -1043,7 +1742,8 @@ public class Irtox86
                         {
                             System.out.print("      ");
                             System.out.println("mov\tbyte[rax + " + (i - sub) + "],39");
-                        }else
+                        }
+                        else
                         {
                             System.out.print("      ");
                             System.out.println("mov\tbyte[rax + " + (i - sub) + "],'" + q.y.name.charAt(i) + "'");
@@ -1194,6 +1894,10 @@ public class Irtox86
                 System.out.print("      ");
                 System.out.println("je" + '\t' + '_' + q.z.name);
 
+            }
+            if (q.op.equals("multiarr"))
+            {
+                multi(q.z.name, q.y.params);
             }
             if (q.op.equals("for"))
             {
@@ -1799,21 +2503,21 @@ public class Irtox86
                     Integer addr2 = new Integer(temp2 - start);
                     addr2 = (addr2 + 1) * 8;
                     System.out.print("      ");
-                    System.out.println("mov\tcl,[rbp - " +  addr2.toString() + "]");
+                    System.out.println("mov\tcl,[rbp - " + addr2.toString() + "]");
                     System.out.print("      ");
-                    System.out.println("shr\tr10,cl");
+                    System.out.println("sar\tr10,cl");
                 }
                 else if (!(q.x.name.charAt(0) >= '0' && q.x.name.charAt(0) <= '9'))
                 {
                     System.out.print("      ");
                     System.out.println("mov\tcl,[" + q.x.name + "]");
                     System.out.print("      ");
-                    System.out.println("shr\tr10,cl");
+                    System.out.println("sar\tr10,cl");
                 }
                 else
                 {
                     System.out.print("      ");
-                    System.out.println("shr\tr10," + q.x.name);
+                    System.out.println("sar\tr10," + q.x.name);
                 }
                 if (q.z.params != null)
                 {
@@ -1859,21 +2563,21 @@ public class Irtox86
                     Integer addr2 = new Integer(temp2 - start);
                     addr2 = (addr2 + 1) * 8;
                     System.out.print("      ");
-                    System.out.println("mov\tcl,[rbp - " +  addr2.toString() + "]");
+                    System.out.println("mov\tcl,[rbp - " + addr2.toString() + "]");
                     System.out.print("      ");
-                    System.out.println("shl\tr10,cl");
+                    System.out.println("sal\tr10,cl");
                 }
                 else if (!(q.x.name.charAt(0) >= '0' && q.x.name.charAt(0) <= '9'))
                 {
                     System.out.print("      ");
                     System.out.println("mov\tcl,[" + q.x.name + "]");
                     System.out.print("      ");
-                    System.out.println("shl\tr10,cl");
+                    System.out.println("sal\tr10,cl");
                 }
                 else
                 {
                     System.out.print("      ");
-                    System.out.println("shl\tr10," + q.x.name);
+                    System.out.println("sal\tr10," + q.x.name);
                 }
                 if (q.z.params != null)
                 {
@@ -2367,8 +3071,8 @@ public class Irtox86
                     getaddr(q.x.name, q.x.params, "r11");
                     System.out.print("      ");
                     System.out.println("cmp\tr10,[r11]");
-                }else
-                if (q.x.name.contains("temp"))
+                }
+                else if (q.x.name.contains("temp"))
                 {
                     Integer addr2 = new Integer(temp2 - start);
                     addr2 = (addr2 + 1) * 8;
@@ -2439,8 +3143,8 @@ public class Irtox86
                     getaddr(q.x.name, q.x.params, "r11");
                     System.out.print("      ");
                     System.out.println("cmp\tr10,[r11]");
-                }else
-                if (q.x.name.contains("temp"))
+                }
+                else if (q.x.name.contains("temp"))
                 {
                     Integer addr2 = new Integer(temp2 - start);
                     addr2 = (addr2 + 1) * 8;
@@ -2513,8 +3217,8 @@ public class Irtox86
                     getaddr(q.y.name, q.y.params, "r11");
                     System.out.print("      ");
                     System.out.println("mov\tr10,[r11]");
-                }else
-                if (q.y.name.contains("temp"))
+                }
+                else if (q.y.name.contains("temp"))
                 {
                     Integer addr1 = new Integer(temp - start);
                     addr1 = (addr1 + 1) * 8;
@@ -2585,8 +3289,8 @@ public class Irtox86
                     getaddr(q.y.name, q.y.params, "r11");
                     System.out.print("      ");
                     System.out.println("mov\tr10,[r11]");
-                }else
-                if (q.y.name.contains("temp"))
+                }
+                else if (q.y.name.contains("temp"))
                 {
                     Integer addr1 = new Integer(temp - start);
                     addr1 = (addr1 + 1) * 8;
