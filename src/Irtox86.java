@@ -1709,18 +1709,18 @@ public class Irtox86
             }
             if (q.op.equals("str="))
             {
-                System.out.print("      ");
-                System.out.println("push r10");
-                System.out.print("      ");
-                System.out.println("push r11");
+            //    System.out.print("      ");
+            //    System.out.println("push r10");
+            //    System.out.print("      ");
+            //    System.out.println("push r11");
                 System.out.print("      ");
                 System.out.println("mov\trdi,256");
                 System.out.print("      ");
                 System.out.println("call\tmalloc");
-                System.out.print("      ");
-                System.out.println("pop r10");
-                System.out.print("      ");
-                System.out.println("pop r11");
+             //   System.out.print("      ");
+             //   System.out.println("pop r10");
+             //   System.out.print("      ");
+             //   System.out.println("pop r11");
                 Integer sub = new Integer(0);
                 for (int i = 0; i < q.y.name.length(); ++i)
                 {
@@ -2098,10 +2098,10 @@ public class Irtox86
                         }
                     }
                 }
-                System.out.print("      ");
-                System.out.println("push\tr10");
-                System.out.print("      ");
-                System.out.println("push\tr11");
+               // System.out.print("      ");
+               // System.out.println("push\tr10");
+               // System.out.print("      ");
+               // System.out.println("push\tr11");
                 if (q.z.name.contains("print"))
                 {
                     System.out.print("      ");
@@ -2109,10 +2109,10 @@ public class Irtox86
                 }
                 System.out.print("      ");
                 System.out.println("call\t" + q.z.name);
-                System.out.print("      ");
-                System.out.println("pop\tr11");
-                System.out.print("      ");
-                System.out.println("pop\tr10");
+               // System.out.print("      ");
+              //  System.out.println("pop\tr11");
+              //  System.out.print("      ");
+              //  System.out.println("pop\tr10");
                 if (q.y.name.contains("temp"))
                 {
                     Integer addr1 = new Integer(temp - start);
