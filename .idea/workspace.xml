@@ -26,8 +26,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="208">
-              <caret line="2366" column="9" selection-start-line="2366" selection-start-column="9" selection-end-line="2366" selection-end-column="9" />
+            <state relative-caret-position="393">
+              <caret line="2161" column="55" lean-forward="true" selection-start-line="2161" selection-start-column="55" selection-end-line="2161" selection-end-column="55" />
             </state>
           </provider>
         </entry>
@@ -71,8 +71,8 @@
       <file leaf-file-name="Mx.g4" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Mx.g4">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="72" column="26" selection-start-line="72" selection-start-column="26" selection-end-line="72" selection-end-column="26" />
+            <state relative-caret-position="228">
+              <caret line="70" column="30" lean-forward="true" selection-start-line="70" selection-start-column="30" selection-end-line="70" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -106,7 +106,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>opw</find>
       <find>&quot;++&quot;</find>
       <find>&quot;+&quot;</find>
       <find />
@@ -136,6 +135,7 @@
       <find>funname</find>
       <find>&quot;^&quot;</find>
       <find>NUM</find>
+      <find>imm</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -154,7 +154,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
+  <component name="ProjectFrameBounds">
     <option name="x" value="441" />
     <option name="width" value="1300" />
     <option name="height" value="1040" />
@@ -710,15 +710,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Mx.g4">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="72" column="26" selection-start-line="72" selection-start-column="26" selection-end-line="72" selection-end-column="26" />
+        <state relative-caret-position="228">
+          <caret line="70" column="30" lean-forward="true" selection-start-line="70" selection-start-column="30" selection-end-line="70" selection-end-column="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="2366" column="9" selection-start-line="2366" selection-start-column="9" selection-end-line="2366" selection-end-column="9" />
+        <state relative-caret-position="393">
+          <caret line="2161" column="55" lean-forward="true" selection-start-line="2161" selection-start-column="55" selection-end-line="2161" selection-end-column="55" />
         </state>
       </provider>
     </entry>

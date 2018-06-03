@@ -2136,6 +2136,31 @@ class MyVisitor extends MxBaseVisitor<check>
                             Integer z = Integer.parseInt(ir1.last.z.name) % Integer.parseInt(ir2.last.z.name);
                             quad.z.name = z.toString();
                         }
+                        if (ctx.op.getText().equals(">>"))
+                        {
+                            Integer z = Integer.parseInt(ir1.last.z.name) >> Integer.parseInt(ir2.last.z.name);
+                            quad.z.name = z.toString();
+                        }
+                        if (ctx.op.getText().equals("<<"))
+                        {
+                            Integer z = Integer.parseInt(ir1.last.z.name) << Integer.parseInt(ir2.last.z.name);
+                            quad.z.name = z.toString();
+                        }
+                        if (ctx.op.getText().equals("&&") || ctx.op.getText().equals("&"))
+                        {
+                            Integer z = Integer.parseInt(ir1.last.z.name) & Integer.parseInt(ir2.last.z.name);
+                            quad.z.name = z.toString();
+                        }
+                        if (ctx.op.getText().equals("||") || ctx.op.getText().equals("|"))
+                        {
+                            Integer z = Integer.parseInt(ir1.last.z.name) | Integer.parseInt(ir2.last.z.name);
+                            quad.z.name = z.toString();
+                        }
+                        if (ctx.op.getText().equals("^"))
+                        {
+                            Integer z = Integer.parseInt(ir1.last.z.name) ^ Integer.parseInt(ir2.last.z.name);
+                            quad.z.name = z.toString();
+                        }
                         chk.code.push(quad);
                     }
                     else
@@ -2364,7 +2389,7 @@ public class Main
     {
        // File f = new File("E:/test.txt");
          File f = new File("program.txt");
-         
+
         InputStream input = null;
         input = new FileInputStream(f);
         run(input);
