@@ -1824,9 +1824,9 @@ _8if:
       and	r10,[rbp - 1048]
 _25check:
       mov	[rbp - 1088],r10
-      mov	r10,[rbp -  1040]
-      not	r10
-      mov	[rbp - 1096],r10
+	  mov	r10,[rbp-1040]
+	  not	r10
+	  mov	[rbp-1096],r10
       mov	r10,[rbp - 1096]
       and	r10,[rbp - 1056]
 _26check:
