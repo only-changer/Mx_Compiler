@@ -462,7 +462,7 @@ class MyVisitor extends MxBaseVisitor<check>
             else
             {
                 varible k = new varible();
-                k.name = "lc" + ctx.varname().getText();
+                k.name = "sjtulc" + ctx.varname().getText();
                 chk.params.add(k);
             }
         if (ctx.expr() != null && getin)
@@ -2314,6 +2314,7 @@ class MyVisitor extends MxBaseVisitor<check>
         // System.out.println(s);
         //  System.out.println(ctx.getText());
         Integer tmp = new Integer(0);
+        String arrsize = new String();
         for (int i = 0; i < ctx.expr().size(); ++i)
         {
             check ck = visit(ctx.expr(i));
@@ -2325,6 +2326,7 @@ class MyVisitor extends MxBaseVisitor<check>
                 quad.z.name = temp.toString() + "temp";
                 quad.op = "+";
                 quad.y = new varible(ck.code.last.z);
+                arrsize = quad.y.name;
                 quad.x.name = "1";
                 chk.code.push(quad);
                 quad = new quard();
@@ -2452,7 +2454,7 @@ class MyVisitor extends MxBaseVisitor<check>
                 quad.op = "<";
                 quad.z.name = temp.toString() + "temp";
                 quad.y.name = itemp.toString() + "temp";
-                quad.x = new varible(kk);
+                quad.x.name = arrsize;
                 chk.code.push(quad);
                 quad = new quard();
                 quad.op = "j";
