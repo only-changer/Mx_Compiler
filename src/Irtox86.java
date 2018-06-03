@@ -940,6 +940,17 @@ public class Irtox86
             {
                 System.out.println(q.z.name + ":");
             }
+            if (q.op.equals("j"))
+            {
+                Integer addr1 = new Integer(temp - start);
+                addr1 = (addr1 + 1) * 8;
+                System.out.print("      ");
+                System.out.println("mov\tr10,[rbp - " + addr1.toString() + "]");
+                System.out.print("      ");
+                System.out.println("cmp\tr10,1");
+                System.out.print("      ");
+                System.out.println("je\t"+q.z.name);
+            }
             if (q.op.equals("funcinit"))
             {
                 System.out.print("      ");
@@ -1788,12 +1799,16 @@ public class Irtox86
                     Integer addr2 = new Integer(temp2 - start);
                     addr2 = (addr2 + 1) * 8;
                     System.out.print("      ");
-                    System.out.println("shr\tr10,[rbp - " + addr2.toString() + "]");
+                    System.out.println("mov\tcl,[rbp - " +  addr2.toString() + "]");
+                    System.out.print("      ");
+                    System.out.println("shr\tr10,cl");
                 }
                 else if (!(q.x.name.charAt(0) >= '0' && q.x.name.charAt(0) <= '9'))
                 {
                     System.out.print("      ");
-                    System.out.println("shr\tr10,[lc" + q.x.name + "]");
+                    System.out.println("mov\tcl,[" + q.x.name + "]");
+                    System.out.print("      ");
+                    System.out.println("shr\tr10,cl");
                 }
                 else
                 {
@@ -1844,12 +1859,16 @@ public class Irtox86
                     Integer addr2 = new Integer(temp2 - start);
                     addr2 = (addr2 + 1) * 8;
                     System.out.print("      ");
-                    System.out.println("shl\tr10,[rbp - " + addr2.toString() + "]");
+                    System.out.println("mov\tcl,[rbp - " +  addr2.toString() + "]");
+                    System.out.print("      ");
+                    System.out.println("shl\tr10,cl");
                 }
                 else if (!(q.x.name.charAt(0) >= '0' && q.x.name.charAt(0) <= '9'))
                 {
                     System.out.print("      ");
-                    System.out.println("shl\tr10,[lc" + q.x.name + "]");
+                    System.out.println("mov\tcl,[" + q.x.name + "]");
+                    System.out.print("      ");
+                    System.out.println("shl\tr10,cl");
                 }
                 else
                 {

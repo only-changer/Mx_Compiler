@@ -239,7 +239,7 @@ class MyVisitor extends MxBaseVisitor<check>
     Integer keytemp = new Integer(0);
     String fyi = new String();
     varible clarr = new varible();
-
+    Integer b_arr = new Integer(0);
     MyVisitor()
     {
         cla = "";
@@ -2313,11 +2313,13 @@ class MyVisitor extends MxBaseVisitor<check>
         chk.var.add(s);
         // System.out.println(s);
         //  System.out.println(ctx.getText());
+        Integer tmp = new Integer(0);
         for (int i = 0; i < ctx.expr().size(); ++i)
         {
             check ck = visit(ctx.expr(i));
             chk.code.add(ck.code);
             if (s.contains("[]"))
+            if (i == 0)
             {
                 quard quad = new quard();
                 quad.z.name = temp.toString() + "temp";
@@ -2354,6 +2356,7 @@ class MyVisitor extends MxBaseVisitor<check>
                 k = new varible();
                 k.name = "0";
                 quad.z.add(k);
+                tmp = temp;
                 ++temp;
                 quad.op = "=";
                 quad.y = new varible(ck.code.last.z);
@@ -2362,6 +2365,106 @@ class MyVisitor extends MxBaseVisitor<check>
             }
             else
             {
+                Integer itemp = new Integer(temp);
+                Integer arrtemp = new Integer(0);
+                ++temp;
+                if (temp > maxtemp) maxtemp = temp;
+                quard quad = new quard();
+                quad.z.name = temp.toString() + "temp";
+                quad.op = "=";
+                quad.y.name = tmp.toString() + "temp";
+                arrtemp = temp;
+                ++temp;
+                if (temp > maxtemp) maxtemp = temp;
+                chk.code.push(quad);
+                quad = new quard();
+                quad.z.name = itemp.toString() + "temp";
+                quad.op = "=";
+                quad.y.name = "0";
+                chk.code.push(quad);
+                quad = new quard();
+                quad.op = "label!!!!!!!!!";
+                quad.z.name = "_" + b_arr.toString() + "arr";
+                chk.code.push(quad);
+                quad = new quard();
+                quad.z.name = itemp.toString() + "temp";
+                quad.op = "+";
+                quad.y.name = itemp.toString() + "temp";
+                quad.x.name = "1";
+                chk.code.push(quad);
+                quad = new quard();
+                quad.z.name = tmp.toString() + "temp";
+                quad.op = "+";
+                quad.y.name = tmp.toString() + "temp";
+                quad.x.name = "8";
+                chk.code.push(quad);
+                quad = new quard();
+                quad.z.name = temp.toString() + "temp";
+                quad.op = "+";
+                quad.y = new varible(ck.code.last.z);
+                varible kk = new varible(quad.y);
+                quad.x.name = "1";
+                chk.code.push(quad);
+                quad = new quard();
+                quad.z.name = temp.toString() + "temp";
+                quad.op = "*";
+                quad.y.name = temp.toString() + "temp";
+                if (sa.equals("int") || sa.equals("bool")) quad.x.name = "8";
+                else if (sa.equals("string"))
+                {
+                    quad.x.name = "256";
+                }
+                else
+                {
+                    quad.x.name = defclass.get(sa).size.toString();
+                }
+                chk.code.push(quad);
+                quad = new quard();
+                quad.z.name = "malloc";
+                quad.op = "call";
+                varible k = new varible();
+                k.name = temp.toString() + "temp";
+                quad.y.add(k);
+                ++temp;
+                if (temp > maxtemp) maxtemp = temp;
+                quad.y.name = temp.toString() + "temp";
+                chk.code.push(quad);
+                quad = new quard();
+                quad.z.name = temp.toString() + "temp";
+                k = new varible();
+                k.name = "0";
+                quad.z.add(k);
+
+                quad.op = "=";
+                quad.y = new varible(ck.code.last.z);
+                chk.code.push(quad);
+                quad = new quard();
+                quad.y.name= temp.toString() + "temp";
+                quad.op = "=";
+                quad.z.name = tmp.toString() + "temp";
+                varible kar = new varible();
+                kar.name = "0";
+                quad.z.add(kar);
+                chk.code.push(quad);
+                ++temp;
+                if (temp > maxtemp) maxtemp = temp;
+                quad = new quard();
+                quad.op = "<";
+                quad.z.name = temp.toString() + "temp";
+                quad.y.name = itemp.toString() + "temp";
+                quad.x = new varible(kk);
+                chk.code.push(quad);
+                quad = new quard();
+                quad.op = "j";
+                quad.z.name = "_" + b_arr.toString() + "arr";
+                ++b_arr;
+                quad.y.name = temp.toString() + "temp";
+                chk.code.push(quad);
+                quad = new quard();
+                quad.z.name = arrtemp.toString() + "temp";
+                chk.code.push(quad);
+                ++temp;
+                if (temp > maxtemp) maxtemp = temp;
             }
         }
         return chk;
