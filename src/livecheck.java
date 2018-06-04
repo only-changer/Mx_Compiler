@@ -56,12 +56,13 @@ class map
 
 public class livecheck
 {
-    Map<String,quard> jmpmap = new HashMap<>();
+    Map<String, quard> jmpmap = new HashMap<>();
     String[] regs = {"r12", "r13", "r14", "r15"};
     map m = new map();
     Set<String> in = new HashSet<>();
     Set<String> out = new HashSet<>();
-    Map<String , Integer> result = new HashMap<>();
+    Map<String, Integer> result = new HashMap<>();
+
     void lives(ir code)
     {
         boolean change = true;
@@ -77,17 +78,21 @@ public class livecheck
                 {
                     if (q.y.name.contains("temp"))
                         q.def.add(q.y.name);
-                }else
+                }
+                else
                 {
                     if (q.z.name.contains("temp"))
                     {
-                        if (q.z.params != null) q.in.add(q.z.name);
                         q.def.add(q.z.name);
                     }
                     if (q.y.name.contains("temp"))
+                    {
                         q.used.add(q.y.name);
+                    }
                     if (q.x.name.contains("temp"))
+                    {
                         q.used.add(q.x.name);
+                    }
                 }
                 in.clear();
                 out.clear();
@@ -112,6 +117,13 @@ public class livecheck
                 {
                     q.in.remove(q.z.name);
                 }
+                if (q.z.params != null)
+                {
+                    q.in.add(q.z.name);
+                    for (int i = 0; i < q.z.params.size(); ++i)
+                        if (q.z.params.get(i).name.contains("temp"))
+                            q.in.add(q.z.params.get(i).name);
+                }
                 if (q.in.equals(in) && q.out.equals(out))
                     change = false;
                 else change = true;
@@ -127,13 +139,13 @@ public class livecheck
         quard head = code.head;
         while (head != null)
         {
-            if (!(head.op.equals("imm") || head.op.equals("int") || head.op.equals("string") || head.op.equals("arr")))
+            if (!(head.op.equals("imm") || head.op.contains("int") || head.op.contains("string") || head.op.equals("arr")))
             {
                 ad.push(head);
             }
             if (head.op.equals("label!!!!!!!!!"))
             {
-                jmpmap.put(head.z.name,head);
+                jmpmap.put(head.z.name, head);
             }
             if (head.next == null) break;
             else head = head.next;
@@ -166,7 +178,10 @@ public class livecheck
         }
         for (Map.Entry<String, node> entry : m.nodes.entrySet())
         {
-          //  System.out.println(entry.getKey() + entry.getValue().degree);
+           // System.out.print(entry.getKey() + entry.getValue().degree);
+          //  for (int i = 0; i < entry.getValue().neibor.size(); ++i)
+           //     System.out.print(' ' + entry.getValue().neibor.get(i).name);
+          //  System.out.println();
         }
         for (int i = 0; i < m.nodes.size(); ++i)
         {
@@ -187,13 +202,13 @@ public class livecheck
                 if (n.neibor.get(j).color != -1)
                     check[n.neibor.get(j).color] = true;
             }
-            for (int j = 0;j < check.length;++j)
+            for (int j = 0; j < check.length; ++j)
             {
                 if (check[j] == false)
                 {
                     n.color = j;
                     if (color <= j) color = j + 1;
-                    result.put(n.name , n.color);
+                    result.put(n.name, n.color);
                     break;
                 }
             }
@@ -202,7 +217,7 @@ public class livecheck
                 if (color < 4)
                 {
                     n.color = color;
-                    result.put(n.name , n.color);
+                    result.put(n.name, n.color);
                     ++color;
                 }
             }
@@ -211,7 +226,7 @@ public class livecheck
 
     }
 
-    Map<String,Integer> check(ir code)
+    Map<String, Integer> check(ir code)
     {
         code = admit(code);
         lives(code);
