@@ -101,7 +101,8 @@ public class livecheck
                 {
                     if (q.y.name.contains("temp"))
                         q.def.add(q.y.name);
-                    q.used.addAll(add(q.y.params));
+                    if (q.y.params != null)
+                        q.used.addAll(add(q.y.params));
                     if (jmpmap.containsKey(q.z.name))
                     {
                         q.out.addAll(jmpmap.get(q.z.name).in);
@@ -155,7 +156,8 @@ public class livecheck
                 if (q.z.params != null)
                 {
                     q.in.add(q.z.name);
-                    q.in.addAll(add(q.z.params));
+                    if (q.z.params != null)
+                        q.in.addAll(add(q.z.params));
                 }
                 if (q.in.equals(in) && q.out.equals(out))
                     change = false;
@@ -269,6 +271,7 @@ public class livecheck
     Map<String, Integer> check(ir code)
     {
         code = admit(code);
+        //code.print();
         lives(code);
      /*  quard head = new quard();
         head = code.head;
