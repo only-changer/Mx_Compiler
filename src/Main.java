@@ -654,6 +654,8 @@ class MyVisitor extends MxBaseVisitor<check>
         check chk = new check();
         Map<String, vartype> origin = new HashMap<>(defvars);
         defun = ctx.type().getText();
+        temp = 0;
+        maxtemp = 0;
         check c = visit(ctx.params());
         Map<String, vartype> map = (c.defvars);
         Vector<String> pvec = c.var;
@@ -738,8 +740,7 @@ class MyVisitor extends MxBaseVisitor<check>
                 quad.z.add(k);
             }
         }
-        temp = 0;
-        maxtemp = 0;
+
         check ck = visit(ctx.block());
        // chk.params.addAll(ck.params);
         chk.code.push(quad);
@@ -2592,7 +2593,7 @@ public class Main
 
     public static check main() throws Exception
     {
-      //  File f = new File("E:/test.txt");
+       // File f = new File("E:/test.txt");
          File f = new File("program.txt");
 
         InputStream input = null;

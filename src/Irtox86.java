@@ -1661,7 +1661,6 @@ public class Irtox86
                 start = Integer.parseInt(q.y.name);
                 end = Integer.parseInt(q.x.name);
                 Integer length = new Integer(end - start + 1);
-                length += 15;
                 length *= 8;
                 System.out.print("      ");
                 //if (length < 1000) length = 1000;

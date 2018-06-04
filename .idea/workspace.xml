@@ -31,8 +31,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="317">
-              <caret line="2594" column="8" selection-start-line="2594" selection-start-column="8" selection-end-line="2594" selection-end-column="8" />
+            <state relative-caret-position="245">
+              <caret line="2595" column="9" selection-start-line="2595" selection-start-column="9" selection-end-line="2595" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -40,8 +40,8 @@
       <file leaf-file-name="Irtox86.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Irtox86.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="123">
-              <caret line="1512" column="28" selection-start-line="1512" selection-start-column="28" selection-end-line="1512" selection-end-column="28" />
+            <state relative-caret-position="186">
+              <caret line="1662" column="62" selection-start-line="1662" selection-start-column="62" selection-end-line="1662" selection-end-column="62" />
             </state>
           </provider>
         </entry>
@@ -49,7 +49,7 @@
       <file leaf-file-name="FileInputStream.java" pinned="false" current-in-tab="false">
         <entry file="jar://C:/Program Files (x86)/Java/jdk1.8.0_161/src.zip!/java/io/FileInputStream.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2603">
+            <state relative-caret-position="2147">
               <caret line="137" selection-start-line="137" selection-end-line="137" />
             </state>
           </provider>
@@ -85,7 +85,7 @@
       <file leaf-file-name="Mx.g4" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Mx.g4">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-209">
+            <state relative-caret-position="760">
               <caret line="40" column="2" selection-start-line="40" selection-end-line="40" selection-end-column="5" />
             </state>
           </provider>
@@ -128,7 +128,6 @@
       <find>varible wrong!</find>
       <find>funcin</find>
       <find>func</find>
-      <find>&quot;call&quot;</find>
       <find>length</find>
       <find>init</find>
       <find>maxtemp</find>
@@ -139,7 +138,6 @@
       <find>&quot;^&quot;</find>
       <find>6for</find>
       <find>global</find>
-      <find>opd</find>
       <find>chk.params</find>
       <find>STR</find>
       <find>NUM</find>
@@ -150,6 +148,8 @@
       <find>&quot;=&quot;</find>
       <find>opcom</find>
       <find>15</find>
+      <find>&quot;call&quot;</find>
+      <find>opd</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -169,8 +169,7 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="583" />
-    <option name="y" value="37" />
+    <option name="x" value="585" />
     <option name="width" value="1300" />
     <option name="height" value="1040" />
   </component>
@@ -182,8 +181,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
       <pane id="Scope" />
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -200,7 +200,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -304,7 +303,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="467" y="30" width="1040" height="832" extended-state="0" />
+    <frame x="468" y="0" width="1040" height="832" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
@@ -316,12 +315,12 @@
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5305499" side_tool="true" weight="0.6906475" />
       <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.46945012" visible="true" weight="0.0733813" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.46945012" visible="true" weight="0.10359712" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49932975" weight="0.32952926" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.105906315" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.107942976" />
       <window_info anchor="bottom" id="ANTLR Preview" order="7" sideWeight="0.81970507" weight="0.30647483" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" visible="true" weight="0.01629328" />
@@ -340,18 +339,18 @@
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info active="true" anchor="bottom" id="Run" order="3" sideWeight="0.8820375" visible="true" weight="0.382311" />
+      <window_info anchor="bottom" id="Version Control" order="11" />
       <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Tool Output" order="8" sideWeight="0.49932975" weight="0.32905984" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.121983916" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="7" />
-      <window_info anchor="bottom" id="Version Control" order="11" />
+      <window_info active="true" anchor="bottom" id="Run" order="3" sideWeight="0.8820375" visible="true" weight="0.382311" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
+      <window_info anchor="bottom" id="ANTLR Preview" order="12" weight="0.46011397" />
       <window_info id="UI Designer" order="4" />
       <window_info anchor="bottom" id="Find" order="2" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.3988604" />
@@ -361,7 +360,7 @@
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info id="Capture Tool" order="5" />
-      <window_info anchor="bottom" id="ANTLR Preview" order="12" weight="0.46011397" />
+      <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Messages" order="0" sideWeight="0.47855228" weight="0.3266762" />
       <window_info anchor="right" id="Maven Projects" order="7" />
       <window_info id="Favorites" order="6" side_tool="true" />
@@ -704,7 +703,7 @@
     </entry>
     <entry file="jar://C:/Program Files (x86)/Java/jdk1.8.0_161/src.zip!/java/io/FileInputStream.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2603">
+        <state relative-caret-position="2147">
           <caret line="137" selection-start-line="137" selection-end-line="137" />
         </state>
       </provider>
@@ -718,22 +717,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Mx.g4">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-209">
+        <state relative-caret-position="760">
           <caret line="40" column="2" selection-start-line="40" selection-end-line="40" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Irtox86.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="1512" column="28" selection-start-line="1512" selection-start-column="28" selection-end-line="1512" selection-end-column="28" />
+        <state relative-caret-position="186">
+          <caret line="1662" column="62" selection-start-line="1662" selection-start-column="62" selection-end-line="1662" selection-end-column="62" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="317">
-          <caret line="2594" column="8" selection-start-line="2594" selection-start-column="8" selection-end-line="2594" selection-end-column="8" />
+        <state relative-caret-position="245">
+          <caret line="2595" column="9" selection-start-line="2595" selection-start-column="9" selection-end-line="2595" selection-end-column="9" />
         </state>
       </provider>
     </entry>
