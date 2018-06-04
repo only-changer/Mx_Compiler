@@ -78,6 +78,11 @@ public class livecheck
                 {
                     if (q.y.name.contains("temp"))
                         q.def.add(q.y.name);
+                    if (q.y.params != null)
+                        for (int i = 0;i < q.y.params.size();++i)
+                            if (q.y.params.get(i).name.contains("temp"))
+                            {
+                                q.used.add(q.y.params.get(i).name); }
                 }
                 else
                 {
@@ -89,10 +94,22 @@ public class livecheck
                     {
                         q.used.add(q.y.name);
                     }
+                    if (q.y.params != null)
+                        for (int i = 0;i < q.y.params.size();++i)
+                            if (q.y.params.get(i).name.contains("temp"))
+                            {
+                                q.used.add(q.y.params.get(i).name);
+                            }
                     if (q.x.name.contains("temp"))
                     {
                         q.used.add(q.x.name);
                     }
+                    if (q.x.params != null)
+                        for (int i = 0;i < q.x.params.size();++i)
+                            if (q.x.params.get(i).name.contains("temp"))
+                            {
+                                q.used.add(q.x.params.get(i).name);
+                            }
                 }
                 in.clear();
                 out.clear();
