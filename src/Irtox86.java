@@ -771,10 +771,18 @@ public class Irtox86
                 }
                 if (!tmps.equals(""))
                     tmp = Integer.parseInt(tmps);
-                addr = new Integer(tmp - start);
-                addr = (addr + 1) * 8;
-                System.out.print("      ");
-                System.out.println("add\t" + reg + ",[rbp - " + addr.toString() + "]");
+                if (tmp < 15)
+                {
+                    System.out.print("      ");
+                    System.out.println("add\t" + reg + "," + regs[tmp]);
+                }
+                else
+                {
+                    addr = new Integer(tmp - start);
+                    addr = (addr + 1) * 8;
+                    System.out.print("      ");
+                    System.out.println("add\t" + reg + ",[rbp - " + addr.toString() + "]");
+                }
             }
             else if (!(params.get(i).name.charAt(0) >= '0' && params.get(i).name.charAt(0) <= '9'))
             {
@@ -1711,53 +1719,10 @@ public class Irtox86
             }
             if (q.op.equals("str="))
             {
-                //    System.out.print("      ");
-                //    System.out.println("push r10");
-                //    System.out.print("      ");
-                //    System.out.println("push r11");
-                System.out.print("      ");
-                System.out.println("mov\trdi,256");
-                System.out.print("      ");
-                System.out.println("call\tmalloc");
-                //   System.out.print("      ");
-                //   System.out.println("pop r10");
-                //   System.out.print("      ");
-                //   System.out.println("pop r11");
-                Integer sub = new Integer(0);
-                for (int i = 0; i < q.y.name.length(); ++i)
-                {
-                    char c = q.y.name.charAt(i);
-                    if (c == '\\')
-                    {
-                        Integer sn = new Integer(0);
-                        if (q.y.name.charAt(i + 1) == 'n') sn = 10;
-                        if (q.y.name.charAt(i + 1) == '\\') sn = 92;
-                        if (q.y.name.charAt(i + 1) == '\"') sn = 34;
-                        System.out.print("      ");
-                        System.out.println("mov\tbyte[rax + " + (i - sub) + "]," + sn.toString());
-                        ++i;
-                        ++sub;
-                    }
-                    else
-                    {
-                        if (q.y.name.charAt(i) == '\'')
-                        {
-                            System.out.print("      ");
-                            System.out.println("mov\tbyte[rax + " + (i - sub) + "],39");
-                        }
-                        else
-                        {
-                            System.out.print("      ");
-                            System.out.println("mov\tbyte[rax + " + (i - sub) + "],'" + q.y.name.charAt(i) + "'");
-                        }
-                    }
-                }
-                System.out.print("      ");
-                System.out.println("mov\tbyte[rax + " + (q.y.name.length() - sub) + "],0");
                 Integer addr3 = new Integer(temp3 - start);
                 addr3 = (addr3 + 1) * 8;
                 System.out.print("      ");
-                System.out.println("mov\t[rbp - " + addr3.toString() + "],rax");
+                System.out.println("mov\tqword[rbp - " + addr3.toString() + "]," + q.y.name);
             }
             if (q.op.equals("="))
             {
@@ -2142,10 +2107,18 @@ public class Irtox86
                 }
                 else if (q.y.name.contains("temp"))
                 {
-                    Integer addr1 = new Integer(temp - start);
-                    addr1 = (addr1 + 1) * 8;
-                    System.out.print("      ");
-                    System.out.println("mov\tr10,[rbp - " + addr1.toString() + "]");
+                    if (temp < 15)
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov\tr10," + regs[temp]);
+                    }
+                    else
+                    {
+                        Integer addr1 = new Integer(temp - start);
+                        addr1 = (addr1 + 1) * 8;
+                        System.out.print("      ");
+                        System.out.println("mov\tr10,[rbp - " + addr1.toString() + "]");
+                    }
                 }
                 else if (!(q.y.name.charAt(0) >= '0' && q.y.name.charAt(0) <= '9'))
                 {
@@ -2165,10 +2138,18 @@ public class Irtox86
                 }
                 else if (q.x.name.contains("temp"))
                 {
-                    Integer addr2 = new Integer(temp2 - start);
-                    addr2 = (addr2 + 1) * 8;
-                    System.out.print("      ");
-                    System.out.println("add\tr10,[rbp - " + addr2.toString() + "]");
+                    if (temp2 < 15)
+                    {
+                        System.out.print("      ");
+                        System.out.println("add\tr10," + regs[temp2]);
+                    }
+                    else
+                    {
+                        Integer addr2 = new Integer(temp2 - start);
+                        addr2 = (addr2 + 1) * 8;
+                        System.out.print("      ");
+                        System.out.println("add\tr10,[rbp - " + addr2.toString() + "]");
+                    }
                 }
                 else if (!(q.x.name.charAt(0) >= '0' && q.x.name.charAt(0) <= '9'))
                 {
@@ -2193,10 +2174,18 @@ public class Irtox86
                 }
                 else
                 {
-                    Integer addr3 = new Integer(temp3 - start);
-                    addr3 = (addr3 + 1) * 8;
-                    System.out.print("      ");
-                    System.out.println("mov\t[rbp - " + addr3.toString() + "],r10");
+                    if (temp3 < 15)
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov\t" + regs[temp3] + ",r10");
+                    }
+                    else
+                    {
+                        Integer addr3 = new Integer(temp3 - start);
+                        addr3 = (addr3 + 1) * 8;
+                        System.out.print("      ");
+                        System.out.println("mov\t[rbp - " + addr3.toString() + "],r10");
+                    }
                 }
             }
             if (q.op.equals("-"))
@@ -2276,10 +2265,18 @@ public class Irtox86
                 }
                 else if (q.y.name.contains("temp"))
                 {
-                    Integer addr1 = new Integer(temp - start);
-                    addr1 = (addr1 + 1) * 8;
-                    System.out.print("      ");
-                    System.out.println("mov\tr10,[rbp - " + addr1.toString() + "]");
+                    if (temp < 15)
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov\tr10," + regs[temp]);
+                    }
+                    else
+                    {
+                        Integer addr1 = new Integer(temp - start);
+                        addr1 = (addr1 + 1) * 8;
+                        System.out.print("      ");
+                        System.out.println("mov\tr10,[rbp - " + addr1.toString() + "]");
+                    }
                 }
                 else if (!(q.y.name.charAt(0) >= '0' && q.y.name.charAt(0) <= '9'))
                 {
@@ -2299,10 +2296,18 @@ public class Irtox86
                 }
                 else if (q.x.name.contains("temp"))
                 {
-                    Integer addr2 = new Integer(temp2 - start);
-                    addr2 = (addr2 + 1) * 8;
-                    System.out.print("      ");
-                    System.out.println("imul\tr10,[rbp - " + addr2.toString() + "]");
+                    if (temp2 < 15)
+                    {
+                        System.out.print("      ");
+                        System.out.println("imul\tr10," + regs[temp2]);
+                    }
+                    else
+                    {
+                        Integer addr2 = new Integer(temp2 - start);
+                        addr2 = (addr2 + 1) * 8;
+                        System.out.print("      ");
+                        System.out.println("imul\tr10,[rbp - " + addr2.toString() + "]");
+                    }
                 }
                 else if (!(q.x.name.charAt(0) >= '0' && q.x.name.charAt(0) <= '9'))
                 {
@@ -2327,10 +2332,18 @@ public class Irtox86
                 }
                 else
                 {
-                    Integer addr3 = new Integer(temp3 - start);
-                    addr3 = (addr3 + 1) * 8;
-                    System.out.print("      ");
-                    System.out.println("mov\t[rbp - " + addr3.toString() + "],r10");
+                    if (temp3 < 15)
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov\t" + regs[temp3] + ",r10");
+                    }
+                    else
+                    {
+                        Integer addr3 = new Integer(temp3 - start);
+                        addr3 = (addr3 + 1) * 8;
+                        System.out.print("      ");
+                        System.out.println("mov\t[rbp - " + addr3.toString() + "],r10");
+                    }
                 }
             }
             if (q.op.equals("/"))
@@ -3417,10 +3430,53 @@ public class Irtox86
         System.out.print("\tdb\"%lld\",0\n");
         System.out.print("format2:\n");
         System.out.print("\tdb\"%s\",0\n\n");
+        int j = 0;
         for (int i = 0; i < global.size(); ++i)
         {
-            System.out.println(global.get(i).name + ":");
-            System.out.print("\tdq 0\n");
+            if (!global.get(i).name.contains("sjtulc"))
+            {
+                // System.err.println(global.get(i).name);
+                String ss = new String();
+                int sub = 0;
+                for (int ii = 0; ii < global.get(i).name.length(); ++ii)
+                {
+                    char c = global.get(i).name.charAt(ii);
+                    if (c == '\\')
+                    {
+                        Integer sn = new Integer(0);
+                        if (global.get(i).name.charAt(ii + 1) == 'n') sn = 10;
+                        if (global.get(i).name.charAt(ii + 1) == '\\') sn = 92;
+                        if (global.get(i).name.charAt(ii + 1) == '\"') sn = 34;
+                        ss += (sn + ",");
+                        ++ii;
+                        ++sub;
+                    }
+                    else
+                    {
+                        if (global.get(i).name.charAt(ii) == '\'')
+                        {
+                            ss += ("39,");
+                        }
+                        else
+                        {
+                            Integer sn = (int) global.get(i).name.charAt(ii);
+                            ss += (sn + ",");
+                        }
+                    }
+                }
+                sub = global.get(i).name.length() - sub;
+                System.out.print("\tdq " + sub + "\n");
+                System.out.println("lcstr" + j + ":");
+                ++j;
+                System.out.print("\tdb\t");
+                System.out.print(ss);
+                System.out.println('0');
+            }
+            else
+            {
+                System.out.println(global.get(i).name + ":");
+                System.out.print("\tdq 0\n");
+            }
         }
         System.out.print("section .bss\n");
         System.out.print("stringbuffer:\n");
