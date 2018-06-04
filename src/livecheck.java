@@ -218,10 +218,10 @@ public class livecheck
         }
         for (Map.Entry<String, node> entry : m.nodes.entrySet())
         {
-             System.out.print(entry.getKey() + entry.getValue().degree);
-              for (int i = 0; i < entry.getValue().neibor.size(); ++i)
-                 System.out.print(' ' + entry.getValue().neibor.get(i).name);
-              System.out.println();
+            // System.out.print(entry.getKey() + entry.getValue().degree);
+            //  for (int i = 0; i < entry.getValue().neibor.size(); ++i)
+            //     System.out.print(' ' + entry.getValue().neibor.get(i).name);
+            //  System.out.println();
         }
         for (int i = 0; i < m.nodes.size(); ++i)
         {
@@ -270,7 +270,7 @@ public class livecheck
     {
         code = admit(code);
         lives(code);
-       quard head = new quard();
+      /* quard head = new quard();
         head = code.head;
         while (head != null)
         {
@@ -284,7 +284,7 @@ public class livecheck
                 break;
             else
                 head = head.next;
-        }
+        }*/
         allocate(code);
 
         return result;
