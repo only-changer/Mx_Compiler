@@ -769,213 +769,182 @@ section   .text
 main:
       push	rbp
       mov	rbp,rsp
-      sub	rsp,656
-      mov	qword[rbp - 8],40
+      sub	rsp,424
+      mov	qword[sjtulcN],15000
+      mov	qword[rbp - 8],120016
       mov	rdi,[rbp-8]
       call	malloc
       mov	[rbp -  16],rax
       mov	r11,[rbp - 16]
       add	r11,0
-      mov	qword[r11],4
+      mov	qword[r11],15001
       mov	r10,[rbp - 16]
-      mov	[sjtulca],r10
-      mov	qword[rbp - 16],40
-      mov	rdi,[rbp-16]
-      call	malloc
-      mov	[rbp -  24],rax
-      mov	r11,[rbp - 24]
-      add	r11,0
-      mov	qword[r11],4
-      mov	r10,[rbp - 24]
-      mov	[rbp - 8],r10
-      mov	r11,[rbp - 8]
-      add	r11,8
-      mov	r10,[sjtulca]
-      mov	qword[r11],r10
-      mov	r11,[rbp - 8]
-      add	r11,16
-      mov	r10,[sjtulca]
-      mov	qword[r11],r10
-      mov	r11,[rbp - 8]
-      add	r11,24
-      mov	r10,[sjtulca]
-      mov	qword[r11],r10
-      mov	r11,[rbp - 8]
-      add	r11,32
-      mov	r10,[sjtulca]
-      mov	qword[r11],r10
-      mov	r10,[rbp - 8]
-      add	r10,0
-      mov	r10,[r10]
-      add	r10,0
-      mov	[rbp - 136],r10
-      mov	rdi,[rbp-136]
-      call	toString
-      mov	[rbp -  144],rax
-      mov	rdi,[rbp-144]
-      mov	rax,0
-      call	println
-      mov	[rbp -  152],rax
-      mov	qword[rbp - 32],0
+      mov	[sjtulcb],r10
+      mov	qword[sjtulcresultCount],0
+      mov	qword[rbp - 8],1
       jmp	_0whilecheck
 _0for:
-      mov	r10,[rbp - 32]
-      add	r10,1
-      mov	[rbp - 184],r10
-      mov	r10,[rbp - 184]
-      imul	r10,8
-      mov	[rbp - 184],r10
-      call	getInt
-      mov	[rbp -  192],rax
-      mov	r10,[rbp - 192]
-      mov	r11,[rbp - 8]
-      add	r11,8
-      mov	r11,[r11]
-      add	r11,[rbp - 184]
-      mov	[r11],r10
-_0while:
-      mov	r10,[rbp - 32]
-      mov	[rbp - 200],r10
-      mov	r10,[rbp - 32]
+      mov	r10,[rbp - 8]
       add	r10,1
       mov	[rbp - 32],r10
+      mov	r10,[rbp - 32]
+      imul	r10,8
+      mov	[rbp - 32],r10
+      mov	r11,[sjtulcb]
+      add	r11,[rbp - 32]
+      mov	qword[r11],1
+_0while:
+      mov	r10,[rbp - 8]
+      mov	[rbp - 40],r10
+      mov	r10,[rbp - 8]
+      add	r10,1
+      mov	[rbp - 8],r10
 _0whilecheck:
       mov	r10,[rbp - 8]
-      add	r10,0
-      mov	r10,[r10]
-      add	r10,0
-      mov	[rbp - 232],r10
-      mov	r10,[rbp - 32]
-      cmp	r10,[rbp - 232]
-      setl r10b
+      cmp	r10,[sjtulcN]
+      setle r10b
       movzx r10,r10b
-      mov	[rbp - 240],r10
-      mov	r10,[rbp -  240]
+      mov	[rbp - 48],r10
+      mov	r10,[rbp -  48]
       cmp	r10,1
       je	_0for
 _0forback:
-      mov	qword[rbp - 32],0
+      mov	qword[rbp - 8],2
       jmp	_1whilecheck
 _1for:
-      mov	r10,[rbp - 32]
+      mov	r10,[rbp - 8]
       add	r10,1
-      mov	[rbp - 272],r10
-      mov	r10,[rbp - 272]
+      mov	[rbp - 248],r10
+      mov	r10,[rbp - 248]
       imul	r10,8
-      mov	[rbp - 272],r10
-      mov	r10,[rbp - 8]
-      add	r10,16
+      mov	[rbp - 248],r10
+      mov	r10,[sjtulcb]
+      add	r10,[rbp - 248]
       mov	r10,[r10]
-      add	r10,[rbp - 272]
-      mov	rdi,[r10]
-      call	toString
-      mov	[rbp -  280],rax
-      mov	rdi,[rbp-280]
-      mov	rax,0
-      call	print
-      mov	[rbp -  288],rax
-_1while:
-      mov	r10,[rbp - 32]
-      mov	[rbp - 296],r10
-      mov	r10,[rbp - 32]
-      add	r10,1
-      mov	[rbp - 32],r10
-_1whilecheck:
+      cmp	 r10,0
+      je	_1else
+_1if:
+      mov	qword[rbp - 56],2
       mov	r10,[rbp - 8]
-      add	r10,0
-      mov	r10,[r10]
-      add	r10,0
-      mov	[rbp - 328],r10
-      mov	r10,[rbp - 32]
-      cmp	r10,[rbp - 328]
-      setl r10b
+      cmp	r10,3
+      setg r10b
       movzx r10,r10b
-      mov	[rbp - 336],r10
-      mov	r10,[rbp -  336]
-      cmp	r10,1
-      je	_1for
-_1forback:
-      mov	qword[rbp - 344],lcstr0
-      mov	rdi,[rbp-344]
+      mov	[rbp - 128],r10
+      mov	r10,[rbp - 128]
+      cmp	r10,0
+      je	_0check
+      mov	r10,[rbp - 8]
+      sub	r10,2
+      mov	[rbp - 152],r10
+      mov	r10,[rbp - 152]
+      add	r10,1
+      mov	[rbp - 160],r10
+      mov	r10,[rbp - 160]
+      imul	r10,8
+      mov	[rbp - 160],r10
+      mov	r10,[rbp - 128]
+      mov	r11,[sjtulcb]
+      add	r11,[rbp - 160]
+      and	r10,[r11]
+_0check:
+      mov	[rbp - 168],r10
+      mov	 r10,[rbp-168]
+      cmp	 r10,0
+      je	_0else
+_0if:
+      mov	r10,[sjtulcresultCount]
+      mov	[rbp-64],r10
+      mov	r10,[sjtulcresultCount]
+      add	r10,1
+      mov	[sjtulcresultCount],r10
+      mov	r10,[rbp - 8]
+      sub	r10,2
+      mov	[rbp - 72],r10
+      mov	rdi,[rbp-72]
+      call	toString
+      mov	[rbp -  80],rax
+      mov	qword[rbp - 88],lcstr0
+      mov	rdi,[rbp-80]
+      mov	rsi,[rbp-88]
+      call	string.add
+      mov	[rbp -  96],rax
+      mov	rdi,[rbp-8]
+      call	toString
+      mov	[rbp -  104],rax
+      mov	rdi,[rbp-96]
+      mov	rsi,[rbp-104]
+      call	string.add
+      mov	[rbp -  112],rax
+      mov	rdi,[rbp-112]
       mov	rax,0
       call	println
-      mov	[rbp -  352],rax
-      mov	qword[rbp - 32],0
-      jmp	_2whilecheck
+      mov	[rbp -  120],rax
+      jmp	_0ifback
+_0else:
+_0ifback:
+      jmp	_2while
 _2for:
-      mov	r10,[rbp - 32]
-      add	r10,1
-      mov	[rbp - 384],r10
-      mov	r10,[rbp - 384]
-      imul	r10,8
-      mov	[rbp - 384],r10
-      mov	r11,[rbp - 8]
-      add	r11,24
-      mov	r11,[r11]
-      add	r11,[rbp - 384]
-      mov	qword[r11],0
-_2while:
-      mov	r10,[rbp - 32]
-      mov	[rbp - 392],r10
-      mov	r10,[rbp - 32]
-      add	r10,1
-      mov	[rbp - 32],r10
-_2whilecheck:
       mov	r10,[rbp - 8]
-      add	r10,0
-      mov	r10,[r10]
-      add	r10,0
-      mov	[rbp - 424],r10
-      mov	r10,[rbp - 32]
-      cmp	r10,[rbp - 424]
-      setl r10b
+      imul	r10,[rbp - 56]
+      mov	[rbp - 192],r10
+      mov	r10,[rbp - 192]
+      add	r10,1
+      mov	[rbp - 200],r10
+      mov	r10,[rbp - 200]
+      imul	r10,8
+      mov	[rbp - 200],r10
+      mov	r11,[sjtulcb]
+      add	r11,[rbp - 200]
+      mov	qword[r11],0
+      mov	r10,[rbp - 56]
+      mov	[rbp - 208],r10
+      mov	r10,[rbp - 56]
+      add	r10,1
+      mov	[rbp - 56],r10
+_2while:
+      mov	r10,[rbp - 8]
+      imul	r10,[rbp - 56]
+      mov	[rbp - 216],r10
+      mov	r10,[rbp - 216]
+      cmp	r10,[sjtulcN]
+      setle r10b
       movzx r10,r10b
-      mov	[rbp - 432],r10
-      mov	r10,[rbp -  432]
+      mov	[rbp - 224],r10
+      mov	r10,[rbp -  224]
       cmp	r10,1
       je	_2for
 _2forback:
-      mov	qword[rbp - 32],0
-      jmp	_3whilecheck
-_3for:
-      mov	r10,[rbp - 32]
-      add	r10,1
-      mov	[rbp - 464],r10
-      mov	r10,[rbp - 464]
-      imul	r10,8
-      mov	[rbp - 464],r10
+      jmp	_1ifback
+_1else:
+_1ifback:
+_1while:
       mov	r10,[rbp - 8]
-      add	r10,32
-      mov	r10,[r10]
-      add	r10,[rbp - 464]
-      mov	rdi,[r10]
-      call	toString
-      mov	[rbp -  472],rax
-      mov	rdi,[rbp-472]
-      mov	rax,0
-      call	print
-      mov	[rbp -  480],rax
-_3while:
-      mov	r10,[rbp - 32]
-      mov	[rbp - 488],r10
-      mov	r10,[rbp - 32]
-      add	r10,1
-      mov	[rbp - 32],r10
-_3whilecheck:
+      mov	[rbp - 256],r10
       mov	r10,[rbp - 8]
-      add	r10,0
-      mov	r10,[r10]
-      add	r10,0
-      mov	[rbp - 520],r10
-      mov	r10,[rbp - 32]
-      cmp	r10,[rbp - 520]
-      setl r10b
+      add	r10,1
+      mov	[rbp - 8],r10
+_1whilecheck:
+      mov	r10,[rbp - 8]
+      cmp	r10,[sjtulcN]
+      setle r10b
       movzx r10,r10b
-      mov	[rbp - 528],r10
-      mov	r10,[rbp -  528]
+      mov	[rbp - 264],r10
+      mov	r10,[rbp -  264]
       cmp	r10,1
-      je	_3for
-_3forback:
+      je	_1for
+_1forback:
+      mov	qword[rbp - 272],lcstr1
+      mov	rdi,[sjtulcresultCount]
+      call	toString
+      mov	[rbp -  280],rax
+      mov	rdi,[rbp-272]
+      mov	rsi,[rbp-280]
+      call	string.add
+      mov	[rbp -  288],rax
+      mov	rdi,[rbp-288]
+      mov	rax,0
+      call	println
+      mov	[rbp -  296],rax
       mov	rax,0
       mov	rsp,rbp
       pop rbp
@@ -991,11 +960,18 @@ format1:
 format2:
 	db"%s",0
 
-sjtulca:
+sjtulcN:
 	dq 0
+sjtulcb:
 	dq 0
+sjtulcresultCount:
+	dq 0
+	dq 1
 lcstr0:
-	db	0
+	db	32,0
+	dq 7
+lcstr1:
+	db	84,111,116,97,108,58,32,0
 section .bss
 stringbuffer:
 	resb 256

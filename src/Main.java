@@ -2592,7 +2592,7 @@ public class Main
 
     public static check main() throws Exception
     {
-        //File f = new File("E:/test.txt");
+      //  File f = new File("E:/test.txt");
          File f = new File("program.txt");
 
         InputStream input = null;

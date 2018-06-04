@@ -771,18 +771,12 @@ public class Irtox86
                 }
                 if (!tmps.equals(""))
                     tmp = Integer.parseInt(tmps);
-                if (tmp < 15)
-                {
-                    System.out.print("      ");
-                    System.out.println("add\t" + reg + "," + regs[tmp]);
-                }
-                else
-                {
+
                     addr = new Integer(tmp - start);
                     addr = (addr + 1) * 8;
                     System.out.print("      ");
                     System.out.println("add\t" + reg + ",[rbp - " + addr.toString() + "]");
-                }
+
             }
             else if (!(params.get(i).name.charAt(0) >= '0' && params.get(i).name.charAt(0) <= '9'))
             {
