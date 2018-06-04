@@ -132,6 +132,7 @@ class ir
 
 class check
 {
+    boolean doit = true;
     Integer addr = new Integer(0);
     public ir code;
     Map<String, vartype> defvars = new HashMap();
@@ -353,6 +354,7 @@ class MyVisitor extends MxBaseVisitor<check>
             if (true)
             {
                 check ck = visit(ctx.defs(k));
+                if (ck.doit == false) chk.doit = false;
                 chk.defvars.putAll(ck.defvars);
                 chk.params.addAll(ck.params);
                 chk.code.add(ck.code);
@@ -660,6 +662,7 @@ class MyVisitor extends MxBaseVisitor<check>
         defun = ctx.type().getText();
         origintemp = temp;
         check c = visit(ctx.params());
+        if (ctx.params().param().size() > 6) chk.doit = false;
         Map<String, vartype> map = (c.defvars);
         Vector<String> pvec = c.var;
         local.putAll(map);
@@ -2598,7 +2601,7 @@ public class Main
 
     public static check main() throws Exception
     {
-         // File f = new File("E:/test.txt");
+          //File f = new File("E:/test.txt");
        File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);

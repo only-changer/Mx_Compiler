@@ -20,7 +20,7 @@ public class Irtox86
     static Integer end = new Integer(0);
     static Vector<varible> global = new Vector<>();
     static Integer rsp = new Integer(0);
-
+    static  boolean doit =true;
     public static Integer move(String curtemp)
     {
         Integer temp0 = -1;
@@ -2187,14 +2187,17 @@ public class Irtox86
                         }
                     }
                 }
-                System.out.print("      ");
-                System.out.println("push\tr12");
-                System.out.print("      ");
-                System.out.println("push\tr13");
-                System.out.print("      ");
-                System.out.println("push\tr14");
-                System.out.print("      ");
-                System.out.println("push\tr15");
+                if (doit)
+                {
+                    System.out.print("      ");
+                    System.out.println("push\tr12");
+                    System.out.print("      ");
+                    System.out.println("push\tr13");
+                    System.out.print("      ");
+                    System.out.println("push\tr14");
+                    System.out.print("      ");
+                    System.out.println("push\tr15");
+                }
                 if (q.z.name.contains("print"))
                 {
                     System.out.print("      ");
@@ -2202,14 +2205,17 @@ public class Irtox86
                 }
                 System.out.print("      ");
                 System.out.println("call\t" + q.z.name);
-                System.out.print("      ");
-                System.out.println("pop\tr15");
-                System.out.print("      ");
-                System.out.println("pop\tr14");
-                System.out.print("      ");
-                System.out.println("pop\tr13");
-                System.out.print("      ");
-                System.out.println("pop\tr12");
+                if (doit)
+                {
+                    System.out.print("      ");
+                    System.out.println("pop\tr15");
+                    System.out.print("      ");
+                    System.out.println("pop\tr14");
+                    System.out.print("      ");
+                    System.out.println("pop\tr13");
+                    System.out.print("      ");
+                    System.out.println("pop\tr12");
+                }
                 if (q.y.name.contains("temp"))
                 {
                     if (allocate.containsKey(q.y.name))
@@ -4030,7 +4036,8 @@ public class Irtox86
         addr = chk.addr;
         global = new Vector<>(chk.params);
         livecheck ck = new livecheck();
-        allocate = ck.check(chk.code);
+        if (chk.doit) allocate = ck.check(chk.code);
+        if (chk.doit == false) doit =false;
         for (Map.Entry<String, Integer> entry : allocate.entrySet())
         {
             //System.out.println(entry.getKey() + ' ' + entry.getValue());

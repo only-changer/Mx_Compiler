@@ -93,8 +93,10 @@ public class livecheck
                     if (q.z.params != null)
                     {
                         for (int i = 0; i < q.z.params.size(); ++i)
+                        {
                             if (q.z.params.get(i).name.contains("temp"))
                                 q.def.add(q.z.params.get(i).name);
+                        }
                     }
                 }
                 else if (q.op.equals("call"))
