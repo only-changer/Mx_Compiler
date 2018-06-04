@@ -6,6 +6,7 @@ import java.util.*;
 
 public class Irtox86
 {
+    static Map<String,Map<String,Integer>> allin = new HashMap<>();
     static Map<String, Integer> allocate = new HashMap<>();
     static Integer addr = 0;
     static String[] cregs = {"r12", "r13", "r14", "r15"};

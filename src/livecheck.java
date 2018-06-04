@@ -62,6 +62,7 @@ public class livecheck
     Set<String> in = new HashSet<>();
     Set<String> out = new HashSet<>();
     Map<String, Integer> result = new HashMap<>();
+    Map<String, Map<String, Integer>> allin = new HashMap<>();
 
     void lives(ir code)
     {
@@ -72,17 +73,20 @@ public class livecheck
             quard q = code.last;
             while (q != null)
             {
-                if (q.op.equals("funcinit"))
-                    break;
                 if (q.op.equals("call"))
                 {
                     if (q.y.name.contains("temp"))
                         q.def.add(q.y.name);
                     if (q.y.params != null)
-                        for (int i = 0;i < q.y.params.size();++i)
+                        for (int i = 0; i < q.y.params.size(); ++i)
                             if (q.y.params.get(i).name.contains("temp"))
                             {
-                                q.used.add(q.y.params.get(i).name); }
+                                q.used.add(q.y.params.get(i).name);
+                            }
+                    if (jmpmap.containsKey(q.z.name))
+                    {
+                        q.out.addAll(jmpmap.get(q.z.name).in);
+                    }
                 }
                 else
                 {
@@ -95,7 +99,7 @@ public class livecheck
                         q.used.add(q.y.name);
                     }
                     if (q.y.params != null)
-                        for (int i = 0;i < q.y.params.size();++i)
+                        for (int i = 0; i < q.y.params.size(); ++i)
                             if (q.y.params.get(i).name.contains("temp"))
                             {
                                 q.used.add(q.y.params.get(i).name);
@@ -105,7 +109,7 @@ public class livecheck
                         q.used.add(q.x.name);
                     }
                     if (q.x.params != null)
-                        for (int i = 0;i < q.x.params.size();++i)
+                        for (int i = 0; i < q.x.params.size(); ++i)
                             if (q.x.params.get(i).name.contains("temp"))
                             {
                                 q.used.add(q.x.params.get(i).name);
@@ -152,6 +156,7 @@ public class livecheck
 
     ir admit(ir code)
     {
+        String curfunc = new String();
         ir ad = new ir();
         quard head = code.head;
         while (head != null)
@@ -163,7 +168,12 @@ public class livecheck
             if (head.op.equals("label!!!!!!!!!"))
             {
                 jmpmap.put(head.z.name, head);
+                if (!head.z.name.contains("_"))
+                {
+                    curfunc = head.z.name;
+                }
             }
+            head.curfunc = curfunc;
             if (head.next == null) break;
             else head = head.next;
         }
@@ -195,10 +205,10 @@ public class livecheck
         }
         for (Map.Entry<String, node> entry : m.nodes.entrySet())
         {
-           // System.out.print(entry.getKey() + entry.getValue().degree);
-          //  for (int i = 0; i < entry.getValue().neibor.size(); ++i)
-           //     System.out.print(' ' + entry.getValue().neibor.get(i).name);
-          //  System.out.println();
+            // System.out.print(entry.getKey() + entry.getValue().degree);
+            //  for (int i = 0; i < entry.getValue().neibor.size(); ++i)
+            //     System.out.print(' ' + entry.getValue().neibor.get(i).name);
+            //  System.out.println();
         }
         for (int i = 0; i < m.nodes.size(); ++i)
         {

@@ -50,6 +50,7 @@ class quard
     quard next;
     varible z;
     Integer num = new Integer(0);
+    String curfunc = new String();
     Set<String> used = new HashSet<>();
     Set<String > def = new HashSet<>();
     Set<String > in = new HashSet<>();
@@ -655,8 +656,7 @@ class MyVisitor extends MxBaseVisitor<check>
         check chk = new check();
         Map<String, vartype> origin = new HashMap<>(defvars);
         defun = ctx.type().getText();
-        temp = 0;
-        maxtemp = 0;
+        origintemp = temp;
         check c = visit(ctx.params());
         Map<String, vartype> map = (c.defvars);
         Vector<String> pvec = c.var;
@@ -718,7 +718,7 @@ class MyVisitor extends MxBaseVisitor<check>
         quad.op = "label!!!!!!!!!";
         chk.code.push(quad);
         quad = new quard();
-        quad.y.name = "0";
+        quad.y.name = origintemp.toString();
 
         quad.op = "funcinit";
         Integer paddr = new Integer(addr);
@@ -2595,7 +2595,7 @@ public class Main
 
     public static check main() throws Exception
     {
-       //File f = new File("E:/test.txt");
+      // File f = new File("E:/test.txt");
          File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
