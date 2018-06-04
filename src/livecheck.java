@@ -68,14 +68,14 @@ public class livecheck
     {
         Set<String> k = new HashSet<>();
         for (int i = 0; i < params.size(); ++i)
+        {
             if (params.get(i).name.contains("temp"))
-            {
                 k.add(params.get(i).name);
-                if (params.get(i).params != null)
-                {
-                    k.addAll(add(params.get(i).params));
-                }
+            if (params.get(i).params != null)
+            {
+                k.addAll(add(params.get(i).params));
             }
+        }
         return k;
     }
 
@@ -134,7 +134,7 @@ public class livecheck
                 q.in.clear();
                 q.out.clear();
                 q.in.addAll(q.used);
-                if (q.op.equals("goto") || q.op.equals("if") || q.op.equals("for") || q.op.equals("j"))
+                if (q.op.equals("goto"))
                 {
                     String s = new String(q.z.name);
                     if (s.charAt(0) >= '0' && s.charAt(0) <= '9')
@@ -143,6 +143,19 @@ public class livecheck
                     {
                         q.out.addAll(jmpmap.get(s).in);
                     }
+                }
+                else if (q.op.equals("if") || q.op.equals("for") || q.op.equals("j"))
+                {
+                    String s = new String(q.z.name);
+                    if (s.charAt(0) >= '0' && s.charAt(0) <= '9')
+                        s = "_" + s;
+                    if (jmpmap.containsKey(s))
+                    {
+                        q.out.addAll(jmpmap.get(s).in);
+                    }
+                    if (q.prev.y.name.contains("temp"))
+                        q.out.add(q.prev.y.name);
+                    //System.err.println(jmpmap);
                 }
                 if (q.next != null && !q.op.equals("ret"))
                 {
@@ -155,7 +168,8 @@ public class livecheck
                 }
                 if (q.z.params != null)
                 {
-                    q.in.add(q.z.name);
+                    if (q.z.name.contains("temp"))
+                        q.in.add(q.z.name);
                     if (q.z.params != null)
                         q.in.addAll(add(q.z.params));
                 }
@@ -273,7 +287,7 @@ public class livecheck
         code = admit(code);
         //code.print();
         lives(code);
-     /*  quard head = new quard();
+     /* quard head = new quard();
         head = code.head;
         while (head != null)
         {

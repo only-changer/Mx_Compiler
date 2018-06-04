@@ -1138,9 +1138,6 @@ class MyVisitor extends MxBaseVisitor<check>
             chk.code.push(quads);
             chk.code.add(code_for);
             quads = new quard();
-            quads.z.name = "_" + fors.toString() + "while";
-            quads.op = "label!!!!!!!!!";
-            chk.code.push(quads);
             chk.code.add(code_temp);
             quads = new quard();
             quads.z.name = "_" + fors.toString() + "whilecheck";
@@ -2598,7 +2595,7 @@ public class Main
 
     public static check main() throws Exception
     {
-         //  File f = new File("E:/test.txt");
+        //  File f = new File("E:/test.txt");
        File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
