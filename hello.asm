@@ -1,3 +1,4 @@
+
 global main
 
 extern puts
@@ -766,122 +767,118 @@ Llege_021:  mov     eax, 1
 Llege_022:  pop     rbp
 	ret
 section   .text
-qpow:
+tak:
       push	rbp
       mov	rbp,rsp
-      sub	rsp,112
-      mov 	r12,rdi
-      mov 	r14,rsi
-      mov 	r15,rdx
-      mov 	r13,1
-      mov 	r10,r12
-      mov	[rbp - 40],r10
-      jmp	_0while
-_0for:
-      mov 	r10,r14
-      and	r10,1
-_0check:
-      mov 	r12,r10
-      mov 	r10,r12
-      cmp	r10,1
-      sete r10b
+      sub	rsp,104
+      mov	[rbp - 8],rdi
+      mov 	r15,rsi
+      mov 	r13,rdx
+      mov 	r10,r15
+      cmp	r10,[rbp - 8]
+      setl r10b
       movzx r10,r10b
       mov 	r12,r10
       mov 	r10,r12
       cmp	 r10,0
       je	_0else
 _0if:
+      mov	r10,[rbp - 8]
+      sub	r10,1
+      mov 	r12,r10
+      mov 	rdi,r12
+      mov 	rsi,r15
+      mov 	rdx,r13
+      push	r12
+      push	r13
+      push	r14
+      push	r15
+      call	tak
+      pop	r15
+      pop	r14
+      pop	r13
+      pop	r12
+      mov	[rbp -  40],rax
+      mov 	r10,r15
+      sub	r10,1
+      mov 	r12,r10
+      mov 	rdi,r12
+      mov 	rsi,r13
+      mov	rdx,[rbp-8]
+      push	r12
+      push	r13
+      push	r14
+      push	r15
+      call	tak
+      pop	r15
+      pop	r14
+      pop	r13
+      pop	r12
+      mov 	r14,rax
       mov 	r10,r13
-      imul	r10,[rbp - 40]
+      sub	r10,1
+      mov 	r12,r10
+      mov 	rdi,r12
+      mov	rsi,[rbp-8]
+      mov 	rdx,r15
+      push	r12
+      push	r13
+      push	r14
+      push	r15
+      call	tak
+      pop	r15
+      pop	r14
+      pop	r13
+      pop	r12
+      mov 	r12,rax
+      mov	rdi,[rbp-40]
+      mov 	rsi,r14
+      mov 	rdx,r12
+      push	r12
+      push	r13
+      push	r14
+      push	r15
+      call	tak
+      pop	r15
+      pop	r14
+      pop	r13
+      pop	r12
+      mov 	r12,rax
+      mov	r10,1
+      add 	r10,r12
       mov 	r12,r10
       mov 	rax,r12
-      mov 	r10,r15
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	r12,rdx
-      mov 	r10,r12
-      mov 	r13,r10
+      mov	rsp,rbp
+      pop rbp
+      ret
       jmp	_0ifback
 _0else:
-_0ifback:
-      mov	r10,[rbp - 40]
-      imul	r10,[rbp - 40]
-      mov 	r12,r10
-      mov 	rax,r12
-      mov 	r10,r15
-      cdq
-      idiv r10d
-      movsx	rdx,edx
-      mov	r12,rdx
-      mov 	r10,r12
-      mov	[rbp - 40],r10
-      mov 	rax,r14
-      mov	r10d,2
-      cdq
-      idiv r10d
-      movsx	rax,eax
-      mov	r12,rax
-      mov 	r10,r12
-      mov 	r14,r10
-_0while:
-      mov 	r10,r14
-      cmp	r10,0
-      setg r10b
-      movzx r10,r10b
-      mov 	r12,r10
-      mov 	r10,r12
-      cmp	r10,1
-      je	_0for
-_0forback:
       mov 	rax,r13
       mov	rsp,rbp
       pop rbp
       ret
+_0ifback:
       mov	rsp,rbp
       pop rbp
       ret
 main:
       push	rbp
       mov	rbp,rsp
-      sub	rsp,32
-      mov	rdi,2
-      mov	rsi,10
-      mov	rdx,10000
+      sub	rsp,16
+      mov	rdi,18
+      mov	rsi,12
+      mov	rdx,6
       push	r12
       push	r13
       push	r14
       push	r15
-      call	qpow
+      call	tak
       pop	r15
       pop	r14
       pop	r13
       pop	r12
       mov 	r12,rax
-      mov 	rdi,r12
-      push	r12
-      push	r13
-      push	r14
-      push	r15
-      call	toString
-      pop	r15
-      pop	r14
-      pop	r13
-      pop	r12
-      mov 	r12,rax
-      mov 	rdi,r12
-      push	r12
-      push	r13
-      push	r14
-      push	r15
-      mov	rax,0
-      call	println
-      pop	r15
-      pop	r14
-      pop	r13
-      pop	r12
-      mov 	r12,rax
-      mov	rax,0
+      mov 	rax,r12
       mov	rsp,rbp
       pop rbp
       ret

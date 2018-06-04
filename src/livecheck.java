@@ -73,6 +73,15 @@ public class livecheck
             quard q = code.last;
             while (q != null)
             {
+                if (q.op.equals("funcinit"))
+                {
+                    if (q.z.params != null)
+                    {
+                        for (int i = 0; i < q.z.params.size(); ++i)
+                            if (q.z.params.get(i).name.contains("temp"))
+                                q.def.add(q.z.params.get(i).name);
+                    }
+                }else
                 if (q.op.equals("call"))
                 {
                     if (q.y.name.contains("temp"))
@@ -124,9 +133,12 @@ public class livecheck
                 q.in.addAll(q.used);
                 if (q.op.equals("goto") || q.op.equals("if") || q.op.equals("for") || q.op.equals("j"))
                 {
-                    if (jmpmap.containsKey(q.z.name))
+                    String s= new String(q.z.name);
+                    if (s.charAt(0) >= '0' && s.charAt(0) <= '9')
+                        s = "_" + s;
+                    if (jmpmap.containsKey(s))
                     {
-                        q.out.addAll(jmpmap.get(q.z.name).in);
+                        q.out.addAll(jmpmap.get(s).in);
                     }
                 }
                 if (q.next != null && !q.op.equals("ret"))
@@ -192,12 +204,13 @@ public class livecheck
             {
                 s1 = (str);
                 m.add(s1, "0");
+                for (String str2 : head.out)
+                {
+                    if (!s1.equals("") && !s1.equals(str2))
+                        m.add(s1, str2);
+                }
             }
-            for (String str : head.out)
-            {
-                if (!s1.equals("") && !s1.equals(str))
-                    m.add(s1, str);
-            }
+
             if (head.next == null)
                 break;
             else
@@ -205,10 +218,10 @@ public class livecheck
         }
         for (Map.Entry<String, node> entry : m.nodes.entrySet())
         {
-            // System.out.print(entry.getKey() + entry.getValue().degree);
-            //  for (int i = 0; i < entry.getValue().neibor.size(); ++i)
-            //     System.out.print(' ' + entry.getValue().neibor.get(i).name);
-            //  System.out.println();
+             System.out.print(entry.getKey() + entry.getValue().degree);
+              for (int i = 0; i < entry.getValue().neibor.size(); ++i)
+                 System.out.print(' ' + entry.getValue().neibor.get(i).name);
+              System.out.println();
         }
         for (int i = 0; i < m.nodes.size(); ++i)
         {
@@ -257,7 +270,7 @@ public class livecheck
     {
         code = admit(code);
         lives(code);
-       /* quard head = new quard();
+       quard head = new quard();
         head = code.head;
         while (head != null)
         {
@@ -271,7 +284,7 @@ public class livecheck
                 break;
             else
                 head = head.next;
-        }*/
+        }
         allocate(code);
 
         return result;
