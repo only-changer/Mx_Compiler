@@ -52,9 +52,10 @@ class quard
     Integer num = new Integer(0);
     String curfunc = new String();
     Set<String> used = new HashSet<>();
-    Set<String > def = new HashSet<>();
-    Set<String > in = new HashSet<>();
-    Set<String > out = new HashSet<>();
+    Set<String> def = new HashSet<>();
+    Set<String> in = new HashSet<>();
+    Set<String> out = new HashSet<>();
+
     quard()
     {
         op = new String();
@@ -243,7 +244,8 @@ class MyVisitor extends MxBaseVisitor<check>
     varible clarr = new varible();
     Integer b_arr = new Integer(0);
     Integer constr = new Integer(0);
-    Vector <String> cons = new Vector<>();
+    Vector<String> cons = new Vector<>();
+
     MyVisitor()
     {
         cla = "";
@@ -373,7 +375,7 @@ class MyVisitor extends MxBaseVisitor<check>
             System.exit(-1);
         }
         //chk.code.print();
-        for (int i = 0;i < cons.size();++i)
+        for (int i = 0; i < cons.size(); ++i)
         {
             varible k = new varible();
             k.name = cons.get(i);
@@ -743,7 +745,7 @@ class MyVisitor extends MxBaseVisitor<check>
         }
 
         check ck = visit(ctx.block());
-       // chk.params.addAll(ck.params);
+        // chk.params.addAll(ck.params);
         chk.code.push(quad);
         quad.x.name = maxtemp.toString();
         if (ismain) chk.code.add(global);
@@ -1653,7 +1655,7 @@ class MyVisitor extends MxBaseVisitor<check>
                         }
                         else
                         {
-                            x =  defclass.get(ss).size;
+                            x = defclass.get(ss).size;
                         }
                         x *= (Integer.parseInt(ck.code.last.z.name) + 1);
                         q.y.name = x.toString();
@@ -2408,9 +2410,9 @@ class MyVisitor extends MxBaseVisitor<check>
 
                             quad.z.name = temp.toString() + "temp";
                             quad.op = "=";
-                            quad.y.name =  (ck.code.last.z.name);
+                            quad.y.name = (ck.code.last.z.name);
                             arrsize = quad.y.name;
-                            Integer x= new Integer(0);
+                            Integer x = new Integer(0);
                             if (sa.equals("int") || sa.equals("bool")) x = 8;
                             else if (sa.equals("string"))
                             {
@@ -2418,12 +2420,13 @@ class MyVisitor extends MxBaseVisitor<check>
                             }
                             else
                             {
-                               x= defclass.get(sa).size;
+                                x = defclass.get(sa).size;
                             }
-                            x *= (Integer.parseInt(quad.y.name) + 1 ) ;
+                            x *= (Integer.parseInt(quad.y.name) + 1);
                             quad.y.name = x.toString();
                             chk.code.push(quad);
-                        }else
+                        }
+                        else
                         {
                             quad.z.name = temp.toString() + "temp";
                             quad.op = "+";
@@ -2595,8 +2598,8 @@ public class Main
 
     public static check main() throws Exception
     {
-     // File f = new File("E:/test.txt");
-         File f = new File("program.txt");
+        //   File f = new File("E:/test.txt");
+        File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
         run(input);

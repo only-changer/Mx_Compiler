@@ -63,19 +63,22 @@ public class livecheck
     Set<String> out = new HashSet<>();
     Map<String, Integer> result = new HashMap<>();
     Map<String, Map<String, Integer>> allin = new HashMap<>();
-    Set<String> add( Vector<varible> params)
+
+    Set<String> add(Vector<varible> params)
     {
         Set<String> k = new HashSet<>();
-        for (int i = 0;i < params.size();++i)
-        {
-            k.add(params.get(i).name);
-            if (params.get(i).params != null)
+        for (int i = 0; i < params.size(); ++i)
+            if (params.get(i).name.contains("temp"))
             {
-                k.addAll(add(params.get(i).params));
+                k.add(params.get(i).name);
+                if (params.get(i).params != null)
+                {
+                    k.addAll(add(params.get(i).params));
+                }
             }
-        }
         return k;
     }
+
     void lives(ir code)
     {
         boolean change = true;
@@ -93,8 +96,8 @@ public class livecheck
                             if (q.z.params.get(i).name.contains("temp"))
                                 q.def.add(q.z.params.get(i).name);
                     }
-                }else
-                if (q.op.equals("call"))
+                }
+                else if (q.op.equals("call"))
                 {
                     if (q.y.name.contains("temp"))
                         q.def.add(q.y.name);
@@ -132,7 +135,7 @@ public class livecheck
                 q.in.addAll(q.used);
                 if (q.op.equals("goto") || q.op.equals("if") || q.op.equals("for") || q.op.equals("j"))
                 {
-                    String s= new String(q.z.name);
+                    String s = new String(q.z.name);
                     if (s.charAt(0) >= '0' && s.charAt(0) <= '9')
                         s = "_" + s;
                     if (jmpmap.containsKey(s))
@@ -151,6 +154,7 @@ public class livecheck
                 }
                 if (q.z.params != null)
                 {
+                    q.in.add(q.z.name);
                     q.in.addAll(add(q.z.params));
                 }
                 if (q.in.equals(in) && q.out.equals(out))
@@ -169,7 +173,7 @@ public class livecheck
         quard head = code.head;
         while (head != null)
         {
-            if (!(head.op.equals("imm") || head.op.equals("class") ||head.op.equals("TA")||head.op.contains("int") || head.op.contains("string") || head.op.equals("arr")))
+            if (!(head.op.equals("imm") || head.op.equals("class") || head.op.equals("TA") || head.op.contains("int") || head.op.contains("string") || head.op.equals("arr")))
             {
                 ad.push(head);
             }
