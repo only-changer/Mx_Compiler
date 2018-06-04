@@ -752,8 +752,16 @@ public class Irtox86
         }
         else
         {
-            System.out.print("      ");
-            System.out.println("mov\t" + reg + ",[rbp - " + addr.toString() + "]");
+            if (allocate.containsKey(s))
+            {
+                System.out.print("      ");
+                System.out.println("mov\t" + reg + "," + cregs[allocate.get(s)]);
+            }
+            else
+            {
+                System.out.print("      ");
+                System.out.println("mov\t" + reg + ",[rbp - " + addr.toString() + "]");
+            }
         }
         for (int i = 0; i < params.size(); ++i)
         {
@@ -2178,10 +2186,14 @@ public class Irtox86
                         }
                     }
                 }
-                // System.out.print("      ");
-                // System.out.println("push\tr10");
-                // System.out.print("      ");
-                // System.out.println("push\tr11");
+                System.out.print("      ");
+                System.out.println("push\tr12");
+                System.out.print("      ");
+                System.out.println("push\tr13");
+                System.out.print("      ");
+                System.out.println("push\tr14");
+                System.out.print("      ");
+                System.out.println("push\tr15");
                 if (q.z.name.contains("print"))
                 {
                     System.out.print("      ");
@@ -2189,10 +2201,14 @@ public class Irtox86
                 }
                 System.out.print("      ");
                 System.out.println("call\t" + q.z.name);
-                // System.out.print("      ");
-                //  System.out.println("pop\tr11");
-                //  System.out.print("      ");
-                //  System.out.println("pop\tr10");
+                System.out.print("      ");
+                System.out.println("pop\tr15");
+                System.out.print("      ");
+                System.out.println("pop\tr14");
+                System.out.print("      ");
+                System.out.println("pop\tr13");
+                System.out.print("      ");
+                System.out.println("pop\tr12");
                 if (q.y.name.contains("temp"))
                 {
                     if (allocate.containsKey(q.y.name))
@@ -4016,7 +4032,7 @@ public class Irtox86
         allocate = ck.check(chk.code);
         for (Map.Entry<String, Integer> entry : allocate.entrySet())
         {
-            // System.out.println(entry.getKey() + ' ' +entry.getValue());
+            //System.out.println(entry.getKey() + ' ' + entry.getValue());
         }
         translate(chk.code);
     }

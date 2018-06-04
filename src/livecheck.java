@@ -48,14 +48,15 @@ class map
         {
             node n1 = newnode(str1);
             node n2 = newnode(str2);
-            n1.add(n2);
-            n2.add(n1);
+            if (!n1.neibor.contains(n2)) n1.add(n2);
+            if (!n2.neibor.contains(n1)) n2.add(n1);
         }
     }
 }
 
 public class livecheck
 {
+    Map<String,quard> jmpmap = new HashMap<>();
     String[] regs = {"r12", "r13", "r14", "r15"};
     map m = new map();
     Set<String> in = new HashSet<>();
@@ -72,12 +73,22 @@ public class livecheck
             {
                 if (q.op.equals("funcinit"))
                     break;
-                if (q.z.name.contains("temp"))
-                    q.def.add(q.z.name);
-                if (q.y.name.contains("temp"))
-                    q.used.add(q.y.name);
-                if (q.x.name.contains("temp"))
-                    q.used.add(q.x.name);
+                if (q.op.equals("call"))
+                {
+                    if (q.y.name.contains("temp"))
+                        q.def.add(q.y.name);
+                }else
+                {
+                    if (q.z.name.contains("temp"))
+                    {
+                        if (q.z.params != null) q.in.add(q.z.name);
+                        q.def.add(q.z.name);
+                    }
+                    if (q.y.name.contains("temp"))
+                        q.used.add(q.y.name);
+                    if (q.x.name.contains("temp"))
+                        q.used.add(q.x.name);
+                }
                 in.clear();
                 out.clear();
                 in.addAll(q.in);
@@ -85,6 +96,13 @@ public class livecheck
                 q.in.clear();
                 q.out.clear();
                 q.in.addAll(q.used);
+                if (q.op.equals("goto") || q.op.equals("if") || q.op.equals("for") || q.op.equals("j"))
+                {
+                    if (jmpmap.containsKey(q.z.name))
+                    {
+                        q.out.addAll(jmpmap.get(q.z.name).in);
+                    }
+                }
                 if (q.next != null && !q.op.equals("ret"))
                 {
                     q.out.addAll(q.next.in);
@@ -109,9 +127,13 @@ public class livecheck
         quard head = code.head;
         while (head != null)
         {
-            if (!(head.op.equals("imm") || head.op.equals("int") || head.op.equals("string")))
+            if (!(head.op.equals("imm") || head.op.equals("int") || head.op.equals("string") || head.op.equals("arr")))
             {
                 ad.push(head);
+            }
+            if (head.op.equals("label!!!!!!!!!"))
+            {
+                jmpmap.put(head.z.name,head);
             }
             if (head.next == null) break;
             else head = head.next;
@@ -144,7 +166,7 @@ public class livecheck
         }
         for (Map.Entry<String, node> entry : m.nodes.entrySet())
         {
-           // System.out.println(entry.getKey() + entry.getValue().degree);
+            System.out.println(entry.getKey() + entry.getValue().degree);
         }
         for (int i = 0; i < m.nodes.size(); ++i)
         {
@@ -170,6 +192,7 @@ public class livecheck
                 if (check[j] == false)
                 {
                     n.color = j;
+                    if (color <= j) color = j + 1;
                     result.put(n.name , n.color);
                     break;
                 }
@@ -183,7 +206,7 @@ public class livecheck
                     ++color;
                 }
             }
-           // System.out.println(n.name + ' ' + n.color);
+            //System.out.println(n.name + ' ' + n.color);
         }
 
     }
@@ -192,7 +215,7 @@ public class livecheck
     {
         code = admit(code);
         lives(code);
-       /* quard head = new quard();
+        quard head = new quard();
         head = code.head;
         while (head != null)
         {
@@ -206,7 +229,7 @@ public class livecheck
                 break;
             else
                 head = head.next;
-        }*/
+        }
         allocate(code);
 
         return result;

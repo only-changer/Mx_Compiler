@@ -1,3 +1,4 @@
+
 global main
 
 extern puts
@@ -769,88 +770,94 @@ section   .text
 main:
       push	rbp
       mov	rbp,rsp
-      sub	rsp,120
-      mov 	r15,5
+      sub	rsp,136
+      mov	qword[rbp - 8],5
+      mov	r10,[rbp - 8]
+      add	r10,1
+      mov 	r12,r10
+      mov 	r10,r12
+      imul	r10,8
+      mov 	r12,r10
+      mov 	rdi,r12
+      push	r12
+      push	r13
+      push	r14
+      push	r15
+      call	malloc
+      pop	r15
+      pop	r14
+      pop	r13
+      pop	r12
+      mov 	r12,rax
+      mov	r10,[rbp - 8]
+      mov	r11,r12
+      add	r11,0
+      mov	[r11],r10
+      mov 	r10,r12
+      mov 	r15,r10
+      mov 	r13,0
       mov 	r14,0
+      jmp	_0whilecheck
+_0for:
       mov 	r10,r14
-      cmp	r10,0
-      setne r10b
-      movzx r10,r10b
+      add	r10,1
+      mov 	r12,r10
+      mov 	r10,r12
+      imul	r10,8
+      mov 	r12,r10
+      mov 	r10,r13
+      add	r10,1
       mov 	r13,r10
       mov 	r10,r13
-      cmp	r10,0
-      je	_0check
-      mov 	rax,r15
+      mov	r11,r15
+      add	r11,r12
+      mov	[r11],r10
+_0while:
       mov 	r10,r14
-      cdq
-      idiv r10d
-      movsx	rax,eax
-      mov	r12,rax
+      add	r10,1
+      mov 	r14,r10
+_0whilecheck:
+      mov 	r10,r14
+      cmp	r10,[rbp - 8]
+      setl r10b
+      movzx r10,r10b
+      mov 	r12,r10
       mov 	r10,r12
       cmp	r10,1
-      setne r10b
-      movzx r10,r10b
-      mov 	r12,r10
-      mov 	r10,r13
-      and 	r10,r12
-_0check:
-      mov 	r12,r10
-      mov 	r10,r12
-      cmp	 r10,0
-      je	_0else
-_0if:
-      mov 	r12,10
-      jmp	_0ifback
-_0else:
-      mov 	r12,20
-_0ifback:
-      mov 	r10,r12
-      cmp	r10,10
-      sete r10b
-      movzx r10,r10b
-      mov 	r13,r10
-      mov 	r10,r13
-      cmp	r10,0
-      je	_1check
-      mov 	rax,r15
+      je	_0for
+_0forback:
+      mov 	r13,0
+      mov 	r14,0
+      jmp	_1whilecheck
+_1for:
       mov 	r10,r14
-      cdq
-      idiv r10d
-      movsx	rax,eax
-      mov	r12,rax
+      add	r10,1
+      mov 	r12,r10
       mov 	r10,r12
-      cmp	r10,0
-      sete r10b
-      movzx r10,r10b
+      imul	r10,8
       mov 	r12,r10
       mov 	r10,r13
-      and 	r10,r12
-_1check:
+      mov	r11,r15
+      add	r11,r12
+      add	r10,[r11]
+      mov 	r12,r10
+      mov 	r10,r12
       mov 	r13,r10
-      mov 	r10,r13
-      cmp	r10,0
-      je	_2check
-      mov 	r10,r15
-      cmp	r10,5
-      sete r10b
+_1while:
+      mov 	r10,r14
+      add	r10,1
+      mov 	r14,r10
+_1whilecheck:
+      mov 	r10,r14
+      cmp	r10,[rbp - 8]
+      setl r10b
       movzx r10,r10b
       mov 	r12,r10
-      mov 	r10,r13
-      and 	r10,r12
-_2check:
-      mov 	r12,r10
       mov 	r10,r12
-      xor	r10,1
-      mov 	r12,r10
-      mov 	r10,r12
-      cmp	 r10,0
-      je	_1else
-_1if:
-      mov 	r12,30
-      jmp	_1ifback
-_1else:
-_1ifback:
-      mov 	rax,r12
+      cmp	r10,1
+      je	_1for
+_1forback:
+      mov 	rax,r13
       mov	rsp,rbp
       pop rbp
       ret
