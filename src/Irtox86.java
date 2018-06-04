@@ -1755,10 +1755,13 @@ public class Irtox86
                 }
                 else if (q.y.name.contains("temp"))
                 {
-                    Integer addr1 = new Integer(temp - start);
-                    addr1 = (addr1 + 1) * 8;
-                    System.out.print("      ");
-                    System.out.println("mov\tr10,[rbp - " + addr1.toString() + "]");
+
+                    {
+                        Integer addr1 = new Integer(temp - start);
+                        addr1 = (addr1 + 1) * 8;
+                        System.out.print("      ");
+                        System.out.println("mov\tr10,[rbp - " + addr1.toString() + "]");
+                    }
                     if (q.z.params == null)
                     {
                         if (!(q.z.name.charAt(0) >= '0' && q.z.name.charAt(0) <= '9'))
@@ -2107,18 +2110,12 @@ public class Irtox86
                 }
                 else if (q.y.name.contains("temp"))
                 {
-                    if (temp < 15)
-                    {
-                        System.out.print("      ");
-                        System.out.println("mov\tr10," + regs[temp]);
-                    }
-                    else
-                    {
+
                         Integer addr1 = new Integer(temp - start);
                         addr1 = (addr1 + 1) * 8;
                         System.out.print("      ");
                         System.out.println("mov\tr10,[rbp - " + addr1.toString() + "]");
-                    }
+
                 }
                 else if (!(q.y.name.charAt(0) >= '0' && q.y.name.charAt(0) <= '9'))
                 {
@@ -2138,18 +2135,12 @@ public class Irtox86
                 }
                 else if (q.x.name.contains("temp"))
                 {
-                    if (temp2 < 15)
-                    {
-                        System.out.print("      ");
-                        System.out.println("add\tr10," + regs[temp2]);
-                    }
-                    else
-                    {
+
                         Integer addr2 = new Integer(temp2 - start);
                         addr2 = (addr2 + 1) * 8;
                         System.out.print("      ");
                         System.out.println("add\tr10,[rbp - " + addr2.toString() + "]");
-                    }
+
                 }
                 else if (!(q.x.name.charAt(0) >= '0' && q.x.name.charAt(0) <= '9'))
                 {
@@ -2174,18 +2165,12 @@ public class Irtox86
                 }
                 else
                 {
-                    if (temp3 < 15)
-                    {
-                        System.out.print("      ");
-                        System.out.println("mov\t" + regs[temp3] + ",r10");
-                    }
-                    else
-                    {
+
                         Integer addr3 = new Integer(temp3 - start);
                         addr3 = (addr3 + 1) * 8;
                         System.out.print("      ");
                         System.out.println("mov\t[rbp - " + addr3.toString() + "],r10");
-                    }
+
                 }
             }
             if (q.op.equals("-"))
@@ -2265,18 +2250,12 @@ public class Irtox86
                 }
                 else if (q.y.name.contains("temp"))
                 {
-                    if (temp < 15)
-                    {
-                        System.out.print("      ");
-                        System.out.println("mov\tr10," + regs[temp]);
-                    }
-                    else
-                    {
+
                         Integer addr1 = new Integer(temp - start);
                         addr1 = (addr1 + 1) * 8;
                         System.out.print("      ");
                         System.out.println("mov\tr10,[rbp - " + addr1.toString() + "]");
-                    }
+
                 }
                 else if (!(q.y.name.charAt(0) >= '0' && q.y.name.charAt(0) <= '9'))
                 {
@@ -2296,18 +2275,12 @@ public class Irtox86
                 }
                 else if (q.x.name.contains("temp"))
                 {
-                    if (temp2 < 15)
-                    {
-                        System.out.print("      ");
-                        System.out.println("imul\tr10," + regs[temp2]);
-                    }
-                    else
-                    {
+
                         Integer addr2 = new Integer(temp2 - start);
                         addr2 = (addr2 + 1) * 8;
                         System.out.print("      ");
                         System.out.println("imul\tr10,[rbp - " + addr2.toString() + "]");
-                    }
+
                 }
                 else if (!(q.x.name.charAt(0) >= '0' && q.x.name.charAt(0) <= '9'))
                 {
@@ -2332,18 +2305,12 @@ public class Irtox86
                 }
                 else
                 {
-                    if (temp3 < 15)
-                    {
-                        System.out.print("      ");
-                        System.out.println("mov\t" + regs[temp3] + ",r10");
-                    }
-                    else
-                    {
+
                         Integer addr3 = new Integer(temp3 - start);
                         addr3 = (addr3 + 1) * 8;
                         System.out.print("      ");
                         System.out.println("mov\t[rbp - " + addr3.toString() + "],r10");
-                    }
+
                 }
             }
             if (q.op.equals("/"))

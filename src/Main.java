@@ -738,8 +738,8 @@ class MyVisitor extends MxBaseVisitor<check>
                 quad.z.add(k);
             }
         }
-        temp = 15;
-        maxtemp = 15;
+        temp = 0;
+        maxtemp = 0;
         check ck = visit(ctx.block());
        // chk.params.addAll(ck.params);
         chk.code.push(quad);
@@ -1665,17 +1665,16 @@ class MyVisitor extends MxBaseVisitor<check>
                     else
                     {
                         quard q = new quard();
-                        Integer I = new Integer(i);
-                        q.z.name = I.toString() + "temp";
+                        q.z.name = temp.toString() + "temp";
                         q.op = "+";
                         //System.out.println(ctx.expr(i).getText());
                         q.y = new varible(ck.code.last.z);
                         q.x.name = "1";
                         chk.code.push(q);
                         q = new quard();
-                        q.z.name = I.toString() + "temp";
+                        q.z.name = temp.toString() + "temp";
                         q.op = "*";
-                        q.y.name = I.toString() + "temp";
+                        q.y.name = temp.toString() + "temp";
                         if (ss.equals("int") || ss.equals("bool"))
                             q.x.name = "8";
                         else if (ss.equals("string"))
@@ -1688,11 +1687,13 @@ class MyVisitor extends MxBaseVisitor<check>
                         }
                         chk.code.push(q);
                         varible k = new varible();
-                        k.name = I.toString() + "temp";
+                        k.name = temp.toString() + "temp";
                         quad.z.add(k);
-
+                        ++temp;
+                        if (temp > maxtemp) maxtemp = temp;
                     }
                 }
+
                 chk.code.push(quad);
                 int l = (s.length() - ss.length()) / 2;
                 n -= 1;
@@ -2591,7 +2592,7 @@ public class Main
 
     public static check main() throws Exception
     {
-       // File f = new File("E:/test.txt");
+        //File f = new File("E:/test.txt");
          File f = new File("program.txt");
 
         InputStream input = null;

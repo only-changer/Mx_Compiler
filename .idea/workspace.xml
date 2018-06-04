@@ -31,8 +31,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="103">
-              <caret line="2593" column="9" selection-start-line="2593" selection-start-column="9" selection-end-line="2593" selection-end-column="9" />
+            <state relative-caret-position="303">
+              <caret line="2594" column="10" selection-start-line="2594" selection-start-column="10" selection-end-line="2594" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -40,8 +40,8 @@
       <file leaf-file-name="Irtox86.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Irtox86.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="232">
-              <caret line="2112" selection-start-line="2112" selection-end-line="2112" />
+            <state relative-caret-position="-57143">
+              <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
             </state>
           </provider>
         </entry>
@@ -120,8 +120,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>lc</find>
-      <find>&quot;&amp;&quot;</find>
       <find>&quot;==&quot;</find>
       <find>for</find>
       <find>expr1</find>
@@ -148,8 +146,10 @@
       <find>ALLin</find>
       <find>&quot;str=</find>
       <find>&quot;*&quot;</find>
-      <find>opcom</find>
       <find>&quot;+&quot;</find>
+      <find>&quot;=&quot;</find>
+      <find>opcom</find>
+      <find>15</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -169,7 +169,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="570" />
+    <option name="x" value="583" />
+    <option name="y" value="37" />
     <option name="width" value="1300" />
     <option name="height" value="1040" />
   </component>
@@ -303,7 +304,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="456" y="0" width="1040" height="832" extended-state="0" />
+    <frame x="467" y="30" width="1040" height="832" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
@@ -315,7 +316,7 @@
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5305499" side_tool="true" weight="0.6906475" />
       <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.46945012" visible="true" weight="0.30791366" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.46945012" visible="true" weight="0.107913665" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49932975" weight="0.32952926" />
       <window_info id="Capture Tool" order="2" />
@@ -724,15 +725,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Irtox86.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="2112" selection-start-line="2112" selection-end-line="2112" />
+        <state relative-caret-position="-57143">
+          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="2593" column="9" selection-start-line="2593" selection-start-column="9" selection-end-line="2593" selection-end-column="9" />
+        <state relative-caret-position="303">
+          <caret line="2594" column="10" selection-start-line="2594" selection-start-column="10" selection-end-line="2594" selection-end-column="10" />
         </state>
       </provider>
     </entry>
