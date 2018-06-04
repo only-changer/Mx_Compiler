@@ -1731,7 +1731,7 @@ class MyVisitor extends MxBaseVisitor<check>
                 {
                     chk.var.add(defclass.get(cla).defvars.get(ctx.varname().getText()).type);
                     quard quad = new quard();
-                    quad.op = chk.var.get(0);
+                    quad.op = "class";
                     String s = new String();
                     s = ctx.varname().getText();
                     varible k = new varible();
@@ -2595,7 +2595,7 @@ public class Main
 
     public static check main() throws Exception
     {
-      //File f = new File("E:/test.txt");
+     // File f = new File("E:/test.txt");
          File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);

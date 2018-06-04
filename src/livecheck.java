@@ -63,7 +63,19 @@ public class livecheck
     Set<String> out = new HashSet<>();
     Map<String, Integer> result = new HashMap<>();
     Map<String, Map<String, Integer>> allin = new HashMap<>();
-
+    Set<String> add( Vector<varible> params)
+    {
+        Set<String> k = new HashSet<>();
+        for (int i = 0;i < params.size();++i)
+        {
+            k.add(params.get(i).name);
+            if (params.get(i).params != null)
+            {
+                k.addAll(add(params.get(i).params));
+            }
+        }
+        return k;
+    }
     void lives(ir code)
     {
         boolean change = true;
@@ -86,12 +98,7 @@ public class livecheck
                 {
                     if (q.y.name.contains("temp"))
                         q.def.add(q.y.name);
-                    if (q.y.params != null)
-                        for (int i = 0; i < q.y.params.size(); ++i)
-                            if (q.y.params.get(i).name.contains("temp"))
-                            {
-                                q.used.add(q.y.params.get(i).name);
-                            }
+                    q.used.addAll(add(q.y.params));
                     if (jmpmap.containsKey(q.z.name))
                     {
                         q.out.addAll(jmpmap.get(q.z.name).in);
@@ -108,21 +115,13 @@ public class livecheck
                         q.used.add(q.y.name);
                     }
                     if (q.y.params != null)
-                        for (int i = 0; i < q.y.params.size(); ++i)
-                            if (q.y.params.get(i).name.contains("temp"))
-                            {
-                                q.used.add(q.y.params.get(i).name);
-                            }
+                        q.used.addAll(add(q.y.params));
                     if (q.x.name.contains("temp"))
                     {
                         q.used.add(q.x.name);
                     }
                     if (q.x.params != null)
-                        for (int i = 0; i < q.x.params.size(); ++i)
-                            if (q.x.params.get(i).name.contains("temp"))
-                            {
-                                q.used.add(q.x.params.get(i).name);
-                            }
+                        q.used.addAll(add(q.x.params));
                 }
                 in.clear();
                 out.clear();
@@ -152,10 +151,7 @@ public class livecheck
                 }
                 if (q.z.params != null)
                 {
-                    q.in.add(q.z.name);
-                    for (int i = 0; i < q.z.params.size(); ++i)
-                        if (q.z.params.get(i).name.contains("temp"))
-                            q.in.add(q.z.params.get(i).name);
+                    q.in.addAll(add(q.z.params));
                 }
                 if (q.in.equals(in) && q.out.equals(out))
                     change = false;
@@ -173,7 +169,7 @@ public class livecheck
         quard head = code.head;
         while (head != null)
         {
-            if (!(head.op.equals("imm") || head.op.contains("int") || head.op.contains("string") || head.op.equals("arr")))
+            if (!(head.op.equals("imm") || head.op.equals("class") ||head.op.equals("TA")||head.op.contains("int") || head.op.contains("string") || head.op.equals("arr")))
             {
                 ad.push(head);
             }
@@ -270,7 +266,7 @@ public class livecheck
     {
         code = admit(code);
         lives(code);
-      /* quard head = new quard();
+     /*  quard head = new quard();
         head = code.head;
         while (head != null)
         {
