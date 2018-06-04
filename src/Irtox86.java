@@ -2,10 +2,13 @@ import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.io.FileNotFoundException;
 import java.util.Vector;
+import java.util.*;
 
 public class Irtox86
 {
+    static Map<String, Integer> allocate = new HashMap<>();
     static Integer addr = 0;
+    static String[] cregs = {"r12", "r13", "r14", "r15"};
     static String[] regs = {"rax", "rcx", "rdx", "rbx", "rsi", "rdi", "r8", "r9", "r10", "r11", "r12", "r13", "r14", "r15"};
     static String[] regsb = {"al", "cl", "dl", "bl", "bpl", "sil", "dil", "r8b", "r9b", "r10b", "r11b", "r12b", "r13b", "r14b", "r15b"};
     static String[] callregs = {"rdi", "rsi", "rdx", "rcx", "r8", "r9"};
@@ -762,20 +765,29 @@ public class Irtox86
             }
             else if (params.get(i).name.contains("temp"))
             {
-                tmp = -1;
-                tmps = new String();
-                for (int j = 0; j < params.get(i).name.length(); ++j)
+                if (allocate.containsKey(params.get(i).name))
                 {
-                    if (!(params.get(i).name.charAt(j) >= '0' && params.get(i).name.charAt(j) <= '9')) break;
-                    tmps += params.get(i).name.charAt(j);
+                    tmp = allocate.get(params.get(i).name);
+                    System.out.print("      ");
+                    System.out.println("add\t" + reg + "," + cregs[tmp]);
                 }
-                if (!tmps.equals(""))
-                    tmp = Integer.parseInt(tmps);
+                else
+                {
+                    tmp = -1;
+                    tmps = new String();
+                    for (int j = 0; j < params.get(i).name.length(); ++j)
+                    {
+                        if (!(params.get(i).name.charAt(j) >= '0' && params.get(i).name.charAt(j) <= '9')) break;
+                        tmps += params.get(i).name.charAt(j);
+                    }
+                    if (!tmps.equals(""))
+                        tmp = Integer.parseInt(tmps);
 
                     addr = new Integer(tmp - start);
                     addr = (addr + 1) * 8;
                     System.out.print("      ");
                     System.out.println("add\t" + reg + ",[rbp - " + addr.toString() + "]");
+                }
 
             }
             else if (!(params.get(i).name.charAt(0) >= '0' && params.get(i).name.charAt(0) <= '9'))
@@ -1641,7 +1653,7 @@ public class Irtox86
             {
                 System.out.println(q.z.name + ":");
             }
-            if (q.op.equals("j"))
+            else if (q.op.equals("j"))
             {
                 Integer addr1 = new Integer(temp - start);
                 addr1 = (addr1 + 1) * 8;
@@ -1652,7 +1664,7 @@ public class Irtox86
                 System.out.print("      ");
                 System.out.println("je\t" + q.z.name);
             }
-            if (q.op.equals("funcinit"))
+            else if (q.op.equals("funcinit"))
             {
                 System.out.print("      ");
                 System.out.println("push\trbp");
@@ -1671,53 +1683,81 @@ public class Irtox86
                     for (int i = 0; i < q.z.params.size(); ++i)
                         if (i < 6)
                         {
-                            Integer tmp = -1;
-                            String tmps = new String();
-                            for (int j = 0; j < q.z.params.get(i).name.length(); ++j)
+                            if (allocate.containsKey(q.z.params.get(i).name))
                             {
-                                if (!(q.z.params.get(i).name.charAt(j) >= '0' && q.z.params.get(i).name.charAt(j) <= '9'))
-                                    break;
-                                tmps += q.z.params.get(i).name.charAt(j);
+
+                                System.out.print("      ");
+                                System.out.println("mov \t" + cregs[allocate.get(q.z.params.get(i).name)] + "," + callregs[i]);
                             }
-                            if (!tmps.equals(""))
-                                tmp = Integer.parseInt(tmps);
-                            Integer addr = new Integer(tmp - start);
-                            addr = (addr + 1) * 8;
-                            System.out.print("      ");
-                            System.out.println("mov\t[rbp - " + addr.toString() + "]," + callregs[i]);
+                            else
+                            {
+                                Integer tmp = -1;
+                                String tmps = new String();
+                                for (int j = 0; j < q.z.params.get(i).name.length(); ++j)
+                                {
+                                    if (!(q.z.params.get(i).name.charAt(j) >= '0' && q.z.params.get(i).name.charAt(j) <= '9'))
+                                        break;
+                                    tmps += q.z.params.get(i).name.charAt(j);
+                                }
+                                if (!tmps.equals(""))
+                                    tmp = Integer.parseInt(tmps);
+                                Integer addr = new Integer(tmp - start);
+                                addr = (addr + 1) * 8;
+                                System.out.print("      ");
+                                System.out.println("mov\t[rbp - " + addr.toString() + "]," + callregs[i]);
+                            }
                         }
                         else
                         {
-                            Integer tmp = -1;
-                            String tmps = new String();
-                            for (int j = 0; j < q.z.params.get(i).name.length(); ++j)
+                            if (allocate.containsKey(q.z.params.get(i).name))
                             {
-                                if (!(q.z.params.get(i).name.charAt(j) >= '0' && q.z.params.get(i).name.charAt(j) <= '9'))
-                                    break;
-                                tmps += q.z.params.get(i).name.charAt(j);
+                                Integer I = new Integer(i);
+                                I = q.z.params.size() - I + 1;
+                                I *= 8;
+                                System.out.print("      ");
+                                System.out.println("mov \t" + cregs[allocate.get(q.z.params.get(i).name)] + ",[rbp + " + I.toString() + "]");
                             }
-                            if (!tmps.equals(""))
-                                tmp = Integer.parseInt(tmps);
-                            Integer addr = new Integer(tmp - start);
-                            addr = (addr + 1) * 8;
-                            Integer I = new Integer(i);
-                            I = q.z.params.size() - I + 1;
-                            I *= 8;
-                            System.out.print("      ");
-                            System.out.println("mov\tr10,[rbp + " + I.toString() + "]");
-                            System.out.print("      ");
-                            System.out.println("mov\t[rbp - " + addr.toString() + "],r10");
+                            else
+                            {
+                                Integer tmp = -1;
+                                String tmps = new String();
+                                for (int j = 0; j < q.z.params.get(i).name.length(); ++j)
+                                {
+                                    if (!(q.z.params.get(i).name.charAt(j) >= '0' && q.z.params.get(i).name.charAt(j) <= '9'))
+                                        break;
+                                    tmps += q.z.params.get(i).name.charAt(j);
+                                }
+                                if (!tmps.equals(""))
+                                    tmp = Integer.parseInt(tmps);
+                                Integer addr = new Integer(tmp - start);
+                                addr = (addr + 1) * 8;
+                                Integer I = new Integer(i);
+                                I = q.z.params.size() - I + 1;
+                                I *= 8;
+                                System.out.print("      ");
+                                System.out.println("mov\tr10,[rbp + " + I.toString() + "]");
+                                System.out.print("      ");
+                                System.out.println("mov\t[rbp - " + addr.toString() + "],r10");
+                            }
                         }
                 }
             }
-            if (q.op.equals("str="))
+            else if (q.op.equals("str="))
             {
-                Integer addr3 = new Integer(temp3 - start);
-                addr3 = (addr3 + 1) * 8;
-                System.out.print("      ");
-                System.out.println("mov\tqword[rbp - " + addr3.toString() + "]," + q.y.name);
+                if (allocate.containsKey(q.z.name))
+                {
+                    System.out.print("      ");
+                    System.out.println("mov \t" + cregs[allocate.get(q.z.name)] + "," + q.y.name);
+                }
+                else
+                {
+                    Integer addr3 = new Integer(temp3 - start);
+                    addr3 = (addr3 + 1) * 8;
+                    System.out.print("      ");
+                    System.out.println("mov\tqword[rbp - " + addr3.toString() + "]," + q.y.name);
+                }
             }
-            if (q.op.equals("="))
+            else if (q.op.equals("="))
             {
                 if (q.y.params != null)
                 {
@@ -1733,10 +1773,18 @@ public class Irtox86
                         }
                         else
                         {
-                            Integer addr3 = new Integer(temp3 - start);
-                            addr3 = (addr3 + 1) * 8;
-                            System.out.print("      ");
-                            System.out.println("mov\t[rbp - " + addr3.toString() + "],r10");
+                            if (allocate.containsKey(q.z.name))
+                            {
+                                System.out.print("      ");
+                                System.out.println("mov \t" + cregs[allocate.get(q.z.name)] + ",r10");
+                            }
+                            else
+                            {
+                                Integer addr3 = new Integer(temp3 - start);
+                                addr3 = (addr3 + 1) * 8;
+                                System.out.print("      ");
+                                System.out.println("mov\t[rbp - " + addr3.toString() + "],r10");
+                            }
                         }
                     }
                     else
@@ -1748,7 +1796,12 @@ public class Irtox86
                 }
                 else if (q.y.name.contains("temp"))
                 {
-
+                    if (allocate.containsKey(q.y.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov \tr10," + cregs[allocate.get(q.y.name)]);
+                    }
+                    else
                     {
                         Integer addr1 = new Integer(temp - start);
                         addr1 = (addr1 + 1) * 8;
@@ -1764,10 +1817,18 @@ public class Irtox86
                         }
                         else
                         {
-                            Integer addr3 = new Integer(temp3 - start);
-                            addr3 = (addr3 + 1) * 8;
-                            System.out.print("      ");
-                            System.out.println("mov\t[rbp - " + addr3.toString() + "],r10");
+                            if (allocate.containsKey(q.z.name))
+                            {
+                                System.out.print("      ");
+                                System.out.println("mov \t" + cregs[allocate.get(q.z.name)] + ",r10");
+                            }
+                            else
+                            {
+                                Integer addr3 = new Integer(temp3 - start);
+                                addr3 = (addr3 + 1) * 8;
+                                System.out.print("      ");
+                                System.out.println("mov\t[rbp - " + addr3.toString() + "],r10");
+                            }
                         }
                     }
                     else
@@ -1790,12 +1851,22 @@ public class Irtox86
                         }
                         else
                         {
-                            Integer addr3 = new Integer(temp3 - start);
-                            addr3 = (addr3 + 1) * 8;
-                            System.out.print("      ");
-                            System.out.println("mov\tr10,[sjtulc" + q.y.name + "]");
-                            System.out.print("      ");
-                            System.out.println("mov\t[rbp-" + addr3.toString() + "],r10");
+                            if (allocate.containsKey(q.z.name))
+                            {
+                                System.out.print("      ");
+                                System.out.println("mov\tr10,[sjtulc" + q.y.name + "]");
+                                System.out.print("      ");
+                                System.out.println("mov \t" + cregs[allocate.get(q.z.name)] + ",r10");
+                            }
+                            else
+                            {
+                                Integer addr3 = new Integer(temp3 - start);
+                                addr3 = (addr3 + 1) * 8;
+                                System.out.print("      ");
+                                System.out.println("mov\tr10,[sjtulc" + q.y.name + "]");
+                                System.out.print("      ");
+                                System.out.println("mov\t[rbp-" + addr3.toString() + "],r10");
+                            }
                         }
                     }
                     else
@@ -1818,10 +1889,18 @@ public class Irtox86
                         }
                         else
                         {
-                            Integer addr3 = new Integer(temp3 - start);
-                            addr3 = (addr3 + 1) * 8;
-                            System.out.print("      ");
-                            System.out.println("mov\tqword[rbp - " + addr3.toString() + "]," + q.y.name);
+                            if (allocate.containsKey(q.z.name))
+                            {
+                                System.out.print("      ");
+                                System.out.println("mov \t" + cregs[allocate.get(q.z.name)] + "," + q.y.name);
+                            }
+                            else
+                            {
+                                Integer addr3 = new Integer(temp3 - start);
+                                addr3 = (addr3 + 1) * 8;
+                                System.out.print("      ");
+                                System.out.println("mov\tqword[rbp - " + addr3.toString() + "]," + q.y.name);
+                            }
                         }
                     }
                     else
@@ -1832,7 +1911,7 @@ public class Irtox86
                     }
                 }
             }
-            if (q.op.equals("if"))
+            else if (q.op.equals("if"))
             {
                 if (q.y.params != null)
                 {
@@ -1842,10 +1921,18 @@ public class Irtox86
                 }
                 else if (q.y.name.contains("temp"))
                 {
-                    Integer addr1 = new Integer(temp - start);
-                    addr1 = (addr1 + 1) * 8;
-                    System.out.print("      ");
-                    System.out.println("mov\t r10,[rbp-" + addr1.toString() + "]");
+                    if (allocate.containsKey(q.y.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov \tr10," + cregs[allocate.get(q.y.name)]);
+                    }
+                    else
+                    {
+                        Integer addr1 = new Integer(temp - start);
+                        addr1 = (addr1 + 1) * 8;
+                        System.out.print("      ");
+                        System.out.println("mov\t r10,[rbp-" + addr1.toString() + "]");
+                    }
                 }
                 else if (!(q.y.name.charAt(0) >= '0' && q.y.name.charAt(0) <= '9'))
                 {
@@ -1858,11 +1945,11 @@ public class Irtox86
                 System.out.println("je" + '\t' + '_' + q.z.name);
 
             }
-            if (q.op.equals("multiarr"))
+            else if (q.op.equals("multiarr"))
             {
                 multi(q.z.name, q.y.params);
             }
-            if (q.op.equals("for"))
+            else if (q.op.equals("for"))
             {
                 if (q.y.params != null)
                 {
@@ -1874,12 +1961,22 @@ public class Irtox86
                 }
                 else if (q.y.name.contains("temp"))
                 {
-                    Integer addr1 = new Integer(temp - start);
-                    addr1 = (addr1 + 1) * 8;
-                    System.out.print("      ");
-                    System.out.println("mov\tr10,[rbp -  " + addr1.toString() + "]");
-                    System.out.print("      ");
-                    System.out.println("cmp\tr10,1");
+                    if (allocate.containsKey(q.y.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov \tr10," + cregs[allocate.get(q.y.name)]);
+                        System.out.print("      ");
+                        System.out.println("cmp\tr10,1");
+                    }
+                    else
+                    {
+                        Integer addr1 = new Integer(temp - start);
+                        addr1 = (addr1 + 1) * 8;
+                        System.out.print("      ");
+                        System.out.println("mov\tr10,[rbp -  " + addr1.toString() + "]");
+                        System.out.print("      ");
+                        System.out.println("cmp\tr10,1");
+                    }
                 }
                 else if (!(q.y.name.charAt(0) >= '0' && q.y.name.charAt(0) <= '9'))
                 {
@@ -1898,7 +1995,7 @@ public class Irtox86
                 System.out.print("      ");
                 System.out.println("je" + '\t' + q.z.name);
             }
-            if (q.op.equals("ret"))
+            else if (q.op.equals("ret"))
             {
                 if (q.y.params != null)
                 {
@@ -1908,10 +2005,18 @@ public class Irtox86
                 }
                 else if (q.y.name.contains("temp"))
                 {
-                    Integer addr1 = new Integer(temp - start);
-                    addr1 = (addr1 + 1) * 8;
-                    System.out.print("      ");
-                    System.out.println("mov\trax,[rbp -  " + addr1.toString() + "]");
+                    if (allocate.containsKey(q.y.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov \trax," + cregs[allocate.get(q.y.name)]);
+                    }
+                    else
+                    {
+                        Integer addr1 = new Integer(temp - start);
+                        addr1 = (addr1 + 1) * 8;
+                        System.out.print("      ");
+                        System.out.println("mov\trax,[rbp -  " + addr1.toString() + "]");
+                    }
                 }
                 else if (!(q.y.name.charAt(0) >= '0' && q.y.name.charAt(0) <= '9') && !q.y.name.equals("null"))
                 {
@@ -1930,16 +2035,12 @@ public class Irtox86
                 System.out.print("      ");
                 System.out.println("ret");
             }
-            if (q.op.equals("goto"))
+            else if (q.op.equals("goto"))
             {
                 System.out.print("      ");
                 System.out.println("jmp" + '\t' + '_' + q.z.name);
             }
-            if (q.op.equals("array"))
-            {
-
-            }
-            if (q.op.equals("call"))
+            else if (q.op.equals("call"))
             {
                 if (q.y.params != null)
                 {
@@ -1963,20 +2064,28 @@ public class Irtox86
                             }
                             else if (q.y.params.get(i).name.contains("temp"))
                             {
-                                Integer tmp = -1;
-                                String tmps = new String();
-                                for (int j = 0; j < q.y.params.get(i).name.length(); ++j)
+                                if (allocate.containsKey(q.y.params.get(i).name))
                                 {
-                                    if (!(q.y.params.get(i).name.charAt(j) >= '0' && q.y.params.get(i).name.charAt(j) <= '9'))
-                                        break;
-                                    tmps += q.y.params.get(i).name.charAt(j);
+                                    System.out.print("      ");
+                                    System.out.println("mov \t" + callregs[i] + "," + cregs[allocate.get(q.y.params.get(i).name)]);
                                 }
-                                if (!tmps.equals(""))
-                                    tmp = Integer.parseInt(tmps);
-                                Integer addr = new Integer(tmp - start);
-                                addr = (addr + 1) * 8;
-                                System.out.print("      ");
-                                System.out.println("mov\t" + callregs[i] + ",[rbp-" + addr.toString() + "]");
+                                else
+                                {
+                                    Integer tmp = -1;
+                                    String tmps = new String();
+                                    for (int j = 0; j < q.y.params.get(i).name.length(); ++j)
+                                    {
+                                        if (!(q.y.params.get(i).name.charAt(j) >= '0' && q.y.params.get(i).name.charAt(j) <= '9'))
+                                            break;
+                                        tmps += q.y.params.get(i).name.charAt(j);
+                                    }
+                                    if (!tmps.equals(""))
+                                        tmp = Integer.parseInt(tmps);
+                                    Integer addr = new Integer(tmp - start);
+                                    addr = (addr + 1) * 8;
+                                    System.out.print("      ");
+                                    System.out.println("mov\t" + callregs[i] + ",[rbp-" + addr.toString() + "]");
+                                }
                             }
                             else if (!(q.y.params.get(i).name.charAt(0) >= '0' && q.y.params.get(i).name.charAt(0) <= '9'))
                             {
@@ -2011,24 +2120,32 @@ public class Irtox86
                             }
                             else if (q.y.params.get(i).name.contains("temp"))
                             {
-                                Integer tmp = -1;
-                                String tmps = new String();
-                                for (int j = 0; j < q.y.params.get(i).name.length(); ++j)
+                                if (allocate.containsKey(q.y.params.get(i).name))
                                 {
-                                    if (!(q.y.params.get(i).name.charAt(j) >= '0' && q.y.params.get(i).name.charAt(j) <= '9'))
-                                        break;
-                                    tmps += q.y.params.get(i).name.charAt(j);
+                                    System.out.print("      ");
+                                    System.out.println("mov \t" + callregs[i] + "," + cregs[allocate.get(q.y.params.get(i).name)]);
                                 }
-                                if (!tmps.equals(""))
-                                    tmp = Integer.parseInt(tmps);
-                                Integer addr = new Integer(tmp - start);
-                                addr = (addr + 1) * 8;
-                                System.out.print("      ");
-                                System.out.println("mov\tr10,[rbp-" + addr.toString() + "]");
-                                System.out.print("      ");
-                                Integer I = new Integer(i - 6);
-                                I *= 8;
-                                System.out.println("mov\t[rsp + " + I.toString() + "],r10");
+                                else
+                                {
+                                    Integer tmp = -1;
+                                    String tmps = new String();
+                                    for (int j = 0; j < q.y.params.get(i).name.length(); ++j)
+                                    {
+                                        if (!(q.y.params.get(i).name.charAt(j) >= '0' && q.y.params.get(i).name.charAt(j) <= '9'))
+                                            break;
+                                        tmps += q.y.params.get(i).name.charAt(j);
+                                    }
+                                    if (!tmps.equals(""))
+                                        tmp = Integer.parseInt(tmps);
+                                    Integer addr = new Integer(tmp - start);
+                                    addr = (addr + 1) * 8;
+                                    System.out.print("      ");
+                                    System.out.println("mov\tr10,[rbp-" + addr.toString() + "]");
+                                    System.out.print("      ");
+                                    Integer I = new Integer(i - 6);
+                                    I *= 8;
+                                    System.out.println("mov\t[rsp + " + I.toString() + "],r10");
+                                }
                             }
                             else if (!(q.y.params.get(i).name.charAt(0) >= '0' && q.y.params.get(i).name.charAt(0) <= '9'))
                             {
@@ -2078,10 +2195,18 @@ public class Irtox86
                 //  System.out.println("pop\tr10");
                 if (q.y.name.contains("temp"))
                 {
-                    Integer addr1 = new Integer(temp - start);
-                    addr1 = (addr1 + 1) * 8;
-                    System.out.print("      ");
-                    System.out.println("mov\t[rbp -  " + addr1.toString() + "],rax");
+                    if (allocate.containsKey(q.y.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov \t" + cregs[allocate.get(q.y.name)] + ",rax");
+                    }
+                    else
+                    {
+                        Integer addr1 = new Integer(temp - start);
+                        addr1 = (addr1 + 1) * 8;
+                        System.out.print("      ");
+                        System.out.println("mov\t[rbp -  " + addr1.toString() + "],rax");
+                    }
                 }
                 else
                 {
@@ -2090,10 +2215,7 @@ public class Irtox86
                 }
             }
 
-            if (q.op.equals("str+"))
-            {
-            }
-            if (q.op.equals("+"))
+            else if (q.op.equals("+"))
             {
                 if (q.y.params != null)
                 {
@@ -2103,11 +2225,18 @@ public class Irtox86
                 }
                 else if (q.y.name.contains("temp"))
                 {
-
+                    if (allocate.containsKey(q.y.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov \tr10," + cregs[allocate.get(q.y.name)]);
+                    }
+                    else
+                    {
                         Integer addr1 = new Integer(temp - start);
                         addr1 = (addr1 + 1) * 8;
                         System.out.print("      ");
                         System.out.println("mov\tr10,[rbp - " + addr1.toString() + "]");
+                    }
 
                 }
                 else if (!(q.y.name.charAt(0) >= '0' && q.y.name.charAt(0) <= '9'))
@@ -2128,11 +2257,18 @@ public class Irtox86
                 }
                 else if (q.x.name.contains("temp"))
                 {
-
+                    if (allocate.containsKey(q.x.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("add \tr10," + cregs[allocate.get(q.x.name)]);
+                    }
+                    else
+                    {
                         Integer addr2 = new Integer(temp2 - start);
                         addr2 = (addr2 + 1) * 8;
                         System.out.print("      ");
                         System.out.println("add\tr10,[rbp - " + addr2.toString() + "]");
+                    }
 
                 }
                 else if (!(q.x.name.charAt(0) >= '0' && q.x.name.charAt(0) <= '9'))
@@ -2158,15 +2294,22 @@ public class Irtox86
                 }
                 else
                 {
-
+                    if (allocate.containsKey(q.z.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov \t" + cregs[allocate.get(q.z.name)] + ",r10");
+                    }
+                    else
+                    {
                         Integer addr3 = new Integer(temp3 - start);
                         addr3 = (addr3 + 1) * 8;
                         System.out.print("      ");
                         System.out.println("mov\t[rbp - " + addr3.toString() + "],r10");
+                    }
 
                 }
             }
-            if (q.op.equals("-"))
+            else if (q.op.equals("-"))
             {
                 if (q.y.params != null)
                 {
@@ -2176,10 +2319,19 @@ public class Irtox86
                 }
                 else if (q.y.name.contains("temp"))
                 {
-                    Integer addr1 = new Integer(temp - start);
-                    addr1 = (addr1 + 1) * 8;
-                    System.out.print("      ");
-                    System.out.println("mov\tr10,[rbp - " + addr1.toString() + "]");
+                    if (allocate.containsKey(q.y.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov \tr10," + cregs[allocate.get(q.y.name)]);
+                    }
+                    else
+                    {
+                        Integer addr1 = new Integer(temp - start);
+                        addr1 = (addr1 + 1) * 8;
+                        System.out.print("      ");
+                        System.out.println("mov\tr10,[rbp - " + addr1.toString() + "]");
+                    }
+
                 }
                 else if (!(q.y.name.charAt(0) >= '0' && q.y.name.charAt(0) <= '9'))
                 {
@@ -2199,10 +2351,19 @@ public class Irtox86
                 }
                 else if (q.x.name.contains("temp"))
                 {
-                    Integer addr2 = new Integer(temp2 - start);
-                    addr2 = (addr2 + 1) * 8;
-                    System.out.print("      ");
-                    System.out.println("sub\tr10,[rbp - " + addr2.toString() + "]");
+                    if (allocate.containsKey(q.x.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("sub \tr10," + cregs[allocate.get(q.x.name)]);
+                    }
+                    else
+                    {
+                        Integer addr2 = new Integer(temp2 - start);
+                        addr2 = (addr2 + 1) * 8;
+                        System.out.print("      ");
+                        System.out.println("sub\tr10,[rbp - " + addr2.toString() + "]");
+                    }
+
                 }
                 else if (!(q.x.name.charAt(0) >= '0' && q.x.name.charAt(0) <= '9'))
                 {
@@ -2227,13 +2388,22 @@ public class Irtox86
                 }
                 else
                 {
-                    Integer addr3 = new Integer(temp3 - start);
-                    addr3 = (addr3 + 1) * 8;
-                    System.out.print("      ");
-                    System.out.println("mov\t[rbp - " + addr3.toString() + "],r10");
+                    if (allocate.containsKey(q.z.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov \t" + cregs[allocate.get(q.z.name)] + ",r10");
+                    }
+                    else
+                    {
+                        Integer addr3 = new Integer(temp3 - start);
+                        addr3 = (addr3 + 1) * 8;
+                        System.out.print("      ");
+                        System.out.println("mov\t[rbp - " + addr3.toString() + "],r10");
+                    }
+
                 }
             }
-            if (q.op.equals("*"))
+            else if (q.op.equals("*"))
             {
                 if (q.y.params != null)
                 {
@@ -2243,11 +2413,18 @@ public class Irtox86
                 }
                 else if (q.y.name.contains("temp"))
                 {
-
+                    if (allocate.containsKey(q.y.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov \tr10," + cregs[allocate.get(q.y.name)]);
+                    }
+                    else
+                    {
                         Integer addr1 = new Integer(temp - start);
                         addr1 = (addr1 + 1) * 8;
                         System.out.print("      ");
                         System.out.println("mov\tr10,[rbp - " + addr1.toString() + "]");
+                    }
 
                 }
                 else if (!(q.y.name.charAt(0) >= '0' && q.y.name.charAt(0) <= '9'))
@@ -2268,11 +2445,18 @@ public class Irtox86
                 }
                 else if (q.x.name.contains("temp"))
                 {
-
+                    if (allocate.containsKey(q.x.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("imul \tr10," + cregs[allocate.get(q.x.name)]);
+                    }
+                    else
+                    {
                         Integer addr2 = new Integer(temp2 - start);
                         addr2 = (addr2 + 1) * 8;
                         System.out.print("      ");
                         System.out.println("imul\tr10,[rbp - " + addr2.toString() + "]");
+                    }
 
                 }
                 else if (!(q.x.name.charAt(0) >= '0' && q.x.name.charAt(0) <= '9'))
@@ -2298,15 +2482,22 @@ public class Irtox86
                 }
                 else
                 {
-
+                    if (allocate.containsKey(q.z.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov \t" + cregs[allocate.get(q.z.name)] + ",r10");
+                    }
+                    else
+                    {
                         Integer addr3 = new Integer(temp3 - start);
                         addr3 = (addr3 + 1) * 8;
                         System.out.print("      ");
                         System.out.println("mov\t[rbp - " + addr3.toString() + "],r10");
+                    }
 
                 }
             }
-            if (q.op.equals("/"))
+            else if (q.op.equals("/"))
             {
                 if (q.y.params != null)
                 {
@@ -2316,10 +2507,18 @@ public class Irtox86
                 }
                 else if (q.y.name.contains("temp"))
                 {
-                    Integer addr1 = new Integer(temp - start);
-                    addr1 = (addr1 + 1) * 8;
-                    System.out.print("      ");
-                    System.out.println("mov\teax,[rbp - " + addr1.toString() + "]");
+                    if (allocate.containsKey(q.y.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov \trax," + cregs[allocate.get(q.y.name)]);
+                    }
+                    else
+                    {
+                        Integer addr1 = new Integer(temp - start);
+                        addr1 = (addr1 + 1) * 8;
+                        System.out.print("      ");
+                        System.out.println("mov\teax,[rbp - " + addr1.toString() + "]");
+                    }
                 }
                 else if (!(q.y.name.charAt(0) >= '0' && q.y.name.charAt(0) <= '9'))
                 {
@@ -2339,10 +2538,18 @@ public class Irtox86
                 }
                 else if (q.x.name.contains("temp"))
                 {
-                    Integer addr2 = new Integer(temp2 - start);
-                    addr2 = (addr2 + 1) * 8;
-                    System.out.print("      ");
-                    System.out.println("mov\tr10d,[rbp - " + addr2.toString() + "]");
+                    if (allocate.containsKey(q.x.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov \tr10," + cregs[allocate.get(q.x.name)]);
+                    }
+                    else
+                    {
+                        Integer addr2 = new Integer(temp2 - start);
+                        addr2 = (addr2 + 1) * 8;
+                        System.out.print("      ");
+                        System.out.println("mov\tr10d,[rbp - " + addr2.toString() + "]");
+                    }
                 }
                 else if (!(q.x.name.charAt(0) >= '0' && q.x.name.charAt(0) <= '9'))
                 {
@@ -2373,14 +2580,22 @@ public class Irtox86
                 }
                 else
                 {
-                    Integer addr3 = new Integer(temp3 - start);
-                    addr3 = (addr3 + 1) * 8;
+                    if (allocate.containsKey(q.z.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov\t" + cregs[allocate.get(q.z.name)] + ",rax");
+                    }
+                    else
+                    {
+                        Integer addr3 = new Integer(temp3 - start);
+                        addr3 = (addr3 + 1) * 8;
 
-                    System.out.print("      ");
-                    System.out.println("mov\t[rbp - " + addr3.toString() + "],rax");
+                        System.out.print("      ");
+                        System.out.println("mov\t[rbp - " + addr3.toString() + "],rax");
+                    }
                 }
             }
-            if (q.op.equals("%"))
+            else if (q.op.equals("%"))
             {
                 if (q.y.params != null)
                 {
@@ -2390,10 +2605,18 @@ public class Irtox86
                 }
                 else if (q.y.name.contains("temp"))
                 {
-                    Integer addr1 = new Integer(temp - start);
-                    addr1 = (addr1 + 1) * 8;
-                    System.out.print("      ");
-                    System.out.println("mov\teax,[rbp - " + addr1.toString() + "]");
+                    if (allocate.containsKey(q.y.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov \trax," + cregs[allocate.get(q.y.name)]);
+                    }
+                    else
+                    {
+                        Integer addr1 = new Integer(temp - start);
+                        addr1 = (addr1 + 1) * 8;
+                        System.out.print("      ");
+                        System.out.println("mov\teax,[rbp - " + addr1.toString() + "]");
+                    }
                 }
                 else if (!(q.y.name.charAt(0) >= '0' && q.y.name.charAt(0) <= '9'))
                 {
@@ -2413,10 +2636,18 @@ public class Irtox86
                 }
                 else if (q.x.name.contains("temp"))
                 {
-                    Integer addr2 = new Integer(temp2 - start);
-                    addr2 = (addr2 + 1) * 8;
-                    System.out.print("      ");
-                    System.out.println("mov\tr10d,[rbp - " + addr2.toString() + "]");
+                    if (allocate.containsKey(q.x.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov \tr10," + cregs[allocate.get(q.x.name)]);
+                    }
+                    else
+                    {
+                        Integer addr2 = new Integer(temp2 - start);
+                        addr2 = (addr2 + 1) * 8;
+                        System.out.print("      ");
+                        System.out.println("mov\tr10d,[rbp - " + addr2.toString() + "]");
+                    }
                 }
                 else if (!(q.x.name.charAt(0) >= '0' && q.x.name.charAt(0) <= '9'))
                 {
@@ -2447,14 +2678,22 @@ public class Irtox86
                 }
                 else
                 {
-                    Integer addr3 = new Integer(temp3 - start);
-                    addr3 = (addr3 + 1) * 8;
+                    if (allocate.containsKey(q.z.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov\t" + cregs[allocate.get(q.z.name)] + ",rdx");
+                    }
+                    else
+                    {
+                        Integer addr3 = new Integer(temp3 - start);
+                        addr3 = (addr3 + 1) * 8;
 
-                    System.out.print("      ");
-                    System.out.println("mov\t[rbp - " + addr3.toString() + "],rdx");
+                        System.out.print("      ");
+                        System.out.println("mov\t[rbp - " + addr3.toString() + "],rdx");
+                    }
                 }
             }
-            if (q.op.equals(">>"))
+            else if (q.op.equals(">>"))
             {
                 if (q.y.params != null)
                 {
@@ -2464,10 +2703,18 @@ public class Irtox86
                 }
                 else if (q.y.name.contains("temp"))
                 {
-                    Integer addr1 = new Integer(temp - start);
-                    addr1 = (addr1 + 1) * 8;
-                    System.out.print("      ");
-                    System.out.println("mov\tr10,[rbp - " + addr1.toString() + "]");
+                    if (allocate.containsKey(q.y.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov \tr10," + cregs[allocate.get(q.y.name)]);
+                    }
+                    else
+                    {
+                        Integer addr1 = new Integer(temp - start);
+                        addr1 = (addr1 + 1) * 8;
+                        System.out.print("      ");
+                        System.out.println("mov\tr10,[rbp - " + addr1.toString() + "]");
+                    }
                 }
                 else if (!(q.y.name.charAt(0) >= '0' && q.y.name.charAt(0) <= '9'))
                 {
@@ -2481,12 +2728,22 @@ public class Irtox86
                 }
                 if (q.x.name.contains("temp"))
                 {
-                    Integer addr2 = new Integer(temp2 - start);
-                    addr2 = (addr2 + 1) * 8;
-                    System.out.print("      ");
-                    System.out.println("mov\tcl,[rbp - " + addr2.toString() + "]");
-                    System.out.print("      ");
-                    System.out.println("sar\tr10,cl");
+                    if (allocate.containsKey(q.x.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov \tcl," + cregs[allocate.get(q.x.name)]);
+                        System.out.print("      ");
+                        System.out.println("sar\tr10,cl");
+                    }
+                    else
+                    {
+                        Integer addr2 = new Integer(temp2 - start);
+                        addr2 = (addr2 + 1) * 8;
+                        System.out.print("      ");
+                        System.out.println("mov\tcl,[rbp - " + addr2.toString() + "]");
+                        System.out.print("      ");
+                        System.out.println("sar\tr10,cl");
+                    }
                 }
                 else if (!(q.x.name.charAt(0) >= '0' && q.x.name.charAt(0) <= '9'))
                 {
@@ -2513,14 +2770,21 @@ public class Irtox86
                 }
                 else
                 {
-                    Integer addr3 = new Integer(temp3 - start);
-                    addr3 = (addr3 + 1) * 8;
-
-                    System.out.print("      ");
-                    System.out.println("mov\t[rbp - " + addr3.toString() + "],r10");
+                    if (allocate.containsKey(q.z.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov\t" + cregs[allocate.get(q.z.name)] + ",r10");
+                    }
+                    else
+                    {
+                        Integer addr3 = new Integer(temp3 - start);
+                        addr3 = (addr3 + 1) * 8;
+                        System.out.print("      ");
+                        System.out.println("mov\t[rbp - " + addr3.toString() + "],r10");
+                    }
                 }
             }
-            if (q.op.equals("<<"))
+            else if (q.op.equals("<<"))
             {
                 if (q.y.params != null)
                 {
@@ -2530,10 +2794,18 @@ public class Irtox86
                 }
                 else if (q.y.name.contains("temp"))
                 {
-                    Integer addr1 = new Integer(temp - start);
-                    addr1 = (addr1 + 1) * 8;
-                    System.out.print("      ");
-                    System.out.println("mov\tr10,[rbp - " + addr1.toString() + "]");
+                    if (allocate.containsKey(q.y.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov \tr10," + cregs[allocate.get(q.y.name)]);
+                    }
+                    else
+                    {
+                        Integer addr1 = new Integer(temp - start);
+                        addr1 = (addr1 + 1) * 8;
+                        System.out.print("      ");
+                        System.out.println("mov\tr10,[rbp - " + addr1.toString() + "]");
+                    }
                 }
                 else if (!(q.y.name.charAt(0) >= '0' && q.y.name.charAt(0) <= '9'))
                 {
@@ -2547,12 +2819,22 @@ public class Irtox86
                 }
                 if (q.x.name.contains("temp"))
                 {
-                    Integer addr2 = new Integer(temp2 - start);
-                    addr2 = (addr2 + 1) * 8;
-                    System.out.print("      ");
-                    System.out.println("mov\tcl,[rbp - " + addr2.toString() + "]");
-                    System.out.print("      ");
-                    System.out.println("sal\tr10,cl");
+                    if (allocate.containsKey(q.x.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov \tcl," + cregs[allocate.get(q.x.name)]);
+                        System.out.print("      ");
+                        System.out.println("sal\tr10,cl");
+                    }
+                    else
+                    {
+                        Integer addr2 = new Integer(temp2 - start);
+                        addr2 = (addr2 + 1) * 8;
+                        System.out.print("      ");
+                        System.out.println("mov\tcl,[rbp - " + addr2.toString() + "]");
+                        System.out.print("      ");
+                        System.out.println("sal\tr10,cl");
+                    }
                 }
                 else if (!(q.x.name.charAt(0) >= '0' && q.x.name.charAt(0) <= '9'))
                 {
@@ -2579,14 +2861,21 @@ public class Irtox86
                 }
                 else
                 {
-                    Integer addr3 = new Integer(temp3 - start);
-                    addr3 = (addr3 + 1) * 8;
-
-                    System.out.print("      ");
-                    System.out.println("mov\t[rbp - " + addr3.toString() + "],r10");
+                    if (allocate.containsKey(q.z.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov \t" + cregs[allocate.get(q.z.name)] + ",r10");
+                    }
+                    else
+                    {
+                        Integer addr3 = new Integer(temp3 - start);
+                        addr3 = (addr3 + 1) * 8;
+                        System.out.print("      ");
+                        System.out.println("mov\t[rbp - " + addr3.toString() + "],r10");
+                    }
                 }
             }
-            if (q.op.equals("<="))
+            else if (q.op.equals("<="))
             {
                 if (q.y.params != null)
                 {
@@ -2596,10 +2885,18 @@ public class Irtox86
                 }
                 else if (q.y.name.contains("temp"))
                 {
-                    Integer addr1 = new Integer(temp - start);
-                    addr1 = (addr1 + 1) * 8;
-                    System.out.print("      ");
-                    System.out.println("mov\tr10,[rbp - " + addr1.toString() + "]");
+                    if (allocate.containsKey(q.y.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov \tr10," + cregs[allocate.get(q.y.name)]);
+                    }
+                    else
+                    {
+                        Integer addr1 = new Integer(temp - start);
+                        addr1 = (addr1 + 1) * 8;
+                        System.out.print("      ");
+                        System.out.println("mov\tr10,[rbp - " + addr1.toString() + "]");
+                    }
                 }
                 else if (!(q.y.name.charAt(0) >= '0' && q.y.name.charAt(0) <= '9'))
                 {
@@ -2619,10 +2916,18 @@ public class Irtox86
                 }
                 else if (q.x.name.contains("temp"))
                 {
-                    Integer addr2 = new Integer(temp2 - start);
-                    addr2 = (addr2 + 1) * 8;
-                    System.out.print("      ");
-                    System.out.println("cmp\tr10,[rbp - " + addr2.toString() + "]");
+                    if (allocate.containsKey(q.x.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("cmp \tr10," + cregs[allocate.get(q.x.name)]);
+                    }
+                    else
+                    {
+                        Integer addr2 = new Integer(temp2 - start);
+                        addr2 = (addr2 + 1) * 8;
+                        System.out.print("      ");
+                        System.out.println("cmp\tr10,[rbp - " + addr2.toString() + "]");
+                    }
                 }
                 else if (!(q.x.name.charAt(0) >= '0' && q.x.name.charAt(0) <= '9'))
                 {
@@ -2651,14 +2956,22 @@ public class Irtox86
                 }
                 else
                 {
-                    Integer addr3 = new Integer(temp3 - start);
-                    addr3 = (addr3 + 1) * 8;
+                    if (allocate.containsKey(q.z.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov \t" + cregs[allocate.get(q.z.name)] + ",r10");
+                    }
+                    else
+                    {
+                        Integer addr3 = new Integer(temp3 - start);
+                        addr3 = (addr3 + 1) * 8;
 
-                    System.out.print("      ");
-                    System.out.println("mov\t[rbp - " + addr3.toString() + "],r10");
+                        System.out.print("      ");
+                        System.out.println("mov\t[rbp - " + addr3.toString() + "],r10");
+                    }
                 }
             }
-            if (q.op.equals("<"))
+            else if (q.op.equals("<"))
             {
                 if (q.y.params != null)
                 {
@@ -2668,11 +2981,18 @@ public class Irtox86
                 }
                 else if (q.y.name.contains("temp"))
                 {
-
-                    Integer addr1 = new Integer(temp - start);
-                    addr1 = (addr1 + 1) * 8;
-                    System.out.print("      ");
-                    System.out.println("mov\tr10,[rbp - " + addr1.toString() + "]");
+                    if (allocate.containsKey(q.y.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov \tr10," + cregs[allocate.get(q.y.name)]);
+                    }
+                    else
+                    {
+                        Integer addr1 = new Integer(temp - start);
+                        addr1 = (addr1 + 1) * 8;
+                        System.out.print("      ");
+                        System.out.println("mov\tr10,[rbp - " + addr1.toString() + "]");
+                    }
                 }
                 else if (!(q.y.name.charAt(0) >= '0' && q.y.name.charAt(0) <= '9'))
                 {
@@ -2692,10 +3012,18 @@ public class Irtox86
                 }
                 else if (q.x.name.contains("temp"))
                 {
-                    Integer addr2 = new Integer(temp2 - start);
-                    addr2 = (addr2 + 1) * 8;
-                    System.out.print("      ");
-                    System.out.println("cmp\tr10,[rbp - " + addr2.toString() + "]");
+                    if (allocate.containsKey(q.x.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("cmp \tr10," + cregs[allocate.get(q.x.name)]);
+                    }
+                    else
+                    {
+                        Integer addr2 = new Integer(temp2 - start);
+                        addr2 = (addr2 + 1) * 8;
+                        System.out.print("      ");
+                        System.out.println("cmp\tr10,[rbp - " + addr2.toString() + "]");
+                    }
                 }
                 else if (!(q.x.name.charAt(0) >= '0' && q.x.name.charAt(0) <= '9'))
                 {
@@ -2724,14 +3052,22 @@ public class Irtox86
                 }
                 else
                 {
-                    Integer addr3 = new Integer(temp3 - start);
-                    addr3 = (addr3 + 1) * 8;
+                    if (allocate.containsKey(q.z.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov \t" + cregs[allocate.get(q.z.name)] + ",r10");
+                    }
+                    else
+                    {
+                        Integer addr3 = new Integer(temp3 - start);
+                        addr3 = (addr3 + 1) * 8;
 
-                    System.out.print("      ");
-                    System.out.println("mov\t[rbp - " + addr3.toString() + "],r10");
+                        System.out.print("      ");
+                        System.out.println("mov\t[rbp - " + addr3.toString() + "],r10");
+                    }
                 }
             }
-            if (q.op.equals(">="))
+            else if (q.op.equals(">="))
             {
                 if (q.y.params != null)
                 {
@@ -2741,10 +3077,18 @@ public class Irtox86
                 }
                 else if (q.y.name.contains("temp"))
                 {
-                    Integer addr1 = new Integer(temp - start);
-                    addr1 = (addr1 + 1) * 8;
-                    System.out.print("      ");
-                    System.out.println("mov\tr10,[rbp - " + addr1.toString() + "]");
+                    if (allocate.containsKey(q.y.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov \tr10," + cregs[allocate.get(q.y.name)]);
+                    }
+                    else
+                    {
+                        Integer addr1 = new Integer(temp - start);
+                        addr1 = (addr1 + 1) * 8;
+                        System.out.print("      ");
+                        System.out.println("mov\tr10,[rbp - " + addr1.toString() + "]");
+                    }
                 }
                 else if (!(q.y.name.charAt(0) >= '0' && q.y.name.charAt(0) <= '9'))
                 {
@@ -2764,10 +3108,18 @@ public class Irtox86
                 }
                 else if (q.x.name.contains("temp"))
                 {
-                    Integer addr2 = new Integer(temp2 - start);
-                    addr2 = (addr2 + 1) * 8;
-                    System.out.print("      ");
-                    System.out.println("cmp\tr10,[rbp - " + addr2.toString() + "]");
+                    if (allocate.containsKey(q.x.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("cmp \tr10," + cregs[allocate.get(q.x.name)]);
+                    }
+                    else
+                    {
+                        Integer addr2 = new Integer(temp2 - start);
+                        addr2 = (addr2 + 1) * 8;
+                        System.out.print("      ");
+                        System.out.println("cmp\tr10,[rbp - " + addr2.toString() + "]");
+                    }
                 }
                 else if (!(q.x.name.charAt(0) >= '0' && q.x.name.charAt(0) <= '9'))
                 {
@@ -2796,14 +3148,22 @@ public class Irtox86
                 }
                 else
                 {
-                    Integer addr3 = new Integer(temp3 - start);
-                    addr3 = (addr3 + 1) * 8;
+                    if (allocate.containsKey(q.z.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov \t" + cregs[allocate.get(q.z.name)] + ",r10");
+                    }
+                    else
+                    {
+                        Integer addr3 = new Integer(temp3 - start);
+                        addr3 = (addr3 + 1) * 8;
 
-                    System.out.print("      ");
-                    System.out.println("mov\t[rbp - " + addr3.toString() + "],r10");
+                        System.out.print("      ");
+                        System.out.println("mov\t[rbp - " + addr3.toString() + "],r10");
+                    }
                 }
             }
-            if (q.op.equals(">"))
+            else if (q.op.equals(">"))
             {
                 if (q.y.params != null)
                 {
@@ -2813,10 +3173,18 @@ public class Irtox86
                 }
                 else if (q.y.name.contains("temp"))
                 {
-                    Integer addr1 = new Integer(temp - start);
-                    addr1 = (addr1 + 1) * 8;
-                    System.out.print("      ");
-                    System.out.println("mov\tr10,[rbp - " + addr1.toString() + "]");
+                    if (allocate.containsKey(q.y.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov \tr10," + cregs[allocate.get(q.y.name)]);
+                    }
+                    else
+                    {
+                        Integer addr1 = new Integer(temp - start);
+                        addr1 = (addr1 + 1) * 8;
+                        System.out.print("      ");
+                        System.out.println("mov\tr10,[rbp - " + addr1.toString() + "]");
+                    }
                 }
                 else if (!(q.y.name.charAt(0) >= '0' && q.y.name.charAt(0) <= '9'))
                 {
@@ -2836,10 +3204,18 @@ public class Irtox86
                 }
                 else if (q.x.name.contains("temp"))
                 {
-                    Integer addr2 = new Integer(temp2 - start);
-                    addr2 = (addr2 + 1) * 8;
-                    System.out.print("      ");
-                    System.out.println("cmp\tr10,[rbp - " + addr2.toString() + "]");
+                    if (allocate.containsKey(q.x.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("cmp \tr10," + cregs[allocate.get(q.x.name)]);
+                    }
+                    else
+                    {
+                        Integer addr2 = new Integer(temp2 - start);
+                        addr2 = (addr2 + 1) * 8;
+                        System.out.print("      ");
+                        System.out.println("cmp\tr10,[rbp - " + addr2.toString() + "]");
+                    }
                 }
                 else if (!(q.x.name.charAt(0) >= '0' && q.x.name.charAt(0) <= '9'))
                 {
@@ -2868,21 +3244,37 @@ public class Irtox86
                 }
                 else
                 {
-                    Integer addr3 = new Integer(temp3 - start);
-                    addr3 = (addr3 + 1) * 8;
+                    if (allocate.containsKey(q.z.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov \t" + cregs[allocate.get(q.z.name)] + ",r10");
+                    }
+                    else
+                    {
+                        Integer addr3 = new Integer(temp3 - start);
+                        addr3 = (addr3 + 1) * 8;
 
-                    System.out.print("      ");
-                    System.out.println("mov\t[rbp - " + addr3.toString() + "],r10");
+                        System.out.print("      ");
+                        System.out.println("mov\t[rbp - " + addr3.toString() + "],r10");
+                    }
                 }
             }
-            if (q.op.equals("~"))
+            else if (q.op.equals("~"))
             {
                 if (q.y.name.contains("temp"))
                 {
-                    Integer addr1 = new Integer(temp - start);
-                    addr1 = (addr1 + 1) * 8;
-                    System.out.print("      ");
-                    System.out.println("mov\tr10,[rbp -  " + addr1.toString() + "]");
+                    if (allocate.containsKey(q.y.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov \tr10," + cregs[allocate.get(q.y.name)]);
+                    }
+                    else
+                    {
+                        Integer addr1 = new Integer(temp - start);
+                        addr1 = (addr1 + 1) * 8;
+                        System.out.print("      ");
+                        System.out.println("mov\tr10,[rbp -  " + addr1.toString() + "]");
+                    }
                 }
                 else if (!(q.y.name.charAt(0) >= '0' && q.y.name.charAt(0) <= '9'))
                 {
@@ -2909,21 +3301,37 @@ public class Irtox86
                 }
                 else
                 {
-                    Integer addr3 = new Integer(temp3 - start);
-                    addr3 = (addr3 + 1) * 8;
+                    if (allocate.containsKey(q.z.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov \t" + cregs[allocate.get(q.z.name)] + ",r10");
+                    }
+                    else
+                    {
+                        Integer addr3 = new Integer(temp3 - start);
+                        addr3 = (addr3 + 1) * 8;
 
-                    System.out.print("      ");
-                    System.out.println("mov\t[rbp - " + addr3.toString() + "],r10");
+                        System.out.print("      ");
+                        System.out.println("mov\t[rbp - " + addr3.toString() + "],r10");
+                    }
                 }
             }
-            if (q.op.equals("!"))
+            else if (q.op.equals("!"))
             {
                 if (q.y.name.contains("temp"))
                 {
-                    Integer addr1 = new Integer(temp - start);
-                    addr1 = (addr1 + 1) * 8;
-                    System.out.print("      ");
-                    System.out.println("mov\tr10,[rbp -  " + addr1.toString() + "]");
+                    if (allocate.containsKey(q.y.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov \tr10," + cregs[allocate.get(q.y.name)]);
+                    }
+                    else
+                    {
+                        Integer addr1 = new Integer(temp - start);
+                        addr1 = (addr1 + 1) * 8;
+                        System.out.print("      ");
+                        System.out.println("mov\tr10,[rbp -  " + addr1.toString() + "]");
+                    }
                 }
                 else if (!(q.y.name.charAt(0) >= '0' && q.y.name.charAt(0) <= '9'))
                 {
@@ -2950,15 +3358,22 @@ public class Irtox86
                 }
                 else
                 {
-                    Integer addr3 = new Integer(temp3 - start);
-                    addr3 = (addr3 + 1) * 8;
+                    if (allocate.containsKey(q.z.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov \t" + cregs[allocate.get(q.z.name)] + ",r10");
+                    }
+                    else
+                    {
+                        Integer addr3 = new Integer(temp3 - start);
+                        addr3 = (addr3 + 1) * 8;
 
-                    System.out.print("      ");
-                    System.out.println("mov\t[rbp - " + addr3.toString() + "],r10");
+                        System.out.print("      ");
+                        System.out.println("mov\t[rbp - " + addr3.toString() + "],r10");
+                    }
                 }
             }
-
-            if (q.op.equals("^"))
+            else if (q.op.equals("^"))
             {
                 if (q.y.params != null)
                 {
@@ -2968,10 +3383,19 @@ public class Irtox86
                 }
                 else if (q.y.name.contains("temp"))
                 {
-                    Integer addr1 = new Integer(temp - start);
-                    addr1 = (addr1 + 1) * 8;
-                    System.out.print("      ");
-                    System.out.println("mov\tr10,[rbp - " + addr1.toString() + "]");
+                    if (allocate.containsKey(q.y.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov \tr10," + cregs[allocate.get(q.y.name)]);
+                    }
+                    else
+                    {
+                        Integer addr1 = new Integer(temp - start);
+                        addr1 = (addr1 + 1) * 8;
+                        System.out.print("      ");
+                        System.out.println("mov\tr10,[rbp - " + addr1.toString() + "]");
+                    }
+
                 }
                 else if (!(q.y.name.charAt(0) >= '0' && q.y.name.charAt(0) <= '9'))
                 {
@@ -2991,10 +3415,19 @@ public class Irtox86
                 }
                 else if (q.x.name.contains("temp"))
                 {
-                    Integer addr2 = new Integer(temp2 - start);
-                    addr2 = (addr2 + 1) * 8;
-                    System.out.print("      ");
-                    System.out.println("xor\tr10,[rbp - " + addr2.toString() + "]");
+                    if (allocate.containsKey(q.x.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("xor \tr10," + cregs[allocate.get(q.x.name)]);
+                    }
+                    else
+                    {
+                        Integer addr2 = new Integer(temp2 - start);
+                        addr2 = (addr2 + 1) * 8;
+                        System.out.print("      ");
+                        System.out.println("xor\tr10,[rbp - " + addr2.toString() + "]");
+                    }
+
                 }
                 else if (!(q.x.name.charAt(0) >= '0' && q.x.name.charAt(0) <= '9'))
                 {
@@ -3019,20 +3452,37 @@ public class Irtox86
                 }
                 else
                 {
-                    Integer addr3 = new Integer(temp3 - start);
-                    addr3 = (addr3 + 1) * 8;
-                    System.out.print("      ");
-                    System.out.println("mov\t[rbp - " + addr3.toString() + "],r10");
+                    if (allocate.containsKey(q.z.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov \t" + cregs[allocate.get(q.z.name)] + ",r10");
+                    }
+                    else
+                    {
+                        Integer addr3 = new Integer(temp3 - start);
+                        addr3 = (addr3 + 1) * 8;
+                        System.out.print("      ");
+                        System.out.println("mov\t[rbp - " + addr3.toString() + "],r10");
+                    }
+
                 }
             }
-            if (q.op.equals("--"))
+            else if (q.op.equals("--"))
             {
                 if (q.y.name.contains("temp"))
                 {
-                    Integer addr1 = new Integer(temp - start);
-                    addr1 = (addr1 + 1) * 8;
-                    System.out.print("      ");
-                    System.out.println("mov\tr10,[rbp - " + addr1.toString() + "]");
+                    if (allocate.containsKey(q.y.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov \tr10," + cregs[allocate.get(q.y.name)]);
+                    }
+                    else
+                    {
+                        Integer addr1 = new Integer(temp - start);
+                        addr1 = (addr1 + 1) * 8;
+                        System.out.print("      ");
+                        System.out.println("mov\tr10,[rbp -  " + addr1.toString() + "]");
+                    }
                 }
                 else if (!(q.y.name.charAt(0) >= '0' && q.y.name.charAt(0) <= '9'))
                 {
@@ -3044,7 +3494,6 @@ public class Irtox86
                     System.out.print("      ");
                     System.out.println("mov\tr10," + q.y.name);
                 }
-
                 System.out.print("      ");
                 System.out.println("not\tr10");
                 System.out.print("      ");
@@ -3062,14 +3511,22 @@ public class Irtox86
                 }
                 else
                 {
-                    Integer addr3 = new Integer(temp3 - start);
-                    addr3 = (addr3 + 1) * 8;
+                    if (allocate.containsKey(q.z.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov \t" + cregs[allocate.get(q.z.name)] + ",r10");
+                    }
+                    else
+                    {
+                        Integer addr3 = new Integer(temp3 - start);
+                        addr3 = (addr3 + 1) * 8;
 
-                    System.out.print("      ");
-                    System.out.println("mov\t[rbp - " + addr3.toString() + "],r10");
+                        System.out.print("      ");
+                        System.out.println("mov\t[rbp - " + addr3.toString() + "],r10");
+                    }
                 }
             }
-            if (q.op.equals("=="))
+            else if (q.op.equals("=="))
             {
                 if (q.y.params != null)
                 {
@@ -3079,10 +3536,18 @@ public class Irtox86
                 }
                 else if (q.y.name.contains("temp"))
                 {
-                    Integer addr1 = new Integer(temp - start);
-                    addr1 = (addr1 + 1) * 8;
-                    System.out.print("      ");
-                    System.out.println("mov\tr10,[rbp - " + addr1.toString() + "]");
+                    if (allocate.containsKey(q.y.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov \tr10," + cregs[allocate.get(q.y.name)]);
+                    }
+                    else
+                    {
+                        Integer addr1 = new Integer(temp - start);
+                        addr1 = (addr1 + 1) * 8;
+                        System.out.print("      ");
+                        System.out.println("mov\tr10,[rbp - " + addr1.toString() + "]");
+                    }
                 }
                 else if (!(q.y.name.charAt(0) >= '0' && q.y.name.charAt(0) <= '9'))
                 {
@@ -3102,10 +3567,18 @@ public class Irtox86
                 }
                 else if (q.x.name.contains("temp"))
                 {
-                    Integer addr2 = new Integer(temp2 - start);
-                    addr2 = (addr2 + 1) * 8;
-                    System.out.print("      ");
-                    System.out.println("cmp\tr10,[rbp - " + addr2.toString() + "]");
+                    if (allocate.containsKey(q.x.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("cmp \tr10," + cregs[allocate.get(q.x.name)]);
+                    }
+                    else
+                    {
+                        Integer addr2 = new Integer(temp2 - start);
+                        addr2 = (addr2 + 1) * 8;
+                        System.out.print("      ");
+                        System.out.println("cmp\tr10,[rbp - " + addr2.toString() + "]");
+                    }
                 }
                 else if (!(q.x.name.charAt(0) >= '0' && q.x.name.charAt(0) <= '9'))
                 {
@@ -3134,14 +3607,22 @@ public class Irtox86
                 }
                 else
                 {
-                    Integer addr3 = new Integer(temp3 - start);
-                    addr3 = (addr3 + 1) * 8;
+                    if (allocate.containsKey(q.z.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov \t" + cregs[allocate.get(q.z.name)] + ",r10");
+                    }
+                    else
+                    {
+                        Integer addr3 = new Integer(temp3 - start);
+                        addr3 = (addr3 + 1) * 8;
 
-                    System.out.print("      ");
-                    System.out.println("mov\t[rbp - " + addr3.toString() + "],r10");
+                        System.out.print("      ");
+                        System.out.println("mov\t[rbp - " + addr3.toString() + "],r10");
+                    }
                 }
             }
-            if (q.op.equals("!="))
+            else if (q.op.equals("!="))
             {
                 if (q.y.params != null)
                 {
@@ -3151,10 +3632,18 @@ public class Irtox86
                 }
                 else if (q.y.name.contains("temp"))
                 {
-                    Integer addr1 = new Integer(temp - start);
-                    addr1 = (addr1 + 1) * 8;
-                    System.out.print("      ");
-                    System.out.println("mov\tr10,[rbp - " + addr1.toString() + "]");
+                    if (allocate.containsKey(q.y.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov \tr10," + cregs[allocate.get(q.y.name)]);
+                    }
+                    else
+                    {
+                        Integer addr1 = new Integer(temp - start);
+                        addr1 = (addr1 + 1) * 8;
+                        System.out.print("      ");
+                        System.out.println("mov\tr10,[rbp - " + addr1.toString() + "]");
+                    }
                 }
                 else if (!(q.y.name.charAt(0) >= '0' && q.y.name.charAt(0) <= '9'))
                 {
@@ -3174,10 +3663,18 @@ public class Irtox86
                 }
                 else if (q.x.name.contains("temp"))
                 {
-                    Integer addr2 = new Integer(temp2 - start);
-                    addr2 = (addr2 + 1) * 8;
-                    System.out.print("      ");
-                    System.out.println("cmp\tr10,[rbp - " + addr2.toString() + "]");
+                    if (allocate.containsKey(q.x.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("cmp \tr10," + cregs[allocate.get(q.x.name)]);
+                    }
+                    else
+                    {
+                        Integer addr2 = new Integer(temp2 - start);
+                        addr2 = (addr2 + 1) * 8;
+                        System.out.print("      ");
+                        System.out.println("cmp\tr10,[rbp - " + addr2.toString() + "]");
+                    }
                 }
                 else if (!(q.x.name.charAt(0) >= '0' && q.x.name.charAt(0) <= '9'))
                 {
@@ -3206,21 +3703,37 @@ public class Irtox86
                 }
                 else
                 {
-                    Integer addr3 = new Integer(temp3 - start);
-                    addr3 = (addr3 + 1) * 8;
+                    if (allocate.containsKey(q.z.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov \t" + cregs[allocate.get(q.z.name)] + ",r10");
+                    }
+                    else
+                    {
+                        Integer addr3 = new Integer(temp3 - start);
+                        addr3 = (addr3 + 1) * 8;
 
-                    System.out.print("      ");
-                    System.out.println("mov\t[rbp - " + addr3.toString() + "],r10");
+                        System.out.print("      ");
+                        System.out.println("mov\t[rbp - " + addr3.toString() + "],r10");
+                    }
                 }
             }
-            if (q.op.equals("check"))
+            else if (q.op.equals("check"))
             {
                 if (q.y.name.contains("temp"))
                 {
-                    Integer addr1 = new Integer(temp - start);
-                    addr1 = (addr1 + 1) * 8;
-                    System.out.print("      ");
-                    System.out.println("mov\tr10,[rbp - " + addr1.toString() + "]");
+                    if (allocate.containsKey(q.y.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov \tr10," + cregs[allocate.get(q.y.name)]);
+                    }
+                    else
+                    {
+                        Integer addr1 = new Integer(temp - start);
+                        addr1 = (addr1 + 1) * 8;
+                        System.out.print("      ");
+                        System.out.println("mov\tr10,[rbp - " + addr1.toString() + "]");
+                    }
                 }
                 else if (!(q.y.name.charAt(0) >= '0' && q.y.name.charAt(0) <= '9'))
                 {
@@ -3237,8 +3750,7 @@ public class Irtox86
                 System.out.print("      ");
                 System.out.println("je\t_" + b.toString() + "check");
             }
-
-            if (q.op.equals("&&") || (q.op.equals("&")))
+            else if (q.op.equals("&&") || (q.op.equals("&")))
             {
                 if (q.y.params != null)
                 {
@@ -3248,18 +3760,25 @@ public class Irtox86
                 }
                 else if (q.y.name.contains("temp"))
                 {
-                    Integer addr1 = new Integer(temp - start);
-                    addr1 = (addr1 + 1) * 8;
-                    System.out.print("      ");
-                    System.out.println("mov\tr10,[rbp - " + addr1.toString() + "]");
+                    if (allocate.containsKey(q.y.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov \tr10," + cregs[allocate.get(q.y.name)]);
+                    }
+                    else
+                    {
+                        Integer addr1 = new Integer(temp - start);
+                        addr1 = (addr1 + 1) * 8;
+                        System.out.print("      ");
+                        System.out.println("mov\tr10,[rbp - " + addr1.toString() + "]");
+                    }
                 }
                 else if (!(q.y.name.charAt(0) >= '0' && q.y.name.charAt(0) <= '9'))
                 {
                     System.out.print("      ");
-                    System.out.println("and\tr10,[sjtulc" + q.y.name + "]");
+                    System.out.println("mov\tr10,[sjtulc" + q.y.name + "]");
                 }
                 else
-
                 {
                     System.out.print("      ");
                     System.out.println("mov\tr10," + q.y.name);
@@ -3272,10 +3791,18 @@ public class Irtox86
                 }
                 else if (q.x.name.contains("temp"))
                 {
-                    Integer addr2 = new Integer(temp2 - start);
-                    addr2 = (addr2 + 1) * 8;
-                    System.out.print("      ");
-                    System.out.println("and\tr10,[rbp - " + addr2.toString() + "]");
+                    if (allocate.containsKey(q.x.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("and \tr10," + cregs[allocate.get(q.x.name)]);
+                    }
+                    else
+                    {
+                        Integer addr2 = new Integer(temp2 - start);
+                        addr2 = (addr2 + 1) * 8;
+                        System.out.print("      ");
+                        System.out.println("and\tr10,[rbp - " + addr2.toString() + "]");
+                    }
                 }
                 else if (!(q.x.name.charAt(0) >= '0' && q.x.name.charAt(0) <= '9'))
                 {
@@ -3303,14 +3830,22 @@ public class Irtox86
                 }
                 else
                 {
-                    Integer addr3 = new Integer(temp3 - start);
-                    addr3 = (addr3 + 1) * 8;
+                    if (allocate.containsKey(q.z.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov \t" + cregs[allocate.get(q.z.name)] + ",r10");
+                    }
+                    else
+                    {
+                        Integer addr3 = new Integer(temp3 - start);
+                        addr3 = (addr3 + 1) * 8;
 
-                    System.out.print("      ");
-                    System.out.println("mov\t[rbp - " + addr3.toString() + "],r10");
+                        System.out.print("      ");
+                        System.out.println("mov\t[rbp - " + addr3.toString() + "],r10");
+                    }
                 }
             }
-            if (q.op.equals("||") || (q.op.equals("|")))
+            else if (q.op.equals("||") || (q.op.equals("|")))
             {
                 if (q.y.params != null)
                 {
@@ -3320,10 +3855,18 @@ public class Irtox86
                 }
                 else if (q.y.name.contains("temp"))
                 {
-                    Integer addr1 = new Integer(temp - start);
-                    addr1 = (addr1 + 1) * 8;
-                    System.out.print("      ");
-                    System.out.println("mov\tr10,[rbp - " + addr1.toString() + "]");
+                    if (allocate.containsKey(q.y.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov \tr10," + cregs[allocate.get(q.y.name)]);
+                    }
+                    else
+                    {
+                        Integer addr1 = new Integer(temp - start);
+                        addr1 = (addr1 + 1) * 8;
+                        System.out.print("      ");
+                        System.out.println("mov\tr10,[rbp - " + addr1.toString() + "]");
+                    }
                 }
                 else if (!(q.y.name.charAt(0) >= '0' && q.y.name.charAt(0) <= '9'))
                 {
@@ -3343,10 +3886,18 @@ public class Irtox86
                 }
                 else if (q.x.name.contains("temp"))
                 {
-                    Integer addr2 = new Integer(temp2 - start);
-                    addr2 = (addr2 + 1) * 8;
-                    System.out.print("      ");
-                    System.out.println("or\tr10,[rbp - " + addr2.toString() + "]");
+                    if (allocate.containsKey(q.x.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("or \tr10," + cregs[allocate.get(q.x.name)]);
+                    }
+                    else
+                    {
+                        Integer addr2 = new Integer(temp2 - start);
+                        addr2 = (addr2 + 1) * 8;
+                        System.out.print("      ");
+                        System.out.println("or\tr10,[rbp - " + addr2.toString() + "]");
+                    }
                 }
                 else if (!(q.x.name.charAt(0) >= '0' && q.x.name.charAt(0) <= '9'))
                 {
@@ -3374,11 +3925,19 @@ public class Irtox86
                 }
                 else
                 {
-                    Integer addr3 = new Integer(temp3 - start);
-                    addr3 = (addr3 + 1) * 8;
+                    if (allocate.containsKey(q.z.name))
+                    {
+                        System.out.print("      ");
+                        System.out.println("mov \t" + cregs[allocate.get(q.z.name)] + ",r10");
+                    }
+                    else
+                    {
+                        Integer addr3 = new Integer(temp3 - start);
+                        addr3 = (addr3 + 1) * 8;
 
-                    System.out.print("      ");
-                    System.out.println("mov\t[rbp - " + addr3.toString() + "],r10");
+                        System.out.print("      ");
+                        System.out.println("mov\t[rbp - " + addr3.toString() + "],r10");
+                    }
                 }
             }
             head = head.next;
@@ -3391,7 +3950,9 @@ public class Irtox86
         System.out.print("format2:\n");
         System.out.print("\tdb\"%s\",0\n\n");
         int j = 0;
-        for (int i = 0; i < global.size(); ++i)
+        for (
+                int i = 0; i < global.size(); ++i)
+
         {
             if (!global.get(i).name.contains("sjtulc"))
             {
@@ -3451,6 +4012,12 @@ public class Irtox86
         //chk.code.print();
         addr = chk.addr;
         global = new Vector<>(chk.params);
+        livecheck ck = new livecheck();
+        allocate = ck.check(chk.code);
+        for (Map.Entry<String, Integer> entry : allocate.entrySet())
+        {
+            // System.out.println(entry.getKey() + ' ' +entry.getValue());
+        }
         translate(chk.code);
     }
 }

@@ -766,78 +766,91 @@ Llege_021:  mov     eax, 1
 Llege_022:  pop     rbp
 	ret
 section   .text
-tak:
-      push	rbp
-      mov	rbp,rsp
-      sub	rsp,104
-      mov	[rbp - 8],rdi
-      mov	[rbp - 16],rsi
-      mov	[rbp - 24],rdx
-      mov	r10,[rbp - 16]
-      cmp	r10,[rbp - 8]
-      setl r10b
-      movzx r10,r10b
-      mov	[rbp - 96],r10
-      mov	 r10,[rbp-96]
-      cmp	 r10,0
-      je	_0else
-_0if:
-      mov	r10,[rbp - 8]
-      sub	r10,1
-      mov	[rbp - 32],r10
-      mov	rdi,[rbp-32]
-      mov	rsi,[rbp-16]
-      mov	rdx,[rbp-24]
-      call	tak
-      mov	[rbp -  40],rax
-      mov	r10,[rbp - 16]
-      sub	r10,1
-      mov	[rbp - 48],r10
-      mov	rdi,[rbp-48]
-      mov	rsi,[rbp-24]
-      mov	rdx,[rbp-8]
-      call	tak
-      mov	[rbp -  56],rax
-      mov	r10,[rbp - 24]
-      sub	r10,1
-      mov	[rbp - 64],r10
-      mov	rdi,[rbp-64]
-      mov	rsi,[rbp-8]
-      mov	rdx,[rbp-16]
-      call	tak
-      mov	[rbp -  72],rax
-      mov	rdi,[rbp-40]
-      mov	rsi,[rbp-56]
-      mov	rdx,[rbp-72]
-      call	tak
-      mov	[rbp -  80],rax
-      mov	r10,1
-      add	r10,[rbp - 80]
-      mov	[rbp - 88],r10
-      mov	rax,[rbp -  88]
-      mov	rsp,rbp
-      pop rbp
-      ret
-      jmp	_0ifback
-_0else:
-      mov	rax,[rbp -  24]
-      mov	rsp,rbp
-      pop rbp
-      ret
-_0ifback:
-      mov	rsp,rbp
-      pop rbp
-      ret
 main:
       push	rbp
       mov	rbp,rsp
-      sub	rsp,16
-      mov	rdi,18
-      mov	rsi,12
-      mov	rdx,6
-      call	tak
-      mov	[rbp -  8],rax
-      mov	rax,[rbp -  8]
+      sub	rsp,120
+      mov 	r15,5
+      mov 	r14,0
+      mov 	r10,r14
+      cmp	r10,0
+      setne r10b
+      movzx r10,r10b
+      mov 	r13,r10
+      mov 	r10,r13
+      cmp	r10,0
+      je	_0check
+      mov 	rax,r15
+      mov 	r10,r14
+      cdq
+      idiv r10d
+      movsx	rax,eax
+      mov	r12,rax
+      mov 	r10,r12
+      cmp	r10,1
+      setne r10b
+      movzx r10,r10b
+      mov 	r12,r10
+      mov 	r10,r13
+      and 	r10,r12
+_0check:
+      mov 	r12,r10
+      mov 	r10,r12
+      cmp	 r10,0
+      je	_0else
+_0if:
+      mov 	r12,10
+      jmp	_0ifback
+_0else:
+      mov 	r12,20
+_0ifback:
+      mov 	r10,r12
+      cmp	r10,10
+      sete r10b
+      movzx r10,r10b
+      mov 	r13,r10
+      mov 	r10,r13
+      cmp	r10,0
+      je	_1check
+      mov 	rax,r15
+      mov 	r10,r14
+      cdq
+      idiv r10d
+      movsx	rax,eax
+      mov	r12,rax
+      mov 	r10,r12
+      cmp	r10,0
+      sete r10b
+      movzx r10,r10b
+      mov 	r12,r10
+      mov 	r10,r13
+      and 	r10,r12
+_1check:
+      mov 	r13,r10
+      mov 	r10,r13
+      cmp	r10,0
+      je	_2check
+      mov 	r10,r15
+      cmp	r10,5
+      sete r10b
+      movzx r10,r10b
+      mov 	r12,r10
+      mov 	r10,r13
+      and 	r10,r12
+_2check:
+      mov 	r12,r10
+      mov 	r10,r12
+      xor	r10,1
+      mov 	r12,r10
+      mov 	r10,r12
+      cmp	 r10,0
+      je	_1else
+_1if:
+      mov 	r12,30
+      jmp	_1ifback
+_1else:
+_1ifback:
+      mov 	rax,r12
       mov	rsp,rbp
       pop rbp
       ret

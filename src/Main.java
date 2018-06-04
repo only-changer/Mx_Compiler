@@ -4,9 +4,7 @@ import org.antlr.v4.runtime.ANTLRInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Vector;
+import java.util.*;
 
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
@@ -52,7 +50,10 @@ class quard
     quard next;
     varible z;
     Integer num = new Integer(0);
-
+    Set<String> used = new HashSet<>();
+    Set<String > def = new HashSet<>();
+    Set<String > in = new HashSet<>();
+    Set<String > out = new HashSet<>();
     quard()
     {
         op = new String();
@@ -2593,9 +2594,8 @@ public class Main
 
     public static check main() throws Exception
     {
-       // File f = new File("E:/test.txt");
+      // File f = new File("E:/test.txt");
          File f = new File("program.txt");
-
         InputStream input = null;
         input = new FileInputStream(f);
         run(input);
