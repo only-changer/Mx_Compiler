@@ -1,4 +1,3 @@
-
 global main
 
 extern puts
@@ -767,97 +766,118 @@ Llege_021:  mov     eax, 1
 Llege_022:  pop     rbp
 	ret
 section   .text
-main:
+tak:
       push	rbp
       mov	rbp,rsp
-      sub	rsp,136
-      mov	qword[rbp - 8],5
-      mov	r10,[rbp - 8]
-      add	r10,1
-      mov 	r12,r10
+      sub	rsp,104
+      mov 	r12,rdi
+      mov	[rbp - 16],rsi
+      mov	[rbp - 24],rdx
+      mov	r10,[rbp - 16]
+      cmp 	r10,r12
+      setl r10b
+      movzx r10,r10b
+      mov	[rbp - 96],r10
+      mov	 r10,[rbp-96]
+      cmp	 r10,0
+      je	_0else
+_0if:
       mov 	r10,r12
-      imul	r10,8
-      mov 	r12,r10
-      mov 	rdi,r12
+      sub	r10,1
+      mov	[rbp - 32],r10
+      mov	rdi,[rbp-32]
+      mov	rsi,[rbp-16]
+      mov	rdx,[rbp-24]
       push	r12
       push	r13
       push	r14
       push	r15
-      call	malloc
+      call	tak
+      pop	r15
+      pop	r14
+      pop	r13
+      pop	r12
+      mov	[rbp -  40],rax
+      mov	r10,[rbp - 16]
+      sub	r10,1
+      mov	[rbp - 48],r10
+      mov	rdi,[rbp-48]
+      mov	rsi,[rbp-24]
+      mov 	rdx,r12
+      push	r12
+      push	r13
+      push	r14
+      push	r15
+      call	tak
+      pop	r15
+      pop	r14
+      pop	r13
+      pop	r12
+      mov	[rbp -  56],rax
+      mov	r10,[rbp - 24]
+      sub	r10,1
+      mov	[rbp - 64],r10
+      mov	rdi,[rbp-64]
+      mov 	rsi,r12
+      mov	rdx,[rbp-16]
+      push	r12
+      push	r13
+      push	r14
+      push	r15
+      call	tak
+      pop	r15
+      pop	r14
+      pop	r13
+      pop	r12
+      mov	[rbp -  72],rax
+      mov	rdi,[rbp-40]
+      mov	rsi,[rbp-56]
+      mov	rdx,[rbp-72]
+      push	r12
+      push	r13
+      push	r14
+      push	r15
+      call	tak
+      pop	r15
+      pop	r14
+      pop	r13
+      pop	r12
+      mov	[rbp -  80],rax
+      mov	r10,1
+      add	r10,[rbp - 80]
+      mov	[rbp - 88],r10
+      mov	rax,[rbp -  88]
+      mov	rsp,rbp
+      pop rbp
+      ret
+      jmp	_0ifback
+_0else:
+      mov	rax,[rbp -  24]
+      mov	rsp,rbp
+      pop rbp
+      ret
+_0ifback:
+      mov	rsp,rbp
+      pop rbp
+      ret
+main:
+      push	rbp
+      mov	rbp,rsp
+      sub	rsp,16
+      mov	rdi,18
+      mov	rsi,12
+      mov	rdx,6
+      push	r12
+      push	r13
+      push	r14
+      push	r15
+      call	tak
       pop	r15
       pop	r14
       pop	r13
       pop	r12
       mov 	r12,rax
-      mov	r10,[rbp - 8]
-      mov	r11,r12
-      add	r11,0
-      mov	[r11],r10
-      mov 	r10,r12
-      mov 	r15,r10
-      mov 	r13,0
-      mov 	r14,0
-      jmp	_0whilecheck
-_0for:
-      mov 	r10,r14
-      add	r10,1
-      mov 	r12,r10
-      mov 	r10,r12
-      imul	r10,8
-      mov 	r12,r10
-      mov 	r10,r13
-      add	r10,1
-      mov 	r13,r10
-      mov 	r10,r13
-      mov	r11,r15
-      add	r11,r12
-      mov	[r11],r10
-_0while:
-      mov 	r10,r14
-      add	r10,1
-      mov 	r14,r10
-_0whilecheck:
-      mov 	r10,r14
-      cmp	r10,[rbp - 8]
-      setl r10b
-      movzx r10,r10b
-      mov 	r12,r10
-      mov 	r10,r12
-      cmp	r10,1
-      je	_0for
-_0forback:
-      mov 	r13,0
-      mov 	r14,0
-      jmp	_1whilecheck
-_1for:
-      mov 	r10,r14
-      add	r10,1
-      mov 	r12,r10
-      mov 	r10,r12
-      imul	r10,8
-      mov 	r12,r10
-      mov 	r10,r13
-      mov	r11,r15
-      add	r11,r12
-      add	r10,[r11]
-      mov 	r12,r10
-      mov 	r10,r12
-      mov 	r13,r10
-_1while:
-      mov 	r10,r14
-      add	r10,1
-      mov 	r14,r10
-_1whilecheck:
-      mov 	r10,r14
-      cmp	r10,[rbp - 8]
-      setl r10b
-      movzx r10,r10b
-      mov 	r12,r10
-      mov 	r10,r12
-      cmp	r10,1
-      je	_1for
-_1forback:
-      mov 	rax,r13
+      mov 	rax,r12
       mov	rsp,rbp
       pop rbp
       ret

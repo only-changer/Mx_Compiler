@@ -166,7 +166,7 @@ public class livecheck
         }
         for (Map.Entry<String, node> entry : m.nodes.entrySet())
         {
-            System.out.println(entry.getKey() + entry.getValue().degree);
+          //  System.out.println(entry.getKey() + entry.getValue().degree);
         }
         for (int i = 0; i < m.nodes.size(); ++i)
         {
@@ -215,7 +215,7 @@ public class livecheck
     {
         code = admit(code);
         lives(code);
-        quard head = new quard();
+       /* quard head = new quard();
         head = code.head;
         while (head != null)
         {
@@ -229,7 +229,7 @@ public class livecheck
                 break;
             else
                 head = head.next;
-        }
+        }*/
         allocate(code);
 
         return result;
