@@ -2201,17 +2201,17 @@ public class Irtox86
                 if (doit)
                 {
                     boolean []check = {false,false,false,false};
-                  /*  for (String str : q.push)
+                    for (String str : q.push)
                     {
                         if (allocate.containsKey(str))
                         {
                             Integer I = allocate.get(str);
                             check[I] = true;
                         }
-                    }*/
+                    }
                     for (int i = 0;i < cregs.length;++i)
                     {
-                        if (check[i] == false)
+                        if (check[i] == true)
                         {
                             System.out.print("      ");
                             System.out.println("push\t" + cregs[i]);
@@ -2228,17 +2228,17 @@ public class Irtox86
                 if (doit)
                 {
                     boolean []check = {false,false,false,false};
-                /*    for (String str : q.push)
+                    for (String str : q.push)
                     {
                         if (allocate.containsKey(str))
                         {
                             Integer I = allocate.get(str);
                             check[I] = true;
                         }
-                    }*/
+                    }
                     for (int i = cregs.length - 1;i >= 0;--i)
                     {
-                        if (check[i] == false)
+                        if (check[i] == true)
                         {
                             System.out.print("      ");
                             System.out.println("pop\t" + cregs[i]);
