@@ -164,7 +164,6 @@ public class livecheck
                     }
                     if (q.prev.y.name.contains("temp"))
                         q.out.add(q.prev.y.name);
-                    //System.err.println(jmpmap);
                 }
                 if (q.next != null && !q.op.equals("ret"))
                 {
@@ -181,6 +180,16 @@ public class livecheck
                         q.in.add(q.z.name);
                     if (q.z.params != null)
                         q.in.addAll(add(q.z.params));
+                }
+                if (q.op.equals("call"))
+                {
+                    Set<String> o = new HashSet<>(q.out);
+                    for (String str : q.def)
+                    {
+                        if (o.contains(str))
+                            o.remove(str);
+                    }
+                    q.push = o;
                 }
                 if (q.in.equals(in) && q.out.equals(out))
                     change = false;

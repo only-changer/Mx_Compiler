@@ -2200,14 +2200,23 @@ public class Irtox86
                 }
                 if (doit)
                 {
-                    System.out.print("      ");
-                    System.out.println("push\tr12");
-                    System.out.print("      ");
-                    System.out.println("push\tr13");
-                    System.out.print("      ");
-                    System.out.println("push\tr14");
-                    System.out.print("      ");
-                    System.out.println("push\tr15");
+                    boolean []check = {false,false,false,false};
+                  /*  for (String str : q.push)
+                    {
+                        if (allocate.containsKey(str))
+                        {
+                            Integer I = allocate.get(str);
+                            check[I] = true;
+                        }
+                    }*/
+                    for (int i = 0;i < cregs.length;++i)
+                    {
+                        if (check[i] == false)
+                        {
+                            System.out.print("      ");
+                            System.out.println("push\t" + cregs[i]);
+                        }
+                    }
                 }
                 if (q.z.name.contains("print"))
                 {
@@ -2218,14 +2227,23 @@ public class Irtox86
                 System.out.println("call\t" + q.z.name);
                 if (doit)
                 {
-                    System.out.print("      ");
-                    System.out.println("pop\tr15");
-                    System.out.print("      ");
-                    System.out.println("pop\tr14");
-                    System.out.print("      ");
-                    System.out.println("pop\tr13");
-                    System.out.print("      ");
-                    System.out.println("pop\tr12");
+                    boolean []check = {false,false,false,false};
+                /*    for (String str : q.push)
+                    {
+                        if (allocate.containsKey(str))
+                        {
+                            Integer I = allocate.get(str);
+                            check[I] = true;
+                        }
+                    }*/
+                    for (int i = cregs.length - 1;i >= 0;--i)
+                    {
+                        if (check[i] == false)
+                        {
+                            System.out.print("      ");
+                            System.out.println("pop\t" + cregs[i]);
+                        }
+                    }
                 }
                 if (q.y.name.contains("temp"))
                 {
@@ -4043,7 +4061,7 @@ public class Irtox86
     {
         Main m = new Main();
         check chk = m.main();
-       // chk.code.print();
+        //chk.code.print();
         addr = chk.addr;
         global = new Vector<>(chk.params);
         livecheck ck = new livecheck();

@@ -55,6 +55,7 @@ class quard
     Set<String> def = new HashSet<>();
     Set<String> in = new HashSet<>();
     Set<String> out = new HashSet<>();
+    Set<String> push = new HashSet<>();
 
     quard()
     {
@@ -223,6 +224,7 @@ class MyVisitor extends MxBaseVisitor<check>
     String cla = new String();
     boolean classfun = false;
     Integer temp = 0;
+    Integer gtemp = new Integer(0);
     Integer b = 0;
     Integer b_f = 0;
     Integer b_i = 0;
@@ -392,6 +394,7 @@ class MyVisitor extends MxBaseVisitor<check>
         check nonecheck = new check();
         isglobal = true;
         if (ctx.defvars() != null) return visit(ctx.defvars());
+        gtemp = temp;
         isglobal = false;
         if (ctx.defclass() != null) return visit(ctx.defclass());
         if (ctx.defun() != null)
@@ -661,6 +664,8 @@ class MyVisitor extends MxBaseVisitor<check>
         Map<String, vartype> origin = new HashMap<>(defvars);
         defun = ctx.type().getText();
         origintemp = temp;
+        if (ctx.funname().getText().equals("main"))
+            origintemp = 0;
         check c = visit(ctx.params());
         if (ctx.params().param().size() > 6) chk.doit = false;
         Map<String, vartype> map = (c.defvars);
@@ -2602,7 +2607,7 @@ public class Main
 
     public static check main() throws Exception
     {
-        // File f = new File("E:/test.txt");
+        //File f = new File("E:/test.txt");
         File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);

@@ -6,6 +6,9 @@
       <change beforePath="$PROJECT_DIR$/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/a.out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hello.asm" beforeDir="false" afterPath="$PROJECT_DIR$/hello.asm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hello.o" beforeDir="false" afterPath="$PROJECT_DIR$/hello.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Irtox86.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Irtox86.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/livecheck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/livecheck.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,8 +23,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="258">
-              <caret line="2600" column="5" lean-forward="true" selection-start-line="2600" selection-start-column="5" selection-end-line="2600" selection-end-column="5" />
+            <state relative-caret-position="162">
+              <caret line="2609" column="10" selection-start-line="2609" selection-start-column="10" selection-end-line="2609" selection-end-column="10" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -32,8 +35,8 @@
       <file leaf-file-name="livecheck.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/livecheck.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="95" column="21" selection-start-line="95" selection-start-column="21" selection-end-line="95" selection-end-column="21" />
+            <state relative-caret-position="223">
+              <caret line="191" column="31" lean-forward="true" selection-start-line="191" selection-start-column="31" selection-end-line="191" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -41,8 +44,8 @@
       <file leaf-file-name="Irtox86.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Irtox86.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
-              <caret line="587" column="46" lean-forward="true" selection-start-line="587" selection-start-column="46" selection-end-line="587" selection-end-column="46" />
+            <state relative-caret-position="280">
+              <caret line="2240" column="46" lean-forward="true" selection-start-line="2240" selection-start-column="46" selection-end-line="2240" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -61,9 +64,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>&quot;*&quot;</find>
-      <find>&quot;+&quot;</find>
-      <find>15</find>
       <find>opd</find>
       <find>tak</find>
       <find>&quot;int&quot;</find>
@@ -74,23 +74,26 @@
       <find>opcom</find>
       <find>&quot;label</find>
       <find>out</find>
-      <find>&quot;=&quot;</find>
       <find>DEFUN</find>
       <find>move</find>
       <find>add(</find>
       <find>opf</find>
       <find>&quot;call</find>
-      <find>&quot;call&quot;</find>
       <find>Defun</find>
       <find>defvars</find>
       <find>copy</find>
-      <find>main</find>
       <find>funcini</find>
       <find>0forbacka</find>
       <find>&quot;&gt;&gt;&quot;</find>
-      <find>varname</find>
       <find>[rbp - 8]</find>
       <find>opti</find>
+      <find>varname</find>
+      <find>&quot;=&quot;</find>
+      <find>temp</find>
+      <find>main</find>
+      <find>gtemp</find>
+      <find>q.def</find>
+      <find>&quot;call&quot;</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -260,13 +263,13 @@
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3294964" />
       <window_info anchor="bottom" id="Tool Output" order="7" sideWeight="0.49798927" weight="0.0733813" />
-      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.20264766" weight="0.4213564" />
+      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.20264766" weight="0.84126985" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5305499" side_tool="true" weight="0.6906475" />
       <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.46945012" visible="true" weight="0.3044733" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.46945012" visible="true" weight="0.24819624" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.41414142" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49932975" weight="0.3294964" />
       <window_info id="Capture Tool" order="2" />
@@ -668,15 +671,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/livecheck.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="95" column="21" selection-start-line="95" selection-start-column="21" selection-end-line="95" selection-end-column="21" />
+        <state relative-caret-position="223">
+          <caret line="191" column="31" lean-forward="true" selection-start-line="191" selection-start-column="31" selection-end-line="191" selection-end-column="31" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Irtox86.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="587" column="46" lean-forward="true" selection-start-line="587" selection-start-column="46" selection-end-line="587" selection-end-column="46" />
+        <state relative-caret-position="280">
+          <caret line="2240" column="46" lean-forward="true" selection-start-line="2240" selection-start-column="46" selection-end-line="2240" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -685,8 +688,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="2600" column="5" lean-forward="true" selection-start-line="2600" selection-start-column="5" selection-end-line="2600" selection-end-column="5" />
+        <state relative-caret-position="162">
+          <caret line="2609" column="10" selection-start-line="2609" selection-start-column="10" selection-end-line="2609" selection-end-column="10" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

@@ -2738,9 +2738,9 @@ _18ifback:
 main:
       push	rbp
       mov	rbp,rsp
-      sub	rsp,224
-      mov	qword[rbp - -3632],4000048
-      mov	rdi,[rbp--3632]
+      sub	rsp,3864
+      mov	qword[rbp - 8],4000048
+      mov	rdi,[rbp-8]
       push	r12
       push	r13
       push	r14
@@ -2750,14 +2750,14 @@ main:
       pop	r14
       pop	r13
       pop	r12
-      mov	[rbp -  -3624],rax
-      mov	r11,[rbp - -3624]
+      mov	[rbp -  16],rax
+      mov	r11,[rbp - 16]
       add	r11,0
       mov	qword[r11],500005
-      mov	r10,[rbp - -3624]
+      mov	r10,[rbp - 16]
       mov	[sjtulcb],r10
-      mov	qword[rbp - -3616],4000048
-      mov	rdi,[rbp--3616]
+      mov	qword[rbp - 24],4000048
+      mov	rdi,[rbp-24]
       push	r12
       push	r13
       push	r14
@@ -2767,14 +2767,14 @@ main:
       pop	r14
       pop	r13
       pop	r12
-      mov	[rbp -  -3608],rax
-      mov	r11,[rbp - -3608]
+      mov	[rbp -  32],rax
+      mov	r11,[rbp - 32]
       add	r11,0
       mov	qword[r11],500005
-      mov	r10,[rbp - -3608]
+      mov	r10,[rbp - 32]
       mov	[sjtulcnow],r10
-      mov	qword[rbp - -3600],4000048
-      mov	rdi,[rbp--3600]
+      mov	qword[rbp - 40],4000048
+      mov	rdi,[rbp-40]
       push	r12
       push	r13
       push	r14
@@ -2784,14 +2784,14 @@ main:
       pop	r14
       pop	r13
       pop	r12
-      mov	[rbp -  -3592],rax
-      mov	r11,[rbp - -3592]
+      mov	[rbp -  48],rax
+      mov	r11,[rbp - 48]
       add	r11,0
       mov	qword[r11],500005
-      mov	r10,[rbp - -3592]
+      mov	r10,[rbp - 48]
       mov	[sjtulct],r10
-      mov	qword[rbp - -3584],1600048
-      mov	rdi,[rbp--3584]
+      mov	qword[rbp - 56],1600048
+      mov	rdi,[rbp-56]
       push	r12
       push	r13
       push	r14
@@ -2801,11 +2801,11 @@ main:
       pop	r14
       pop	r13
       pop	r12
-      mov	[rbp -  -3576],rax
-      mov	r11,[rbp - -3576]
+      mov	[rbp -  64],rax
+      mov	r11,[rbp - 64]
       add	r11,0
       mov	qword[r11],200005
-      mov	r10,[rbp - -3576]
+      mov	r10,[rbp - 64]
       mov	[sjtulca],r10
       mov	qword[sjtulcL],1
       mov 	r12,4000048
@@ -2819,11 +2819,11 @@ main:
       pop	r14
       pop	r13
       pop	r12
-      mov	[rbp -  -3560],rax
-      mov	r11,[rbp - -3560]
+      mov	[rbp -  80],rax
+      mov	r11,[rbp - 80]
       add	r11,0
       mov	qword[r11],500005
-      mov	r10,[rbp - -3560]
+      mov	r10,[rbp - 80]
       mov	[sjtulcflag],r10
       mov 	r12,4000048
       mov 	rdi,r12
@@ -2836,27 +2836,27 @@ main:
       pop	r14
       pop	r13
       pop	r12
-      mov	[rbp -  -3544],rax
-      mov	r11,[rbp - -3544]
+      mov	[rbp -  96],rax
+      mov	r11,[rbp - 96]
       add	r11,0
       mov	qword[r11],500005
-      mov	r10,[rbp - -3544]
-      mov	[rbp - -3528],r10
-      mov	qword[rbp - -3536],0
+      mov	r10,[rbp - 96]
+      mov	[rbp - 112],r10
+      mov	qword[rbp - 104],0
 _0arr:
-      mov	r10,[rbp - -3536]
+      mov	r10,[rbp - 104]
       add	r10,1
-      mov	[rbp - -3536],r10
-      mov	r10,[rbp - -3544]
+      mov	[rbp - 104],r10
+      mov	r10,[rbp - 96]
       add	r10,8
-      mov	[rbp - -3544],r10
+      mov	[rbp - 96],r10
       mov	r10,80
       add	r10,1
-      mov	[rbp - -3520],r10
-      mov	r10,[rbp - -3520]
+      mov	[rbp - 120],r10
+      mov	r10,[rbp - 120]
       imul	r10,8
-      mov	[rbp - -3520],r10
-      mov	rdi,[rbp--3520]
+      mov	[rbp - 120],r10
+      mov	rdi,[rbp-120]
       push	r12
       push	r13
       push	r14
@@ -2866,23 +2866,23 @@ _0arr:
       pop	r14
       pop	r13
       pop	r12
-      mov	[rbp -  -3512],rax
-      mov	r11,[rbp - -3512]
+      mov	[rbp -  128],rax
+      mov	r11,[rbp - 128]
       add	r11,0
       mov	qword[r11],80
-      mov	r10,[rbp - -3512]
-      mov	r11,[rbp - -3544]
+      mov	r10,[rbp - 128]
+      mov	r11,[rbp - 96]
       add	r11,0
       mov	[r11],r10
-      mov	r10,[rbp - -3536]
+      mov	r10,[rbp - 104]
       cmp	r10,500005
       setl r10b
       movzx r10,r10b
-      mov	[rbp - -3504],r10
-      mov	r10,[rbp - -3504]
+      mov	[rbp - 136],r10
+      mov	r10,[rbp - 136]
       cmp	r10,1
       je	_0arr
-      mov	r10,[rbp - -3528]
+      mov	r10,[rbp - 112]
       mov	[sjtulcs],r10
       mov 	r12,4000048
       mov 	rdi,r12
@@ -2895,11 +2895,11 @@ _0arr:
       pop	r14
       pop	r13
       pop	r12
-      mov	[rbp -  -3488],rax
-      mov	r11,[rbp - -3488]
+      mov	[rbp -  152],rax
+      mov	r11,[rbp - 152]
       add	r11,0
       mov	qword[r11],500005
-      mov	r10,[rbp - -3488]
+      mov	r10,[rbp - 152]
       mov	[sjtulcsum],r10
       mov	qword[sjtulcans],0
       mov	qword[sjtulcaa],13131
