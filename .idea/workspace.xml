@@ -38,7 +38,7 @@
         <entry file="file://$PROJECT_DIR$/src/livecheck.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="215">
-              <caret line="269" column="69" lean-forward="true" selection-start-line="269" selection-start-column="69" selection-end-line="269" selection-end-column="69" />
+              <caret line="269" column="63" lean-forward="true" selection-start-line="269" selection-start-column="63" selection-end-line="269" selection-end-column="63" />
             </state>
           </provider>
         </entry>
@@ -46,8 +46,8 @@
       <file leaf-file-name="Irtox86.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Irtox86.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="2231" column="77" selection-start-line="2231" selection-start-column="77" selection-end-line="2231" selection-end-column="77" />
+            <state relative-caret-position="133">
+              <caret line="11" column="60" selection-start-line="11" selection-start-column="60" selection-end-line="11" selection-end-column="60" />
             </state>
           </provider>
         </entry>
@@ -90,9 +90,9 @@
       <find>main</find>
       <find>136temp</find>
       <find>2for</find>
-      <find>&quot;call&quot;</find>
       <find>cos</find>
       <find>opf</find>
+      <find>&quot;call&quot;</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -687,14 +687,14 @@
     <entry file="file://$PROJECT_DIR$/src/livecheck.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="215">
-          <caret line="269" column="69" lean-forward="true" selection-start-line="269" selection-start-column="69" selection-end-line="269" selection-end-column="69" />
+          <caret line="269" column="63" lean-forward="true" selection-start-line="269" selection-start-column="63" selection-end-line="269" selection-end-column="63" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Irtox86.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="2231" column="77" selection-start-line="2231" selection-start-column="77" selection-end-line="2231" selection-end-column="77" />
+        <state relative-caret-position="133">
+          <caret line="11" column="60" selection-start-line="11" selection-start-column="60" selection-end-line="11" selection-end-column="60" />
         </state>
       </provider>
     </entry>
