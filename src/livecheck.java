@@ -112,10 +112,6 @@ public class livecheck
                         q.def.add(q.y.name);
                     if (q.y.params != null)
                         q.used.addAll(add(q.y.params));
-                    if (jmpmap.containsKey(q.z.name))
-                    {
-                        q.out.addAll(jmpmap.get(q.z.name).in);
-                    }
                 }
                 else
                 {
@@ -158,6 +154,7 @@ public class livecheck
                     String s = new String(q.z.name);
                     if (s.charAt(0) >= '0' && s.charAt(0) <= '9')
                         s = "_" + s;
+                    //System.out.println(s);
                     if (jmpmap.containsKey(s))
                     {
                         q.out.addAll(jmpmap.get(s).in);
@@ -165,15 +162,15 @@ public class livecheck
                     if (q.prev.y.name.contains("temp"))
                         q.out.add(q.prev.y.name);
                 }
-                if (q.next != null && !q.op.equals("ret"))
+                if (q.next != null && !q.op.equals("ret") && !(q.next.op.equals("label!!!!!!!!!") && q.next.z.name.charAt(0) != '_'))
                 {
                     q.out.addAll(q.next.in);
                 }
-                q.in.addAll(q.out);
-                if (q.in.contains(q.z.name) && !q.used.contains(q.z.name))
-                {
-                    q.in.remove(q.z.name);
-                }
+                Set<String> oo = new HashSet<>(q.out);
+                for (String str : q.def)
+                    if (oo.contains(str))
+                        oo.remove(str);
+                q.in.addAll(oo);
                 if (q.z.params != null)
                 {
                     if (q.z.name.contains("temp"))
@@ -207,7 +204,7 @@ public class livecheck
         quard head = code.head;
         while (head != null)
         {
-            if (!(head.op.equals("imm")|| head.op.equals("class")  || head.op.contains("int") || head.op.contains("string") || head.op.equals("arr")))
+            if (!(head.op.equals("imm")|| head.op.equals("") ||head.op.equals("class")  || head.op.contains("int") || head.op.contains("string") || head.op.equals("arr")))
             {
                 ad.push(head);
             }
@@ -305,7 +302,7 @@ public class livecheck
         code = admit(code);
         //code.print();
         lives(code);
-     /* quard head = new quard();
+    /*  quard head = new quard();
         head = code.head;
         while (head != null)
         {

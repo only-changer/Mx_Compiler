@@ -928,9 +928,7 @@ _2for:
       mov 	rsi,r14
       push	r13
       push	r14
-      push	r8
       call	string.ord
-      pop	r8
       pop	r14
       pop	r13
       mov 	r12,rax
@@ -946,9 +944,7 @@ _2while:
 _2whilecheck:
       mov 	rdi,r13
       push	r14
-      push	r8
       call	string.length
-      pop	r8
       pop	r14
       mov 	r12,rax
       mov 	r10,r14
@@ -1045,36 +1041,26 @@ _5if:
       mov	rdi,[sjtulccond_ass]
       mov	rsi,[sjtulcassignment]
       push	r13
-      push	r8
       call	payoff
-      pop	r8
       pop	r13
       mov 	r12,rax
       mov 	rdi,r12
       push	r13
-      push	r8
       call	toString
-      pop	r8
       pop	r13
       mov 	r12,rax
       mov 	rdi,r13
       mov 	rsi,r12
-      push	r8
       call	string.add
-      pop	r8
       mov 	r12,rax
       mov 	r13,lcstr1
       mov 	rdi,r12
       mov 	rsi,r13
-      push	r8
       call	string.add
-      pop	r8
       mov 	r12,rax
       mov 	rdi,r12
-      push	r8
       mov	rax,0
       call	myprint
-      pop	r8
       mov 	r12,rax
       mov 	r13,0
       jmp	_4whilecheck
@@ -1107,17 +1093,13 @@ _4if:
       add	r10,r12
       mov	rdi,[r10]
       push	r13
-      push	r8
       call	toString
-      pop	r8
       pop	r13
       mov 	r12,rax
       mov 	rdi,r12
       push	r13
-      push	r8
       mov	rax,0
       call	myprint
-      pop	r8
       pop	r13
       mov 	r12,rax
       jmp	_4ifback
@@ -1160,10 +1142,8 @@ _5ifback:
       mov 	r12,r10
       mov 	rdi,r12
       push	r13
-      push	r8
       mov	rax,0
       call	print_cond
-      pop	r8
       pop	r13
       mov 	r12,rax
       mov 	r10,r13
@@ -1182,10 +1162,8 @@ _5ifback:
       add	r10,1
       mov 	r12,r10
       mov 	rdi,r12
-      push	r8
       mov	rax,0
       call	print_cond
-      pop	r8
       mov 	r12,rax
       mov	rsp,rbp
       pop rbp
@@ -1204,9 +1182,7 @@ dfs:
       cmp	 r10,0
       je	_7else
 _7if:
-      push	r8
       call	check
-      pop	r8
       mov 	r13,rax
       mov 	r10,r13
       cmp	r10,1
@@ -1219,23 +1195,17 @@ _7if:
 _6if:
       mov 	r12,lcstr2
       mov 	rdi,r12
-      push	r8
       mov	rax,0
       call	myprint
-      pop	r8
       mov 	r12,rax
       mov	rdi,0
-      push	r8
       mov	rax,0
       call	print_cond
-      pop	r8
       mov 	r12,rax
       mov 	r12,lcstr3
       mov 	rdi,r12
-      push	r8
       mov	rax,0
       call	myprint
-      pop	r8
       mov 	r12,rax
       jmp	_6ifback
 _6else:
@@ -1263,9 +1233,7 @@ _7ifback:
       mov 	r12,r10
       mov 	rdi,r12
       push	r13
-      push	r8
       call	dfs
-      pop	r8
       pop	r13
       mov 	r12,rax
       mov 	r10,r13
@@ -1284,9 +1252,7 @@ _7ifback:
       add	r10,1
       mov 	r12,r10
       mov 	rdi,r12
-      push	r8
       call	dfs
-      pop	r8
       mov 	r12,rax
       mov	rsp,rbp
       pop rbp
@@ -1307,10 +1273,8 @@ print_last_cond:
 _10if:
       mov 	r12,lcstr4
       mov 	rdi,r12
-      push	r8
       mov	rax,0
       call	myprint
-      pop	r8
       mov 	r12,rax
       mov 	r14,1
       mov 	r13,0
@@ -1354,19 +1318,15 @@ _8ifback:
       mov	rdi,[r10]
       push	r13
       push	r14
-      push	r8
       call	toString
-      pop	r8
       pop	r14
       pop	r13
       mov 	r12,rax
       mov 	rdi,r12
       push	r13
       push	r14
-      push	r8
       mov	rax,0
       call	myprint
-      pop	r8
       pop	r14
       pop	r13
       mov 	r12,rax
@@ -1395,19 +1355,15 @@ _5forback:
 _9if:
       mov 	r12,lcstr5
       mov 	rdi,r12
-      push	r8
       mov	rax,0
       call	myprint
-      pop	r8
       mov 	r12,rax
       jmp	_9ifback
 _9else:
       mov 	r12,lcstr6
       mov 	rdi,r12
-      push	r8
       mov	rax,0
       call	myprint
-      pop	r8
       mov 	r12,rax
 _9ifback:
       mov	rsp,rbp
@@ -1433,10 +1389,8 @@ _10ifback:
       mov 	r12,r10
       mov 	rdi,r12
       push	r13
-      push	r8
       mov	rax,0
       call	print_last_cond
-      pop	r8
       pop	r13
       mov 	r12,rax
       mov 	r10,r13
@@ -1455,10 +1409,8 @@ _10ifback:
       add	r10,1
       mov 	r12,r10
       mov 	rdi,r12
-      push	r8
       mov	rax,0
       call	print_last_cond
-      pop	r8
       mov 	r12,rax
       mov	rsp,rbp
       pop rbp
@@ -1468,15 +1420,7 @@ main:
       mov	rbp,rsp
       sub	rsp,1352
       mov	qword[sjtulcmyHash],0
-      push	r13
-      push	r14
-      push	r15
-      push	r8
       call	getInt
-      pop	r8
-      pop	r15
-      pop	r14
-      pop	r13
       mov 	r12,rax
       mov 	r10,r12
       mov	[sjtulck],r10
@@ -1493,16 +1437,8 @@ main:
       mov	qword[sjtulclast],1
       mov 	r12,lcstr7
       mov 	rdi,r12
-      push	r13
-      push	r14
-      push	r15
-      push	r8
       mov	rax,0
       call	myprint
-      pop	r8
-      pop	r15
-      pop	r14
-      pop	r13
       mov 	r12,rax
       mov	r10,[sjtulcm]
       add	r10,1
@@ -1511,37 +1447,27 @@ main:
       imul	r10,8
       mov 	r12,r10
       mov 	rdi,r12
-      push	r14
-      push	r15
-      push	r8
       call	malloc
-      pop	r8
-      pop	r15
-      pop	r14
-      mov 	r13,rax
-      mov	r11,r13
+      mov 	r12,rax
+      mov	r11,r12
       add	r11,0
       mov	r10,[sjtulcm]
       mov	qword[r11],r10
-      mov 	r10,r13
+      mov 	r10,r12
       mov	[sjtulcsat],r10
-      mov 	r9,0
+      mov 	r14,0
       jmp	_6whilecheck
 _6for:
       mov 	r12,32
       mov 	rdi,r12
-      push	r15
-      push	r8
-      push	r9
+      push	r14
       call	malloc
-      pop	r9
-      pop	r8
-      pop	r15
-      mov 	r14,rax
-      mov	r11,r14
+      pop	r14
+      mov 	r12,rax
+      mov	r11,r12
       add	r11,0
       mov	qword[r11],3
-      mov 	r10,r14
+      mov 	r10,r12
       mov 	r13,r10
       mov	r11,r13
       add	r11,8
@@ -1570,7 +1496,7 @@ _6for:
       mov 	r12,r10
       mov 	r10,r12
       mov	[sjtulclast],r10
-      mov 	r10,r9
+      mov 	r10,r14
       add	r10,1
       mov 	r12,r10
       mov 	r10,r12
@@ -1581,11 +1507,11 @@ _6for:
       add	r11,r12
       mov	[r11],r10
 _6while:
-      mov 	r10,r9
+      mov 	r10,r14
       add	r10,1
-      mov 	r9,r10
+      mov 	r14,r10
 _6whilecheck:
-      mov 	r10,r9
+      mov 	r10,r14
       cmp	r10,[sjtulcm]
       setl r10b
       movzx r10,r10b
@@ -1605,18 +1531,14 @@ _6forback:
       mov 	r12,r10
       mov 	rdi,r12
       push	r13
-      push	r15
-      push	r8
       call	malloc
-      pop	r8
-      pop	r15
       pop	r13
-      mov 	r8,rax
+      mov 	r12,rax
       mov 	r10,r13
-      mov	r11,r8
+      mov	r11,r12
       add	r11,0
       mov	[r11],r10
-      mov 	r10,r8
+      mov 	r10,r12
       mov	[sjtulcassignment],r10
       mov	r10,[sjtulcn]
       add	r10,1
@@ -1629,38 +1551,28 @@ _6forback:
       mov 	r12,r10
       mov 	rdi,r12
       push	r13
-      push	r8
       call	malloc
-      pop	r8
       pop	r13
-      mov 	r15,rax
+      mov 	r12,rax
       mov 	r10,r13
-      mov	r11,r15
+      mov	r11,r12
       add	r11,0
       mov	[r11],r10
-      mov 	r10,r15
+      mov 	r10,r12
       mov	[sjtulccond_ass],r10
       mov	rdi,0
-      push	r8
       call	dfs
-      pop	r8
       mov 	r12,rax
       mov	rdi,0
-      push	r8
       mov	rax,0
       call	print_last_cond
-      pop	r8
       mov 	r12,rax
       mov	rdi,[sjtulcmyHash]
-      push	r8
       call	toString
-      pop	r8
       mov 	r12,rax
       mov 	rdi,r12
-      push	r8
       mov	rax,0
       call	println
-      pop	r8
       mov 	r12,rax
       mov	rax,0
       mov	rsp,rbp

@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="014ac6d6-8e40-455f-95b1-dff8859644ca" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Irtox86.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Irtox86.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/a.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hello.asm" beforeDir="false" afterPath="$PROJECT_DIR$/hello.asm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hello.o" beforeDir="false" afterPath="$PROJECT_DIR$/hello.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/livecheck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/livecheck.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -16,11 +18,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="12483">
-              <caret line="670" column="43" selection-start-line="670" selection-start-column="43" selection-end-line="670" selection-end-column="43" />
+            <state relative-caret-position="356">
+              <caret line="2611" column="8" selection-start-line="2611" selection-start-column="8" selection-end-line="2611" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1527#1528#0" expanded="true" />
@@ -34,11 +36,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="livecheck.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="livecheck.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/livecheck.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="272" column="75" selection-start-line="272" selection-start-column="75" selection-end-line="272" selection-end-column="75" />
+            <state relative-caret-position="2774">
+              <caret line="156" column="22" selection-start-line="156" selection-start-column="22" selection-end-line="156" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -46,8 +48,8 @@
       <file leaf-file-name="Irtox86.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Irtox86.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="319">
-              <caret line="2231" column="83" selection-start-line="2231" selection-start-column="83" selection-end-line="2231" selection-end-column="83" />
+            <state relative-caret-position="133">
+              <caret line="11" column="77" lean-forward="true" selection-start-line="11" selection-start-column="77" selection-end-line="11" selection-end-column="77" />
             </state>
           </provider>
         </entry>
@@ -63,8 +65,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>&quot;int&quot;</find>
-      <find>&quot;temp&quot;</find>
       <find>&quot;%&quot;</find>
       <find>&quot;if&quot;</find>
       <find>&quot;j&quot;</find>
@@ -86,12 +86,14 @@
       <find>varname</find>
       <find>&quot;=&quot;</find>
       <find>temp</find>
-      <find>main</find>
       <find>gtemp</find>
       <find>q.def</find>
       <find>&quot;call</find>
       <find>false</find>
       <find>doit</find>
+      <find>main</find>
+      <find>136temp</find>
+      <find>2for</find>
       <find>&quot;call&quot;</find>
     </findStrings>
   </component>
@@ -106,9 +108,9 @@
         <option value="$PROJECT_DIR$/src/MxParser.java" />
         <option value="$PROJECT_DIR$/src/Semantic.java" />
         <option value="$PROJECT_DIR$/src/Mx.g4" />
-        <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/Irtox86.java" />
         <option value="$PROJECT_DIR$/src/livecheck.java" />
+        <option value="$PROJECT_DIR$/src/Main.java" />
       </list>
     </option>
   </component>
@@ -262,18 +264,18 @@
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3294964" />
       <window_info anchor="bottom" id="Tool Output" order="7" sideWeight="0.49798927" weight="0.0733813" />
-      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.20264766" weight="0.83884895" />
+      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.20264766" weight="0.37122303" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5376782" side_tool="true" visible="true" weight="0.24748202" />
+      <window_info active="true" anchor="bottom" id="Event Log" order="7" sideWeight="0.5437882" side_tool="true" visible="true" weight="0.0676259" />
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.41414142" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4623218" visible="true" weight="0.24748202" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4562118" visible="true" weight="0.0676259" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49932975" weight="0.3294964" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.11812627" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11812627" />
       <window_info anchor="bottom" id="ANTLR Preview" order="7" sideWeight="0.81970507" weight="0.30647483" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" visible="true" weight="0.030549899" />
@@ -668,10 +670,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/livecheck.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2774">
+          <caret line="156" column="22" selection-start-line="156" selection-start-column="22" selection-end-line="156" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Irtox86.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="11" column="77" lean-forward="true" selection-start-line="11" selection-start-column="77" selection-end-line="11" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="12483">
-          <caret line="670" column="43" selection-start-line="670" selection-start-column="43" selection-end-line="670" selection-end-column="43" />
+        <state relative-caret-position="356">
+          <caret line="2611" column="8" selection-start-line="2611" selection-start-column="8" selection-end-line="2611" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1527#1528#0" expanded="true" />
@@ -681,20 +697,6 @@
             <element signature="e#10433#10434#0" expanded="true" />
             <element signature="e#10475#10476#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Irtox86.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="2231" column="83" selection-start-line="2231" selection-start-column="83" selection-end-line="2231" selection-end-column="83" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/livecheck.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="272" column="75" selection-start-line="272" selection-start-column="75" selection-end-line="272" selection-end-column="75" />
         </state>
       </provider>
     </entry>
