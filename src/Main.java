@@ -1158,6 +1158,13 @@ class MyVisitor extends MxBaseVisitor<check>
             if (ctx.expr2() != null)
             {
                 ck = visit(ctx.expr2());
+                if (ck.code.last.x.name.equals("100000000"))
+                {
+                    quard quad = new quard();
+                    quad.op = "goto";
+                    quad.z.name = fors.toString() + "forback";
+                    chk.code.push(quad);
+                }
                 chk.code.add(ck.code);
                 quard quad = new quard();
                 quad.op = "for";
