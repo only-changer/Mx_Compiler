@@ -88,6 +88,13 @@ public class livecheck
             quard q = code.last;
             while (q != null)
             {
+                if (q.op.equals("mutiarr"))
+                {
+                    if (q.z.name.contains("temp"))
+                    {
+                        q.def.add(q.z.name);
+                    }
+                }else
                 if (q.op.equals("funcinit"))
                 {
                     if (q.z.params != null)
@@ -191,7 +198,7 @@ public class livecheck
         quard head = code.head;
         while (head != null)
         {
-            if (!(head.op.equals("imm") || head.op.equals("class")  || head.op.contains("int") || head.op.contains("string") || head.op.equals("arr")))
+            if (!(head.op.equals("imm")|| head.op.equals("class")  || head.op.contains("int") || head.op.contains("string") || head.op.equals("arr")))
             {
                 ad.push(head);
             }
@@ -289,7 +296,7 @@ public class livecheck
         code = admit(code);
         //code.print();
         lives(code);
-    /*  quard head = new quard();
+     /* quard head = new quard();
         head = code.head;
         while (head != null)
         {

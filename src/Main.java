@@ -1831,7 +1831,7 @@ class MyVisitor extends MxBaseVisitor<check>
                 }
                 quard quad = new quard();
                 quad.op = chk.var.get(0);
-                if (!(quad.op.equals("int")||quad.op.equals("string") || quad.op.equals("arr")))
+                if (!(quad.op.equals("int") || quad.op.equals("string") || quad.op.equals("arr")))
                 {
                     quad.op = "class";
                 }
@@ -2387,8 +2387,7 @@ class MyVisitor extends MxBaseVisitor<check>
         {
             quard quad = new quard();
             quad.op = "multiarr";
-            Integer kk = new Integer(0);
-            quad.z.name = kk.toString() + "temp";
+            quad.z.name = temp + "temp";
             temp += 100;
             if (temp > maxtemp) maxtemp = temp;
             for (int i = 0; i < ctx.expr().size(); ++i)
@@ -2574,6 +2573,7 @@ class MyVisitor extends MxBaseVisitor<check>
                         chk.code.push(quad);
                         quad = new quard();
                         quad.z.name = arrtemp.toString() + "temp";
+                        quad.op = "int";
                         chk.code.push(quad);
                         ++temp;
                         if (temp > maxtemp) maxtemp = temp;
@@ -2602,8 +2602,8 @@ public class Main
 
     public static check main() throws Exception
     {
-         // File f = new File("E:/test.txt");
-       File f = new File("program.txt");
+        // File f = new File("E:/test.txt");
+        File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
         run(input);

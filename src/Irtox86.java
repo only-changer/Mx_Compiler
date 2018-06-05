@@ -54,7 +54,7 @@ public class Irtox86
         System.out.println("add 	r11,0");
         System.out.println("mov	 qword[r11],2");
         System.out.println("mov 	r10,[rbp - 24]");
-        System.out.println("mov 	[rbp - 8],r10");
+        System.out.println("mov 	r12,r10");
         System.out.println(" mov	qword[rbp - 32],0");
         System.out.println("jmp 	_0whilechecka");
         System.out.println("_0fora:");
@@ -81,7 +81,7 @@ public class Irtox86
         System.out.println("add	    r11,0");
         System.out.println("mov 	qword[r11],2");
         System.out.println("mov 	r10,[rbp - 144]");
-        System.out.println("mov	    r11,[rbp - 8]");
+        System.out.println("mov	    r11,r12");
         System.out.println("add	    r11,[rbp - 128]");
         System.out.println("mov	    [r11],r10");
         System.out.println("mov	    qword[rbp - 40],0");
@@ -116,7 +116,7 @@ public class Irtox86
         System.out.println("add	    r11,0");
         System.out.println("mov	    qword[r11],2");
         System.out.println("mov 	r10,[rbp - 192]");
-        System.out.println("mov	    r11,[rbp - 8]");
+        System.out.println("mov	    r11,r12");
         System.out.println("add 	r11,[rbp - 168]");
         System.out.println("mov 	r11,[r11]");
         System.out.println("add 	r11,[rbp - 176]");
@@ -159,7 +159,7 @@ public class Irtox86
         System.out.println("add	    r11,0");
         System.out.println("mov	    qword[r11],2");
         System.out.println("mov 	r10,[rbp - 248]");
-        System.out.println("mov	    r11,[rbp - 8]");
+        System.out.println("mov	    r11,r12");
         System.out.println("add	    r11,[rbp - 216]");
         System.out.println("mov	    r11,[r11]");
         System.out.println("add 	r11,[rbp - 224]");
@@ -210,7 +210,7 @@ public class Irtox86
         System.out.println("add 	r11,0");
         System.out.println("mov	    qword[r11],2");
         System.out.println("mov 	r10,[rbp - 312]");
-        System.out.println("mov 	r11,[rbp - 8]");
+        System.out.println("mov 	r11,r12");
         System.out.println("add	    r11,[rbp - 272]");
         System.out.println("mov 	r11,[r11]");
         System.out.println("add	    r11,[rbp - 280]");
@@ -269,7 +269,7 @@ public class Irtox86
         System.out.println("add	    r11,0");
         System.out.println("mov	    qword[r11],2");
         System.out.println("mov 	r10,[rbp - 384]");
-        System.out.println("mov	    r11,[rbp - 8]");
+        System.out.println("mov	    r11,r12");
         System.out.println("add 	r11,[rbp - 336]");
         System.out.println("mov 	r11,[r11]");
         System.out.println("add	    r11,[rbp - 344]");
@@ -336,7 +336,7 @@ public class Irtox86
         System.out.println("add	    r11,0");
         System.out.println("mov	    qword[r11],2");
         System.out.println("mov	    r10,[rbp - 464]");
-        System.out.println("mov	    r11,[rbp - 8]");
+        System.out.println("mov	    r11,r12");
         System.out.println("add 	r11,[rbp - 408]");
         System.out.println("mov 	r11,[r11]");
         System.out.println("add	    r11,[rbp - 416]");
@@ -411,7 +411,7 @@ public class Irtox86
         System.out.println("add 	r11,0");
         System.out.println("mov 	qword[r11],2");
         System.out.println("mov 	r10,[rbp - 552]");
-        System.out.println("mov	    r11,[rbp - 8]");
+        System.out.println("mov	    r11,r12");
         System.out.println("add	    r11,[rbp - 488]");
         System.out.println("mov 	r11,[r11]");
         System.out.println("add 	r11,[rbp - 496]");
@@ -494,7 +494,7 @@ public class Irtox86
         System.out.println("add	    r11,0");
         System.out.println("mov 	qword[r11],2");
         System.out.println("mov	    r10,[rbp - 648]");
-        System.out.println("mov	    r11,[rbp - 8]");
+        System.out.println("mov	    r11,r12");
         System.out.println("add	    r11,[rbp - 576]");
         System.out.println("mov 	r11,[r11]");
         System.out.println("add	    r11,[rbp - 584]");
@@ -585,7 +585,7 @@ public class Irtox86
         System.out.println("add 	r11,0");
         System.out.println("mov     qword[r11],2");
         System.out.println("mov 	r10,[rbp - 752]");
-        System.out.println("mov 	r11,[rbp - 8]");
+        System.out.println("mov 	r11,r12");
         System.out.println("add 	r11,[rbp - 672]");
         System.out.println("mov 	r11,[r11]");
         System.out.println("add 	r11,[rbp - 680]");
@@ -1664,14 +1664,25 @@ public class Irtox86
             }
             else if (q.op.equals("j"))
             {
-                Integer addr1 = new Integer(temp - start);
-                addr1 = (addr1 + 1) * 8;
-                System.out.print("      ");
-                System.out.println("mov\tr10,[rbp - " + addr1.toString() + "]");
-                System.out.print("      ");
-                System.out.println("cmp\tr10,1");
-                System.out.print("      ");
-                System.out.println("je\t" + q.z.name);
+                if (allocate.containsKey(q.y.name))
+                {
+                    System.out.print("      ");
+                    System.out.println("mov \tr10," + cregs[allocate.get(q.y.name)]);
+                    System.out.print("      ");
+                    System.out.println("cmp\tr10,1");
+                    System.out.print("      ");
+                    System.out.println("je\t" + q.z.name);
+                }else
+                {
+                    Integer addr1 = new Integer(temp - start);
+                    addr1 = (addr1 + 1) * 8;
+                    System.out.print("      ");
+                    System.out.println("mov\tr10,[rbp - " + addr1.toString() + "]");
+                    System.out.print("      ");
+                    System.out.println("cmp\tr10,1");
+                    System.out.print("      ");
+                    System.out.println("je\t" + q.z.name);
+                }
             }
             else if (q.op.equals("funcinit"))
             {
@@ -2754,7 +2765,7 @@ public class Irtox86
                     if (allocate.containsKey(q.x.name))
                     {
                         System.out.print("      ");
-                        System.out.println("mov \tcl," + cregs[allocate.get(q.x.name)]);
+                        System.out.println("mov \trcx," + cregs[allocate.get(q.x.name)]);
                         System.out.print("      ");
                         System.out.println("sar\tr10,cl");
                     }
@@ -2845,7 +2856,7 @@ public class Irtox86
                     if (allocate.containsKey(q.x.name))
                     {
                         System.out.print("      ");
-                        System.out.println("mov \tcl," + cregs[allocate.get(q.x.name)]);
+                        System.out.println("mov \trcx," + cregs[allocate.get(q.x.name)]);
                         System.out.print("      ");
                         System.out.println("sal\tr10,cl");
                     }
@@ -4032,7 +4043,7 @@ public class Irtox86
     {
         Main m = new Main();
         check chk = m.main();
-        //chk.code.print();
+       // chk.code.print();
         addr = chk.addr;
         global = new Vector<>(chk.params);
         livecheck ck = new livecheck();
