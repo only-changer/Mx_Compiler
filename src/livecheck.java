@@ -57,7 +57,7 @@ class map
 public class livecheck
 {
     Map<String, quard> jmpmap = new HashMap<>();
-    String[] regs = {"r12", "r13", "r14", "r15"};
+    String[] regs = {"r12", "r13", "r14", "r15","rbx"};
     map m = new map();
     Set<String> in = new HashSet<>();
     Set<String> out = new HashSet<>();

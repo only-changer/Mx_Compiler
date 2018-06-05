@@ -9,7 +9,7 @@ public class Irtox86
     static Map<String, Map<String, Integer>> allin = new HashMap<>();
     static Map<String, Integer> allocate = new HashMap<>();
     static Integer addr = 0;
-    static String[] cregs = {"r12", "r13", "r14", "r15", "rbx"};
+    static String[] cregs = {"r12", "r13", "r14", "r15", "r9"};
     static String[] regs = {"rax", "rcx", "rdx", "rbx", "rsi", "rdi", "r8", "r9", "r10", "r11", "r12", "r13", "r14", "r15"};
     static String[] regsb = {"al", "cl", "dl", "bl", "bpl", "sil", "dil", "r8b", "r9b", "r10b", "r11b", "r12b", "r13b", "r14b", "r15b"};
     static String[] callregs = {"rdi", "rsi", "rdx", "rcx", "r8", "r9"};
@@ -2211,6 +2211,7 @@ public class Irtox86
                             check[I] = true;
                         }
                     }
+                    check[4] = true;
                     for (int i = 0; i < cregs.length; ++i)
                     {
                         if (check[i] == true)
@@ -2238,6 +2239,7 @@ public class Irtox86
                             check[I] = true;
                         }
                     }
+                    check[4] = true;
                     for (int i = cregs.length - 1; i >= 0; --i)
                     {
                         if (check[i] == true)

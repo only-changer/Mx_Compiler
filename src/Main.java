@@ -623,6 +623,7 @@ class MyVisitor extends MxBaseVisitor<check>
         for (int i = 0; i < ctx.defun().size(); ++i)
         {
             check ck = visit(ctx.defun(i));
+            if (ck.doit == false) chk.doit = false;
             chk.params.addAll(ck.params);
             chk.code.add(ck.code);
         }
@@ -667,7 +668,7 @@ class MyVisitor extends MxBaseVisitor<check>
         if (ctx.funname().getText().equals("main"))
             origintemp = 0;
         check c = visit(ctx.params());
-        if (ctx.params().param().size() > 6) chk.doit = false;
+        if (ctx.params().param().size() > 5 || !classname.equals("")) chk.doit = false;
         Map<String, vartype> map = (c.defvars);
         Vector<String> pvec = c.var;
         local.putAll(map);
@@ -2607,7 +2608,7 @@ public class Main
 
     public static check main() throws Exception
     {
-       // File f = new File("E:/test.txt");
+     //   File f = new File("E:/test.txt");
        File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
