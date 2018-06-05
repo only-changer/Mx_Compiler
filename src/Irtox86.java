@@ -2211,7 +2211,6 @@ public class Irtox86
                             check[I] = true;
                         }
                     }
-                    check[4] = true;
                     for (int i = 0; i < cregs.length; ++i)
                     {
                         if (check[i] == true)
@@ -2239,7 +2238,6 @@ public class Irtox86
                             check[I] = true;
                         }
                     }
-                    check[4] = true;
                     for (int i = cregs.length - 1; i >= 0; --i)
                     {
                         if (check[i] == true)
