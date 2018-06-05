@@ -191,7 +191,7 @@ public class livecheck
         quard head = code.head;
         while (head != null)
         {
-            if (!(head.op.equals("imm") || head.op.equals("class") || head.op.equals("TA") || head.op.contains("int") || head.op.contains("string") || head.op.equals("arr")))
+            if (!(head.op.equals("imm") || head.op.equals("class")  || head.op.contains("int") || head.op.contains("string") || head.op.equals("arr")))
             {
                 ad.push(head);
             }
@@ -289,7 +289,7 @@ public class livecheck
         code = admit(code);
         //code.print();
         lives(code);
-     /* quard head = new quard();
+    /*  quard head = new quard();
         head = code.head;
         while (head != null)
         {

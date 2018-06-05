@@ -1727,9 +1727,6 @@ class MyVisitor extends MxBaseVisitor<check>
         Vector<String> vec = new Vector();
         if (ctx.varname() != null)
         {
-            //System.out.println(ctx.varname().getText()  + classname);
-            // System.out.println("<<<>>>");
-            //  System.out.println(ctx.varname().getText() + classname);
             if (!cla.equals(""))
             {
                 if (defclass.get(cla).defvars.containsKey(ctx.varname().getText()))
@@ -1834,6 +1831,10 @@ class MyVisitor extends MxBaseVisitor<check>
                 }
                 quard quad = new quard();
                 quad.op = chk.var.get(0);
+                if (!(quad.op.equals("int")||quad.op.equals("string") || quad.op.equals("arr")))
+                {
+                    quad.op = "class";
+                }
                 String s = new String();
 
                 if (regs.containsKey(ctx.varname().getText()))
@@ -2601,7 +2602,7 @@ public class Main
 
     public static check main() throws Exception
     {
-          //File f = new File("E:/test.txt");
+         // File f = new File("E:/test.txt");
        File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);
