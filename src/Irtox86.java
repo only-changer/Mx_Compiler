@@ -6,10 +6,10 @@ import java.util.*;
 
 public class Irtox86
 {
-    static Map<String,Map<String,Integer>> allin = new HashMap<>();
+    static Map<String, Map<String, Integer>> allin = new HashMap<>();
     static Map<String, Integer> allocate = new HashMap<>();
     static Integer addr = 0;
-    static String[] cregs = {"r12", "r13", "r14", "r15","r8","r9"};
+    static String[] cregs = {"r12", "r13", "r14", "r15", "rbx"};
     static String[] regs = {"rax", "rcx", "rdx", "rbx", "rsi", "rdi", "r8", "r9", "r10", "r11", "r12", "r13", "r14", "r15"};
     static String[] regsb = {"al", "cl", "dl", "bl", "bpl", "sil", "dil", "r8b", "r9b", "r10b", "r11b", "r12b", "r13b", "r14b", "r15b"};
     static String[] callregs = {"rdi", "rsi", "rdx", "rcx", "r8", "r9"};
@@ -20,7 +20,8 @@ public class Irtox86
     static Integer end = new Integer(0);
     static Vector<varible> global = new Vector<>();
     static Integer rsp = new Integer(0);
-    static  boolean doit =true;
+    static boolean doit = true;
+
     public static Integer move(String curtemp)
     {
         Integer temp0 = -1;
@@ -1672,7 +1673,8 @@ public class Irtox86
                     System.out.println("cmp\tr10,1");
                     System.out.print("      ");
                     System.out.println("je\t" + q.z.name);
-                }else
+                }
+                else
                 {
                     Integer addr1 = new Integer(temp - start);
                     addr1 = (addr1 + 1) * 8;
@@ -2200,7 +2202,7 @@ public class Irtox86
                 }
                 if (doit)
                 {
-                    boolean []check = {false,false,false,false,false,false};
+                    boolean[] check = {false, false, false, false, false};
                     for (String str : q.push)
                     {
                         if (allocate.containsKey(str))
@@ -2209,7 +2211,7 @@ public class Irtox86
                             check[I] = true;
                         }
                     }
-                    for (int i = 0;i < cregs.length;++i)
+                    for (int i = 0; i < cregs.length; ++i)
                     {
                         if (check[i] == true)
                         {
@@ -2227,7 +2229,7 @@ public class Irtox86
                 System.out.println("call\t" + q.z.name);
                 if (doit)
                 {
-                    boolean []check = {false,false,false,false,false,false};
+                    boolean[] check = {false, false, false, false, false};
                     for (String str : q.push)
                     {
                         if (allocate.containsKey(str))
@@ -2236,7 +2238,7 @@ public class Irtox86
                             check[I] = true;
                         }
                     }
-                    for (int i = cregs.length - 1;i >= 0;--i)
+                    for (int i = cregs.length - 1; i >= 0; --i)
                     {
                         if (check[i] == true)
                         {
@@ -2244,6 +2246,7 @@ public class Irtox86
                             System.out.println("pop\t" + cregs[i]);
                         }
                     }
+
                 }
                 if (q.y.name.contains("temp"))
                 {
@@ -4066,7 +4069,7 @@ public class Irtox86
         global = new Vector<>(chk.params);
         livecheck ck = new livecheck();
         if (chk.doit) allocate = ck.check(chk.code);
-        if (chk.doit == false) doit =false;
+        if (chk.doit == false) doit = false;
         for (Map.Entry<String, Integer> entry : allocate.entrySet())
         {
             //System.out.println(entry.getKey() + ' ' + entry.getValue());
