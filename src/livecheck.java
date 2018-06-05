@@ -270,7 +270,7 @@ public class livecheck
                 }
             }
             n.dec();
-            boolean[] check = {false, false, false, false};
+            boolean[] check = {false, false, false, false,false,false};
             for (int j = 0; j < n.neibor.size(); ++j)
             {
                 if (n.neibor.get(j).color != -1)
@@ -288,7 +288,7 @@ public class livecheck
             }
             if (n.color == -1)
             {
-                if (color < 4)
+                if (color < check.length)
                 {
                     n.color = color;
                     result.put(n.name, n.color);
