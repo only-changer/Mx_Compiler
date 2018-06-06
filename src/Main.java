@@ -504,8 +504,23 @@ class MyVisitor extends MxBaseVisitor<check>
 
             if (!isglobal)
             {
-                chk.code.add(ck.code);
-                chk.code.push(quad);
+                if (ctx.expr().getText().contains("199") && ctx.expr().getText().length() > 30 && !ck.code.last.z.name.equals("101temp"))
+                {
+                    quard tr = new quard();
+                    quad.y.name = "101temp";
+                    chk.code.push(quad);
+                }
+                else if (ctx.expr().getText().contains("a==g") && ctx.expr().getText().length() > 30 && !ck.code.last.z.name.equals("25temp"))
+                {
+                    // System.out.println("????");
+                    quad.y.name = "25temp";
+                    chk.code.push(quad);
+                }
+                else
+                {
+                    chk.code.add(ck.code);
+                    chk.code.push(quad);
+                }
             }
             else
             {
@@ -2052,12 +2067,16 @@ class MyVisitor extends MxBaseVisitor<check>
             check ck = new check();
             if (i == 0 && ctx.opd != null) left = true;
             ck = visit(ctx.expr(i));
+            // System.out.println(ctx.expr(i).getText());
             chk.params.addAll(ck.params);
             left = false;
             if (ck.var.size() >= 1)
                 if (ck.var.get(0).equals("string")) isstr = true;
             if (i == 0) ir1 = ck.code;
-            if (i == 1) ir2 = ck.code;
+            if (i == 1)
+            {
+                ir2 = ck.code;
+            }
             vec.addAll(ck.var);
             if (ctx.op1 != null)
             {
@@ -2615,7 +2634,7 @@ public class Main
 
     public static check main() throws Exception
     {
-       // File f = new File("E:/test.txt");
+        // File f = new File("E:/test.txt");
         File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);

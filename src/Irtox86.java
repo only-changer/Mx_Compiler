@@ -4064,7 +4064,7 @@ public class Irtox86
     {
         Main m = new Main();
         check chk = m.main();
-        //chk.code.print();
+      //  chk.code.print();
         addr = chk.addr;
         global = new Vector<>(chk.params);
         livecheck ck = new livecheck();
@@ -4074,6 +4074,6 @@ public class Irtox86
         {
             //System.out.println(entry.getKey() + ' ' + entry.getValue());
         }
-        translate(chk.code);
+       translate(chk.code);
     }
 }
