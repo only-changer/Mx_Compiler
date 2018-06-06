@@ -668,7 +668,7 @@ class MyVisitor extends MxBaseVisitor<check>
         if (ctx.funname().getText().equals("main"))
             origintemp = 0;
         check c = visit(ctx.params());
-        if (ctx.params().param().size() > 4 || !classname.equals("")) chk.doit = false;
+        if (ctx.params().param().size() > 3 || !classname.equals("")) chk.doit = false;
         Map<String, vartype> map = (c.defvars);
         Vector<String> pvec = c.var;
         local.putAll(map);
