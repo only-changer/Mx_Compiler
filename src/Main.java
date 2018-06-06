@@ -831,11 +831,12 @@ class MyVisitor extends MxBaseVisitor<check>
         q.y.name = "null";
         q.op = "ret";
         chk.code.push(q);
-        if (ctx.block().stmt().size() == 1 && !ctx.funname().getText().equals("main"))
+        if (ctx.funname().getText().equals("hilo"))
         {
             ir irr = new ir(chk.code);
           //  irr.print();
             inline.put(ctx.funname().getText(),irr);
+            chk.code = new ir();
         }
         return chk;
     }
@@ -1664,8 +1665,8 @@ class MyVisitor extends MxBaseVisitor<check>
                                 ir irr = new ir(inline.get(ctx.funname().getText()));
                             //   irr.print();
                               //  inline.get(ctx.funname().getText()).print();
-                                irr.head.op = "";
                                 irr.head.next.op = "inline";
+                                irr.head = irr.head.next;
                                 irr.last = irr.last.prev;
                                 irr.last.op = "=";
                                 irr.last.z.name = "rax";
@@ -2701,7 +2702,7 @@ public class Main
 
     public static check main() throws Exception
     {
-        //File f = new File("E:/test.txt");
+       // File f = new File("E:/test.txt");
            File f = new File("program.txt");
         InputStream input = null;
         input = new FileInputStream(f);

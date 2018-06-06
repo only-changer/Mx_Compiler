@@ -6,9 +6,8 @@
       <change beforePath="$PROJECT_DIR$/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/a.out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hello.asm" beforeDir="false" afterPath="$PROJECT_DIR$/hello.asm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hello.o" beforeDir="false" afterPath="$PROJECT_DIR$/hello.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/IDE/Irtox86.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/Irtox86.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Irtox86.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Irtox86.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/livecheck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/livecheck.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,8 +22,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="84">
-              <caret line="2703" column="10" selection-start-line="2703" selection-start-column="10" selection-end-line="2703" selection-end-column="10" />
+            <state relative-caret-position="87">
+              <caret line="2704" column="9" selection-start-line="2704" selection-start-column="9" selection-end-line="2704" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2297#2298#0" expanded="true" />
@@ -41,8 +40,8 @@
       <file leaf-file-name="livecheck.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/livecheck.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-766">
-              <caret line="269" column="57" selection-start-line="269" selection-start-column="57" selection-end-line="269" selection-end-column="57" />
+            <state relative-caret-position="301">
+              <caret line="97" column="66" selection-start-line="97" selection-start-column="66" selection-end-line="97" selection-end-column="66" />
             </state>
           </provider>
         </entry>
@@ -50,8 +49,8 @@
       <file leaf-file-name="Irtox86.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Irtox86.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1985">
-              <caret line="4044" column="51" lean-forward="true" selection-start-line="4044" selection-start-column="51" selection-end-line="4044" selection-end-column="51" />
+            <state relative-caret-position="-258">
+              <caret line="1642" column="35" selection-start-line="1642" selection-start-column="29" selection-end-line="1642" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -67,9 +66,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>gtemp</find>
-      <find>q.def</find>
-      <find>&quot;call</find>
       <find>false</find>
       <find>main</find>
       <find>136temp</find>
@@ -96,7 +92,10 @@
       <find>&quot;ret&quot;</find>
       <find>shift_l</find>
       <find>&quot;=&quot;</find>
+      <find>hilo</find>
+      <find>inline</find>
       <find>irr.p</find>
+      <find>shi</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -110,8 +109,8 @@
         <option value="$PROJECT_DIR$/src/MxParser.java" />
         <option value="$PROJECT_DIR$/src/Semantic.java" />
         <option value="$PROJECT_DIR$/src/Mx.g4" />
-        <option value="$PROJECT_DIR$/src/livecheck.java" />
         <option value="$PROJECT_DIR$/src/Irtox86.java" />
+        <option value="$PROJECT_DIR$/src/livecheck.java" />
         <option value="$PROJECT_DIR$/src/Main.java" />
       </list>
     </option>
@@ -271,9 +270,9 @@
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.61405295" side_tool="true" visible="true" weight="0.36258993" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.62729126" side_tool="true" visible="true" weight="0.3582734" />
       <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.38594705" visible="true" weight="0.36258993" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.37270877" visible="true" weight="0.3582734" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.41414142" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49932975" weight="0.3294964" />
       <window_info id="Capture Tool" order="2" />
@@ -673,24 +672,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/livecheck.java">
+    <entry file="file://$PROJECT_DIR$/src/Irtox86.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-766">
-          <caret line="269" column="57" selection-start-line="269" selection-start-column="57" selection-end-line="269" selection-end-column="57" />
+        <state relative-caret-position="-258">
+          <caret line="1642" column="35" selection-start-line="1642" selection-start-column="29" selection-end-line="1642" selection-end-column="35" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Irtox86.java">
+    <entry file="file://$PROJECT_DIR$/src/livecheck.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1985">
-          <caret line="4044" column="51" lean-forward="true" selection-start-line="4044" selection-start-column="51" selection-end-line="4044" selection-end-column="51" />
+        <state relative-caret-position="301">
+          <caret line="97" column="66" selection-start-line="97" selection-start-column="66" selection-end-line="97" selection-end-column="66" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="2703" column="10" selection-start-line="2703" selection-start-column="10" selection-end-line="2703" selection-end-column="10" />
+        <state relative-caret-position="87">
+          <caret line="2704" column="9" selection-start-line="2704" selection-start-column="9" selection-end-line="2704" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2297#2298#0" expanded="true" />

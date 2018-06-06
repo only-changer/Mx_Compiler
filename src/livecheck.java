@@ -95,7 +95,7 @@ public class livecheck
                         q.def.add(q.z.name);
                     }
                 }else
-                if (q.op.equals("funcinit"))
+                if (q.op.equals("funcinit") || q.op.equals("inline"))
                 {
                     if (q.z.params != null)
                     {
