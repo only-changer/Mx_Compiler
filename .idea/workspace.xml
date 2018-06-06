@@ -6,8 +6,8 @@
       <change beforePath="$PROJECT_DIR$/a.out" beforeDir="false" afterPath="$PROJECT_DIR$/a.out" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hello.asm" beforeDir="false" afterPath="$PROJECT_DIR$/hello.asm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hello.o" beforeDir="false" afterPath="$PROJECT_DIR$/hello.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/IDE/MyVisitor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/IDE/MyVisitor.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/livecheck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/livecheck.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,7 +23,7 @@
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="87">
-              <caret line="2704" column="9" selection-start-line="2704" selection-start-column="9" selection-end-line="2704" selection-end-column="9" />
+              <caret line="2706" column="9" selection-start-line="2706" selection-start-column="9" selection-end-line="2706" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2297#2298#0" expanded="true" />
@@ -66,10 +66,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>false</find>
-      <find>main</find>
-      <find>136temp</find>
-      <find>2for</find>
       <find>cos</find>
       <find>opf</find>
       <find>defun</find>
@@ -96,6 +92,10 @@
       <find>inline</find>
       <find>irr.p</find>
       <find>shi</find>
+      <find>rest</find>
+      <find>0forba</find>
+      <find>opt</find>
+      <find>dontk</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -116,8 +116,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="575" />
-    <option name="y" value="21" />
+    <option name="x" value="493" />
+    <option name="y" value="22" />
     <option name="width" value="1300" />
     <option name="height" value="1040" />
   </component>
@@ -260,7 +260,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="460" y="17" width="1040" height="832" extended-state="0" />
+    <frame x="395" y="18" width="1040" height="832" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
@@ -270,9 +270,9 @@
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.62729126" side_tool="true" visible="true" weight="0.3582734" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.6384929" side_tool="true" visible="true" weight="0.3582734" />
       <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.37270877" visible="true" weight="0.3582734" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.36150712" visible="true" weight="0.3582734" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.41414142" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49932975" weight="0.3294964" />
       <window_info id="Capture Tool" order="2" />
@@ -689,7 +689,7 @@
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="87">
-          <caret line="2704" column="9" selection-start-line="2704" selection-start-column="9" selection-end-line="2704" selection-end-column="9" />
+          <caret line="2706" column="9" selection-start-line="2706" selection-start-column="9" selection-end-line="2706" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2297#2298#0" expanded="true" />

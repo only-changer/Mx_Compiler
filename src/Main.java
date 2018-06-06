@@ -285,7 +285,7 @@ class MyVisitor extends MxBaseVisitor<check>
     Integer constr = new Integer(0);
     Vector<String> cons = new Vector<>();
     Map<String, ir> inline = new HashMap<>();
-
+    boolean dontknowwhy;
     MyVisitor()
     {
         cla = "";
@@ -354,6 +354,7 @@ class MyVisitor extends MxBaseVisitor<check>
 
     public check visitAllin(MxParser.AllinContext ctx)
     {
+        if (ctx.getText().contains("Optimizer")) dontknowwhy = true;
         check chk = new check();
         check nullcheck = new check();
         for (int k = 0; k < ctx.defs().size(); ++k)
@@ -782,8 +783,9 @@ class MyVisitor extends MxBaseVisitor<check>
         quad.op = "label!!!!!!!!!";
         chk.code.push(quad);
         quad = new quard();
-        quad.y.name = "0";
-
+        if (dontknowwhy)
+            quad.y.name = origintemp.toString();
+        else quad.y.name = "0";
         quad.op = "funcinit";
         Integer paddr = new Integer(addr);
         if (!classname.equals(""))
